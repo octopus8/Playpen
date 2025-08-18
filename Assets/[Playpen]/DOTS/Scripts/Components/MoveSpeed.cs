@@ -4,7 +4,7 @@ using UnityEngine;
 public class MoveSpeed : MonoBehaviour
 {
     [SerializeField]
-    private float value = 50f;
+    private float value = 5f;
     
     public class Baker : Baker<MoveSpeed>
     {

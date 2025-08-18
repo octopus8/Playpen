@@ -10,10 +10,14 @@
 - As suggested on the Unity "Entities project setup" page, "Enter Play Mode Settings" in "Project Settings/Editor" was set to "Do not reload Domain or Scene".
 
 # Notes
+## Graphics
 - A "DOTS" quality level has been created and is the default quality level for PC.
 - The "DOTS" quality level uses the "DOTS URP Config" render pipeline asset.
 - The "DOTS URP Config" render pipeline asset uses the "DOTS URP Preset" Universal Render Data.
-- 
+
+## DOTS
+- `ISystem` provides an interface for unmanaged systems.
+- `ISystemBase` provides an interface for managed systems.
 
 # Issues
 - Shadow not showing
