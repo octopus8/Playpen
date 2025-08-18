@@ -8,6 +8,7 @@
 - Imported the `DOTS_RTS_Course_VisualAssets_Part1.unitypackage` package.
 - Created `Assets/[Playpen]/DOTS/DOTS URP Config` from `Assets/Settings/Project Configuration/Quality URP Config`.
 - As suggested on the Unity "Entities project setup" page, "Enter Play Mode Settings" in "Project Settings/Editor" was set to "Do not reload Domain or Scene".
+- "Active Input Handling" in "Project Settings/Player" was set to "Both".
 
 # Notes
 ## Graphics
