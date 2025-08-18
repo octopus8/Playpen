@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/AutoHand/Examples/Scenes/XR/Demo.unity
-    guid: 9935fff7a54383d4a8ca954c1411c833
   - enabled: 1
-    path: Assets/AutoHand/Examples/Scenes/OpenXR/XRHands.unity
-    guid: aeecf2324ad45cd4781c5da04580100a
+    path: Assets/[Playpen]/Playpen.unity
+    guid: e115c2e4ae6d84741bd3407495f5934b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
