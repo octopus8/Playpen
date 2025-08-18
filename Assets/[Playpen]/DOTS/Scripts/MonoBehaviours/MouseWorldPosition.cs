@@ -24,7 +24,7 @@ public class MouseWorldPosition : MonoBehaviour
         {
             return ray.GetPoint(enter);
         }
+*/        
         return Vector3.zero; // Return zero if the ray does not hit the ground plane
-*/    
     }
 }
