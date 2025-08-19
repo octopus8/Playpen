@@ -178,8 +178,9 @@ GameObject:
   m_Component:
   - component: {fileID: 219085699}
   - component: {fileID: 219085698}
+  - component: {fileID: 219085700}
   m_Layer: 0
-  m_Name: MouseWorldPosition
+  m_Name: Application
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +213,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &219085700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219085697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29176fe75350a7b4d84feda098bc0eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitSelection
 --- !u!1 &957625453
 GameObject:
   m_ObjectHideFlags: 0
