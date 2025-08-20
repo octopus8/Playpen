@@ -19,6 +19,7 @@
 ## DOTS
 - `ISystem` provides an interface for unmanaged systems.
 - `ISystemBase` provides an interface for managed systems.
+- `SystemAPI.GetComponentRW` accesses memory outside of the containing query, which somewhat breaks DOTS' ECS paradigm.
 
 # Issues
 - Shadow not showing
