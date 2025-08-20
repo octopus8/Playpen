@@ -9,13 +9,34 @@ partial struct UnitMoverSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach ((RefRW<LocalTransform> localTransform, RefRO<UnitMoverDOTS> unitMover, RefRW<PhysicsVelocity> physicsVelocity) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<UnitMoverDOTS>, RefRW<PhysicsVelocity>>())
+        UnitMoverJob unitMoverJob = new UnitMoverJob
         {
-            float3 moveDirection = math.normalize(unitMover.ValueRO.targetPosition - localTransform.ValueRO.Position);
-            localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, quaternion.LookRotation(moveDirection, math.up()),
-                SystemAPI.Time.DeltaTime * unitMover.ValueRO.rotationSpeed);
-            physicsVelocity.ValueRW.Linear = moveDirection * unitMover.ValueRO.moveSpeed;
-            physicsVelocity.ValueRW.Angular = float3.zero;
+            deltaTime = SystemAPI.Time.DeltaTime,
+        };
+        unitMoverJob.ScheduleParallel();
+    }
+}
+
+
+[BurstCompile]
+public partial struct UnitMoverJob : IJobEntity
+{
+    private const float minTargetDistanceSquared = 0.3f;
+    public float deltaTime;
+    
+    public void Execute(ref LocalTransform localTransform, in UnitMoverDOTS unitMover, ref PhysicsVelocity physicsVelocity)
+    {
+        float3 moveDirection = unitMover.targetPosition - localTransform.Position;
+        if (math.lengthsq(moveDirection) < minTargetDistanceSquared)
+        {
+            physicsVelocity.Linear = float3.zero;
+            physicsVelocity.Angular = float3.zero;
+            return;
         }
+        moveDirection = math.normalize(moveDirection);
+        localTransform.Rotation = math.slerp(localTransform.Rotation, quaternion.LookRotation(moveDirection, math.up()),
+            deltaTime * unitMover.rotationSpeed);
+        physicsVelocity.Linear = moveDirection * unitMover.moveSpeed;
+        physicsVelocity.Angular = float3.zero;
     }
 }
