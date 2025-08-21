@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSelectionUI
   selectionArea: {fileID: 867876891}
+  canvas: {fileID: 688376268}
 --- !u!1 &688376265
 GameObject:
   m_ObjectHideFlags: 0

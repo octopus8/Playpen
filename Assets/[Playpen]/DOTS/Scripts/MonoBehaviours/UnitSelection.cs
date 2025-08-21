@@ -1,6 +1,7 @@
 using System;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
 
@@ -51,8 +52,45 @@ public class UnitSelection : MonoBehaviour
             startMousePosition = Input.mousePosition;
             OnSelectionAreaStart?.Invoke(this, EventArgs.Empty);
         }
+        
+        
         if (Input.GetMouseButtonUp(0))
         {
+            // Set all units as unselected before processing the selection area.
+            // This ensures that only the units within the selection area are selected.
+            // It also prevents previously selected units from remaining selected after the selection area is cleared.
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp)
+                .WithAll<Selected>()
+                .Build(entityManager);
+            NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
+            for (int i=0; i < entityArray.Length; i++)
+            {
+                entityManager.SetComponentEnabled<Selected>(entityArray[i], false);
+            }
+            
+            // Set units within the selection area as selected.
+            // This is done by checking if the unit's screen position is within the selection area rectangle.
+            // If it is, we enable the Selected component for that unit.
+            // This allows the UI to visually represent the selected units.
+            entityQuery = new EntityQueryBuilder(Allocator.Temp)
+                .WithAll<LocalTransform, Unit>()
+                .WithPresent<Selected>() 
+                .Build(entityManager);
+            entityArray = entityQuery.ToEntityArray(Allocator.Temp);
+            NativeArray<LocalTransform> unitLocalTransformDataArray = entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
+            Rect selectionAreaRect = GetSelectionAreaRect();
+            for (int i = 0; i < unitLocalTransformDataArray.Length; i++)
+            {
+                LocalTransform localTransform = unitLocalTransformDataArray[i];
+                Vector2 unitScreenPosition = Camera.main.WorldToScreenPoint(localTransform.Position);
+                if (selectionAreaRect.Contains(unitScreenPosition))
+                {
+                    entityManager.SetComponentEnabled<Selected>(entityArray[i], true);
+                }
+            }
+            
+            // Call the callback for selection area end.
             OnSelectionAreaEnd?.Invoke(this, EventArgs.Empty);
         }
         

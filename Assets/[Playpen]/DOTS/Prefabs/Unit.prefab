@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 7641347714630429974}
   - component: {fileID: 3826009124151756861}
   - component: {fileID: 8116253372041947155}
+  - component: {fileID: -4588452694654276750}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -277,8 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b7afd45489e134ba651bec14f04059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitMover
-  moveSpeed: 5
-  rotationSpeed: 10
+  moveSpeedMPS: 5
+  rotationSpeedRPS: 10
 --- !u!114 &8116253372041947155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,3 +294,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Selected
   visualGameObject: {fileID: 5370678836466583444}
   showScale: 2
+--- !u!114 &-4588452694654276750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116961625703330837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566d29026758f6b4b9618fe43dcfa07d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DOTSUnit

@@ -10,6 +10,8 @@ public class UnitSelectionUI : MonoBehaviour
 {
     /// <summary> The selection area UI element that visually represents the area of selection. </summary>
     [SerializeField] private RectTransform selectionArea;
+    
+    [SerializeField] private Canvas canvas;
 
 
     /// <summary>
@@ -60,12 +62,15 @@ public class UnitSelectionUI : MonoBehaviour
     /// Updates the visual representation of the selection area based on the current selection rectangle.
     /// This method retrieves the selection area rectangle from the UnitSelection singleton and updates the RectTransform
     /// of the selection area UI element to match the rectangle's position and size.
+    /// This method handles the scaling of the selection area based on the overlay canvas scale factor,
+    /// ensuring that the selection area is displayed correctly regardless of the canvas scale.
     /// </summary>
     private void UpdateVisual()
     {
+        float canvasScaleFactor = canvas.transform.localScale.x;
         Rect selectionAreaRect = UnitSelection.Instance.GetSelectionAreaRect();
-        selectionArea.anchoredPosition = new Vector2(selectionAreaRect.x, selectionAreaRect.y);
-        selectionArea.sizeDelta = new Vector2(selectionAreaRect.width, selectionAreaRect.height);
+        selectionArea.anchoredPosition = new Vector2(selectionAreaRect.x, selectionAreaRect.y) / canvasScaleFactor;
+        selectionArea.sizeDelta = new Vector2(selectionAreaRect.width, selectionAreaRect.height) / canvasScaleFactor;
     }
     
 }
