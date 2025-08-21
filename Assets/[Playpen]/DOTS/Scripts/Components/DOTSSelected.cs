@@ -2,9 +2,9 @@ using Unity.Entities;
 using UnityEngine;
 
 /// <summary>
-/// SelectedDOTS ECS component authoring MonoBehaviour.
+/// Selected DOTS component authoring MonoBehaviour.
 /// </summary>
-public class Selected : MonoBehaviour
+public class DOTSSelected : MonoBehaviour
 {
     /// <summary> Visual visible when selected. </summary>
     [SerializeField]
@@ -18,20 +18,20 @@ public class Selected : MonoBehaviour
     /// <summary>
     /// ECS Baker class to convert the MonoBehaviour to an Entity with SelectedDOTS component.
     /// </summary>
-    class SelectedBaker : Baker<Selected>
+    class SelectedBaker : Baker<DOTSSelected>
     {
         /// <summary>
         /// Converts the MonoBehaviour properties to an Entity with SelectedDOTS component.
         /// </summary>
-        public override void Bake(Selected authoring)
+        public override void Bake(DOTSSelected authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new SelectedDOTS
+            AddComponent(entity, new Selected
             {
                 visualEntity = GetEntity(authoring.visualGameObject, TransformUsageFlags.Dynamic),
                 showScale = authoring.showScale
             });
-            SetComponentEnabled<SelectedDOTS>(entity,false);
+            SetComponentEnabled<Selected>(entity,false);
         }
     }
 }
@@ -40,7 +40,7 @@ public class Selected : MonoBehaviour
 /// <summary>
 /// DOTS component containing selection data.
 /// </summary>
-public struct SelectedDOTS : IComponentData, IEnableableComponent
+public struct Selected : IComponentData, IEnableableComponent
 {
     /// <summary> Entity representing the visual that is shown when selected. </summary>
     public Entity visualEntity;

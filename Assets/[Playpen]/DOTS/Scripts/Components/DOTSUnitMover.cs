@@ -4,9 +4,9 @@ using UnityEngine;
 
 
 /// <summary>
-/// UnitMoverDOTS ECS component authoring MonoBehaviour.
+/// UnitMover ECS component authoring MonoBehaviour.
 /// </summary>
-public class UnitMover : MonoBehaviour
+public class DOTSUnitMover : MonoBehaviour
 {
     /// <summary> Unit movement speed, in meters per second. </summary>
     [Tooltip("Unit movement speed.")]
@@ -22,15 +22,15 @@ public class UnitMover : MonoBehaviour
     /// <summary>
     /// ECS Baker class to convert the MonoBehaviour to an Entity with UnitMoverDOTS component.
     /// </summary>
-    public class Baker : Baker<UnitMover>
+    public class Baker : Baker<DOTSUnitMover>
     {
         /// <summary>
         /// Converts the MonoBehaviour properties to an Entity with UnitMoverDOTS component.
         /// </summary>
-        public override void Bake(UnitMover authoring)
+        public override void Bake(DOTSUnitMover authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new UnitMoverDOTS
+            AddComponent(entity, new UnitMover
             {
                 moveSpeed = authoring.moveSpeedMPS,
                 rotationSpeed = authoring.rotationSpeedRPS
@@ -43,7 +43,7 @@ public class UnitMover : MonoBehaviour
 /// <summary>
 /// DOTS component containing unit movement data.
 /// </summary>
-public struct UnitMoverDOTS : IComponentData
+public struct UnitMover : IComponentData
 {
     /// <summary> Unit movement speed, in meters per second. </summary>
     public float moveSpeed;
