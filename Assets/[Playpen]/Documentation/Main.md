@@ -24,4 +24,6 @@
 # Issues
 - Shadow not showing
   - Move the camera close. If you can see the shadow, then the shadow distance is too low. This is set in the active render pipeline asset.
-  - 
+
+# Units
+Units are created from a prefab. The root GameObject of this prefab has a `UnitMover` and a `Selected` component.
