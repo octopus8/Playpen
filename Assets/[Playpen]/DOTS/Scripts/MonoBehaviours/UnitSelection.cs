@@ -1,6 +1,7 @@
 using System;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
@@ -144,10 +145,11 @@ public class UnitSelection : MonoBehaviour
             // Convert the query results to a NativeArray of UnitMover components.
             // Iterate through the array and set the target position for each selected unit.
             NativeArray<UnitMover> unitMoverDataArray = entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
+            NativeArray<float3> movePositions = GenerateMovePositionsArray(mousePosition, unitMoverDataArray.Length);
             for (int i = 0; i < unitMoverDataArray.Length; i++)
             {
                 UnitMover unitMover = unitMoverDataArray[i];
-                unitMover.targetPosition = mousePosition;
+                unitMover.targetPosition = movePositions[i];
                 unitMoverDataArray[i] = unitMover;
             }
             
@@ -172,5 +174,48 @@ public class UnitSelection : MonoBehaviour
             Mathf.Max(startMousePosition.x, Input.mousePosition.x),
             Mathf.Max(startMousePosition.y, Input.mousePosition.y));
         return new Rect(lowerLeft.x, lowerLeft.y, upperRight.x - lowerLeft.x, upperRight.y - lowerLeft.y);
+    }
+    
+    
+    private NativeArray<float3> GenerateMovePositionsArray(float3 targetPosition, int positionCount)
+    {
+        NativeArray<float3> movePositions = new NativeArray<float3>(positionCount, Allocator.Temp);
+        if (positionCount == 0)
+        {
+            return movePositions;
+        }
+        
+        movePositions[0] = targetPosition;
+        if (positionCount == 1)
+        {
+            return movePositions;
+        }
+        
+        float ringSize = 2.2f;
+        int currentRing = 0;
+        int currentPositionIndex = 1;
+        while (currentPositionIndex < positionCount)
+        {
+            int positionsInRing = 3 + currentRing * 2;
+            
+            for (int i = 0; i < positionsInRing; i++)
+            {
+                float angle = i * (math.PI2 / positionsInRing);
+                float3 vector = math.rotate(quaternion.RotateY(angle),
+                    new float3(ringSize * (currentRing + 1), 0, 0));
+                float3 ringPosition = targetPosition + vector;
+                
+                movePositions[currentPositionIndex] = ringPosition;
+                currentPositionIndex++;
+                
+                if (currentPositionIndex >= positionCount)
+                {
+                    break;
+                }
+            }
+            
+            currentRing++;
+        }
+        return movePositions;   
     }
 }
