@@ -66,9 +66,14 @@ public class UnitSelection : MonoBehaviour
                 .WithAll<Selected>()
                 .Build(entityManager);
             NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
+            NativeArray<Selected> selectedDataArray = entityQuery.ToComponentDataArray<Selected>(Allocator.Temp);
             for (int i=0; i < entityArray.Length; i++)
             {
                 entityManager.SetComponentEnabled<Selected>(entityArray[i], false);
+                Selected selected = selectedDataArray[i];
+                selected.onDeselected = true;
+                selectedDataArray[i] = selected;
+                entityManager.SetComponentData(entityArray[i], selected);
             }
             
             Rect selectionAreaRect = GetSelectionAreaRect();
@@ -95,6 +100,9 @@ public class UnitSelection : MonoBehaviour
                     if (selectionAreaRect.Contains(unitScreenPosition))
                     {
                         entityManager.SetComponentEnabled<Selected>(entityArray[i], true);
+                        Selected selected = entityManager.GetComponentData<Selected>(entityArray[i]);
+                        selected.onSelected = true;
+                        entityManager.SetComponentData(entityArray[i], selected);
                     }
                 }
             }
@@ -123,6 +131,9 @@ public class UnitSelection : MonoBehaviour
                     if (entityManager.HasComponent<Unit>(hit.Entity))
                     {
                         entityManager.SetComponentEnabled<Selected>(hit.Entity, true);
+                        Selected selected = entityManager.GetComponentData<Selected>(hit.Entity);
+                        selected.onSelected = true;
+                        entityManager.SetComponentData(hit.Entity, selected);
                     }
                 }
             }

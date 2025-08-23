@@ -46,5 +46,11 @@ public struct Selected : IComponentData, IEnableableComponent
     public Entity visualEntity;
     /// <summary> Scale for the visual representation of selection when selected. </summary>
     public float showScale;
+
+    /// <summary> Flag indicating if the entity has just been selected. </summary>
+    public bool onSelected;
+    
+    /// <summary> Flag indicating if the entity has just been deselected. </summary>
+    public bool onDeselected;
 }
 
