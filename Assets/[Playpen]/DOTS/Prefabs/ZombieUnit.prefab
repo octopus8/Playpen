@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7942230820920306497
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4588452694654276750, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6777106
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.73532873
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -94.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084055016954316442, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 85cd5279f313d294c8d4eb59ece3cb5b, type: 2}
+    - target: {fileID: 3826009124151756861, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: moveSpeedMPS
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6571142817127306187, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: b6815ab17cf31b645b33d7e67d00ce14, type: 2}
+    - target: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_Name
+      value: ZombieUnit
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5531291978781080561}
+  m_SourcePrefab: {fileID: 100100000, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+--- !u!1 &2205995592828264276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+  m_PrefabInstance: {fileID: 7942230820920306497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5531291978781080561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205995592828264276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1901dc8013c45f049bea1a1f2ff6f43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DOTSZombie
