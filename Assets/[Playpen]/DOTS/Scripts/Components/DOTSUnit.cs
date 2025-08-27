@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class DOTSUnit : MonoBehaviour
 {
-    public Faction faction;
+    [SerializeField]
+    private Faction faction;
     
     public class Baker : Baker<DOTSUnit>
     {

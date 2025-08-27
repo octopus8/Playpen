@@ -102,6 +102,8 @@ GameObject:
   - component: {fileID: 7641347714630429974}
   - component: {fileID: 3826009124151756861}
   - component: {fileID: -4588452694654276750}
+  - component: {fileID: 4781226309348629818}
+  - component: {fileID: 7261903412820548149}
   m_Layer: 10
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -201,3 +203,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566d29026758f6b4b9618fe43dcfa07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSUnit
+  faction: 0
+--- !u!114 &4781226309348629818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116961625703330837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2afcaf192dfab499d14f34aa0638ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DOTSFindTarget
+  range: 0
+  targetFaction: 0
+  maxTimerSeconds: 0.2
+--- !u!114 &7261903412820548149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116961625703330837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268eb06e0c67f554aadffefab03a071b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DOTSTarget

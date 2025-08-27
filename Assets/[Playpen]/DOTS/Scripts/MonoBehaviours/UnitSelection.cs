@@ -109,7 +109,6 @@ public class UnitSelection : MonoBehaviour
             // Single select
             else
             {
-                const int unitLayer = 10; // Layer for units, set in Unity Editor.
                 entityQuery = entityManager.CreateEntityQuery(typeof(PhysicsWorldSingleton));
                 PhysicsWorldSingleton physicsWorldSingleton = entityQuery.GetSingleton<PhysicsWorldSingleton>();
                 CollisionWorld collisionWorld = physicsWorldSingleton.CollisionWorld;
@@ -121,14 +120,14 @@ public class UnitSelection : MonoBehaviour
                     Filter = new CollisionFilter()
                     {
                         BelongsTo = ~0u,
-                        CollidesWith = 1 << unitLayer,
+                        CollidesWith = 1 << RTSGame.UNITS_LAYER,
                         GroupIndex = 0
                     }
                 };
                 if (collisionWorld.CastRay(raycastInput, out Unity.Physics.RaycastHit hit))
                 {
                     // If the hit entity is a unit, set it as selected.
-                    if (entityManager.HasComponent<Unit>(hit.Entity))
+                    if (entityManager.HasComponent<Unit>(hit.Entity) && entityManager.HasComponent<Selected>(hit.Entity))
                     {
                         entityManager.SetComponentEnabled<Selected>(hit.Entity, true);
                         Selected selected = entityManager.GetComponentData<Selected>(hit.Entity);

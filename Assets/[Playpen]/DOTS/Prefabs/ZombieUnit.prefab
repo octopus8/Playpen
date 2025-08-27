@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: moveSpeedMPS
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: range
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: targetFaction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6571142817127306187, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: m_Mesh
       value: 

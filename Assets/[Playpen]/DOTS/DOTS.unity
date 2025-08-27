@@ -177,6 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 219085699}
+  - component: {fileID: 219085701}
   - component: {fileID: 219085698}
   - component: {fileID: 219085700}
   m_Layer: 0
@@ -225,6 +226,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29176fe75350a7b4d84feda098bc0eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSelection
+--- !u!114 &219085701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219085697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c5a5f450f2cd546b69d585b4344b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTSGame
 --- !u!1 &460082151
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +302,7 @@ GameObject:
   - component: {fileID: 688376267}
   - component: {fileID: 688376266}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
