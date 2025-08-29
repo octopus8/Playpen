@@ -2,10 +2,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// MonoBehaviour to get the mouse world position in Unity.
-/// This class provides methods to retrieve the mouse position in the world space,
-/// specifically on a ground plane or any other defined plane.
-/// It uses raycasting to determine where the mouse intersects with the ground plane.
+/// Singleton used to get the mouse world position through the single exposed method `GetMouseWorldPosition`.
 /// </summary>
 public class MouseWorldPosition : MonoBehaviour
 {
@@ -25,6 +22,9 @@ public class MouseWorldPosition : MonoBehaviour
     /// Gets the mouse world position by casting a ray from the camera to the mouse position.
     /// This method uses Physics.Raycast to determine where the ray intersects with the ground plane.
     /// </summary>
+    /// <remarks>
+    /// Used by `UnitSelection` to determine selection start and end points.
+    /// </remarks>
     /// <returns>World position of the mouse on the ground plane.</returns>
     public Vector3 GetMouseWorldPosition()
     {
