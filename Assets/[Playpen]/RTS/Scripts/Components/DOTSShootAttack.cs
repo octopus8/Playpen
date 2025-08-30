@@ -3,7 +3,7 @@ using UnityEngine;
 public class DOTSShootAttack : MonoBehaviour
 {
     [SerializeField]
-    private float maxTimerSeconds = 0.2f;
+    private float attackRateSeconds = 0.2f;
 
     public class Baker : Unity.Entities.Baker<DOTSShootAttack>
     {
@@ -12,7 +12,7 @@ public class DOTSShootAttack : MonoBehaviour
             var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
             AddComponent(entity, new ShootAttack
             {
-                maxTimer = authoring.maxTimerSeconds,
+                attackRateSeconds = authoring.attackRateSeconds,
             });
         }
     }
@@ -21,5 +21,5 @@ public class DOTSShootAttack : MonoBehaviour
 public struct ShootAttack : Unity.Entities.IComponentData
 {
     public float timer;
-    public float maxTimer;
+    public float attackRateSeconds;
 }

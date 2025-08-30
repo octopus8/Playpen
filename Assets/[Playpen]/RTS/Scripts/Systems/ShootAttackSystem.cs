@@ -8,19 +8,23 @@ partial struct ShootAttackSystem : ISystem
     {
         foreach ((RefRW<ShootAttack> shootAttack, RefRO<Target> target) in SystemAPI.Query<RefRW<ShootAttack>, RefRO<Target>>())
         {
+            // If no target, skip.
             if (target.ValueRO.targetEntity == Entity.Null)
                 continue;
             
+            // If still waiting for next attack, skip.
             shootAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
             if (shootAttack.ValueRW.timer > 0)
             {
                 continue;
             }
+            
+            // Reset timer.
+            shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
 
-            shootAttack.ValueRW.timer = 0f;
-            // Shoot a projectile towards the target
-            // (Implementation of projectile spawning is omitted for brevity)
-            UnityEngine.Debug.Log($"Shooting at target: {target.ValueRO.targetEntity}");
+            RefRW<Health> targetHealth = SystemAPI.GetComponentRW<Health>(target.ValueRO.targetEntity);
+            int damageAmount = 1;
+            targetHealth.ValueRW.healthAmount -= damageAmount;
         }
     }
 }
