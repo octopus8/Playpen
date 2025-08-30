@@ -10,7 +10,7 @@ using Unity.Transforms;
 /// </summary>
 [UpdateInGroup(typeof(LateSimulationSystemGroup))]
 [UpdateBefore(typeof(ResetEventsSystem))]
-partial struct SelectedVisualSystem : ISystem
+partial struct UnitSelectedVisualSystem : ISystem
 {
     [BurstCompile]
     public void OnUpdate(ref SystemState state)

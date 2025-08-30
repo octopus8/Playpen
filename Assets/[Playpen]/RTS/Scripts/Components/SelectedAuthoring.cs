@@ -38,7 +38,7 @@ public class SelectedAuthoring : MonoBehaviour
 
 
 /// <summary>
-/// DOTS component containing selection data.
+/// DOTS component containing selection data. This component is enableable to allow toggling selection state.
 /// </summary>
 public struct Selected : IComponentData, IEnableableComponent
 {
