@@ -23,6 +23,11 @@ partial struct BulletMoverSystem : ISystem
                  >().WithEntityAccess()
                  )
         {
+            if (target.ValueRO.targetEntity == Entity.Null)
+            {
+                ecb.DestroyEntity(entity);
+                continue;
+            }
             LocalTransform targetLocalTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
             float prevDistanceToTargetSq = math.distancesq(localTransform.ValueRO.Position, targetLocalTransform.Position);
             
