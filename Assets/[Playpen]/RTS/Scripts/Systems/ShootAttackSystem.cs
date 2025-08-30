@@ -24,22 +24,25 @@ partial struct ShootAttackSystem : ISystem
             // If no target, skip.
             if (target.ValueRO.targetEntity == Entity.Null)
                 continue;
-            
+
+            // Rotate towards target.
             LocalTransform targetLocalTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
+            float3 directionToTarget = math.normalize(targetLocalTransform.Position - localTransform.ValueRO.Position);
+            quaternion targetRotation = quaternion.LookRotationSafe(directionToTarget, math.up());
+            localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, targetRotation, SystemAPI.Time.DeltaTime * unitMover.ValueRO.rotationSpeed);
+
+            // If target out of range, move towards it.
             float distance = math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position);
             if (distance > shootAttack.ValueRO.attackDistance)
             {
                 unitMover.ValueRW.targetPosition = targetLocalTransform.Position;
                 continue;
             }
+            // Within range, stop moving.
             else
             {
                 unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
             }
-
-            float3 directionToTarget = math.normalize(targetLocalTransform.Position - localTransform.ValueRO.Position);
-            quaternion targetRotation = quaternion.LookRotationSafe(directionToTarget, math.up());
-            localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, targetRotation, SystemAPI.Time.DeltaTime * unitMover.ValueRO.rotationSpeed);
             
             // If still waiting for next attack, skip.
             shootAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
