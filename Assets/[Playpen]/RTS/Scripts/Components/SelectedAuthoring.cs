@@ -2,9 +2,9 @@ using Unity.Entities;
 using UnityEngine;
 
 /// <summary>
-/// Selected DOTS component authoring MonoBehaviour.
+/// Selected ECS component authoring MonoBehaviour.
 /// </summary>
-public class DOTSSelected : MonoBehaviour
+public class SelectedAuthoring : MonoBehaviour
 {
     /// <summary> Visual visible when selected. </summary>
     [SerializeField]
@@ -18,12 +18,12 @@ public class DOTSSelected : MonoBehaviour
     /// <summary>
     /// ECS Baker class to convert the MonoBehaviour to an Entity with SelectedDOTS component.
     /// </summary>
-    class SelectedBaker : Baker<DOTSSelected>
+    class SelectedBaker : Baker<SelectedAuthoring>
     {
         /// <summary>
         /// Converts the MonoBehaviour properties to an Entity with SelectedDOTS component.
         /// </summary>
-        public override void Bake(DOTSSelected authoring)
+        public override void Bake(SelectedAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(entity, new Selected

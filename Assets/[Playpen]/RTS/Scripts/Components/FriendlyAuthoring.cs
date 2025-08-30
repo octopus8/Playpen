@@ -1,11 +1,11 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class DOTSFriendly : MonoBehaviour
+public class FriendlyAuthoring : MonoBehaviour
 {
-    public class Baker : Baker<DOTSFriendly>
+    public class Baker : Baker<FriendlyAuthoring>
     {
-        public override void Bake(DOTSFriendly authoring)
+        public override void Bake(FriendlyAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent<Friendly>(entity);

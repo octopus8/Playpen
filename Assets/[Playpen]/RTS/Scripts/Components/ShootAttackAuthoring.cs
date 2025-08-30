@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class DOTSShootAttack : MonoBehaviour
+public class ShootAttackAuthoring : MonoBehaviour
 {
     [SerializeField]
     private float attackRateSeconds = 0.2f;
 
-    public class Baker : Unity.Entities.Baker<DOTSShootAttack>
+    public class Baker : Unity.Entities.Baker<ShootAttackAuthoring>
     {
-        public override void Bake(DOTSShootAttack authoring)
+        public override void Bake(ShootAttackAuthoring authoring)
         {
             var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
             AddComponent(entity, new ShootAttack

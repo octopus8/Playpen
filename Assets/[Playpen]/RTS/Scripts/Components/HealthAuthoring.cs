@@ -1,13 +1,13 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class DOTSHealth : MonoBehaviour
+public class HealthAuthoring : MonoBehaviour
 {
     public int healthAmount = 100;
 
-    public class Baker : Baker<DOTSHealth>
+    public class Baker : Baker<HealthAuthoring>
     {
-        public override void Bake(DOTSHealth authoring)
+        public override void Bake(HealthAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(entity, new Health

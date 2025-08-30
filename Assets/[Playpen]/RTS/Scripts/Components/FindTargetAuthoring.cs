@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DOTSFindTarget : MonoBehaviour
+public class FindTargetAuthoring : MonoBehaviour
 {
     [SerializeField]
     private float range = 5f;
@@ -11,9 +11,9 @@ public class DOTSFindTarget : MonoBehaviour
     [SerializeField]
     private float maxTimerSeconds = 0.2f;
     
-    public class Baker : Unity.Entities.Baker<DOTSFindTarget>
+    public class Baker : Unity.Entities.Baker<FindTargetAuthoring>
     {
-        public override void Bake(DOTSFindTarget authoring)
+        public override void Bake(FindTargetAuthoring authoring)
         {
             var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
             AddComponent(entity, new FindTarget
