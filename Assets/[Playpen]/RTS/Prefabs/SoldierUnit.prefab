@@ -146,10 +146,6 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
-      propertyPath: range
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: targetFaction
       value: 1
       objectReference: {fileID: 0}
@@ -222,3 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6985db7e39faea64aa557994d8d4c2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSShootAttack
+  attackRateSeconds: 0.2
+  damageAmount: 10
+  attackDistance: 7

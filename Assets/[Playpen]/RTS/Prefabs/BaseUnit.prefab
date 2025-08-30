@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2afcaf192dfab499d14f34aa0638ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSFindTarget
-  range: 0
+  range: 8
   targetFaction: 0
   maxTimerSeconds: 0.2
 --- !u!114 &7261903412820548149
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268eb06e0c67f554aadffefab03a071b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSTarget
+  testTarget: {fileID: 0}
 --- !u!114 &3689091260008212928
 MonoBehaviour:
   m_ObjectHideFlags: 0

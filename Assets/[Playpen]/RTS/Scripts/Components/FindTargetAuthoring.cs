@@ -3,7 +3,7 @@ using UnityEngine;
 public class FindTargetAuthoring : MonoBehaviour
 {
     [SerializeField]
-    private float range = 5f;
+    private float range = 8f;
 
     [SerializeField]
     private Faction targetFaction;

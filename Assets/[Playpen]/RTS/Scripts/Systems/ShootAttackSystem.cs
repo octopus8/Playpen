@@ -1,5 +1,6 @@
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 
 partial struct ShootAttackSystem : ISystem
@@ -8,17 +9,37 @@ partial struct ShootAttackSystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         EntityReferences references = SystemAPI.GetSingleton<EntityReferences>();
-        foreach ((RefRO<LocalTransform> localTransform,
+        foreach ((RefRW<LocalTransform> localTransform,
                      RefRW<ShootAttack> shootAttack,
-                     RefRO<Target> target)
+                     RefRO<Target> target,
+                     RefRW<UnitMover> unitMover
+                     )
                  in SystemAPI.Query<
-                     RefRO<LocalTransform>,
+                     RefRW<LocalTransform>,
                      RefRW<ShootAttack>,
-                     RefRO<Target>>())
+                     RefRO<Target>,
+                     RefRW<UnitMover>
+                     >())
         {
             // If no target, skip.
             if (target.ValueRO.targetEntity == Entity.Null)
                 continue;
+            
+            LocalTransform targetLocalTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
+            float distance = math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position);
+            if (distance > shootAttack.ValueRO.attackDistance)
+            {
+                unitMover.ValueRW.targetPosition = targetLocalTransform.Position;
+                continue;
+            }
+            else
+            {
+                unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
+            }
+
+            float3 directionToTarget = math.normalize(targetLocalTransform.Position - localTransform.ValueRO.Position);
+            quaternion targetRotation = quaternion.LookRotationSafe(directionToTarget, math.up());
+            localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, targetRotation, SystemAPI.Time.DeltaTime * unitMover.ValueRO.rotationSpeed);
             
             // If still waiting for next attack, skip.
             shootAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
@@ -29,7 +50,7 @@ partial struct ShootAttackSystem : ISystem
             
             // Reset timer.
             shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
-
+            
             Entity bullet = state.EntityManager.Instantiate(references.bulletPrefabEntity);
             SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(localTransform.ValueRO.Position));
 

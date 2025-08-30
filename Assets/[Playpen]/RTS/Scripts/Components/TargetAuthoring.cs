@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class TargetAuthoring : MonoBehaviour
 {
-    public GameObject testTarget;
-    
-    
     public class Baker : Baker<TargetAuthoring>
     {
         public override void Bake(TargetAuthoring authoring)
@@ -13,7 +10,6 @@ public class TargetAuthoring : MonoBehaviour
             var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
             AddComponent(entity, new Target
             {
-                targetEntity = GetEntity(authoring.testTarget, TransformUsageFlags.Dynamic)
             });
         }
     }
