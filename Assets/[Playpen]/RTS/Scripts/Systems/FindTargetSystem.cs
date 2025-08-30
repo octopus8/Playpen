@@ -29,6 +29,7 @@ partial struct FindTargetSystem : ISystem
             {
                 continue;
             }
+            target.ValueRW.targetEntity = Entity.Null;
             findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
             hits.Clear();
             CollisionFilter collisonFilter = new CollisionFilter
