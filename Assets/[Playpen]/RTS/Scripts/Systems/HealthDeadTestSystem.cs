@@ -1,20 +1,24 @@
 using Unity.Burst;
 using Unity.Entities;
 
-
-[UpdateInGroup(typeof(LateSimulationSystemGroup))]
-partial struct HealthDeadTestSystem : ISystem
+namespace RTS
 {
-    [BurstCompile]
-    public void OnUpdate(ref SystemState state)
+
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
+    partial struct HealthDeadTestSystem : ISystem
     {
-        EntityCommandBuffer entityCommandBuffer = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
-            .CreateCommandBuffer(state.WorldUnmanaged);
-        foreach (var (health, entity) in SystemAPI.Query<RefRO<Health>>().WithEntityAccess())
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
         {
-            if (health.ValueRO.healthAmount <= 0)
+            EntityCommandBuffer entityCommandBuffer = SystemAPI
+                .GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
+                .CreateCommandBuffer(state.WorldUnmanaged);
+            foreach (var (health, entity) in SystemAPI.Query<RefRO<Health>>().WithEntityAccess())
             {
-                entityCommandBuffer.DestroyEntity(entity);
+                if (health.ValueRO.healthAmount <= 0)
+                {
+                    entityCommandBuffer.DestroyEntity(entity);
+                }
             }
         }
     }

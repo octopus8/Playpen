@@ -1,25 +1,29 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class UnitAuthoring : MonoBehaviour
+
+namespace RTS
 {
-    [SerializeField]
-    private Faction faction;
-    
-    public class Baker : Baker<UnitAuthoring>
+
+    public class UnitAuthoring : MonoBehaviour
     {
-        public override void Bake(UnitAuthoring authoring)
+        [SerializeField] private Faction faction;
+
+        public class Baker : Baker<UnitAuthoring>
         {
-            var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new Unit
+            public override void Bake(UnitAuthoring authoring)
             {
-                faction = authoring.faction,
-            });
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(entity, new Unit
+                {
+                    faction = authoring.faction,
+                });
+            }
         }
     }
-}
 
-public struct Unit : IComponentData
-{
-    public Faction faction;
+    public struct Unit : IComponentData
+    {
+        public Faction faction;
+    }
 }

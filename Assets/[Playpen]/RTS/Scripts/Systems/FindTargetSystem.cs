@@ -4,50 +4,56 @@ using Unity.Entities;
 using Unity.Physics;
 using Unity.Transforms;
 
-partial struct FindTargetSystem : ISystem
+
+namespace RTS
 {
-    [BurstCompile]
-    public void OnUpdate(ref SystemState state)
+
+    partial struct FindTargetSystem : ISystem
     {
-        PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
-        CollisionWorld collisionWorld = physicsWorld.CollisionWorld;
-        NativeList<DistanceHit> hits = new NativeList<DistanceHit>(Allocator.Temp);
-        foreach ((
-                     RefRO<LocalTransform> localTransform,
-                     RefRW<FindTarget> findTarget,
-                     RefRW<Target> target
-                     )
-                 in SystemAPI.Query<
-                     RefRO<LocalTransform>,
-                     RefRW<FindTarget>,
-                     RefRW<Target>
-                 >()
-                )
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
         {
-            findTarget.ValueRW.timer -= SystemAPI.Time.DeltaTime;
-            if (findTarget.ValueRO.timer > 0f)
+            PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
+            CollisionWorld collisionWorld = physicsWorld.CollisionWorld;
+            NativeList<DistanceHit> hits = new NativeList<DistanceHit>(Allocator.Temp);
+            foreach ((
+                         RefRO<LocalTransform> localTransform,
+                         RefRW<FindTarget> findTarget,
+                         RefRW<Target> target
+                     )
+                     in SystemAPI.Query<
+                         RefRO<LocalTransform>,
+                         RefRW<FindTarget>,
+                         RefRW<Target>
+                     >()
+                    )
             {
-                continue;
-            }
-            target.ValueRW.targetEntity = Entity.Null;
-            findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
-            hits.Clear();
-            CollisionFilter collisonFilter = new CollisionFilter
-            {
-                BelongsTo = ~0u,
-                CollidesWith = 1 << RTSGame.UNITS_LAYER,
-                GroupIndex = 0
-            };
-            if (collisionWorld.OverlapSphere(localTransform.ValueRO.Position, findTarget.ValueRO.range, ref hits,
-                    collisonFilter))
-            {
-                foreach (DistanceHit distanceHit in hits)
+                findTarget.ValueRW.timer -= SystemAPI.Time.DeltaTime;
+                if (findTarget.ValueRO.timer > 0f)
                 {
-                    Unit targetUnit = SystemAPI.GetComponent<Unit>(distanceHit.Entity);
-                    if (targetUnit.faction == findTarget.ValueRO.targetFaction)
+                    continue;
+                }
+
+                target.ValueRW.targetEntity = Entity.Null;
+                findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
+                hits.Clear();
+                CollisionFilter collisonFilter = new CollisionFilter
+                {
+                    BelongsTo = ~0u,
+                    CollidesWith = 1 << RTSGame.UNITS_LAYER,
+                    GroupIndex = 0
+                };
+                if (collisionWorld.OverlapSphere(localTransform.ValueRO.Position, findTarget.ValueRO.range, ref hits,
+                        collisonFilter))
+                {
+                    foreach (DistanceHit distanceHit in hits)
                     {
-                        target.ValueRW.targetEntity = distanceHit.Entity;
-                        break;
+                        Unit targetUnit = SystemAPI.GetComponent<Unit>(distanceHit.Entity);
+                        if (targetUnit.faction == findTarget.ValueRO.targetFaction)
+                        {
+                            target.ValueRW.targetEntity = distanceHit.Entity;
+                            break;
+                        }
                     }
                 }
             }

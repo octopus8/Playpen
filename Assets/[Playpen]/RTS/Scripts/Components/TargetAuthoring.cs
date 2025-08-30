@@ -1,24 +1,29 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class TargetAuthoring : MonoBehaviour
+
+namespace RTS
 {
-    public class Baker : Baker<TargetAuthoring>
+
+    public class TargetAuthoring : MonoBehaviour
     {
-        public override void Bake(TargetAuthoring authoring)
+        public class Baker : Baker<TargetAuthoring>
         {
-            var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
-            AddComponent(entity, new Target
+            public override void Bake(TargetAuthoring authoring)
             {
-            });
+                var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
+                AddComponent(entity, new Target
+                {
+                });
+            }
         }
+
+
     }
-    
-    
-}
 
 
-public struct Target : Unity.Entities.IComponentData
-{
-    public Entity targetEntity;
+    public struct Target : Unity.Entities.IComponentData
+    {
+        public Entity targetEntity;
+    }
 }

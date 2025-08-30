@@ -1,18 +1,23 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class FriendlyAuthoring : MonoBehaviour
+
+namespace RTS
 {
-    public class Baker : Baker<FriendlyAuthoring>
+
+    public class FriendlyAuthoring : MonoBehaviour
     {
-        public override void Bake(FriendlyAuthoring authoring)
+        public class Baker : Baker<FriendlyAuthoring>
         {
-            var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent<Friendly>(entity);
+            public override void Bake(FriendlyAuthoring authoring)
+            {
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent<Friendly>(entity);
+            }
         }
     }
-}
 
-public struct Friendly : IComponentData
-{
+    public struct Friendly : IComponentData
+    {
+    }
 }

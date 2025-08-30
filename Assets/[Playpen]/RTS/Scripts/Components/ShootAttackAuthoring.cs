@@ -1,35 +1,37 @@
 using UnityEngine;
 
-public class ShootAttackAuthoring : MonoBehaviour
-{
-    [SerializeField]
-    private float attackRateSeconds = 0.2f;
-    
-    [SerializeField]
-    private int damageAmount = 10;
-    
-    [SerializeField]
-    private int attackDistance = 7;
 
-    public class Baker : Unity.Entities.Baker<ShootAttackAuthoring>
+namespace RTS
+{
+
+    public class ShootAttackAuthoring : MonoBehaviour
     {
-        public override void Bake(ShootAttackAuthoring authoring)
+        [SerializeField] private float attackRateSeconds = 0.2f;
+
+        [SerializeField] private int damageAmount = 10;
+
+        [SerializeField] private int attackDistance = 7;
+
+        public class Baker : Unity.Entities.Baker<ShootAttackAuthoring>
         {
-            var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
-            AddComponent(entity, new ShootAttack
+            public override void Bake(ShootAttackAuthoring authoring)
             {
-                attackRateSeconds = authoring.attackRateSeconds,
-                damageAmount = authoring.damageAmount,
-                attackDistance = authoring.attackDistance,
-            });
+                var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
+                AddComponent(entity, new ShootAttack
+                {
+                    attackRateSeconds = authoring.attackRateSeconds,
+                    damageAmount = authoring.damageAmount,
+                    attackDistance = authoring.attackDistance,
+                });
+            }
         }
     }
-}
 
-public struct ShootAttack : Unity.Entities.IComponentData
-{
-    public float timer;
-    public float attackRateSeconds;
-    public int damageAmount;
-    public float attackDistance;
+    public struct ShootAttack : Unity.Entities.IComponentData
+    {
+        public float timer;
+        public float attackRateSeconds;
+        public int damageAmount;
+        public float attackDistance;
+    }
 }

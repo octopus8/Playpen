@@ -1,25 +1,30 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class HealthAuthoring : MonoBehaviour
-{
-    public int healthAmount = 100;
 
-    public class Baker : Baker<HealthAuthoring>
+namespace RTS
+{
+
+    public class HealthAuthoring : MonoBehaviour
     {
-        public override void Bake(HealthAuthoring authoring)
+        public int healthAmount = 100;
+
+        public class Baker : Baker<HealthAuthoring>
         {
-            var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new Health
+            public override void Bake(HealthAuthoring authoring)
             {
-                healthAmount = authoring.healthAmount
-            });
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(entity, new Health
+                {
+                    healthAmount = authoring.healthAmount
+                });
+            }
         }
     }
-}
 
 
-public struct Health : IComponentData
-{
-    public int healthAmount;
+    public struct Health : IComponentData
+    {
+        public int healthAmount;
+    }
 }

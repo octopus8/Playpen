@@ -1,26 +1,31 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class EntityReferencesAuthoring : MonoBehaviour
-{
-    public GameObject bulletPrefab;
 
-    class Baker : Baker<EntityReferencesAuthoring>
+namespace RTS
+{
+
+    public class EntityReferencesAuthoring : MonoBehaviour
     {
-        public override void Bake(EntityReferencesAuthoring authoring)
+        public GameObject bulletPrefab;
+
+        class Baker : Baker<EntityReferencesAuthoring>
         {
-            Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new EntityReferences
+            public override void Bake(EntityReferencesAuthoring authoring)
             {
-                bulletPrefabEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic)
-            });
+                Entity entity = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(entity, new EntityReferences
+                {
+                    bulletPrefabEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic)
+                });
+            }
         }
     }
-}
 
-public struct EntityReferences : IComponentData
-{
-    public Entity bulletPrefabEntity;
+    public struct EntityReferences : IComponentData
+    {
+        public Entity bulletPrefabEntity;
+    }
 }
 
 

@@ -1,7 +1,11 @@
 
 
-public enum Faction 
+namespace RTS
 {
-    Friendly,
-    Zombie
+
+    public enum Faction
+    {
+        Friendly,
+        Zombie
+    }
 }
