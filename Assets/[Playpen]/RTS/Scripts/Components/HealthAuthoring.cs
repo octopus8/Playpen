@@ -17,7 +17,8 @@ namespace RTS
                 AddComponent(entity, new Health
                 {
                     currentHealth = authoring.maxHealth,
-                    maxHealth = authoring.maxHealth
+                    maxHealth = authoring.maxHealth,
+                    onHealthChanged = true // Initialize to true to ensure health bar is set correctly at start
                 });
             }
         }
@@ -28,5 +29,6 @@ namespace RTS
     {
         public int currentHealth;
         public int maxHealth;
+        public bool onHealthChanged;
     }
 }

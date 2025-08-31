@@ -4,7 +4,7 @@ using Unity.Entities;
 namespace RTS
 {
 
-    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
+    [UpdateInGroup(typeof(LateSimulationSystemGroup), OrderLast = true)]
     partial struct ResetEventsSystem : ISystem
     {
         [BurstCompile]
@@ -15,7 +15,10 @@ namespace RTS
                 selected.ValueRW.onSelected = false;
                 selected.ValueRW.onDeselected = false;
             }
-
+            foreach (var health in SystemAPI.Query<RefRW<Health>>())
+            {
+                health.ValueRW.onHealthChanged = false;
+            }
         }
     }
 }

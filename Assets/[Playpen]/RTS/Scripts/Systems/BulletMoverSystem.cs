@@ -47,10 +47,13 @@ namespace RTS
                 float distanceToTarget =
                     math.distancesq(localTransform.ValueRO.Position, targetPosition);
                 float minDistanceToTarget = 0.2f;
+                
+                
                 if (distanceToTarget < minDistanceToTarget || distanceToTarget > prevDistanceToTargetSq)
                 {
                     RefRW<Health> targetHealth = SystemAPI.GetComponentRW<Health>(target.ValueRO.targetEntity);
                     targetHealth.ValueRW.currentHealth -= bullet.ValueRO.damageAmount;
+                    targetHealth.ValueRW.onHealthChanged = true;
                     ecb.DestroyEntity(entity);
                 }
             }
