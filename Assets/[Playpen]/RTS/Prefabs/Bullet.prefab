@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e699febb395c035409e66de77873d0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletAuthoring
-  speed: 50
+  speed: 60
   damageAmount: 5
 --- !u!114 &6574174310415415347
 MonoBehaviour:
@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268eb06e0c67f554aadffefab03a071b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetAuthoring
-  testTarget: {fileID: 0}
 --- !u!114 &3089275604195290598
 MonoBehaviour:
   m_ObjectHideFlags: 0

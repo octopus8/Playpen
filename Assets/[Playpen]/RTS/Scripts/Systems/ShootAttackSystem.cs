@@ -62,8 +62,10 @@ namespace RTS
                 shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
 
                 Entity bullet = state.EntityManager.Instantiate(references.bulletPrefabEntity);
-                SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(localTransform.ValueRO.Position));
-
+                
+                float3 bulletSpawnPosition = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnOffset);
+                SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(bulletSpawnPosition));
+                
                 RefRW<Bullet> bulletBullet = SystemAPI.GetComponentRW<Bullet>(bullet);
                 bulletBullet.ValueRW.damageAmount = shootAttack.ValueRO.damageAmount;
                 RefRW<Target> bulletTarget = SystemAPI.GetComponentRW<Target>(bullet);

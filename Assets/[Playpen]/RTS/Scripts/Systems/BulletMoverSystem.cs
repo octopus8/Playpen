@@ -36,13 +36,16 @@ namespace RTS
 
                 LocalTransform targetLocalTransform =
                     SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
+                ShootTarget shootTarget = SystemAPI.GetComponent<ShootTarget>(target.ValueRO.targetEntity);
+                float3 targetPosition = targetLocalTransform.TransformPoint(shootTarget.hitLocalPosition);
+                
                 float prevDistanceToTargetSq =
-                    math.distancesq(localTransform.ValueRO.Position, targetLocalTransform.Position);
+                    math.distancesq(localTransform.ValueRO.Position, targetPosition);
 
-                float3 direction = math.normalize(targetLocalTransform.Position - localTransform.ValueRO.Position);
+                float3 direction = math.normalize(targetPosition - localTransform.ValueRO.Position);
                 localTransform.ValueRW.Position += direction * bullet.ValueRO.speed * SystemAPI.Time.DeltaTime;
                 float distanceToTarget =
-                    math.distancesq(localTransform.ValueRO.Position, targetLocalTransform.Position);
+                    math.distancesq(localTransform.ValueRO.Position, targetPosition);
                 float minDistanceToTarget = 0.2f;
                 if (distanceToTarget < minDistanceToTarget || distanceToTarget > prevDistanceToTargetSq)
                 {

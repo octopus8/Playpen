@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &79706854980523266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099576234210288652}
+  m_Layer: 10
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2099576234210288652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79706854980523266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.283, y: 1.912, z: 1.953}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 137693521485706593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6580120546227952837
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +177,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: targetFaction
       value: 1
       objectReference: {fileID: 0}
@@ -159,6 +194,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       insertIndex: 0
       addedObject: {fileID: 7647822740191220768}
+    - targetCorrespondingSourceObject: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2099576234210288652}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       insertIndex: -1
@@ -220,4 +258,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DOTSShootAttack
   attackRateSeconds: 0.2
   damageAmount: 10
-  attackDistance: 7
+  attackDistance: 13
+  bulletSpawnPoint: {fileID: 2099576234210288652}

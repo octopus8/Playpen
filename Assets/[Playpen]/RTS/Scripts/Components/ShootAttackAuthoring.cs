@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -11,6 +12,8 @@ namespace RTS
         [SerializeField] private int damageAmount = 10;
 
         [SerializeField] private int attackDistance = 7;
+        
+        [SerializeField] private Transform bulletSpawnPoint;
 
         public class Baker : Unity.Entities.Baker<ShootAttackAuthoring>
         {
@@ -22,6 +25,7 @@ namespace RTS
                     attackRateSeconds = authoring.attackRateSeconds,
                     damageAmount = authoring.damageAmount,
                     attackDistance = authoring.attackDistance,
+                    bulletSpawnOffset = authoring.bulletSpawnPoint.localPosition,
                 });
             }
         }
@@ -33,5 +37,6 @@ namespace RTS
         public float attackRateSeconds;
         public int damageAmount;
         public float attackDistance;
+        public float3 bulletSpawnOffset;
     }
 }
