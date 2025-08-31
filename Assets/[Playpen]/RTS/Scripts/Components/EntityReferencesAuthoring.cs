@@ -8,6 +8,7 @@ namespace RTS
     public class EntityReferencesAuthoring : MonoBehaviour
     {
         public GameObject bulletPrefab;
+        public GameObject zombiePrefab;
 
         class Baker : Baker<EntityReferencesAuthoring>
         {
@@ -16,7 +17,8 @@ namespace RTS
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new EntityReferences
                 {
-                    bulletPrefabEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic)
+                    bulletPrefabEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
+                    zombiePrefabEntity = GetEntity(authoring.zombiePrefab, TransformUsageFlags.Dynamic)
                 });
             }
         }
@@ -25,6 +27,7 @@ namespace RTS
     public struct EntityReferences : IComponentData
     {
         public Entity bulletPrefabEntity;
+        public Entity zombiePrefabEntity;
     }
 }
 

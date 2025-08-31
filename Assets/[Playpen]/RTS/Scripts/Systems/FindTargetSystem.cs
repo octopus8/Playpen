@@ -48,6 +48,13 @@ namespace RTS
                 {
                     foreach (DistanceHit distanceHit in hits)
                     {
+                        // Check if the entity is valid and has a Unit component.
+                        // For some reason OverlapSphere can return entities that don't exist or don't have the expected component.
+                        if (!SystemAPI.Exists(distanceHit.Entity) || !SystemAPI.HasComponent<Unit>(distanceHit.Entity))
+                        {
+                            continue;
+                        }
+                        
                         Unit targetUnit = SystemAPI.GetComponent<Unit>(distanceHit.Entity);
                         if (targetUnit.faction == findTarget.ValueRO.targetFaction)
                         {
