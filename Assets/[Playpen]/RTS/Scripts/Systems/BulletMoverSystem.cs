@@ -50,7 +50,7 @@ namespace RTS
                 if (distanceToTarget < minDistanceToTarget || distanceToTarget > prevDistanceToTargetSq)
                 {
                     RefRW<Health> targetHealth = SystemAPI.GetComponentRW<Health>(target.ValueRO.targetEntity);
-                    targetHealth.ValueRW.healthAmount -= bullet.ValueRO.damageAmount;
+                    targetHealth.ValueRW.currentHealth -= bullet.ValueRO.damageAmount;
                     ecb.DestroyEntity(entity);
                 }
             }

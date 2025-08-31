@@ -15,7 +15,7 @@ namespace RTS
                 .CreateCommandBuffer(state.WorldUnmanaged);
             foreach (var (health, entity) in SystemAPI.Query<RefRO<Health>>().WithEntityAccess())
             {
-                if (health.ValueRO.healthAmount <= 0)
+                if (health.ValueRO.currentHealth <= 0)
                 {
                     entityCommandBuffer.DestroyEntity(entity);
                 }

@@ -16,6 +16,8 @@ namespace RTS
     /// </summary>
     partial struct UnitMoverSystem : ISystem
     {
+        public const float REACHED_TARGET_POSITION_DISTANCE_SQUARED = 2f;
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -38,9 +40,6 @@ namespace RTS
     [BurstCompile]
     public partial struct UnitMoverJob : IJobEntity
     {
-        /// <summary> Minimum squared distance to the target position to consider the unit as "at the target". </summary>
-        private const float minTargetDistanceSquared = 0.3f;
-
         /// <summary> Delta time for the job, used to scale movement and rotation speeds. </summary>
         public float deltaTime;
 
@@ -53,7 +52,7 @@ namespace RTS
             // If it is, we set the linear and angular velocities to zero.
             // This prevents the unit from overshooting the target position due to physics simulation.
             float3 moveDirection = unitMover.targetPosition - localTransform.Position;
-            if (math.lengthsq(moveDirection) < minTargetDistanceSquared)
+            if (math.lengthsq(moveDirection) <= UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQUARED)
             {
                 physicsVelocity.Linear = float3.zero;
                 physicsVelocity.Angular = float3.zero;

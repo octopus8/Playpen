@@ -7,7 +7,7 @@ namespace RTS
 
     public class HealthAuthoring : MonoBehaviour
     {
-        public int healthAmount = 100;
+        public int maxHealth = 100;
 
         public class Baker : Baker<HealthAuthoring>
         {
@@ -16,7 +16,8 @@ namespace RTS
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new Health
                 {
-                    healthAmount = authoring.healthAmount
+                    currentHealth = authoring.maxHealth,
+                    maxHealth = authoring.maxHealth
                 });
             }
         }
@@ -25,6 +26,7 @@ namespace RTS
 
     public struct Health : IComponentData
     {
-        public int healthAmount;
+        public int currentHealth;
+        public int maxHealth;
     }
 }

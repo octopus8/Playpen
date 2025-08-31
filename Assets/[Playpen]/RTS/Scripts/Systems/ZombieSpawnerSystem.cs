@@ -9,6 +9,8 @@ namespace RTS
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+            
             EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();
             foreach (var (localTransform, spawner) in
                      SystemAPI.Query<
@@ -24,6 +26,15 @@ namespace RTS
                 spawner.ValueRW.timer = spawner.ValueRO.spawnInterval;
                 var zombie = state.EntityManager.Instantiate(entityReferences.zombiePrefabEntity);
                 SystemAPI.SetComponent(zombie, LocalTransform.FromPosition(localTransform.ValueRO.Position));
+                
+                ecb.AddComponent(zombie, new RandomWalking
+                {
+                    targetPosition = localTransform.ValueRO.Position,
+                    originPosition = localTransform.ValueRO.Position,
+                    distanceMin = spawner.ValueRO.randomWalkingDistanceMin,
+                    distanceMax = spawner.ValueRO.randomWalkingDistanceMax,
+                    random = new Unity.Mathematics.Random((uint)zombie.Index)
+                });
             }
         }
     }
