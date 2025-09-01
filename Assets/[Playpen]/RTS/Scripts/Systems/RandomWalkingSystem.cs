@@ -5,11 +5,15 @@ using Unity.Transforms;
 
 namespace RTS
 {
+    /// <summary>
+    /// System that makes entities with RandomWalking component move randomly within a specified range.
+    /// </summary>
     partial struct RandomWalkingSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Iterate over all entities with RandomWalking, UnitMover, and LocalTransform components.
             foreach (var (randomWalking, unitMover, localTransform) in
                      SystemAPI.Query<
                          RefRW<RandomWalking>,
@@ -17,6 +21,7 @@ namespace RTS
                          RefRO<LocalTransform>
                      >())
             {
+                // If the entity has reached its target position, select a new random target position within the specified range.
                 if (math.distancesq(localTransform.ValueRO.Position, randomWalking.ValueRO.targetPosition) <
                     UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQUARED)
                 {
@@ -30,6 +35,7 @@ namespace RTS
                     
                     randomWalking.ValueRW.random = random;
                 }
+                // Otherwise, continue moving towards the current target position.
                 else
                 {
                     unitMover.ValueRW.targetPosition = randomWalking.ValueRO.targetPosition;

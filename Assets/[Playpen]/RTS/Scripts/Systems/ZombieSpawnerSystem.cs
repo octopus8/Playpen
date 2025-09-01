@@ -4,13 +4,16 @@ using Unity.Transforms;
 
 namespace RTS
 {
+    /// <summary>
+    /// System that spawns zombie entities at the position of ZombieSpawner components.
+    /// </summary>
     partial struct ZombieSpawnerSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Iterate over all entities with ZombieSpawner component.
             EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
-            
             EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();
             foreach (var (localTransform, spawner) in
                      SystemAPI.Query<

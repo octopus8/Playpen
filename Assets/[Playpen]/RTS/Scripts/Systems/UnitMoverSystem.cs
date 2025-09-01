@@ -6,16 +6,13 @@ using Unity.Transforms;
 
 namespace RTS
 {
-
     /// <summary>
-    /// DOTS system to move units towards their target position.
-    /// This system updates the position and rotation of units based on their movement speed and rotation speed.
-    /// It checks if the unit is already at the target position and stops moving if it is.
-    /// If the unit is not at the target position, it calculates the direction to the target,
-    /// updates the rotation towards that direction, and sets the linear velocity to move towards the target.
+    /// System that moves units towards their target position.
+    /// This system uses a job to perform the movement calculations in parallel for better performance.
     /// </summary>
     partial struct UnitMoverSystem : ISystem
     {
+        // Squared distance threshold to consider that the unit has reached its target position.
         public const float REACHED_TARGET_POSITION_DISTANCE_SQUARED = 2f;
         
         [BurstCompile]

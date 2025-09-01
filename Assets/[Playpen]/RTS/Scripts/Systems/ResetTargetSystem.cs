@@ -5,13 +5,17 @@ using Unity.Transforms;
 
 namespace RTS
 {
-
+    /// <summary>
+    /// System that resets the target entity in the Target component if the target entity has been destroyed.
+    /// This system runs at the beginning of the SimulationSystemGroup to ensure targets are valid before other systems process them.
+    /// </summary> 
     [UpdateInGroup(typeof(SimulationSystemGroup), OrderFirst = true)]
     partial struct ResetTargetSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Iterate over all entities with Target component.
             foreach (RefRW<Target> target in SystemAPI.Query<RefRW<Target>>())
             {
                 // If no target, skip.

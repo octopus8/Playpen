@@ -7,11 +7,16 @@ using Unity.Transforms;
 namespace RTS
 {
 
+    /// <summary>
+    /// System that handles shooting attacks for entities with ShootAttack component.
+    /// It rotates the entity towards its target, moves it within attack range, and spawns bullets when attacking.
+    /// </summary>
     partial struct ShootAttackSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
             EntityReferences references = SystemAPI.GetSingleton<EntityReferences>();
             foreach ((RefRW<LocalTransform> localTransform,
                          RefRW<ShootAttack> shootAttack,
@@ -61,18 +66,18 @@ namespace RTS
                 // Reset timer.
                 shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
 
+                // Spawn and initialize bullet.
                 Entity bullet = state.EntityManager.Instantiate(references.bulletEntity);
                 float3 bulletSpawnPosition = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnOffset);
                 SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(bulletSpawnPosition));
-                
                 RefRW<Bullet> bulletBullet = SystemAPI.GetComponentRW<Bullet>(bullet);
                 bulletBullet.ValueRW.damageAmount = shootAttack.ValueRO.damageAmount;
                 RefRW<Target> bulletTarget = SystemAPI.GetComponentRW<Target>(bullet);
                 bulletTarget.ValueRW.targetEntity = target.ValueRO.targetEntity;
 
+                // Trigger shoot event.
                 shootAttack.ValueRW.onShootEvent.isTriggered = true;
                 shootAttack.ValueRW.onShootEvent.shootPosition = bulletSpawnPosition;
-                
             }
         }
     }

@@ -4,12 +4,17 @@ using Unity.Transforms;
 
 namespace RTS
 {
+    /// <summary>
+    /// System that spawns a ShootLight entity at the position of a shoot event.
+    /// This system runs in the LateSimulationSystemGroup to ensure shoot events can occur before spawning the light.
+    /// </summary>
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     partial struct ShootLightSpawnerSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Iterate over all entities with ShootAttack component.
             EntityReferences references = SystemAPI.GetSingleton<EntityReferences>();
             foreach ((
                          RefRW<ShootAttack> shootAttack,
@@ -20,6 +25,7 @@ namespace RTS
                      >().WithEntityAccess()
                     )
             {
+                // If a shoot event is triggered, spawn a ShootLight entity at the shoot position.
                 if (shootAttack.ValueRO.onShootEvent.isTriggered)
                 {
                     Entity shootLightEntity = state.EntityManager.Instantiate(references.shootLightEntity);
