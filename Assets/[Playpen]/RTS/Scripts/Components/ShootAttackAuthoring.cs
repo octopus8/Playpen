@@ -38,5 +38,12 @@ namespace RTS
         public int damageAmount;
         public float attackDistance;
         public float3 bulletSpawnOffset;
+        public OnShootEvent onShootEvent;
+
+        public struct OnShootEvent
+        {
+            public bool isTriggered;
+            public float3 shootPosition;
+        }
     }
 }

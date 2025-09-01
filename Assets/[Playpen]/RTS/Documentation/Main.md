@@ -68,6 +68,7 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `ISystem` provides an interface for unmanaged systems.
 - `ISystemBase` provides an interface for managed systems.
 - `SystemAPI.GetComponentRW` accesses memory outside of the containing query, which somewhat breaks DOTS' ECS paradigm.
+- Companion GameObjects are used to handle functionality that is not yet available in DOTS, such as lights.
 
 # Issues
 - Shadow not showing

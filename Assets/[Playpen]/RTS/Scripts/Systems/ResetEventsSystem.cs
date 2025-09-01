@@ -19,6 +19,10 @@ namespace RTS
             {
                 health.ValueRW.onHealthChanged = false;
             }
+            foreach (var shootAttack in SystemAPI.Query<RefRW<ShootAttack>>())
+            {
+                shootAttack.ValueRW.onShootEvent.isTriggered = false;
+            }
         }
     }
 }

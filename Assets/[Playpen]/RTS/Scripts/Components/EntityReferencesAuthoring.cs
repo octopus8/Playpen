@@ -17,6 +17,10 @@ namespace RTS
         /// <summary>The zombie prefab.</summary>
         [Tooltip("The zombie prefab.")]
         [SerializeField] private GameObject zombiePrefab;
+        
+        /// <summary>The shoot light prefab.</summary>
+        [Tooltip("The shoot light prefab.")]
+        [SerializeField] private GameObject shootLightPrefab;
 
         
         class Baker : Baker<EntityReferencesAuthoring>
@@ -27,7 +31,8 @@ namespace RTS
                 AddComponent(entity, new EntityReferences
                 {
                     bulletEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    zombieEntity = GetEntity(authoring.zombiePrefab, TransformUsageFlags.Dynamic)
+                    zombieEntity = GetEntity(authoring.zombiePrefab, TransformUsageFlags.Dynamic),
+                    shootLightEntity = GetEntity(authoring.shootLightPrefab, TransformUsageFlags.Dynamic)
                 });
             }
         }
@@ -37,6 +42,7 @@ namespace RTS
     {
         public Entity bulletEntity;
         public Entity zombieEntity;
+        public Entity shootLightEntity;
     }
 }
 

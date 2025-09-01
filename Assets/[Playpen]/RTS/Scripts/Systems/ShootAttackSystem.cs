@@ -62,7 +62,6 @@ namespace RTS
                 shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
 
                 Entity bullet = state.EntityManager.Instantiate(references.bulletEntity);
-                
                 float3 bulletSpawnPosition = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnOffset);
                 SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(bulletSpawnPosition));
                 
@@ -70,6 +69,10 @@ namespace RTS
                 bulletBullet.ValueRW.damageAmount = shootAttack.ValueRO.damageAmount;
                 RefRW<Target> bulletTarget = SystemAPI.GetComponentRW<Target>(bullet);
                 bulletTarget.ValueRW.targetEntity = target.ValueRO.targetEntity;
+
+                shootAttack.ValueRW.onShootEvent.isTriggered = true;
+                shootAttack.ValueRW.onShootEvent.shootPosition = bulletSpawnPosition;
+                
             }
         }
     }
