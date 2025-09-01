@@ -24,7 +24,7 @@ namespace RTS
                     continue;
                 }
                 spawner.ValueRW.timer = spawner.ValueRO.spawnInterval;
-                var zombie = state.EntityManager.Instantiate(entityReferences.zombiePrefabEntity);
+                var zombie = state.EntityManager.Instantiate(entityReferences.zombieEntity);
                 SystemAPI.SetComponent(zombie, LocalTransform.FromPosition(localTransform.ValueRO.Position));
                 
                 ecb.AddComponent(zombie, new RandomWalking

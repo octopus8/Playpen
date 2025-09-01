@@ -33,6 +33,7 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
   - `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
   - `FindTargetSystem` - Finds targets for entities that need to find a target.
   - `ShootAttackSystem` - Handles shooting for entities that can shoot.
+    - Uses the `EntityReferences` to instantiate bullets.
 
 
 

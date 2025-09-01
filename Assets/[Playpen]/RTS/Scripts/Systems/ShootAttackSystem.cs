@@ -61,7 +61,7 @@ namespace RTS
                 // Reset timer.
                 shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
 
-                Entity bullet = state.EntityManager.Instantiate(references.bulletPrefabEntity);
+                Entity bullet = state.EntityManager.Instantiate(references.bulletEntity);
                 
                 float3 bulletSpawnPosition = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnOffset);
                 SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(bulletSpawnPosition));

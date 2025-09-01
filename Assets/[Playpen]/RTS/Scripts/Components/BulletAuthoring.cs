@@ -3,12 +3,20 @@ using UnityEngine;
 
 namespace RTS
 {
-
+    /// <summary>
+    /// Authoring component for bullets.
+    /// </summary>
     public class BulletAuthoring : MonoBehaviour
     {
-        public float speed = 2;
-        public int damageAmount = 5;
+        /// <summary>Bullet speed in meters per second.</summary>
+        [Tooltip("Bullet speed in meters per second.")]
+        [SerializeField] private float speed = 2;
+        
+        /// <summary>Amount of damage the bullet deals on hit.</summary>
+        [Tooltip("Amount of damage the bullet deals on hit.")]
+        [SerializeField] private int damageAmount = 5;
 
+        
         class Baker : Baker<BulletAuthoring>
         {
             public override void Bake(BulletAuthoring authoring)
@@ -21,12 +29,14 @@ namespace RTS
                 });
             }
         }
-
     }
-
+    
+    
     public struct Bullet : IComponentData
     {
+        /// <summary>Bullet speed in meters per second.</summary>
         public float speed;
+        /// <summary>Amount of damage the bullet deals on hit.</summary>
         public int damageAmount;
     }
 }

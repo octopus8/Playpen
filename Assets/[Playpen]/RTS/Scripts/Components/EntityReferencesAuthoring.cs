@@ -4,12 +4,21 @@ using UnityEngine;
 
 namespace RTS
 {
-
+    /// <summary>
+    /// Authoring component for entity references.
+    /// Only a single instance of this ECS component should exist in the scene.
+    /// </summary>
     public class EntityReferencesAuthoring : MonoBehaviour
     {
-        public GameObject bulletPrefab;
-        public GameObject zombiePrefab;
+        /// <summary>The bullet prefab.</summary>
+        [Tooltip("The bullet prefab.")]
+        [SerializeField] private GameObject bulletPrefab;
+        
+        /// <summary>The zombie prefab.</summary>
+        [Tooltip("The zombie prefab.")]
+        [SerializeField] private GameObject zombiePrefab;
 
+        
         class Baker : Baker<EntityReferencesAuthoring>
         {
             public override void Bake(EntityReferencesAuthoring authoring)
@@ -17,8 +26,8 @@ namespace RTS
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new EntityReferences
                 {
-                    bulletPrefabEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    zombiePrefabEntity = GetEntity(authoring.zombiePrefab, TransformUsageFlags.Dynamic)
+                    bulletEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
+                    zombieEntity = GetEntity(authoring.zombiePrefab, TransformUsageFlags.Dynamic)
                 });
             }
         }
@@ -26,8 +35,8 @@ namespace RTS
 
     public struct EntityReferences : IComponentData
     {
-        public Entity bulletPrefabEntity;
-        public Entity zombiePrefabEntity;
+        public Entity bulletEntity;
+        public Entity zombieEntity;
     }
 }
 
