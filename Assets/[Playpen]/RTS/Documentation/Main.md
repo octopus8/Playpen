@@ -1,4 +1,38 @@
+# RTS
 
+## Overview
+The `RTS` project is a simple real-time strategy (RTS) game implemented using Unity's Entity Component System (ECS). The project demonstrates how to set up a basic RTS game with unit selection, movement, and attacking mechanics using ECS principles.
+
+## Scripts
+- All scripts for this project are in the `Playpen\Assets\[Playpen]\Scripts` folder.
+- At the root, the `Scripts` directory contains scripts that contain general app data structures.
+- `Scripts\MonoBehaviours` - Contains scripts that work with MonoBehaviours.
+  - `RTSGame` - Singleton that contains general game data.
+  - `MouseWorldPosition` - Singleton used to get the mouse world position through the single exposed method `GetMouseWorldPosition`.
+    - This is used by `UnitSelection` to select units.
+  - `UnitSelection` - Singleton that handles unit selection input and updates entities appropriately.
+    - Demonstrates how to use `EntityCommandBuffer` to modify entities from a MonoBehaviour.
+    - Demonstrates getting the screen position for a unit.
+    - For multiple selection, uses the `Contains` method of `Rect` to determine if a unit is within the selection box.
+    - For single selection, uses a raycast to determine if a unit was clicked on.
+    - Exposes events for selection area start and end, allowing other components to respond to these events (e.g., updating the UI).
+  - `UnitSelectionUI` - Updates the unit selection UI.
+    - Subscribes to events from the `UnitSelection` singleton to manage the selection area UI element.
+- `Scripts\Components` - Contains scripts that define ECS authoring components.
+  - `UnitAuthoring` - Marks an entity as a unit and contains data about the unit.
+  - `FriendlyAuthoring` - Marks an entity as friendly.
+  - `ZombieAuthoring` - Marks an entity as a zombie.
+  - `UnitMoverAuthoring` - Marks an entity as movable and contains data about movement.
+  - `SelectedAuthoring` - Marks an entity as selectable and contains data about selection.
+  - `TargetAuthoring` - Marks an entity as a target and contains data about the target.
+  - `FindTargetAuthoring` - Marks an entity as needing to find a target and contains data about the search.
+  - `ShootAttackAuthoring` - Marks an entity as being able to shoot and contains data about shooting.
+- `Scripts\Systems` - Contains scripts that define systems used in ECS.
+  - `ResetEventsSystem` - Resets events at the end of the frame.
+  - `UnitMoverSystem` - Handles movable entities towards their destination.
+  - `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
+  - `FindTargetSystem` - Finds targets for entities that need to find a target.
+  - `ShootAttackSystem` - Handles shooting for entities that can shoot.
 
 
 
@@ -23,29 +57,6 @@
 - Systems can be implemented as `ISystem` (unmanaged) or `SystemBase` (managed).
 - Systems use queries to find entities with specific components.
 
-## Scripts
-- All scripts for this project are in the `Playpen\Assets\[Playpen]\Scripts` folder.
-- At the root, the `Scripts` directory contains scripts that contain general app data structures.
-- `Scripts\MonoBehaviours` - Contains scripts that work with MonoBehaviours.
-  - `RTSGame` - Singleton that contains general game data.
-  - `MouseWorldPosition` - Singleton used to get the mouse world position through the single exposed method `GetMouseWorldPosition`.
-  - `UnitSelection` - Singleton that handles unit selection input and updates entities appropriately.
-  - `UnitSelectionUI` - Updates the unit selection UI.
-- `Scripts\Components` - Contains scripts that define components used in ECS.
-  - `DOTSUnit` - Marks an entity as a unit and contains data about the unit.
-  - `DOTSFriendly` - Marks an entity as friendly.
-  - `DOTSZombie` - Marks an entity as a zombie.
-  - `DOTSUnitMover` - Marks an entity as movable and contains data about movement.
-  - `DOTSSelected` - Marks an entity as selectable and contains data about selection.
-  - `DOTSTarget` - Marks an entity as a target and contains data about the target.
-  - `DOTSFindTarget` - Marks an entity as needing to find a target and contains data about the search.
-  - `DOTSShootAttack` - Marks an entity as being able to shoot and contains data about shooting.
-- `Scripts\Systems` - Contains scripts that define systems used in ECS.
-  - `ResetEventsSystem` - Resets events at the end of the frame.
-  - `UnitMoverSystem` - Handles movable entities towards their destination.
-  - `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
-  - `FindTargetSystem` - Finds targets for entities that need to find a target.
-  - `ShootAttackSystem` - Handles shooting for entities that can shoot.
 
 ## Graphics
 - A "DOTS" quality level has been created and is the default quality level for PC.

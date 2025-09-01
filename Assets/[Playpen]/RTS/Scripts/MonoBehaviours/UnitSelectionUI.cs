@@ -4,20 +4,21 @@ using UnityEngine;
 
 namespace RTS
 {
-
     /// <summary>
     /// MonoBehaviour that handles the UI for unit selection in a game.
-    /// It listens for selection area start and end events, updates the visual representation of the selection area,
-    /// and manages the visibility of the selection area UI element.
+    /// This component subscribes to events from the `UnitSelection` singleton to manage the selection area UI element.
+    /// The visual is only updated when the selection area is active.
     /// </summary>
     public class UnitSelectionUI : MonoBehaviour
     {
         /// <summary> The selection area UI element that visually represents the area of selection. </summary>
         [SerializeField] private RectTransform selectionArea;
 
+        /// <summary> The canvas that contains the selection visual. This is used to properly scale the selection visual. </summary>
         [SerializeField] private Canvas canvas;
 
 
+        
         /// <summary>
         /// Sets callbacks for selection area start and end events, and initializes the selection area UI element.
         /// </summary>
@@ -77,6 +78,5 @@ namespace RTS
             selectionArea.sizeDelta =
                 new Vector2(selectionAreaRect.width, selectionAreaRect.height) / canvasScaleFactor;
         }
-
     }
 }

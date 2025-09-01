@@ -10,10 +10,14 @@ using UnityEngine;
 
 namespace RTS
 {
-
     /// <summary>
     /// Singleton that handles unit selection and setting target positions for selected units.
     /// Provides access to the selection area rectangle, used by the UI to visually represent the selection area.
+    /// Unit selection is done through mouse input, with left-click for selection and right-click for setting target positions.
+    /// Supports both single selection (clicking on a unit) and multiple selection (clicking and dragging to create a selection area).
+    /// When doing a multiple selection, unit positions are converted to screen space to determine if they are within the selection area.
+    /// When doing a single selection, a raycast is performed to determine if a unit was clicked on.
+    /// This component exposes events for selection area start and end, allowing other components to respond to these events (e.g., updating the UI).
     /// </summary>
     public class UnitSelection : MonoBehaviour
     {
@@ -52,17 +56,17 @@ namespace RTS
         /// </summary>
         void Update()
         {
-            // Handle selection area start and end events.
+            // Handle selection area start.
             if (Input.GetMouseButtonDown(0))
             {
                 startMousePosition = Input.mousePosition;
                 OnSelectionAreaStart?.Invoke(this, EventArgs.Empty);
             }
-
-
+            
+            // Handle selection area end.
             if (Input.GetMouseButtonUp(0))
             {
-                // Set all units as unselected before processing the selection area.
+                // Set all ECS unit entities as unselected before processing the selection area.
                 // This ensures that only the units within the selection area are selected.
                 // It also prevents previously selected units from remaining selected after the selection area is cleared.
                 EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -80,14 +84,16 @@ namespace RTS
                     entityManager.SetComponentData(entityArray[i], selected);
                 }
 
+                // Determine if the selection area is a multiple selection or a single selection.
                 Rect selectionAreaRect = GetSelectionAreaRect();
                 float selectionAreaRelativeSize = selectionAreaRect.width + selectionAreaRect.height;
                 float multipleSelectionSizeMin = 40f;
                 bool isMultipleSelection = selectionAreaRelativeSize > multipleSelectionSizeMin;
 
+                // Handle multiple selection.
                 if (isMultipleSelection)
                 {
-                    // Set units within the selection area as selected.
+                    // Set ECS unit entities within the selection area as selected.
                     // This is done by checking if the unit's screen position is within the selection area rectangle.
                     // If it is, we enable the Selected component for that unit.
                     // This allows the UI to visually represent the selected units.
@@ -98,10 +104,15 @@ namespace RTS
                     entityArray = entityQuery.ToEntityArray(Allocator.Temp);
                     NativeArray<LocalTransform> unitLocalTransformDataArray =
                         entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
+                    
+                    // Iterate through query results and set units within the selection area as selected.
                     for (int i = 0; i < unitLocalTransformDataArray.Length; i++)
                     {
+                        // Get the unit screen position.
                         LocalTransform localTransform = unitLocalTransformDataArray[i];
                         Vector2 unitScreenPosition = Camera.main.WorldToScreenPoint(localTransform.Position);
+                        
+                        // If the unit screen position is within the selection area, set it as selected.
                         if (selectionAreaRect.Contains(unitScreenPosition))
                         {
                             entityManager.SetComponentEnabled<Selected>(entityArray[i], true);
@@ -111,6 +122,7 @@ namespace RTS
                         }
                     }
                 }
+                
                 // Single select
                 else
                 {
