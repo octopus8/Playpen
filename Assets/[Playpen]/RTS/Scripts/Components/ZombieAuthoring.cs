@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace RTS
 {
+    /// <summary>
+    /// Authoring component to mark an entity as a zombie.
+    /// </summary>
     public class ZombieAuthoring : MonoBehaviour
     {
         public class Baker : Unity.Entities.Baker<ZombieAuthoring>

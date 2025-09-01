@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RTS
 {
     /// <summary>
-    /// Authoring component for bullets.
+    /// Authoring component for bullet data. This component is added to bullet prefabs.
     /// </summary>
     public class BulletAuthoring : MonoBehaviour
     {

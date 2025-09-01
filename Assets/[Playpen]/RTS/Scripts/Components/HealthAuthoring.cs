@@ -4,10 +4,14 @@ using UnityEngine;
 
 namespace RTS
 {
-
+    /// <summary>
+    /// Authoring component for health data. This component is added to units that have health.
+    /// </summary>
     public class HealthAuthoring : MonoBehaviour
     {
-        public int maxHealth = 100;
+        /// <summary>Maximum health.</summary>
+        [Tooltip("Maximum health.")]
+        [SerializeField] private int maxHealth = 100;
 
         public class Baker : Baker<HealthAuthoring>
         {
@@ -27,8 +31,11 @@ namespace RTS
 
     public struct Health : IComponentData
     {
+        /// <summary>Current health.</summary>
         public int currentHealth;
+        /// <summary>Maximum health.</summary>
         public int maxHealth;
+        /// <summary>Flag to indicate if health has changed.</summary>
         public bool onHealthChanged;
     }
 }

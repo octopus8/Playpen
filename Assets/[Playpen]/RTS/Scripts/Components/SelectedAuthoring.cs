@@ -6,20 +6,20 @@ namespace RTS
 {
 
     /// <summary>
-    /// Selected ECS component authoring MonoBehaviour.
+    /// Selected ECS component authoring MonoBehaviour. This component is added to entities that can be selected.
+    /// It includes a reference to a visual GameObject that is shown when the entity is selected.
     /// </summary>
     public class SelectedAuthoring : MonoBehaviour
     {
         /// <summary> Visual visible when selected. </summary>
+        [Tooltip("Visual visible when selected.")]
         [SerializeField] private GameObject visualGameObject;
 
         /// <summary> Scale for the visual representation of selection when selected. </summary>
+        [Tooltip("Scale for the visual representation of selection when selected.")]
         [SerializeField] private float showScale = 2.0f; // Scale for the visual representation of selection.
 
 
-        /// <summary>
-        /// ECS Baker class to convert the MonoBehaviour to an Entity with SelectedDOTS component.
-        /// </summary>
         class SelectedBaker : Baker<SelectedAuthoring>
         {
             /// <summary>

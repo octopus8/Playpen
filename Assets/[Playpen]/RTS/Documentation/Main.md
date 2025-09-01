@@ -19,6 +19,7 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
   - `UnitSelectionUI` - Updates the unit selection UI.
     - Subscribes to events from the `UnitSelection` singleton to manage the selection area UI element.
 - `Scripts\Components` - Contains scripts that define ECS authoring components.
+  - 
   - `UnitAuthoring` - Marks an entity as a unit and contains data about the unit.
   - `FriendlyAuthoring` - Marks an entity as friendly.
   - `ZombieAuthoring` - Marks an entity as a zombie.

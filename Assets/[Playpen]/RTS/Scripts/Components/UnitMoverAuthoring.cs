@@ -4,29 +4,22 @@ using UnityEngine;
 
 namespace RTS
 {
-
     /// <summary>
-    /// UnitMover ECS component authoring MonoBehaviour.
+    /// Authoring component for unit movement data. This component is added to all units.
     /// </summary>
     public class UnitMoverAuthoring : MonoBehaviour
     {
         /// <summary> Unit movement speed, in meters per second. </summary>
-        [Tooltip("Unit movement speed.")] [SerializeField]
-        private float moveSpeedMPS = 5f;
+        [Tooltip("Unit movement speed.")]
+        [SerializeField] private float moveSpeedMPS = 5f;
 
         /// <summary> Unit rotation speed, in radians per second. </summary>
-        [Tooltip("Unit rotation speed.")] [SerializeField]
-        private float rotationSpeedRPS = 10f;
+        [Tooltip("Unit rotation speed.")]
+        [SerializeField] private float rotationSpeedRPS = 10f;
 
 
-        /// <summary>
-        /// ECS Baker class to convert the MonoBehaviour to an Entity with UnitMover component.
-        /// </summary>
         public class Baker : Baker<UnitMoverAuthoring>
         {
-            /// <summary>
-            /// Converts the MonoBehaviour properties to an Entity with UnitMover component.
-            /// </summary>
             public override void Bake(UnitMoverAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -40,17 +33,12 @@ namespace RTS
     }
 
 
-    /// <summary>
-    /// ECS component containing unit movement data.
-    /// </summary>
     public struct UnitMover : IComponentData
     {
         /// <summary> Unit movement speed, in meters per second. </summary>
         public float moveSpeed;
-
         /// <summary> Unit rotation speed, in radians per second. </summary>
         public float rotationSpeed;
-
         /// <summary> Target position for the unit to move towards. </summary>
         public float3 targetPosition;
     }

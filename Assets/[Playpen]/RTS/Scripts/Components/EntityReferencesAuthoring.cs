@@ -40,8 +40,11 @@ namespace RTS
 
     public struct EntityReferences : IComponentData
     {
+        /// <summary>The bullet prefab entity.</summary>
         public Entity bulletEntity;
+        /// <summary>The zombie prefab entity.</summary>
         public Entity zombieEntity;
+        /// <summary>The shoot light prefab entity.</summary>
         public Entity shootLightEntity;
     }
 }
