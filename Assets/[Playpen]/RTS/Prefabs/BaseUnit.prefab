@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2afcaf192dfab499d14f34aa0638ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSFindTarget
-  range: 8
+  range: 15
   targetFaction: 0
   maxTimerSeconds: 0.2
 --- !u!114 &7261903412820548149

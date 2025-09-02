@@ -92,10 +92,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
-      propertyPath: range
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: targetFaction
       value: 0
       objectReference: {fileID: 0}
@@ -120,6 +116,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4167067662099629909}
+    - targetCorrespondingSourceObject: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6599092102775271503}
   m_SourcePrefab: {fileID: 100100000, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
 --- !u!1 &2205995592828264276 stripped
 GameObject:
@@ -151,6 +150,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootTargetAuthoring
   hitLocalPosition: {fileID: 8880892724457333043}
+--- !u!114 &6599092102775271503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205995592828264276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada9b275a2ba3fc4a8a6314cc8b9110b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.MeleeAttackAuthoring
+  attackRateSeconds: 0.5
 --- !u!4 &7468368146789761693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
