@@ -167,23 +167,26 @@ namespace RTS
                 Vector3 mousePosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
                 EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp)
-                    .WithAll<UnitMover, Selected>()
+                    .WithAll<Selected>()
+                    .WithPresent<MoveOverride>()
                     .Build(entityManager);
 
                 // Convert the query results to a NativeArray of UnitMover components.
                 // Iterate through the array and set the target position for each selected unit.
-                NativeArray<UnitMover> unitMoverDataArray = entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
+                NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
+                NativeArray<MoveOverride> moveOverrideArray = entityQuery.ToComponentDataArray<MoveOverride>(Allocator.Temp);
                 NativeArray<float3> movePositions =
-                    GenerateMovePositionsArray(mousePosition, unitMoverDataArray.Length);
-                for (int i = 0; i < unitMoverDataArray.Length; i++)
+                    GenerateMovePositionsArray(mousePosition, moveOverrideArray.Length);
+                for (int i = 0; i < moveOverrideArray.Length; i++)
                 {
-                    UnitMover unitMover = unitMoverDataArray[i];
-                    unitMover.targetPosition = movePositions[i];
-                    unitMoverDataArray[i] = unitMover;
+                    MoveOverride moveOverride = moveOverrideArray[i];
+                    moveOverride.targetPosition = movePositions[i];
+                    moveOverrideArray[i] = moveOverride;
+                    entityManager.SetComponentEnabled<MoveOverride>(entityArray[i], true);
                 }
 
                 // Copy the modified data back to the entity query.
-                entityQuery.CopyFromComponentDataArray(unitMoverDataArray);
+                entityQuery.CopyFromComponentDataArray(moveOverrideArray);
             }
         }
 

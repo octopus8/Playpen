@@ -34,7 +34,7 @@ namespace RTS
                          RefRW<ShootAttack>,
                          RefRO<Target>,
                          RefRW<UnitMover>
-                     >())
+                     >().WithDisabled<MoveOverride>())
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)

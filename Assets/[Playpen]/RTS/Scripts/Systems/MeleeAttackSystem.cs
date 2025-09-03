@@ -33,7 +33,7 @@ namespace RTS
                          RefRW<MeleeAttack>, 
                          RefRO<Target>,
                          RefRW<UnitMover>
-                     >())
+                     >().WithDisabled<MoveOverride>())
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)
@@ -60,7 +60,8 @@ namespace RTS
                         Filter = CollisionFilter.Default
                     };
                     raycastHits.Clear();
-//                    Debug.DrawRay(startPosition, directionToTarget * (meleeAttack.ValueRO.colliderSize + extraDistanceToTestRaycast), Color.red, 0.1f, false);
+                    float rayLength = 5.0f;// (meleeAttack.ValueRO.colliderSize + extraDistanceToTestRaycast);
+                    Debug.DrawRay(startPosition, directionToTarget * rayLength, Color.red, 0.1f, false);
                     if (collisionWorld.CastRay(raycastInput, ref raycastHits))
                     {
                         foreach (RaycastHit hit in raycastHits)
