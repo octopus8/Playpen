@@ -9,9 +9,16 @@ namespace RTS
     /// </summary>
     partial struct ZombieSpawnerSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<EntityReferences>();
+            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            
             // Iterate over all entities with ZombieSpawner component.
             EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
             EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();

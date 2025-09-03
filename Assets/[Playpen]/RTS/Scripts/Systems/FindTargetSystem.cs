@@ -3,6 +3,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
 using Unity.Transforms;
+using UnityEngine;
 
 
 namespace RTS
@@ -51,6 +52,7 @@ namespace RTS
                     CollidesWith = 1 << RTSGame.UNITS_LAYER,
                     GroupIndex = 0
                 };
+                
                 if (collisionWorld.OverlapSphere(localTransform.ValueRO.Position, findTarget.ValueRO.range, ref hits,
                         collisonFilter))
                 {
@@ -72,7 +74,7 @@ namespace RTS
                             target.ValueRW.targetEntity = distanceHit.Entity;
                             break;
                         }
-                    }
+                    } 
                 }
             }
         }

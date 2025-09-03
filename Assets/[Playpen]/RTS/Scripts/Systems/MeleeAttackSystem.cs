@@ -11,6 +11,11 @@ namespace RTS
 {
     partial struct MeleeAttackSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<PhysicsWorldSingleton>();
+        }
+
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -33,8 +38,7 @@ namespace RTS
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)
                     continue;
-                
-                // If target out of range, skip.
+
                 LocalTransform targetLocalTransform =
                     SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
                 float distancesq = math.distancesq(localTransform.ValueRO.Position, targetLocalTransform.Position);
@@ -47,13 +51,16 @@ namespace RTS
                     float3 directionToTarget =
                         math.normalize(targetLocalTransform.Position - localTransform.ValueRO.Position);
                     float extraDistanceToTestRaycast = 0.4f;
+                    float3 startPosition = localTransform.ValueRO.Position;
+                    startPosition[1] += 1f;
                     RaycastInput raycastInput = new RaycastInput
                     {
-                        Start = localTransform.ValueRO.Position,
-                        End = localTransform.ValueRO.Position + directionToTarget * (meleeAttack.ValueRO.colliderSize + extraDistanceToTestRaycast),
+                        Start = startPosition,
+                        End = startPosition + directionToTarget * (meleeAttack.ValueRO.colliderSize + extraDistanceToTestRaycast),
                         Filter = CollisionFilter.Default
                     };
                     raycastHits.Clear();
+//                    Debug.DrawRay(startPosition, directionToTarget * (meleeAttack.ValueRO.colliderSize + extraDistanceToTestRaycast), Color.red, 0.1f, false);
                     if (collisionWorld.CastRay(raycastInput, ref raycastHits))
                     {
                         foreach (RaycastHit hit in raycastHits)

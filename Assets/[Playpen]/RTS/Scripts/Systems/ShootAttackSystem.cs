@@ -13,9 +13,15 @@ namespace RTS
     /// </summary>
     partial struct ShootAttackSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<EntityReferences>();
+        }
+
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            
             // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
             EntityReferences references = SystemAPI.GetSingleton<EntityReferences>();
             foreach ((RefRW<LocalTransform> localTransform,

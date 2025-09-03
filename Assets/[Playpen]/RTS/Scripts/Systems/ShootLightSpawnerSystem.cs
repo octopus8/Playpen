@@ -11,6 +11,11 @@ namespace RTS
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     partial struct ShootLightSpawnerSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<EntityReferences>();
+        }
+
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
