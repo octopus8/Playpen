@@ -327,9 +327,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5531291978781080561, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 448010079739465531, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 448010079739465531, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: distanceMax
@@ -339,6 +343,10 @@ PrefabInstance:
       propertyPath: distanceMin
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 792367967315734900, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2205995592828264276, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: m_Name
       value: ZombieUnit
@@ -346,6 +354,22 @@ PrefabInstance:
     - target: {fileID: 2205995592828264276, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167067662099629909, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566476805159854972, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599092102775271503, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704223971666330241, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7468368146789761693, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,6 +409,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7468368146789761693, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034618302084995904, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

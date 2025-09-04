@@ -29,6 +29,7 @@ namespace RTS
                 >().WithEntityAccess()
             )
             {
+                Debug.Log("Setting up default UnitMover position");
                 unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
                 ecb.RemoveComponent<SetupUnitMoverDefaultPosition>(entity);
             }

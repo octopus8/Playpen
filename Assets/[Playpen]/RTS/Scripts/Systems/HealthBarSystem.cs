@@ -41,7 +41,10 @@ namespace RTS
                         parentLocalTransform.InverseTransformRotation(quaternion.LookRotation(cameraForward, math.up()));
                 }
                 
-                // If there's no health change event, skip updating the health bar.
+                if (!SystemAPI.HasComponent<Health>(healthBar.ValueRO.healthEntity))
+                {
+                    continue;
+                }
                 Health health = SystemAPI.GetComponent<Health>(healthBar.ValueRO.healthEntity);
                 if (!health.onHealthChanged)
                 {
