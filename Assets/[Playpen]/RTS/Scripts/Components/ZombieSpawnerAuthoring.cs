@@ -21,6 +21,9 @@ namespace RTS
         [Tooltip("Maximum random walking distance for spawned zombies.")]
         [SerializeField] private float randomWalkingDistanceMax;
 
+        /// <summary>Maximum number of zombies that can be spawned.</summary>
+        [Tooltip("Maximum number of zombies that can be spawned.")]
+        [SerializeField] private int maxSpawnedZombies = 1;
         
         class Baker : Baker<ZombieSpawnerAuthoring>
         {
@@ -32,6 +35,7 @@ namespace RTS
                     spawnInterval = authoring.spawnInterval,
                     randomWalkingDistanceMin = authoring.randomWalkingDistanceMin,
                     randomWalkingDistanceMax = authoring.randomWalkingDistanceMax,
+                    maxSpawnedZombies = authoring.maxSpawnedZombies,
                 });
             }
         }
@@ -48,6 +52,10 @@ namespace RTS
         public float randomWalkingDistanceMin;
         /// <summary>Maximum random walking distance for spawned zombies.</summary>
         public float randomWalkingDistanceMax;
+        /// <summary>Maximum number of zombies that can be spawned.</summary>
+        public int maxSpawnedZombies;
+        /// <summary>Current number of zombies that have been spawned.</summary>
+        public int currentSpawnedZombies;
     }
 }
 

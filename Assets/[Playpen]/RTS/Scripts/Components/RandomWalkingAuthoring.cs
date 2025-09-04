@@ -10,13 +10,6 @@ namespace RTS
     /// </summary>
     public class RandomWalkingAuthoring : MonoBehaviour
     {
-        /// <summary>Target position for random walking.</summary>
-        [Tooltip("Target position for random walking.")]
-        [SerializeField] private float3 targetPosition;
-        
-        /// <summary>Origin position for random walking.</summary>
-        [Tooltip("Origin position for random walking.")] private float3 originPosition;
-        
         /// <summary>Minimum distance from the origin to walk.</summary>
         [Tooltip("Minimum distance from the origin to walk.")]
         [SerializeField] private float distanceMin = 5f;
@@ -37,8 +30,6 @@ namespace RTS
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new RandomWalking
                 {
-                    targetPosition = authoring.targetPosition,
-                    originPosition = authoring.originPosition,
                     distanceMin = authoring.distanceMin,
                     distanceMax = authoring.distanceMax,
                     random = new Random(authoring.randomSeed)

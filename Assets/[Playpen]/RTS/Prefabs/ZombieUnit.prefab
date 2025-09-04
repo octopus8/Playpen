@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: targetFaction
@@ -184,10 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1240194b07984d44b95d6ccf9935130c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.RandomWalkingAuthoring
-  targetPosition:
-    x: 3
-    y: 0
-    z: 20
   distanceMin: 20
   distanceMax: 30
   randomSeed: 1
