@@ -92,6 +92,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781226309348629818, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: targetFaction
       value: 0
       objectReference: {fileID: 0}
@@ -184,8 +188,8 @@ MonoBehaviour:
     x: 3
     y: 0
     z: 20
-  distanceMin: 5
-  distanceMax: 10
+  distanceMin: 20
+  distanceMax: 30
   randomSeed: 1
 --- !u!4 &7468368146789761693 stripped
 Transform:

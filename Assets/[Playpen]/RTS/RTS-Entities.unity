@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &306845133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +280,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2205881311910994476, guid: dd2a94e6007cfb243bfc64420d4b5d37, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205881311910994476, guid: dd2a94e6007cfb243bfc64420d4b5d37, type: 3}
+      propertyPath: damageAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8705620293435205800, guid: dd2a94e6007cfb243bfc64420d4b5d37, type: 3}
       propertyPath: m_Name
@@ -316,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2205995592828264276, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7468368146789761693, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       propertyPath: m_LocalPosition.x

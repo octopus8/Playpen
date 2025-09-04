@@ -1,6 +1,7 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
@@ -53,6 +54,15 @@ namespace RTS
                     GroupIndex = 0
                 };
                 
+                Entity closestTargetEntity = Entity.Null;
+                float closestDistance = float.MaxValue;
+                float currentTargetDistanceOffset = 2f;
+                if (target.ValueRO.targetEntity != Entity.Null)
+                {
+                    closestTargetEntity = target.ValueRO.targetEntity;
+                    LocalTransform targetTransform = SystemAPI.GetComponent<LocalTransform>(closestTargetEntity);
+                    closestDistance = math.distance(localTransform.ValueRO.Position, targetTransform.Position);
+                }
                 if (collisionWorld.OverlapSphere(localTransform.ValueRO.Position, findTarget.ValueRO.range, ref hits,
                         collisonFilter))
                 {
@@ -70,11 +80,26 @@ namespace RTS
                         Unit targetUnit = SystemAPI.GetComponent<Unit>(distanceHit.Entity);
                         if (targetUnit.faction == findTarget.ValueRO.targetFaction)
                         {
-                            // Set the target entity and break out of the loop.
-                            target.ValueRW.targetEntity = distanceHit.Entity;
-                            break;
+                            if (closestTargetEntity == Entity.Null)
+                            {
+                                closestTargetEntity = distanceHit.Entity;
+                                closestDistance = distanceHit.Distance;
+                            }
+                            else
+                            {
+                                if (distanceHit.Distance + currentTargetDistanceOffset < closestDistance)
+                                {
+                                    closestTargetEntity = distanceHit.Entity;
+                                    closestDistance = distanceHit.Distance;
+                                }
+                            }
                         }
                     } 
+                }
+
+                if (closestTargetEntity != Entity.Null)
+                {
+                    target.ValueRW.targetEntity = closestTargetEntity;
                 }
             }
         }
