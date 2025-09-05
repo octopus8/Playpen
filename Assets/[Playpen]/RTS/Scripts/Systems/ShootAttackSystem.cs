@@ -27,14 +27,15 @@ namespace RTS
             foreach ((RefRW<LocalTransform> localTransform,
                          RefRW<ShootAttack> shootAttack,
                          RefRO<Target> target,
-                         RefRW<UnitMover> unitMover
+                         RefRW<UnitMover> unitMover,
+                            Entity entity
                      )
                      in SystemAPI.Query<
                          RefRW<LocalTransform>,
                          RefRW<ShootAttack>,
                          RefRO<Target>,
                          RefRW<UnitMover>
-                     >().WithDisabled<MoveOverride>())
+                     >().WithDisabled<MoveOverride>().WithEntityAccess())
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)
@@ -71,6 +72,13 @@ namespace RTS
 
                 // Reset timer.
                 shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
+                
+                // Update target's TargetOverride to point back to this entity.
+                RefRW<TargetOverride> targetOverride = SystemAPI.GetComponentRW<TargetOverride>(target.ValueRO.targetEntity);
+                if (targetOverride.ValueRO.targetEntity != Entity.Null)
+                {
+                    targetOverride.ValueRW.targetEntity = entity;
+                }
 
                 // Spawn and initialize bullet.
                 Entity bullet = state.EntityManager.Instantiate(references.bulletEntity);
