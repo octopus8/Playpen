@@ -13,6 +13,14 @@ namespace RTS
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            new ResetSelectedEventsJob().ScheduleParallel();
+            new ResetHealthEventsJob().ScheduleParallel();
+            new ResetShootAttackEventsJob().ScheduleParallel();
+        }
+
+        
+        public void OnCreateNoJobs(ref SystemState state)
+        {
             // Reset event flags for selected events.
             foreach (var selected in SystemAPI.Query<RefRW<Selected>>())
             {
@@ -31,4 +39,34 @@ namespace RTS
             }
         }
     }
+ 
+    [BurstCompile]
+    public partial struct ResetShootAttackEventsJob : IJobEntity
+    {
+        public void Execute(ref ShootAttack shootAttack)
+        {
+            shootAttack.onShootEvent.isTriggered = false;
+        }
+    }
+    
+    [BurstCompile]
+    public partial struct ResetHealthEventsJob : IJobEntity
+    {
+        public void Execute(ref Health health)
+        {
+            health.onHealthChanged = false;
+        }
+    }
+    
+    [BurstCompile]
+    [WithOptions(EntityQueryOptions.IgnoreComponentEnabledState)]
+    public partial struct ResetSelectedEventsJob : IJobEntity
+    {
+        public void Execute(ref Selected selected)
+        {
+            selected.onSelected = false;
+            selected.onDeselected = false;
+        }
+    }
+    
 }
