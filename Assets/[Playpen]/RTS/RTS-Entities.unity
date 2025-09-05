@@ -168,7 +168,7 @@ MonoBehaviour:
   spawnInterval: 1.5
   randomWalkingDistanceMin: 3
   randomWalkingDistanceMax: 6
-  maxSpawnedZombies: 100
+  maxSpawnedZombies: 1
 --- !u!4 &306845134
 Transform:
   m_ObjectHideFlags: 0
