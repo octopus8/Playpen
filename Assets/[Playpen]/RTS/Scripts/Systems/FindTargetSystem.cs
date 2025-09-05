@@ -44,7 +44,6 @@ namespace RTS
                 }
 
                 // Perform an overlap sphere query to find potential targets within range.
-                target.ValueRW.targetEntity = Entity.Null;
                 findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
                 hits.Clear();
                 CollisionFilter collisonFilter = new CollisionFilter
