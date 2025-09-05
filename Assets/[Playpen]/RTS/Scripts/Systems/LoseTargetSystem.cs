@@ -14,19 +14,28 @@ namespace RTS
             foreach (var (
                              localTransform,
                              target,
-                            loseTarget
+                            loseTarget,
+                             targetOverride
                          )
                      in
                      SystemAPI.Query<
                              RefRO<LocalTransform>,
                              RefRW<Target>,
-                            RefRO<LoseTarget>
+                            RefRO<LoseTarget>,
+                             RefRW<TargetOverride>
                      >())
             {
                 if (target.ValueRO.targetEntity == Entity.Null)
                 {
                     continue;
                 }
+
+                if (targetOverride.ValueRO.targetEntity != Entity.Null)
+                {
+                    target.ValueRW.targetEntity = targetOverride.ValueRO.targetEntity;
+                    continue;
+                }
+                
 
                 LocalTransform targetLocalTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
                 float distanceToTarget = math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position);

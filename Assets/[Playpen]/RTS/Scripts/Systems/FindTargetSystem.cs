@@ -25,14 +25,16 @@ namespace RTS
             CollisionWorld collisionWorld = physicsWorld.CollisionWorld;
             NativeList<DistanceHit> hits = new NativeList<DistanceHit>(Allocator.Temp);
             foreach ((
-                         RefRO<LocalTransform> localTransform,
-                         RefRW<FindTarget> findTarget,
-                         RefRW<Target> target
+                             RefRO<LocalTransform> localTransform,
+                             RefRW<FindTarget> findTarget, 
+                             RefRW<Target> target,
+                             RefRW<TargetOverride> targetOverride
                      )
                      in SystemAPI.Query<
                          RefRO<LocalTransform>,
                          RefRW<FindTarget>,
-                         RefRW<Target>
+                         RefRW<Target>,
+                         RefRW<TargetOverride>
                      >()
                     )
             {
@@ -42,9 +44,15 @@ namespace RTS
                 {
                     continue;
                 }
+                findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
+                
+                if (targetOverride.ValueRO.targetEntity != Entity.Null)
+                {
+                    target.ValueRW.targetEntity = targetOverride.ValueRO.targetEntity;
+                    continue;
+                }
 
                 // Perform an overlap sphere query to find potential targets within range.
-                findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
                 hits.Clear();
                 CollisionFilter collisonFilter = new CollisionFilter
                 {
