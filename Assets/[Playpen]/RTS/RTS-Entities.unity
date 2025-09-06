@@ -136,6 +136,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c27587631d66040bce498aa7d55426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.SetupUnitMoverDefaultPositionAuthoring
+--- !u!1 &279224943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4474910045242300702, guid: dd2a94e6007cfb243bfc64420d4b5d37, type: 3}
+  m_PrefabInstance: {fileID: 1289677273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &279224947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279224943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf908f582765064fbf83b09a209b5af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.ActiveAnimationAuthoring
+  flipbookAnimation: {fileID: 11400000, guid: c14820f2f6d63c44289fd819f1085160, type: 2}
 --- !u!1 &306845132
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +421,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8705620293435205800, guid: dd2a94e6007cfb243bfc64420d4b5d37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1082273700}
+    - targetCorrespondingSourceObject: {fileID: 4474910045242300702, guid: dd2a94e6007cfb243bfc64420d4b5d37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 279224947}
   m_SourcePrefab: {fileID: 100100000, guid: dd2a94e6007cfb243bfc64420d4b5d37, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
