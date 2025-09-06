@@ -8,11 +8,16 @@ namespace RTS
     /// </summary>
     public class MouseWorldPosition : MonoBehaviour
     {
+        #region Static Class Variables
+
         /// <summary> Singleton instance of MouseWorldPosition. </summary>
         public static MouseWorldPosition Instance { get; private set; }
 
-        
-        
+        #endregion
+
+
+        #region MonoBehaviour Callbacks
+
         /// <summary>
         /// Stores the singleton instance of MouseWorldPosition.
         /// </summary>
@@ -20,8 +25,11 @@ namespace RTS
         {
             Instance = this;
         }
-        
-        
+
+        #endregion
+
+        #region Public Methods
+
         /// <summary>
         /// Gets the mouse world position by casting a ray from the camera to the mouse position.
         /// This method uses Physics.Raycast to determine where the ray intersects with the ground plane.
@@ -60,5 +68,6 @@ namespace RTS
             return Vector3.zero; // Return zero if the ray does not hit the ground plane
         }
 
+        #endregion
     }
 }

@@ -8,12 +8,23 @@ namespace RTS
     /// </summary>
     public class RTSGame : MonoBehaviour
     {
+        #region Public Constants
+
         /// <summary> Layer for units. </summary>
         public const int UNITS_LAYER = 10;
 
+        #endregion
+
+        
+        #region Static Class Variables
+
         /// <summary>Singleton instance.</summary>
         public static RTSGame Instance { get; private set; }
+        
+        #endregion
 
+
+        #region MonoBehaviour Callbacks
         
         /// <summary>
         /// Stores reference to the singleton instance of RTSGame.
@@ -28,5 +39,7 @@ namespace RTS
             }
             Instance = this;
         }
+        
+        #endregion
     }
 }
