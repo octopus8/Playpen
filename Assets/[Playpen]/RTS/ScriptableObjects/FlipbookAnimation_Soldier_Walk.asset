@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfde306e06ad4846bd520092e1b79f7, type: 3}
   m_Name: FlipbookAnimation_Soldier_Walk
   m_EditorClassIdentifier: Assembly-CSharp::FlipbookAnimationScriptableObject
+  animationType: 2
   frames:
   - {fileID: 4300000, guid: 6e5308bd925f70147803dd3d808d5357, type: 2}
   - {fileID: 4300000, guid: a94861c5d00b76c4bb31d76aec734804, type: 2}

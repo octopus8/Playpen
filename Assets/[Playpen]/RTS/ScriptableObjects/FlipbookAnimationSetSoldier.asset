@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4501e2a2b326bb14682ec52e3af4b757, type: 3}
+  m_Name: FlipbookAnimationSetSoldier
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.FlipbookAnimationSetScriptableObject
+  animations:
+  - {fileID: 11400000, guid: 40db364877bbd1144b067a8e0a6db6ed, type: 2}
+  - {fileID: 11400000, guid: c14820f2f6d63c44289fd819f1085160, type: 2}
+  - {fileID: 11400000, guid: 41d7bc17295966a488c3e9c80150c63f, type: 2}

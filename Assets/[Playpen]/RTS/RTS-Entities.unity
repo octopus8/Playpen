@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6035fddfacf40bf41ad2655b2c07e741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.AnimationDataHolderAuthoring
-  soldierIdleAnimation: {fileID: 11400000, guid: c14820f2f6d63c44289fd819f1085160, type: 2}
+  animationSet: {fileID: 11400000, guid: efcb034ecda0a8e41a09eb1deec15674, type: 2}
 --- !u!4 &1122178087
 Transform:
   m_ObjectHideFlags: 0

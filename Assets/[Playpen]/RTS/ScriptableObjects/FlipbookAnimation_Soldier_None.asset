@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dfde306e06ad4846bd520092e1b79f7, type: 3}
-  m_Name: FlipbookAnimation_Soldier_Idle
+  m_Name: FlipbookAnimation_Soldier_None
   m_EditorClassIdentifier: Assembly-CSharp::FlipbookAnimationScriptableObject
-  animationType: 1
   frames:
   - {fileID: 4300000, guid: 3e67c8e712f2b5040aaaeb8eb2492345, type: 2}
   - {fileID: 4300000, guid: 94ffd3753a934114d9fb144c7cb75e89, type: 2}

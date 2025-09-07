@@ -28,6 +28,6 @@ namespace RTS
     {
         public int frame;
         public float frameTimer;
-        public int activeAnimationIndex;
+        public FlipbookAnimationScriptableObject.AnimationType activeAnimation;
     }
 }
