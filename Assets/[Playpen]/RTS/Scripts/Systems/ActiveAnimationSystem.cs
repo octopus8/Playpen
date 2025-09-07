@@ -25,19 +25,14 @@ namespace RTS
                          RefRW<MaterialMeshInfo>
                      >())
             {
-                // For test, we just use the soldier idle animation for all entities.
-                if (activeAnimation.ValueRO.animationDataBlobAssetReference.IsCreated == false)
-                {
-                    activeAnimation.ValueRW.animationDataBlobAssetReference = animationDataHolder.soldierIdleAnimationData;
-                }
-                
+                ref AnimationData animationData = ref animationDataHolder.animationData.Value[activeAnimation.ValueRW.activeAnimationIndex];
                 activeAnimation.ValueRW.frameTimer += SystemAPI.Time.DeltaTime;
-                if (activeAnimation.ValueRW.frameTimer >= activeAnimation.ValueRO.animationDataBlobAssetReference.Value.frameDuration)
+                if (activeAnimation.ValueRW.frameTimer >= animationData.frameDuration)
                 {
-                    activeAnimation.ValueRW.frameTimer -= activeAnimation.ValueRO.animationDataBlobAssetReference.Value.frameDuration;
-                    activeAnimation.ValueRW.frame = (activeAnimation.ValueRW.frame + 1) % activeAnimation.ValueRO.animationDataBlobAssetReference.Value.totalFrames;
+                    activeAnimation.ValueRW.frameTimer -= animationData.frameDuration;
+                    activeAnimation.ValueRW.frame = (activeAnimation.ValueRW.frame + 1) % animationData.totalFrames;
 
-                    materialMeshInfo.ValueRW.MeshID = activeAnimation.ValueRO.animationDataBlobAssetReference.Value.batchMeshIDBlobArray[activeAnimation.ValueRW.frame];
+                    materialMeshInfo.ValueRW.MeshID = animationData.batchMeshIDBlobArray[activeAnimation.ValueRW.frame];
                 }
             }
         }

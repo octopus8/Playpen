@@ -28,6 +28,6 @@ namespace RTS
     {
         public int frame;
         public float frameTimer;
-        public BlobAssetReference<AnimationData> animationDataBlobAssetReference;
+        public int activeAnimationIndex;
     }
 }

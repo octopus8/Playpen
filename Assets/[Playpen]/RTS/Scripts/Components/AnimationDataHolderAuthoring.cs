@@ -9,7 +9,6 @@ namespace RTS
     public class AnimationDataHolderAuthoring : MonoBehaviour
     {
         public FlipbookAnimationScriptableObject soldierIdleAnimation;
-        public FlipbookAnimationScriptableObject soldierWalkAnimation;
         
         class Baker : Baker<AnimationDataHolderAuthoring>
         {
@@ -20,19 +19,29 @@ namespace RTS
                 
                 
                 BlobBuilder blobBuilder = new BlobBuilder(Allocator.Temp);
-                ref AnimationData animationData = ref blobBuilder.ConstructRoot<AnimationData>();
-                animationData.frameDuration = authoring.soldierIdleAnimation.frameDuration;
-                animationData.totalFrames = authoring.soldierIdleAnimation.frames.Length;
-                BlobBuilderArray<BatchMeshID> blobArray = blobBuilder.Allocate(ref animationData.batchMeshIDBlobArray, animationData.totalFrames);
-                for (int i = 0; i < animationData.totalFrames; i++)
+                ref BlobArray<AnimationData> animationData = ref blobBuilder.ConstructRoot<BlobArray<AnimationData>>();
+                
+                BlobBuilderArray<AnimationData> blobBuilderArray = blobBuilder.Allocate(ref animationData, 2);
+
+
                 {
-                    blobArray[i] = entitiesGraphicsSystem.RegisterMesh(authoring.soldierIdleAnimation.frames[i]);
+                    BlobBuilderArray<BatchMeshID> blobArray = blobBuilder.Allocate(ref blobBuilderArray[0].batchMeshIDBlobArray, authoring.soldierIdleAnimation.frames.Length);
+                    
+                    blobBuilderArray[0].frameDuration = authoring.soldierIdleAnimation.frameDuration;
+                    blobBuilderArray[0].totalFrames = authoring.soldierIdleAnimation.frames.Length;
+                    
+                    for (int i = 0; i < blobBuilderArray[0].totalFrames; i++)
+                    {
+                        blobArray[i] = entitiesGraphicsSystem.RegisterMesh(authoring.soldierIdleAnimation.frames[i]);
+                    }
                 }
-                animationDataHolder.soldierIdleAnimationData = blobBuilder.CreateBlobAssetReference<AnimationData>(Allocator.Persistent);
+                
+                animationDataHolder.animationData = blobBuilder.CreateBlobAssetReference<BlobArray<AnimationData>>(Allocator.Persistent);
+                
                 blobBuilder.Dispose();
                 
                 // Ensure the blob asset is tracked and disposed of properly.
-                AddBlobAsset(ref animationDataHolder.soldierIdleAnimationData, out _);
+                AddBlobAsset(ref animationDataHolder.animationData, out _);
                 
                 // Add the component to the entity.
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -44,8 +53,7 @@ namespace RTS
     
     public struct AnimationDataHolder : IComponentData
     {
-        public BlobAssetReference<AnimationData> soldierIdleAnimationData;
-        public BlobAssetReference<AnimationData> soldierWalkAnimationData;
+        public BlobAssetReference<BlobArray<AnimationData>> animationData;
     }
 
     public struct AnimationData
