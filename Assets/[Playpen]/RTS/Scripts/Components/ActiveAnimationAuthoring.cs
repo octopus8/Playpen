@@ -9,14 +9,17 @@ namespace RTS
 
     public class ActiveAnimationAuthoring : MonoBehaviour
     {
+        public FlipbookAnimationScriptableObject.AnimationType startingAnimation = FlipbookAnimationScriptableObject.AnimationType.SoldierIdle;
+        
         class Baker : Baker<ActiveAnimationAuthoring>
         {
             public override void Bake(ActiveAnimationAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 EntitiesGraphicsSystem entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
-                AddComponent(entity, new ActiveAnimation
+                AddComponent(entity, new ActiveFlipbookAnimation
                 {
+                    nextAnimation = authoring.startingAnimation,
                 });
             }
         }
@@ -24,10 +27,11 @@ namespace RTS
 
 
     
-    public struct ActiveAnimation : IComponentData
+    public struct ActiveFlipbookAnimation : IComponentData
     {
         public int frame;
         public float frameTimer;
         public FlipbookAnimationScriptableObject.AnimationType activeAnimation;
+        public FlipbookAnimationScriptableObject.AnimationType nextAnimation;
     }
 }
