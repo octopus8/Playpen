@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfde306e06ad4846bd520092e1b79f7, type: 3}
   m_Name: FlipbookAnimation_Zombie_Idle
   m_EditorClassIdentifier: Assembly-CSharp::FlipbookAnimationScriptableObject
-  animationType: 4
+  animationType: 3
   frames:
   - {fileID: 4300000, guid: 704f5ea696ef75944b30d5c8ec37f428, type: 2}
   - {fileID: 4300000, guid: df8fb447f0ed85645b85d4f14274d82c, type: 2}

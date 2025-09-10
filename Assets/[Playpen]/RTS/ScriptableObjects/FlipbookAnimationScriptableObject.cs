@@ -9,7 +9,6 @@ public class FlipbookAnimationScriptableObject : ScriptableObject
         SoldierNone,
         SoldierIdle,
         SoldierWalk,
-        ZombieNone,
         ZombieIdle,
         ZombieWalk
     }
