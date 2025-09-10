@@ -520,6 +520,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RTS.UnitFlipbookAnimationsAuthoring
   idleAnimation: 1
   walkAnimation: 2
+  aimAnimation: 3
+  shootAnimation: 4
 --- !u!1 &8431119663138580480
 GameObject:
   m_ObjectHideFlags: 0

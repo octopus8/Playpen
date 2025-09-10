@@ -15,4 +15,4 @@ MonoBehaviour:
   animationType: 4
   frames:
   - {fileID: 4300000, guid: 68684d803c9d92344b4e9df8a54e10f1, type: 2}
-  frameDuration: 0.5
+  frameDuration: 0.05

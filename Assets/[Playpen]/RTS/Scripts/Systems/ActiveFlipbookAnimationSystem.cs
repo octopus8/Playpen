@@ -34,6 +34,12 @@ namespace RTS
                     activeAnimation.ValueRW.frame = (activeAnimation.ValueRW.frame + 1) % flipbookAnimationData.totalFrames;
 
                     materialMeshInfo.ValueRW.MeshID = flipbookAnimationData.batchMeshIDBlobArray[activeAnimation.ValueRW.frame];
+
+                    if (activeAnimation.ValueRW.frame == 0 && activeAnimation.ValueRO.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
+                    {
+                        activeAnimation.ValueRW.activeAnimation =
+                            FlipbookAnimationScriptableObject.AnimationType.None;
+                    }
                 }
             }
         }

@@ -8,6 +8,8 @@ namespace RTS
     {
         [SerializeField] private FlipbookAnimationScriptableObject.AnimationType idleAnimation;
         [SerializeField] private FlipbookAnimationScriptableObject.AnimationType walkAnimation;
+        [SerializeField] private FlipbookAnimationScriptableObject.AnimationType aimAnimation;
+        [SerializeField] private FlipbookAnimationScriptableObject.AnimationType shootAnimation;
         
         class Baker : Baker<UnitFlipbookAnimationsAuthoring>
         {
@@ -17,7 +19,9 @@ namespace RTS
                 AddComponent(entity, new UnitFlipbookAnimations
                 {
                     idleAnimation = authoring.idleAnimation,
-                    walkAnimation = authoring.walkAnimation
+                    walkAnimation = authoring.walkAnimation,
+                    aimAnimation = authoring.aimAnimation,
+                    shootAnimation = authoring.shootAnimation,
                 });
             }
         }
@@ -27,6 +31,8 @@ namespace RTS
     {
         public FlipbookAnimationScriptableObject.AnimationType idleAnimation;
         public FlipbookAnimationScriptableObject.AnimationType walkAnimation;
+        public FlipbookAnimationScriptableObject.AnimationType aimAnimation;
+        public FlipbookAnimationScriptableObject.AnimationType shootAnimation;
     }
     
 }

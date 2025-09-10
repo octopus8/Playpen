@@ -18,6 +18,12 @@ namespace RTS
                          ) in
                      SystemAPI.Query<RefRW<ActiveFlipbookAnimation>, RefRW<MaterialMeshInfo>>())
             {
+                if (activeAnimation.ValueRO.activeAnimation ==
+                    FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
+                {
+                    continue;
+                }
+                
                 if (activeAnimation.ValueRO.activeAnimation != activeAnimation.ValueRO.nextAnimation)
                 {
                     activeAnimation.ValueRW.frame = 0;

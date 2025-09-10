@@ -6,7 +6,7 @@ public class FlipbookAnimationScriptableObject : ScriptableObject
 {
     public enum AnimationType
     {
-        SoldierNone,
+        None,
         SoldierIdle,
         SoldierWalk,
         SoldierAim,
