@@ -107,6 +107,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 8725756038441888696, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: startingAnimation
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026899234577623300, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: idleAnimation
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026899234577623300, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: walkAnimation
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

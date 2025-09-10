@@ -11,22 +11,20 @@ namespace RTS
         {
             foreach (var (
                          mesh,
-                         mover) 
+                         mover,
+                         animations) 
                      in
-                     SystemAPI.Query<RefRW<FlipbookAnimationMesh>, RefRO<UnitMover>>())
+                     SystemAPI.Query<RefRW<FlipbookAnimationMesh>, RefRO<UnitMover>, RefRO<UnitFlipbookAnimations>>())
             {
                 RefRW<ActiveFlipbookAnimation> activeFlipbookAnimation = SystemAPI.GetComponentRW<ActiveFlipbookAnimation>(mesh.ValueRO.mesh);
                 
-                FlipbookAnimationScriptableObject.AnimationType prevAnimationType = activeFlipbookAnimation.ValueRO.activeAnimation;
-                
                 if (mover.ValueRO.isMoving)
                 {
-                    activeFlipbookAnimation.ValueRW.nextAnimation =
-                        FlipbookAnimationScriptableObject.AnimationType.SoldierWalk;
+                    activeFlipbookAnimation.ValueRW.nextAnimation = animations.ValueRO.walkAnimation;
                 }
                 else
                 {
-                    activeFlipbookAnimation.ValueRW.nextAnimation = FlipbookAnimationScriptableObject.AnimationType.SoldierIdle;
+                    activeFlipbookAnimation.ValueRW.nextAnimation = animations.ValueRO.idleAnimation;
                 }
             }
         }
