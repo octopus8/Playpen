@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace RTS
 {
@@ -41,7 +42,7 @@ namespace RTS
         public float deltaTime;
 
 
-        public void Execute(ref LocalTransform localTransform, in UnitMover unitMover,
+        public void Execute(ref LocalTransform localTransform, ref UnitMover unitMover,
             ref PhysicsVelocity physicsVelocity)
         {
             // If the unit is already at the target position, stop moving.
@@ -49,12 +50,16 @@ namespace RTS
             // If it is, we set the linear and angular velocities to zero.
             // This prevents the unit from overshooting the target position due to physics simulation.
             float3 moveDirection = unitMover.targetPosition - localTransform.Position;
-            if (math.lengthsq(moveDirection) <= UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQUARED)
+            float distanceToTargetSquared = math.lengthsq(moveDirection);
+            if (distanceToTargetSquared <= UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQUARED)
             {
                 physicsVelocity.Linear = float3.zero;
                 physicsVelocity.Angular = float3.zero;
+                unitMover.isMoving = false;
                 return;
             }
+  
+            unitMover.isMoving = true;
 
             // Slerp the rotation towards the target position and set the linear velocity to move towards it.
             moveDirection = math.normalize(moveDirection);

@@ -41,5 +41,7 @@ namespace RTS
         public float rotationSpeed;
         /// <summary> Target position for the unit to move towards. </summary>
         public float3 targetPosition;
+
+        public bool isMoving;
     }
 }

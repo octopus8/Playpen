@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace RTS
 {
+    
+    [UpdateInGroup(typeof(SimulationSystemGroup), OrderFirst = true)]
     partial struct SetupUnitMoverDefaultPositionSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

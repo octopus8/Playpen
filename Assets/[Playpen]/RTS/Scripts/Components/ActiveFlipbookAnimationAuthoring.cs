@@ -7,13 +7,13 @@ using UnityEngine.Rendering;
 namespace RTS
 {
 
-    public class ActiveAnimationAuthoring : MonoBehaviour
+    public class ActiveFlipbookAnimationAuthoring : MonoBehaviour
     {
         public FlipbookAnimationScriptableObject.AnimationType startingAnimation = FlipbookAnimationScriptableObject.AnimationType.SoldierIdle;
         
-        class Baker : Baker<ActiveAnimationAuthoring>
+        class Baker : Baker<ActiveFlipbookAnimationAuthoring>
         {
-            public override void Bake(ActiveAnimationAuthoring authoring)
+            public override void Bake(ActiveFlipbookAnimationAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 EntitiesGraphicsSystem entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
