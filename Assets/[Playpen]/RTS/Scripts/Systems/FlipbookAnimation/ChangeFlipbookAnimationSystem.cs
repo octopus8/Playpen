@@ -8,6 +8,13 @@ namespace RTS
     [UpdateBefore(typeof(ActiveFlipbookAnimationSystem))]
     partial struct ChangeFlipbookAnimationSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<FlipbookAnimationDataHolder>();
+            state.RequireForUpdate<ActiveFlipbookAnimation>();
+            state.RequireForUpdate<MaterialMeshInfo>();
+        }
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

@@ -16,7 +16,6 @@ namespace RTS
             public override void Bake(ActiveFlipbookAnimationAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-                EntitiesGraphicsSystem entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
                 AddComponent(entity, new ActiveFlipbookAnimation
                 {
                     nextAnimation = authoring.startingAnimation,

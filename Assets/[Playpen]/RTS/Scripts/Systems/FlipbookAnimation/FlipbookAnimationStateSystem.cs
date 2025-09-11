@@ -14,7 +14,7 @@ namespace RTS
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-//            state.RequireForUpdate<FlipbookAnimationDataHolder>();
+            state.RequireForUpdate<FlipbookAnimationDataHolder>();
             _activeAnimationLookup = state.GetComponentLookup<ActiveFlipbookAnimation>(false);
         }
         
