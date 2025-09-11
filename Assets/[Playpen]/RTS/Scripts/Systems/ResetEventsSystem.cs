@@ -16,6 +16,7 @@ namespace RTS
             new ResetSelectedEventsJob().ScheduleParallel();
             new ResetHealthEventsJob().ScheduleParallel();
             new ResetShootAttackEventsJob().ScheduleParallel();
+            new ResetMeleeAttackEventsJob().ScheduleParallel();
         }
 
         
@@ -66,6 +67,15 @@ namespace RTS
         {
             selected.onSelected = false;
             selected.onDeselected = false;
+        }
+    }
+    
+    [BurstCompile]
+    public partial struct ResetMeleeAttackEventsJob : IJobEntity
+    {
+        public void Execute(ref MeleeAttack meleeAttack)
+        {
+            meleeAttack.onAttacked = false;
         }
     }
     

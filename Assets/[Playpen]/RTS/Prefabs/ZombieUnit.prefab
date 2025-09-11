@@ -119,6 +119,10 @@ PrefabInstance:
       propertyPath: walkAnimation
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9026899234577623300, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: meleeAttackAnimation
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -182,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.MeleeAttackAuthoring
   attackRateSeconds: 0.5
-  damageAmount: 10
+  damageAmount: 0
   colliderSize: 0.5
 --- !u!114 &448010079739465531
 MonoBehaviour:

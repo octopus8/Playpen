@@ -40,6 +40,11 @@ namespace RTS
                         activeAnimation.ValueRW.activeAnimation =
                             FlipbookAnimationScriptableObject.AnimationType.None;
                     }
+                    if (activeAnimation.ValueRW.frame == 0 && activeAnimation.ValueRO.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.ZombieMeleeAttack)
+                    {
+                        activeAnimation.ValueRW.activeAnimation =
+                            FlipbookAnimationScriptableObject.AnimationType.None;
+                    }
                 }
             }
         }

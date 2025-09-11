@@ -5,6 +5,7 @@ using UnityEngine;
 namespace RTS
 {
     [UpdateAfter(typeof(ShootAttackSystem))]
+    [UpdateAfter(typeof(MeleeAttackSystem))]
     partial struct FlipbookAnimationStateSystem : ISystem
     {
         [BurstCompile]
@@ -54,6 +55,26 @@ namespace RTS
                     activeFlipbookAnimation.ValueRW.nextAnimation = animations.ValueRO.shootAnimation;
                 }
             }
+            
+            
+            foreach (var (
+                         mesh,
+                         meleeAttack,
+                         animations) 
+                     in
+                     SystemAPI.Query<
+                         RefRW<FlipbookAnimationMesh>,
+                         RefRO<MeleeAttack>,
+                         RefRO<UnitFlipbookAnimations>>())
+            {
+                if (meleeAttack.ValueRO.onAttacked)
+                {
+                    RefRW<ActiveFlipbookAnimation> activeFlipbookAnimation = SystemAPI.GetComponentRW<ActiveFlipbookAnimation>(mesh.ValueRO.mesh);
+                    activeFlipbookAnimation.ValueRW.nextAnimation = animations.ValueRO.meleeAttackAnimation;
+                }
+            }
+            
+            
         }
     }
 }

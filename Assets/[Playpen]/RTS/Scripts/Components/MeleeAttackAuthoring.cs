@@ -38,6 +38,7 @@ namespace RTS
         public float attackRateSeconds;
         public int damageAmount;
         public float colliderSize;
+        public bool onAttacked;
     }
 
     

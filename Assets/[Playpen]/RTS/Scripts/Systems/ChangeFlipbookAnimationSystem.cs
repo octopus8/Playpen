@@ -23,6 +23,11 @@ namespace RTS
                 {
                     continue;
                 }
+                if (activeAnimation.ValueRO.activeAnimation ==
+                    FlipbookAnimationScriptableObject.AnimationType.ZombieMeleeAttack)
+                {
+                    continue;
+                }
                 
                 if (activeAnimation.ValueRO.activeAnimation != activeAnimation.ValueRO.nextAnimation)
                 {

@@ -79,24 +79,24 @@ namespace RTS
                 if (!isInMeleeRange && !isTouchingTarget)
                 {
                     unitMover.ValueRW.targetPosition = targetLocalTransform.Position;
-                    continue;
                 }
-                
-                unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
-                
-                // If still waiting for next attack, skip.
-                meleeAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
-                if (meleeAttack.ValueRO.timer > 0)
+                else
                 {
-                    continue;
-                }
-                meleeAttack.ValueRW.timer = meleeAttack.ValueRO.attackRateSeconds;
+                    unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
                 
-                if (SystemAPI.HasComponent<Health>(target.ValueRO.targetEntity))
-                {
+                    // If still waiting for next attack, skip.
+                    meleeAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
+                    if (meleeAttack.ValueRO.timer > 0)
+                    {
+                        continue;
+                    }
+                    meleeAttack.ValueRW.timer = meleeAttack.ValueRO.attackRateSeconds;
+                
                     RefRW<Health> targetHealth = SystemAPI.GetComponentRW<Health>(target.ValueRO.targetEntity);
                     targetHealth.ValueRW.currentHealth -= meleeAttack.ValueRO.damageAmount;
                     targetHealth.ValueRW.onHealthChanged = true;
+
+                    meleeAttack.ValueRW.onAttacked = true;
                 }
             }
         }

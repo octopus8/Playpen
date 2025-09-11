@@ -10,6 +10,7 @@ namespace RTS
         [SerializeField] private FlipbookAnimationScriptableObject.AnimationType walkAnimation;
         [SerializeField] private FlipbookAnimationScriptableObject.AnimationType aimAnimation;
         [SerializeField] private FlipbookAnimationScriptableObject.AnimationType shootAnimation;
+        [SerializeField] private FlipbookAnimationScriptableObject.AnimationType meleeAttackAnimation;
         
         class Baker : Baker<UnitFlipbookAnimationsAuthoring>
         {
@@ -22,6 +23,7 @@ namespace RTS
                     walkAnimation = authoring.walkAnimation,
                     aimAnimation = authoring.aimAnimation,
                     shootAnimation = authoring.shootAnimation,
+                    meleeAttackAnimation = authoring.meleeAttackAnimation
                 });
             }
         }
@@ -33,6 +35,7 @@ namespace RTS
         public FlipbookAnimationScriptableObject.AnimationType walkAnimation;
         public FlipbookAnimationScriptableObject.AnimationType aimAnimation;
         public FlipbookAnimationScriptableObject.AnimationType shootAnimation;
+        public FlipbookAnimationScriptableObject.AnimationType meleeAttackAnimation;
     }
     
 }

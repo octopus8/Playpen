@@ -12,7 +12,8 @@ public class FlipbookAnimationScriptableObject : ScriptableObject
         SoldierAim,
         SoldierShoot,
         ZombieIdle,
-        ZombieWalk
+        ZombieWalk,
+        ZombieMeleeAttack
     }
     
     public AnimationType animationType;
