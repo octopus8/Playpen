@@ -11,6 +11,16 @@ namespace RTS
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            ChangeFlipbookAnimationJob job = new ChangeFlipbookAnimationJob()
+            {
+                animationDataHolder = SystemAPI.GetSingleton<FlipbookAnimationDataHolder>()
+            };
+            job.ScheduleParallel();
+        }
+
+        
+        private void OnUpdateNoJobs(ref SystemState state)
+        {
             FlipbookAnimationDataHolder animationDataHolder = SystemAPI.GetSingleton<FlipbookAnimationDataHolder>();
             foreach (var (
                          activeAnimation,
@@ -38,6 +48,38 @@ namespace RTS
                         ref animationDataHolder.animationData.Value[(int)activeAnimation.ValueRO.activeAnimation];
                     materialMeshInfo.ValueRW.MeshID = flipbookAnimationData.batchMeshIDBlobArray[0];
                 }
+            }
+        }
+    }
+    
+    
+    
+    [BurstCompile]
+    public partial struct ChangeFlipbookAnimationJob : IJobEntity
+    {
+        public FlipbookAnimationDataHolder animationDataHolder;
+        
+        public void Execute(ref ActiveFlipbookAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
+        { 
+            if (activeAnimation.activeAnimation ==
+                FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
+            {
+                return;
+            }
+            if (activeAnimation.activeAnimation ==
+                FlipbookAnimationScriptableObject.AnimationType.ZombieMeleeAttack)
+            {
+                return;
+            }
+            
+            if (activeAnimation.activeAnimation != activeAnimation.nextAnimation)
+            {
+                activeAnimation.frame = 0;
+                activeAnimation.frameTimer = 0f;
+                activeAnimation.activeAnimation = activeAnimation.nextAnimation;
+                ref FlipbookAnimationData flipbookAnimationData =
+                    ref animationDataHolder.animationData.Value[(int)activeAnimation.activeAnimation];
+                materialMeshInfo.MeshID = flipbookAnimationData.batchMeshIDBlobArray[0];
             }
         }
     }

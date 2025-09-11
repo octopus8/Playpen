@@ -16,6 +16,17 @@ namespace RTS
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            ActiveFlipbookAnimationJob job = new ActiveFlipbookAnimationJob()
+            {
+                deltaTime = SystemAPI.Time.DeltaTime,
+                flipbookAnimationDataHolder = SystemAPI.GetSingleton<FlipbookAnimationDataHolder>()
+            };
+            job.ScheduleParallel();
+        }
+
+
+        private void OnUpdateNoJobs(ref SystemState state)
+        {
             FlipbookAnimationDataHolder flipbookAnimationDataHolder = SystemAPI.GetSingleton<FlipbookAnimationDataHolder>();
             foreach (var (
                          activeAnimation, 
@@ -49,4 +60,40 @@ namespace RTS
             }
         }
     }
+    
+    
+    
+    
+    [BurstCompile]
+    public partial struct ActiveFlipbookAnimationJob : IJobEntity
+    {
+        public float deltaTime;
+        public FlipbookAnimationDataHolder flipbookAnimationDataHolder;
+        
+        public void Execute(ref ActiveFlipbookAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
+        { 
+            ref FlipbookAnimationData flipbookAnimationData = ref flipbookAnimationDataHolder.animationData.Value[(int)activeAnimation.activeAnimation];
+            activeAnimation.frameTimer += deltaTime;
+            if (activeAnimation.frameTimer >= flipbookAnimationData.frameDuration)
+            {
+                activeAnimation.frameTimer -= flipbookAnimationData.frameDuration;
+                activeAnimation.frame = (activeAnimation.frame + 1) % flipbookAnimationData.totalFrames;
+
+                materialMeshInfo.MeshID = flipbookAnimationData.batchMeshIDBlobArray[activeAnimation.frame];
+
+                if (activeAnimation.frame == 0 && activeAnimation.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
+                {
+                    activeAnimation.activeAnimation =
+                        FlipbookAnimationScriptableObject.AnimationType.None;
+                }
+                if (activeAnimation.frame == 0 && activeAnimation.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.ZombieMeleeAttack)
+                {
+                    activeAnimation.activeAnimation =
+                        FlipbookAnimationScriptableObject.AnimationType.None;
+                }
+            }
+        }
+    }
+    
+    
 }
