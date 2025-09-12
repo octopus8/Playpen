@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.MeleeAttackAuthoring
   attackRateSeconds: 0.5
-  damageAmount: 0
+  damageAmount: 10
   colliderSize: 0.5
 --- !u!114 &448010079739465531
 MonoBehaviour:

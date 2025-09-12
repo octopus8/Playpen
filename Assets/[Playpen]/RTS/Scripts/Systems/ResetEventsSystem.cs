@@ -1,5 +1,7 @@
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
+using Unity.Jobs;
 
 namespace RTS
 {
@@ -10,13 +12,23 @@ namespace RTS
     [UpdateInGroup(typeof(LateSimulationSystemGroup), OrderLast = true)]
     partial struct ResetEventsSystem : ISystem
     {
+        private NativeArray<JobHandle> jobHandles;
+        
+        [BurstCompile]
+        public void OnCreate(ref SystemState state)
+        {
+            jobHandles = new NativeArray<JobHandle>(4, Allocator.Persistent);
+        }
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            new ResetSelectedEventsJob().ScheduleParallel();
-            new ResetHealthEventsJob().ScheduleParallel();
-            new ResetShootAttackEventsJob().ScheduleParallel();
-            new ResetMeleeAttackEventsJob().ScheduleParallel();
+            jobHandles[0] = new ResetSelectedEventsJob().ScheduleParallel(state.Dependency);
+            jobHandles[1] = new ResetHealthEventsJob().ScheduleParallel(state.Dependency);
+            jobHandles[2] = new ResetShootAttackEventsJob().ScheduleParallel(state.Dependency);
+            jobHandles[3] = new ResetMeleeAttackEventsJob().ScheduleParallel(state.Dependency);
+            
+            state.Dependency = JobHandle.CombineDependencies(jobHandles);
         }
 
         

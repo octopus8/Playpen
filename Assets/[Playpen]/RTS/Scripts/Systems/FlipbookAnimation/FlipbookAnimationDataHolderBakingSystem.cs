@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using RTS;
-using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Rendering;
-using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace RTS
 {
@@ -80,23 +76,6 @@ namespace RTS
 
                 blobBuilder.Dispose();
             }
-            
-
-/*
-            foreach (var (
-                         animationDataSubEntity,
-                         materialMeshInfo)
-                     in
-                     SystemAPI.Query<RefRO<FlipbookAnimationDataHolderSubEntity>, RefRO<MaterialMeshInfo>>())
-            {
-                foreach (FlipbookAnimationScriptableObject.AnimationType animationType in System.Enum.GetValues(
-                             typeof(FlipbookAnimationScriptableObject.AnimationType)))
-                {
-                    FlipbookAnimationScriptableObject animationScriptableObject = animationSet.GetAnimation(animationType);
-                    blobAssetData[animationType] = new int[animationScriptableObject.frames.Length];
-                }
-            }
-*/            
         }
 
         
