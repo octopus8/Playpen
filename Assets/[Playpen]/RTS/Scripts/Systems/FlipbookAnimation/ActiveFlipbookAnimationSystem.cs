@@ -44,7 +44,7 @@ namespace RTS
                     activeAnimation.ValueRW.frameTimer -= flipbookAnimationData.frameDuration;
                     activeAnimation.ValueRW.frame = (activeAnimation.ValueRW.frame + 1) % flipbookAnimationData.totalFrames;
 
-                    materialMeshInfo.ValueRW.MeshID = flipbookAnimationData.batchMeshIDBlobArray[activeAnimation.ValueRW.frame];
+                    materialMeshInfo.ValueRW.Mesh = flipbookAnimationData.intMeshIDBlobArray[activeAnimation.ValueRW.frame];
 
                     if (activeAnimation.ValueRW.frame == 0 && activeAnimation.ValueRO.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
                     {
@@ -79,7 +79,7 @@ namespace RTS
                 activeAnimation.frameTimer -= flipbookAnimationData.frameDuration;
                 activeAnimation.frame = (activeAnimation.frame + 1) % flipbookAnimationData.totalFrames;
 
-                materialMeshInfo.MeshID = flipbookAnimationData.batchMeshIDBlobArray[activeAnimation.frame];
+                materialMeshInfo.Mesh = flipbookAnimationData.intMeshIDBlobArray[activeAnimation.frame];
 
                 if (activeAnimation.frame == 0 && activeAnimation.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
                 {

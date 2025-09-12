@@ -53,7 +53,7 @@ namespace RTS
                     activeAnimation.ValueRW.activeAnimation = activeAnimation.ValueRO.nextAnimation;
                     ref FlipbookAnimationData flipbookAnimationData =
                         ref animationDataHolder.animationData.Value[(int)activeAnimation.ValueRO.activeAnimation];
-                    materialMeshInfo.ValueRW.MeshID = flipbookAnimationData.batchMeshIDBlobArray[0];
+                    materialMeshInfo.ValueRW.Mesh = flipbookAnimationData.intMeshIDBlobArray[0];
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace RTS
                 activeAnimation.activeAnimation = activeAnimation.nextAnimation;
                 ref FlipbookAnimationData flipbookAnimationData =
                     ref animationDataHolder.animationData.Value[(int)activeAnimation.activeAnimation];
-                materialMeshInfo.MeshID = flipbookAnimationData.batchMeshIDBlobArray[0];
+                materialMeshInfo.Mesh = flipbookAnimationData.intMeshIDBlobArray[0];
             }
         }
     }

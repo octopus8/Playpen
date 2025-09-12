@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.AnimationDataHolderAuthoring
   animationSet: {fileID: 11400000, guid: efcb034ecda0a8e41a09eb1deec15674, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: f6e7377d0823ae44cad080aacb59b941, type: 2}
 --- !u!4 &1122178087
 Transform:
   m_ObjectHideFlags: 0
