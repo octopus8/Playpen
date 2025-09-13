@@ -68,6 +68,7 @@ namespace RTS
         
         public void Execute(ref ActiveFlipbookAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
         { 
+            // If the current animation is SoldierShoot or ZombieMeleeAttack, do not change the animation.
             if (activeAnimation.activeAnimation ==
                 FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
             {
@@ -78,7 +79,8 @@ namespace RTS
             {
                 return;
             }
-            
+
+            // Change the animation if the next animation is different from the current one.
             if (activeAnimation.activeAnimation != activeAnimation.nextAnimation)
             {
                 activeAnimation.frame = 0;

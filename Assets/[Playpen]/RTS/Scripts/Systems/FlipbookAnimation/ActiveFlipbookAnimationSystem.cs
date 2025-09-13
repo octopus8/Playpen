@@ -67,20 +67,35 @@ namespace RTS
     [BurstCompile]
     public partial struct ActiveFlipbookAnimationJob : IJobEntity
     {
+        /// <summary>The time elapsed since the last frame.</summary>
         public float deltaTime;
-        public FlipbookAnimationDataHolder flipbookAnimationDataHolder;
         
+        /// <summary>Holds the flipbook animation data for all animation types.</summary>
+        public FlipbookAnimationDataHolder flipbookAnimationDataHolder;
+
+        
+        /// <summary>
+        /// Updates the active flipbook animation based on the elapsed time and changes the mesh accordingly.
+        /// </summary>
         public void Execute(ref ActiveFlipbookAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
         { 
+            // Get the animation data for the current active animation.
             ref FlipbookAnimationData flipbookAnimationData = ref flipbookAnimationDataHolder.animationData.Value[(int)activeAnimation.activeAnimation];
+            
+            // Update the frame timer.
             activeAnimation.frameTimer += deltaTime;
+            
+            // If the frame timer exceeds the frame duration, advance to the next frame.
             if (activeAnimation.frameTimer >= flipbookAnimationData.frameDuration)
             {
+                // Subtract the frame duration from the timer.
                 activeAnimation.frameTimer -= flipbookAnimationData.frameDuration;
+                // Advance to the next frame, wrapping around if necessary.
                 activeAnimation.frame = (activeAnimation.frame + 1) % flipbookAnimationData.totalFrames;
-
+                // Update the mesh to the current frame's mesh.
                 materialMeshInfo.Mesh = flipbookAnimationData.intMeshIDBlobArray[activeAnimation.frame];
 
+                // If the animation is a one-shot (like shooting or melee attack) and has completed, reset to None.
                 if (activeAnimation.frame == 0 && activeAnimation.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
                 {
                     activeAnimation.activeAnimation =

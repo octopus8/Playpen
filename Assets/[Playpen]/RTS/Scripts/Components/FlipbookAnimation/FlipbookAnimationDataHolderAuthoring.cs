@@ -16,8 +16,16 @@ namespace RTS
         
         class Baker : Baker<FlipbookAnimationDataHolderAuthoring>
         {
+            /// <summary>
+            /// This method creates sub-entities for each frame of each animation type defined in the FlipbookAnimationSetScriptableObject.
+            /// Each sub-entity is assigned a RenderMeshUnmanaged component with the corresponding mesh and a MaterialMeshInfo component.
+            /// The main entity is assigned a FlipbookAnimationDataHolderObjectData component referencing the animation set ScriptableObject
+            /// and a FlipbookAnimationDataHolder component to hold the BlobAssetReference for the animation data. This data will be populated
+            /// in the FlipbookAnimationDataHolderBakingSystem.
+            /// </summary>
             public override void Bake(FlipbookAnimationDataHolderAuthoring authoring)
             {
+                // Iterate through all animation types.
                 FlipbookAnimationDataHolder flipbookAnimationDataHolder = new FlipbookAnimationDataHolder();
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 int index = 0;
@@ -26,17 +34,23 @@ namespace RTS
                     in
                     System.Enum.GetValues(typeof(FlipbookAnimationScriptableObject.AnimationType)))
                 {
+                    // Iterate through all frames.
                     FlipbookAnimationScriptableObject animationScriptableObject = authoring.animationSet.GetAnimation(animationType);
                     for (int i = 0; i < animationScriptableObject.frames.Length; i++)
                     {
+                        // Create an additional entity for each mesh.
                         Mesh mesh = animationScriptableObject.frames[i];
                         Entity additionalEntity = CreateAdditionalEntity(TransformUsageFlags.None, true);
+                        
+                        // Add component containing the frame mesh.
                         AddComponent(additionalEntity, new MaterialMeshInfo());
                         AddComponent(additionalEntity, new RenderMeshUnmanaged
                         {
                             materialForSubMesh = authoring.defaultMaterial,
                             mesh = mesh,
                         });
+
+                        // Add component containing the animation type and frame index information.
                         AddComponent(additionalEntity, new FlipbookAnimationDataHolderSubEntity
                         {
                             animationType = animationType,
@@ -44,15 +58,27 @@ namespace RTS
                         });
                     }
                 }
+                
+                // Add component containing the reference to the animation set ScriptableObject.
                 AddComponent(entity, new FlipbookAnimationDataHolderObjectData
                 {
                     animationSet = authoring.animationSet
                 });
+
+                // Add component to hold the BlobAssetReference for the animation data, which will be created in the FlipbookAnimationDataHolderBakingSystem.
                 AddComponent(entity, flipbookAnimationDataHolder);
             }
         }
     }
     
+    
+    /// <summary>
+    /// Holds a reference to the FlipbookAnimationSetScriptableObject which contains all animations.
+    /// </summary>
+    /// <remarks>
+    /// This is later used by the FlipbookAnimationDataHolderBakingSystem to access the animation set
+    /// and create the BlobAssetReference for the FlipbookAnimationDataHolder component.
+    /// </remarks>
     public struct FlipbookAnimationDataHolderObjectData : IComponentData
     {
         public UnityObjectRef<FlipbookAnimationSetScriptableObject> animationSet;

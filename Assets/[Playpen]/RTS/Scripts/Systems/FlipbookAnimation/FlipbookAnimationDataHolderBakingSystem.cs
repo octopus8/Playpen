@@ -5,6 +5,11 @@ using Unity.Rendering;
 
 namespace RTS
 {
+    /// <summary>
+    /// This baking system creates the BlobAssetReference for the FlipbookAnimationDataHolder component.
+    /// It collects the mesh IDs from the sub-entities created in the Baker and organizes them
+    /// into the BlobAssetReference structure based on the animation type and frame index.
+    /// </summary>
     [WorldSystemFilter(WorldSystemFilterFlags.BakingSystem)]
     [UpdateInGroup(typeof(PostBakingSystemGroup))]
     partial struct FlipbookAnimationDataHolderBakingSystem : ISystem
