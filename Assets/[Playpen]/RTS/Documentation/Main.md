@@ -6,6 +6,23 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 ## Scripts
 - All scripts for this project are in the `Playpen\Assets\[Playpen]\Scripts` folder.
 - At the root, the `Scripts` directory contains scripts that contain general app data structures.
+
+- `Scripts\Systems` - Contains scripts that define systems used in ECS.
+  - `FlipbookAnimation`
+    - `ActiveFlipbookAnimationSystem`
+      - Sets the mesh of the entity based on its current active animation and frame.
+      - Advances the frame based on the frame duration and deltaTime.
+      - If the animation is a one-shot (like shooting or melee attack) and has completed, resets to None.
+    - `ChangeFlipbookAnimationJob`
+      - Changes the active animation if the next animation is different from the current one.
+      - If the animation is a one-shot (like shooting or melee attack), it will not be changed until it is finished.
+- `Scripts\Components` - Contains scripts that define ECS authoring components.
+  - `FlipbookAnimationDataHolderAuthoring`
+
+
+
+
+
 - `Scripts\MonoBehaviours` - Contains scripts that work with MonoBehaviours.
   - `RTSGame` - Singleton that contains general game data.
   - `MouseWorldPosition` - Singleton used to get the mouse world position through the single exposed method `GetMouseWorldPosition`.

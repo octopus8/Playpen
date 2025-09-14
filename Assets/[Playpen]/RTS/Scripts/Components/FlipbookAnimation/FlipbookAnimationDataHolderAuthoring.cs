@@ -8,6 +8,8 @@ namespace RTS
 {
     public class FlipbookAnimationDataHolderAuthoring : MonoBehaviour
     {
+        /// <summary>The set of flipbook animations for all entities.</summary>
+        [Tooltip("The set of flipbook animations for all entities.")]
         public FlipbookAnimationSetScriptableObject animationSet;
 
         /// <summary>This material is used to avoid the warning thrown if a `RenderMeshUnmanaged` is created without a "materialForSubMesh".</summary>
@@ -17,11 +19,13 @@ namespace RTS
         class Baker : Baker<FlipbookAnimationDataHolderAuthoring>
         {
             /// <summary>
-            /// This method creates sub-entities for each frame of each animation type defined in the FlipbookAnimationSetScriptableObject.
+            /// This method creates bake time only sub-entities for each frame of each animation type defined in the FlipbookAnimationSetScriptableObject.
             /// Each sub-entity is assigned a RenderMeshUnmanaged component with the corresponding mesh and a MaterialMeshInfo component.
             /// The main entity is assigned a FlipbookAnimationDataHolderObjectData component referencing the animation set ScriptableObject
             /// and a FlipbookAnimationDataHolder component to hold the BlobAssetReference for the animation data. This data will be populated
             /// in the FlipbookAnimationDataHolderBakingSystem.
+            /// By adding the mesh to a RenderMeshUnmanaged component, the mesh is automatically registered and assigned a unique mesh ID,
+            /// which is used in the BlobAssetReference for efficient access during runtime.
             /// </summary>
             public override void Bake(FlipbookAnimationDataHolderAuthoring authoring)
             {
@@ -38,7 +42,7 @@ namespace RTS
                     FlipbookAnimationScriptableObject animationScriptableObject = authoring.animationSet.GetAnimation(animationType);
                     for (int i = 0; i < animationScriptableObject.frames.Length; i++)
                     {
-                        // Create an additional entity for each mesh.
+                        // Create an additional bake-time only entity for each mesh.
                         Mesh mesh = animationScriptableObject.frames[i];
                         Entity additionalEntity = CreateAdditionalEntity(TransformUsageFlags.None, true);
                         

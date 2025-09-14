@@ -66,6 +66,10 @@ namespace RTS
     {
         public FlipbookAnimationDataHolder animationDataHolder;
         
+        /// <summary>
+        /// Changes the active animation if the next animation is different from the current one.
+        /// If the animation is a one-shot (like shooting or melee attack), it will not be changed until it is finished.
+        /// </summary>
         public void Execute(ref ActiveFlipbookAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
         { 
             // If the current animation is SoldierShoot or ZombieMeleeAttack, do not change the animation.

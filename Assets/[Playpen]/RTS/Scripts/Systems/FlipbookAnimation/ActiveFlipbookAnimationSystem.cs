@@ -75,7 +75,9 @@ namespace RTS
 
         
         /// <summary>
-        /// Updates the active flipbook animation based on the elapsed time and changes the mesh accordingly.
+        /// Sets the mesh of the entity based on its current active animation and frame.
+        /// Advances the frame based on the frame duration and deltaTime.
+        /// If the animation is a one-shot (like shooting or melee attack) and has completed, resets to None.
         /// </summary>
         public void Execute(ref ActiveFlipbookAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
         { 
