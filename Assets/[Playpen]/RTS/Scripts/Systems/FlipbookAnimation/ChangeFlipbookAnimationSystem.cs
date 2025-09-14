@@ -35,13 +35,8 @@ namespace RTS
                          ) in
                      SystemAPI.Query<RefRW<ActiveFlipbookAnimation>, RefRW<MaterialMeshInfo>>())
             {
-                if (activeAnimation.ValueRO.activeAnimation ==
-                    FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
-                {
-                    continue;
-                }
-                if (activeAnimation.ValueRO.activeAnimation ==
-                    FlipbookAnimationScriptableObject.AnimationType.ZombieMeleeAttack)
+                // If the current animation is a one-shot (like shooting or melee attack), do not change the animation.
+                if (FlipbookAnimationScriptableObject.IsAnimationOneShot(activeAnimation.ValueRO.activeAnimation))
                 {
                     continue;
                 }

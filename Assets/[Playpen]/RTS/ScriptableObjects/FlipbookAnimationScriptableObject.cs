@@ -15,7 +15,11 @@ public class FlipbookAnimationScriptableObject : ScriptableObject
         SoldierShoot,
         ZombieIdle,
         ZombieWalk,
-        ZombieMeleeAttack
+        ZombieMeleeAttack,
+        ScoutIdle,
+        ScoutWalk,
+        ScoutAim,
+        ScoutShoot,
     }
     
     /// <summary> The type of animation. </summary>
@@ -29,4 +33,11 @@ public class FlipbookAnimationScriptableObject : ScriptableObject
     /// <summary> The duration of each frame in seconds. </summary>
     [Tooltip("The duration of each frame in seconds.")]
     public float frameDuration;
+    
+    public static bool IsAnimationOneShot(AnimationType animationType)
+    {
+        return animationType == AnimationType.SoldierShoot ||
+               animationType == AnimationType.ZombieMeleeAttack ||
+               animationType == AnimationType.ScoutShoot;
+    }
 }

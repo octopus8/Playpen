@@ -98,12 +98,7 @@ namespace RTS
                 materialMeshInfo.Mesh = flipbookAnimationData.intMeshIDBlobArray[activeAnimation.frame];
 
                 // If the animation is a one-shot (like shooting or melee attack) and has completed, reset to None.
-                if (activeAnimation.frame == 0 && activeAnimation.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
-                {
-                    activeAnimation.activeAnimation =
-                        FlipbookAnimationScriptableObject.AnimationType.None;
-                }
-                if (activeAnimation.frame == 0 && activeAnimation.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.ZombieMeleeAttack)
+                if (activeAnimation.frame == 0 && FlipbookAnimationScriptableObject.IsAnimationOneShot(activeAnimation.activeAnimation))
                 {
                     activeAnimation.activeAnimation =
                         FlipbookAnimationScriptableObject.AnimationType.None;

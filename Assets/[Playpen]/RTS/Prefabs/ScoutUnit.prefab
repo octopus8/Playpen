@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 79706854980523266}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.283, y: 1.912, z: 1.953}
+  m_LocalPosition: {x: -0.402, y: 2.011, z: 1.572}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,6 +172,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3084055016954316442, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2fee42491c6487e40817139d4744d24c, type: 2}
+    - target: {fileID: 3689091260008212928, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: maxHealth
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826009124151756861, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: moveSpeedMPS
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3826009124151756861, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: rotationSpeedRPS
       value: 15
@@ -183,10 +195,26 @@ PrefabInstance:
     - target: {fileID: 6571142817127306187, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 3e67c8e712f2b5040aaaeb8eb2492345, type: 2}
+      objectReference: {fileID: 4300000, guid: 8eea152ffde69634f9304062310c371a, type: 2}
     - target: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: m_Name
-      value: SoldierUnit
+      value: ScoutUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026899234577623300, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: aimAnimation
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026899234577623300, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: idleAnimation
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026899234577623300, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: walkAnimation
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026899234577623300, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: shootAnimation
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -256,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6985db7e39faea64aa557994d8d4c2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSShootAttack
-  attackRateSeconds: 0.2
-  damageAmount: 5
-  attackDistance: 13
+  attackRateSeconds: 0.5
+  damageAmount: 3
+  attackDistance: 11
   bulletSpawnPoint: {fileID: 2099576234210288652}
