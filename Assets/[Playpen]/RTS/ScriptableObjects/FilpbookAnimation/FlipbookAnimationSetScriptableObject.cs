@@ -12,7 +12,7 @@ namespace RTS
     {
         /// <summary> The list of all flipbook animations. </summary>
         [Tooltip("The list of all flipbook animations.")]
-        public List<FlipbookAnimationScriptableObject> animations;
+        private List<FlipbookAnimationScriptableObject> animations;
         
         
         /// <summary>
