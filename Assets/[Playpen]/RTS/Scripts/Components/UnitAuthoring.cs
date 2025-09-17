@@ -9,10 +9,6 @@ namespace RTS
     /// </summary>
     public class UnitAuthoring : MonoBehaviour
     {
-        /// <summary>Faction of the unit.</summary>
-        [Tooltip("Faction of the unit.")]
-        [SerializeField] private Faction faction;
-
         
         public class Baker : Baker<UnitAuthoring>
         {
@@ -21,7 +17,6 @@ namespace RTS
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new Unit
                 {
-                    faction = authoring.faction,
                 });
             }
         }
@@ -30,7 +25,5 @@ namespace RTS
     
     public struct Unit : IComponentData
     {
-        /// <summary>Faction of the unit.</summary>
-        public Faction faction;
     }
 }

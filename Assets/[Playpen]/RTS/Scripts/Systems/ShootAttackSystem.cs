@@ -21,7 +21,6 @@ namespace RTS
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            
             // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
             EntityReferences references = SystemAPI.GetSingleton<EntityReferences>();
             foreach ((RefRW<LocalTransform> localTransform,
@@ -74,10 +73,13 @@ namespace RTS
                 shootAttack.ValueRW.timer = shootAttack.ValueRO.attackRateSeconds;
                 
                 // Update target's TargetOverride to point back to this entity.
-                RefRW<TargetOverride> targetOverride = SystemAPI.GetComponentRW<TargetOverride>(target.ValueRO.targetEntity);
-                if (targetOverride.ValueRO.targetEntity != Entity.Null)
+                if (SystemAPI.HasComponent<TargetOverride>(target.ValueRO.targetEntity))
                 {
-                    targetOverride.ValueRW.targetEntity = entity;
+                    RefRW<TargetOverride> targetOverride = SystemAPI.GetComponentRW<TargetOverride>(target.ValueRO.targetEntity);
+                    if (targetOverride.ValueRO.targetEntity != Entity.Null)
+                    {
+                        targetOverride.ValueRW.targetEntity = entity;
+                    }
                 }
 
                 // Spawn and initialize bullet.

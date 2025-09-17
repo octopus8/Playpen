@@ -185,17 +185,17 @@ namespace RTS
                 Filter = new CollisionFilter()
                 {
                     BelongsTo = ~0u,
-                    CollidesWith = 1 << RTSGame.UNITS_LAYER,
+                    CollidesWith = 1 << RTSGame.UNITS_LAYER | 1u << RTSGame.BUILDINGS_LAYER,
                     GroupIndex = 0
                 }
             };
             if (collisionWorld.CastRay(raycastInput, out Unity.Physics.RaycastHit hit))
             {
-                if (entityManager.HasComponent<Unit>(hit.Entity))
+                if (entityManager.HasComponent<Faction>(hit.Entity))
                 {
                     // The click was on an enemy unit; set it as the target for all selected units.
-                    Unit unit = entityManager.GetComponentData<Unit>(hit.Entity);
-                    if (unit.faction == Faction.Zombie)
+                    Faction faction = entityManager.GetComponentData<Faction>(hit.Entity);
+                    if (faction.factionType == FactionType.Zombie)
                     {
                         HandleTargetSingleUnit(entityManager, entityQuery, hit.Entity);
                         return;

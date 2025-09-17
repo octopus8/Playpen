@@ -15,7 +15,7 @@ namespace RTS
 
         /// <summary>The faction to target.</summary>
         [Tooltip("The faction to target.")]
-        [SerializeField] private Faction targetFaction;
+        [SerializeField] private FactionType targetFactionType;
 
         /// <summary>Maximum time between target searches in seconds.</summary>
         [Tooltip("Maximum time between target searches in seconds.")]
@@ -30,7 +30,7 @@ namespace RTS
                 AddComponent(entity, new FindTarget
                 {
                     range = authoring.range,
-                    targetFaction = authoring.targetFaction,
+                    TargetFactionType = authoring.targetFactionType,
                     maxTimer = authoring.maxTimerSeconds,
                 });
             }
@@ -43,7 +43,7 @@ namespace RTS
         /// <summary>Range to search for targets.</summary>
         public float range;
         /// <summary>The faction to target.</summary>
-        public Faction targetFaction;
+        public FactionType TargetFactionType;
         /// <summary>Timer to track time between target searches.</summary>
         public float timer;
         /// <summary>Maximum time between target searches in seconds.</summary>

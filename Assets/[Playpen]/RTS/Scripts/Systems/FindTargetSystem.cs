@@ -57,7 +57,7 @@ namespace RTS
                 CollisionFilter collisonFilter = new CollisionFilter
                 {
                     BelongsTo = ~0u,
-                    CollidesWith = 1 << RTSGame.UNITS_LAYER,
+                    CollidesWith = 1u << RTSGame.UNITS_LAYER | 1u << RTSGame.BUILDINGS_LAYER,
                     GroupIndex = 0
                 };
                 
@@ -78,14 +78,14 @@ namespace RTS
                     {
                         // Check if the entity is valid and has a Unit component.
                         // For some reason OverlapSphere can return entities that don't exist or don't have the expected component.
-                        if (!SystemAPI.Exists(distanceHit.Entity) || !SystemAPI.HasComponent<Unit>(distanceHit.Entity))
+                        if (!SystemAPI.Exists(distanceHit.Entity) || !SystemAPI.HasComponent<Faction>(distanceHit.Entity))
                         {
                             continue;
                         }
                         
                         // Check if the unit belongs to the target faction.
-                        Unit targetUnit = SystemAPI.GetComponent<Unit>(distanceHit.Entity);
-                        if (targetUnit.faction == findTarget.ValueRO.targetFaction)
+                        Faction targetFaction = SystemAPI.GetComponent<Faction>(distanceHit.Entity);
+                        if (targetFaction.factionType == findTarget.ValueRO.TargetFactionType)
                         {
                             if (closestTargetEntity == Entity.Null)
                             {
