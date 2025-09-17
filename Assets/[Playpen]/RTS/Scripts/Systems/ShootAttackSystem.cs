@@ -38,7 +38,9 @@ namespace RTS
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)
+                {
                     continue;
+                }
 
                 // Rotate towards target.
                 LocalTransform targetLocalTransform =
@@ -48,20 +50,42 @@ namespace RTS
                 quaternion targetRotation = quaternion.LookRotationSafe(directionToTarget, math.up());
                 localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, targetRotation,
                     SystemAPI.Time.DeltaTime * unitMover.ValueRO.rotationSpeed);
-
-                // If target out of range, move towards it.
-                float distance = math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position);
-                if (distance > shootAttack.ValueRO.attackDistance)
+            }
+            
+            // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
+            foreach ((RefRW<LocalTransform> localTransform,
+                         RefRW<ShootAttack> shootAttack,
+                         RefRO<Target> target,
+                            Entity entity
+                     )
+                     in SystemAPI.Query<
+                         RefRW<LocalTransform>,
+                         RefRW<ShootAttack>,
+                         RefRO<Target>
+                     >().WithEntityAccess())
+            {
+                // If no target, skip.
+                if (target.ValueRO.targetEntity == Entity.Null)
                 {
-                    unitMover.ValueRW.targetPosition = targetLocalTransform.Position;
                     continue;
                 }
-                // Within range, stop moving.
-                else
+
+                // Rotate towards target.
+                LocalTransform targetLocalTransform =
+                    SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
+                
+                if (math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position) >
+                    shootAttack.ValueRO.attackDistance)
                 {
-                    unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
+                    // If out of range, skip.
+                    continue;
                 }
 
+                if (SystemAPI.HasComponent<MoveOverride>(entity) && SystemAPI.IsComponentEnabled<MoveOverride>(entity))
+                {
+                    continue;
+                }
+                
                 // If still waiting for next attack, skip.
                 shootAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
                 if (shootAttack.ValueRW.timer > 0)
@@ -95,6 +119,7 @@ namespace RTS
                 shootAttack.ValueRW.onShootEvent.isTriggered = true;
                 shootAttack.ValueRW.onShootEvent.shootPosition = bulletSpawnPosition;
             }
+            
         }
     }
 }
