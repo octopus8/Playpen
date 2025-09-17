@@ -15,7 +15,7 @@ namespace RTS
         
         /// <summary>GameObject representing the health component.</summary>
         [Tooltip("GameObject representing the health component.")]
-        [SerializeField] private GameObject health;
+        [SerializeField] private HealthAuthoring health;
 
         
         class Baker : Baker<HealthBarAuthoring>
