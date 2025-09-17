@@ -12,6 +12,7 @@ namespace RTS
     {
         /// <summary> The list of all flipbook animations. </summary>
         [Tooltip("The list of all flipbook animations.")]
+        [SerializeField]
         private List<FlipbookAnimationScriptableObject> animations;
         
         
