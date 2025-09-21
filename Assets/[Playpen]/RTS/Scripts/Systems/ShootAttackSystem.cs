@@ -107,7 +107,7 @@ namespace RTS
                 }
 
                 // Spawn and initialize bullet.
-                Entity bullet = state.EntityManager.Instantiate(references.bulletEntity);
+                Entity bullet = state.EntityManager.Instantiate(references.bulletEntityPrefab);
                 float3 bulletSpawnPosition = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnOffset);
                 SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(bulletSpawnPosition));
                 RefRW<Bullet> bulletBullet = SystemAPI.GetComponentRW<Bullet>(bullet);

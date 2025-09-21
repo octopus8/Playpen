@@ -33,7 +33,7 @@ namespace RTS
                 // If a shoot event is triggered, spawn a ShootLight entity at the shoot position.
                 if (shootAttack.ValueRO.onShootEvent.isTriggered)
                 {
-                    Entity shootLightEntity = state.EntityManager.Instantiate(references.shootLightEntity);
+                    Entity shootLightEntity = state.EntityManager.Instantiate(references.shootLightEntityPrefab);
                     SystemAPI.SetComponent(shootLightEntity,
                         LocalTransform.FromPosition(shootAttack.ValueRO.onShootEvent.shootPosition));
                 }

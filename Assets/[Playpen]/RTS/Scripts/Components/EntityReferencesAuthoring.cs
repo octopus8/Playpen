@@ -22,6 +22,14 @@ namespace RTS
         [Tooltip("The shoot light prefab.")]
         [SerializeField] private GameObject shootLightPrefab;
 
+        /// <summary>The soldier prefab.</summary>
+        [Tooltip("The soldier prefab.")]
+        [SerializeField] private GameObject soldierPrefab;
+        
+        /// <summary>The scout prefab.</summary>
+        [Tooltip("The scout prefab.")]
+        [SerializeField] private GameObject scoutPrefab;
+
         
         class Baker : Baker<EntityReferencesAuthoring>
         {
@@ -30,9 +38,11 @@ namespace RTS
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new EntityReferences
                 {
-                    bulletEntity = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    zombieEntity = GetEntity(authoring.zombiePrefab, TransformUsageFlags.Dynamic),
-                    shootLightEntity = GetEntity(authoring.shootLightPrefab, TransformUsageFlags.Dynamic)
+                    bulletEntityPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
+                    zombieEntityPrefab = GetEntity(authoring.zombiePrefab, TransformUsageFlags.Dynamic),
+                    shootLightEntityPrefab = GetEntity(authoring.shootLightPrefab, TransformUsageFlags.Dynamic),
+                    soldierEntityPrefab = GetEntity(authoring.soldierPrefab, TransformUsageFlags.Dynamic),
+                    scoutEntityPrefab = GetEntity(authoring.scoutPrefab, TransformUsageFlags.Dynamic),
                 });
             }
         }
@@ -41,11 +51,20 @@ namespace RTS
     public struct EntityReferences : IComponentData
     {
         /// <summary>The bullet prefab entity.</summary>
-        public Entity bulletEntity;
+        public Entity bulletEntityPrefab;
+        
         /// <summary>The zombie prefab entity.</summary>
-        public Entity zombieEntity;
+        public Entity zombieEntityPrefab;
+        
         /// <summary>The shoot light prefab entity.</summary>
-        public Entity shootLightEntity;
+        public Entity shootLightEntityPrefab;
+
+        /// <summary>The soldier prefab entity.</summary>
+        public Entity soldierEntityPrefab;
+        
+        /// <summary>The scout prefab entity.</summary>
+        public Entity scoutEntityPrefab;
+
     }
 }
 

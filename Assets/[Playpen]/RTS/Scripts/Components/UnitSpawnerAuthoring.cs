@@ -1,0 +1,37 @@
+using Unity.Entities;
+using UnityEngine;
+
+namespace RTS
+{
+    public class UnitSpawnerAuthoring : MonoBehaviour
+    {
+        /// <summary>Interval in seconds between spawns.</summary>
+        [Tooltip("Interval in seconds between spawns.")]
+        [SerializeField] private float spawnInterval = 2f;
+    
+        
+        class Baker : Baker<UnitSpawnerAuthoring>
+        {
+            public override void Bake(UnitSpawnerAuthoring authoring)
+            {
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(entity, new UnitSpawner
+                {
+                    spawnInterval = authoring.spawnInterval,
+                });
+            }
+        }
+        
+    }
+    
+    
+    public struct UnitSpawner : IComponentData
+    {
+        /// <summary>Timer counting up to the next spawn.</summary>
+        public float timer;
+        /// <summary>Interval in seconds between spawns.</summary>
+        public float spawnInterval;
+    }
+    
+}
+

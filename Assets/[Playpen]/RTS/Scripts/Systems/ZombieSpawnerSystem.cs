@@ -11,6 +11,7 @@ namespace RTS
     /// </summary>
     partial struct ZombieSpawnerSystem : ISystem
     {
+        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EntityReferences>();
@@ -69,7 +70,7 @@ namespace RTS
                 }
 
                 
-                var zombie = state.EntityManager.Instantiate(entityReferences.zombieEntity);
+                var zombie = state.EntityManager.Instantiate(entityReferences.zombieEntityPrefab);
                 SystemAPI.SetComponent(zombie, LocalTransform.FromPosition(localTransform.ValueRO.Position));
                 
                 ecb.AddComponent(zombie, new RandomWalking
