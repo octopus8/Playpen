@@ -228,6 +228,25 @@ namespace RTS
             // Copy the modified data back to the entity query.
             entityQuery.CopyFromComponentDataArray(moveOverrideArray);
             entityQuery.CopyFromComponentDataArray(targetOverrideArray);
+            
+            
+            
+
+            // Handle barracks rally position.
+            entityQuery = new EntityQueryBuilder(Allocator.Temp)
+                .WithAll<Selected, UnitSpawner, LocalTransform>()
+                .Build(entityManager);
+            NativeArray<UnitSpawner> unitSpawners = entityQuery.ToComponentDataArray<UnitSpawner>(Allocator.Temp);
+            NativeArray<LocalTransform> localTransforms = entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
+            for (int i = 0; i < unitSpawners.Length; i++)
+            {
+                UnitSpawner unitSpawner = unitSpawners[i];
+                unitSpawner.rallyPositionOffset = (float3)mousePosition - localTransforms[i].Position;
+                unitSpawners[i] = unitSpawner;
+            }
+
+            // Copy the modified data back to the entity query.
+            entityQuery.CopyFromComponentDataArray(unitSpawners);
         }
 
 
@@ -345,15 +364,13 @@ namespace RTS
                 Filter = new CollisionFilter()
                 {
                     BelongsTo = ~0u,
-                    CollidesWith = 1 << RTSGame.UNITS_LAYER,
+                    CollidesWith = 1 << RTSGame.UNITS_LAYER | 1u << RTSGame.BUILDINGS_LAYER,
                     GroupIndex = 0
                 }
             };
             if (collisionWorld.CastRay(raycastInput, out Unity.Physics.RaycastHit hit))
             {
-                // If the hit entity is a unit, set it as selected.
-                if (entityManager.HasComponent<Unit>(hit.Entity) &&
-                    entityManager.HasComponent<Selected>(hit.Entity))
+                if (entityManager.HasComponent<Selected>(hit.Entity))
                 {
                     entityManager.SetComponentEnabled<Selected>(hit.Entity, true);
                     Selected selected = entityManager.GetComponentData<Selected>(hit.Entity);

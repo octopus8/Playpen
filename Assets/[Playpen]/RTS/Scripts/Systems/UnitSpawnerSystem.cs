@@ -31,21 +31,36 @@ namespace RTS
                 {
                     continue;
                 }
+
+                if (unitSpawner.ValueRO.unitTypeID != spawnBuffer[0].UnitTypeID)
+                {
+                    unitSpawner.ValueRW.unitTypeID = spawnBuffer[0].UnitTypeID;
+                    
+                    UnitScriptableObject activeUnit = RTSGame.Instance.units.GetUnit(unitSpawner.ValueRW.unitTypeID);
+                    unitSpawner.ValueRW.spawnDuration = activeUnit.spawnDuration;
+                }
+                
                 
                 unitSpawner.ValueRW.timer += SystemAPI.Time.DeltaTime;
-                if (unitSpawner.ValueRW.timer < unitSpawner.ValueRO.spawnInterval)
+                if (unitSpawner.ValueRW.timer < unitSpawner.ValueRO.spawnDuration)
                 {
                     continue;
                 }
                 unitSpawner.ValueRW.timer = 0f;
 
-                UnitScriptableObject.UnitType unitType = spawnBuffer[0].unitType;
-                UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(unitType);
+                UnitScriptableObject.UnitTypeID unitTypeID = spawnBuffer[0].UnitTypeID;
+                UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(unitTypeID);
                 spawnBuffer.RemoveAt(0);
                 
 
                 Entity spawnedUnitEntity = state.EntityManager.Instantiate(unit.GetUnit(entityReferences));
                 SystemAPI.SetComponent(spawnedUnitEntity, LocalTransform.FromPosition(localTransform.ValueRO.Position));
+                
+                SystemAPI.SetComponent(spawnedUnitEntity, new MoveOverride
+                {
+                    targetPosition = localTransform.ValueRO.Position + unitSpawner.ValueRO.rallyPositionOffset,
+                });
+                SystemAPI.SetComponentEnabled<MoveOverride>(spawnedUnitEntity, true);
             }
             
         }

@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace RTS
@@ -17,12 +18,13 @@ namespace RTS
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new UnitSpawner
                 {
-                    spawnInterval = authoring.spawnInterval,
+                    spawnDuration = authoring.spawnInterval,
+                    rallyPositionOffset = new float3(10, 0, 0),
                 });
                 DynamicBuffer<SpawnBuffer> spawnBuffer = AddBuffer<SpawnBuffer>(entity);
-                spawnBuffer.Add(new SpawnBuffer { unitType = UnitScriptableObject.UnitType.Soldier });
-                spawnBuffer.Add(new SpawnBuffer { unitType = UnitScriptableObject.UnitType.Soldier });
-                spawnBuffer.Add(new SpawnBuffer { unitType = UnitScriptableObject.UnitType.Scout });
+                spawnBuffer.Add(new SpawnBuffer { UnitTypeID = UnitScriptableObject.UnitTypeID.Soldier });
+                spawnBuffer.Add(new SpawnBuffer { UnitTypeID = UnitScriptableObject.UnitTypeID.Soldier });
+                spawnBuffer.Add(new SpawnBuffer { UnitTypeID = UnitScriptableObject.UnitTypeID.Scout });
             }
         }
         
@@ -35,14 +37,18 @@ namespace RTS
         public float timer;
         
         /// <summary>Interval in seconds between spawns.</summary>
-        public float spawnInterval;
+        public float spawnDuration;
+        
+        public UnitScriptableObject.UnitTypeID unitTypeID;
+
+        public float3 rallyPositionOffset;
     }
 
     
     [InternalBufferCapacity(10)]
     public struct SpawnBuffer : IBufferElementData
     {
-        public UnitScriptableObject.UnitType unitType;
+        public UnitScriptableObject.UnitTypeID UnitTypeID;
     }
     
 }

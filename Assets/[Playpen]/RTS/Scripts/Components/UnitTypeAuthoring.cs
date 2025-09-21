@@ -10,7 +10,7 @@ namespace RTS
         /// <summary>Type of unit.</summary>
         [Tooltip("Type of unit.")]
         [SerializeField]
-        private UnitScriptableObject.UnitType unitType;
+        private UnitScriptableObject.UnitTypeID unitTypeID;
 
         public class Baker : Baker<UnitTypeAuthoring>
         {
@@ -19,7 +19,7 @@ namespace RTS
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new UnitType
                 {
-                    unitType = authoring.unitType,
+                    UnitTypeID = authoring.unitTypeID,
                 });
             }
         }
@@ -28,7 +28,7 @@ namespace RTS
     
     public struct UnitType : IComponentData
     {
-        public UnitScriptableObject.UnitType unitType;
+        public UnitScriptableObject.UnitTypeID UnitTypeID;
     }
     
 }

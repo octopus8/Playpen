@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf2608131712704ab0fde8bf8957640, type: 3}
   m_Name: Soldier
   m_EditorClassIdentifier: Assembly-CSharp::RTS.UnitScriptableObject
-  unitType: 1
+  unitTypeID: 1
+  spawnDuration: 2

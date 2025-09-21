@@ -11,9 +11,9 @@ namespace RTS
         [SerializeField]
         private List<UnitScriptableObject> units;
         
-        public UnitScriptableObject GetUnit(UnitScriptableObject.UnitType unitType)
+        public UnitScriptableObject GetUnit(UnitScriptableObject.UnitTypeID unitTypeID)
         {
-            return units.Find(unit => unit.unitType == unitType);
+            return units.Find(unit => unit.unitTypeID == unitTypeID);
         }
     }
     
