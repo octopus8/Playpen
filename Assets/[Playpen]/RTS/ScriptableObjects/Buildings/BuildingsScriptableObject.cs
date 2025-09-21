@@ -12,7 +12,8 @@ namespace RTS
         {
             None,
             ZombieSpawner,
-            FriendlyTower
+            FriendlyTower,
+            FriendlyBarracks
         }
     }
     
