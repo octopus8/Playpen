@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace RTS
 {
-    public class UnitSpawnerAuthoring : MonoBehaviour
+    public class BuildingBarracksAuthoring : MonoBehaviour
     {
         /// <summary>Interval in seconds between spawns.</summary>
         [Tooltip("Interval in seconds between spawns.")]
         [SerializeField] private float spawnInterval = 2f;
     
         
-        class Baker : Baker<UnitSpawnerAuthoring>
+        class Baker : Baker<BuildingBarracksAuthoring>
         {
-            public override void Bake(UnitSpawnerAuthoring authoring)
+            public override void Bake(BuildingBarracksAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new UnitSpawner
+                AddComponent(entity, new BuildingBarracks
                 {
                     spawnDuration = authoring.spawnInterval,
                     rallyPositionOffset = new float3(10, 0, 0),
@@ -31,7 +31,7 @@ namespace RTS
     }
     
     
-    public struct UnitSpawner : IComponentData
+    public struct BuildingBarracks : IComponentData
     {
         /// <summary>Timer counting up to the next spawn.</summary>
         public float timer;

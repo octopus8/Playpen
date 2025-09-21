@@ -22,7 +22,7 @@ namespace RTS
             
             foreach (var (unitSpawner, localTransform, spawnBuffer) in
                      SystemAPI.Query<
-                         RefRW<UnitSpawner>,
+                         RefRW<BuildingBarracks>,
                          RefRO<LocalTransform>,
                          DynamicBuffer<SpawnBuffer>
                      >())

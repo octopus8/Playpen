@@ -37,6 +37,8 @@ namespace RTS
         /// <summary> Event handler for selection area end. </summary>
         public EventHandler OnSelectionAreaEnd;
 
+        public EventHandler OnSelectedChanged;
+
         #endregion
 
         
@@ -234,15 +236,15 @@ namespace RTS
 
             // Handle barracks rally position.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
-                .WithAll<Selected, UnitSpawner, LocalTransform>()
+                .WithAll<Selected, BuildingBarracks, LocalTransform>()
                 .Build(entityManager);
-            NativeArray<UnitSpawner> unitSpawners = entityQuery.ToComponentDataArray<UnitSpawner>(Allocator.Temp);
+            NativeArray<BuildingBarracks> unitSpawners = entityQuery.ToComponentDataArray<BuildingBarracks>(Allocator.Temp);
             NativeArray<LocalTransform> localTransforms = entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
             for (int i = 0; i < unitSpawners.Length; i++)
             {
-                UnitSpawner unitSpawner = unitSpawners[i];
-                unitSpawner.rallyPositionOffset = (float3)mousePosition - localTransforms[i].Position;
-                unitSpawners[i] = unitSpawner;
+                BuildingBarracks buildingBarracks = unitSpawners[i];
+                buildingBarracks.rallyPositionOffset = (float3)mousePosition - localTransforms[i].Position;
+                unitSpawners[i] = buildingBarracks;
             }
 
             // Copy the modified data back to the entity query.
@@ -315,6 +317,8 @@ namespace RTS
 
             // Call the callback for selection area end.
             OnSelectionAreaEnd?.Invoke(this, EventArgs.Empty);
+            
+            OnSelectedChanged?.Invoke(this, EventArgs.Empty);
         }
 
         
