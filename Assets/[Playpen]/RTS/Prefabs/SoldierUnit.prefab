@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 4271636668859856253}
+    - target: {fileID: 7556082712339607967, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
+      propertyPath: unitType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: m_Name
       value: SoldierUnit

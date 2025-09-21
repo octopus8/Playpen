@@ -16,17 +16,22 @@ namespace RTS
         }
 
         
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();
             
-            foreach (var (unitSpawner, localTransform) in
+            foreach (var (unitSpawner, localTransform, spawnBuffer) in
                      SystemAPI.Query<
                          RefRW<UnitSpawner>,
-                         RefRO<LocalTransform>
+                         RefRO<LocalTransform>,
+                         DynamicBuffer<SpawnBuffer>
                      >())
             {
+                if (spawnBuffer.IsEmpty)
+                {
+                    continue;
+                }
+                
                 unitSpawner.ValueRW.timer += SystemAPI.Time.DeltaTime;
                 if (unitSpawner.ValueRW.timer < unitSpawner.ValueRO.spawnInterval)
                 {
@@ -34,11 +39,17 @@ namespace RTS
                 }
                 unitSpawner.ValueRW.timer = 0f;
 
-                Entity spawnedUnitEntity = state.EntityManager.Instantiate(entityReferences.soldierEntityPrefab);
+                UnitScriptableObject.UnitType unitType = spawnBuffer[0].unitType;
+                UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(unitType);
+                spawnBuffer.RemoveAt(0);
+                
+
+                Entity spawnedUnitEntity = state.EntityManager.Instantiate(unit.GetUnit(entityReferences));
                 SystemAPI.SetComponent(spawnedUnitEntity, LocalTransform.FromPosition(localTransform.ValueRO.Position));
             }
             
         }
+        
     }
     
 }

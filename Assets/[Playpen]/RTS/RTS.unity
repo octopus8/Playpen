@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c5a5f450f2cd546b69d585b4344b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTSGame
+  units: {fileID: 11400000, guid: b2e1ab5cfc2e5c6468989f8494b438ea, type: 2}
 --- !u!1 &460082151
 GameObject:
   m_ObjectHideFlags: 0

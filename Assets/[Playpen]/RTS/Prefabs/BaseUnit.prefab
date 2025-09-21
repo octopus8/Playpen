@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 7164323107445459248}
   - component: {fileID: 9026899234577623300}
   - component: {fileID: 5882265440270606646}
+  - component: {fileID: 7556082712339607967}
   m_Layer: 10
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -226,7 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566d29026758f6b4b9618fe43dcfa07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSUnit
-  factionType: 0
 --- !u!114 &4781226309348629818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +359,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.FactionAuthoring
   factionType: 0
+--- !u!114 &7556082712339607967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116961625703330837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a9034283437c74d8f0601eb7cacb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.UnitTypeAuthoring
+  unitType: 0
 --- !u!1001 &1786897988734238698
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,6 +14,9 @@ namespace RTS
         public const int UNITS_LAYER = 10;
         public const int BUILDINGS_LAYER = 11;
 
+        
+        public UnitSetScriptableObject units;
+
         #endregion
 
         
@@ -42,5 +45,7 @@ namespace RTS
         }
         
         #endregion
+        
+        
     }
 }

@@ -19,6 +19,10 @@ namespace RTS
                 {
                     spawnInterval = authoring.spawnInterval,
                 });
+                DynamicBuffer<SpawnBuffer> spawnBuffer = AddBuffer<SpawnBuffer>(entity);
+                spawnBuffer.Add(new SpawnBuffer { unitType = UnitScriptableObject.UnitType.Soldier });
+                spawnBuffer.Add(new SpawnBuffer { unitType = UnitScriptableObject.UnitType.Soldier });
+                spawnBuffer.Add(new SpawnBuffer { unitType = UnitScriptableObject.UnitType.Scout });
             }
         }
         
@@ -29,8 +33,16 @@ namespace RTS
     {
         /// <summary>Timer counting up to the next spawn.</summary>
         public float timer;
+        
         /// <summary>Interval in seconds between spawns.</summary>
         public float spawnInterval;
+    }
+
+    
+    [InternalBufferCapacity(10)]
+    public struct SpawnBuffer : IBufferElementData
+    {
+        public UnitScriptableObject.UnitType unitType;
     }
     
 }
