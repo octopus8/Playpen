@@ -6,7 +6,7 @@ using Unity.Transforms;
 namespace RTS
 {
 
-    partial struct UnitSpawnerSystem : ISystem
+    partial struct BuildingBarracksSystem : ISystem
     {
         
         [BurstCompile]
@@ -20,7 +20,7 @@ namespace RTS
         {
             EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();
             
-            foreach (var (unitSpawner, localTransform, spawnBuffer) in
+            foreach (var (buildingBarracks, localTransform, spawnBuffer) in
                      SystemAPI.Query<
                          RefRW<BuildingBarracks>,
                          RefRO<LocalTransform>,
@@ -32,25 +32,26 @@ namespace RTS
                     continue;
                 }
 
-                if (unitSpawner.ValueRO.unitTypeID != spawnBuffer[0].UnitTypeID)
+                if (buildingBarracks.ValueRO.unitTypeID != spawnBuffer[0].UnitTypeID)
                 {
-                    unitSpawner.ValueRW.unitTypeID = spawnBuffer[0].UnitTypeID;
+                    buildingBarracks.ValueRW.unitTypeID = spawnBuffer[0].UnitTypeID;
                     
-                    UnitScriptableObject activeUnit = RTSGame.Instance.units.GetUnit(unitSpawner.ValueRW.unitTypeID);
-                    unitSpawner.ValueRW.spawnDuration = activeUnit.spawnDuration;
+                    UnitScriptableObject activeUnit = RTSGame.Instance.units.GetUnit(buildingBarracks.ValueRW.unitTypeID);
+                    buildingBarracks.ValueRW.spawnDuration = activeUnit.spawnDuration;
                 }
                 
                 
-                unitSpawner.ValueRW.timer += SystemAPI.Time.DeltaTime;
-                if (unitSpawner.ValueRW.timer < unitSpawner.ValueRO.spawnDuration)
+                buildingBarracks.ValueRW.timer += SystemAPI.Time.DeltaTime;
+                if (buildingBarracks.ValueRW.timer < buildingBarracks.ValueRO.spawnDuration)
                 {
                     continue;
                 }
-                unitSpawner.ValueRW.timer = 0f;
+                buildingBarracks.ValueRW.timer = 0f;
 
                 UnitScriptableObject.UnitTypeID unitTypeID = spawnBuffer[0].UnitTypeID;
                 UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(unitTypeID);
                 spawnBuffer.RemoveAt(0);
+                buildingBarracks.ValueRW.onUnitQueueChanged = true;
                 
 
                 Entity spawnedUnitEntity = state.EntityManager.Instantiate(unit.GetUnit(entityReferences));
@@ -58,7 +59,7 @@ namespace RTS
                 
                 SystemAPI.SetComponent(spawnedUnitEntity, new MoveOverride
                 {
-                    targetPosition = localTransform.ValueRO.Position + unitSpawner.ValueRO.rallyPositionOffset,
+                    targetPosition = localTransform.ValueRO.Position + buildingBarracks.ValueRO.rallyPositionOffset,
                 });
                 SystemAPI.SetComponentEnabled<MoveOverride>(spawnedUnitEntity, true);
             }

@@ -20,13 +20,23 @@ namespace RTS
             jobHandles = new NativeArray<JobHandle>(4, Allocator.Persistent);
         }
         
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             jobHandles[0] = new ResetSelectedEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[1] = new ResetHealthEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[2] = new ResetShootAttackEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[3] = new ResetMeleeAttackEventsJob().ScheduleParallel(state.Dependency);
+            
+            NativeList<Entity> onUnitQueueChangedEntities = new NativeList<Entity>(Allocator.TempJob);
+            new ResetBuildingBarracksEventsJob
+            {
+                onUnitQueueChangedEntities = onUnitQueueChangedEntities.AsParallelWriter()
+            }.ScheduleParallel(state.Dependency).Complete();
+            
+            DOTSEvents.Instance.TriggerOnBarracksQueueChanged(onUnitQueueChangedEntities);
+            
+            
+            new ResetBuildingBarracksEventsJob().ScheduleParallel(state.Dependency);
             
             state.Dependency = JobHandle.CombineDependencies(jobHandles);
         }
@@ -88,6 +98,22 @@ namespace RTS
         public void Execute(ref MeleeAttack meleeAttack)
         {
             meleeAttack.onAttacked = false;
+        }
+    }
+
+    [BurstCompile]
+    public partial struct ResetBuildingBarracksEventsJob : IJobEntity
+    {
+        public NativeList<Entity>.ParallelWriter onUnitQueueChangedEntities;
+        
+        public void Execute(ref BuildingBarracks barracks, Entity entity)
+        {
+            if (barracks.onUnitQueueChanged)
+            {
+                onUnitQueueChangedEntities.AddNoResize(entity);
+            }
+            
+            barracks.onUnitQueueChanged = false;
         }
     }
     

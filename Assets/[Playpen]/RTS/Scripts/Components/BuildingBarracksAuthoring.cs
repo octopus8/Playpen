@@ -39,6 +39,8 @@ namespace RTS
         public UnitScriptableObject.UnitTypeID unitTypeID;
 
         public float3 rallyPositionOffset;
+
+        public bool onUnitQueueChanged;
     }
 
     
