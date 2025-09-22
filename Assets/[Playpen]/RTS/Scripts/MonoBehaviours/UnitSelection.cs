@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 
 namespace RTS
@@ -74,6 +74,11 @@ namespace RTS
         /// </summary>
         void Update()
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
             // Handle selection area start.
             if (Input.GetMouseButtonDown(0))
             {

@@ -11,21 +11,28 @@ public class BarracksUI : MonoBehaviour
     private Button _createSoldierButton;
     
     private Entity _buildingBarracksEntity;
+    
+    private EntityManager _entityManager;
 
     private void Start()
     {
+        _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Hide();
-        _createSoldierButton.onClick.AddListener(() => 
+        _createSoldierButton.onClick.AddListener(() =>
         {
-            
+            DynamicBuffer<SpawnBuffer> spawnBuffer = _entityManager.GetBuffer<SpawnBuffer>(_buildingBarracksEntity, false);
+            spawnBuffer.Add(new SpawnBuffer
+            {
+                UnitTypeID = UnitScriptableObject.UnitTypeID.Soldier
+            });
+
         });
         UnitSelection.Instance.OnSelectedChanged += OnSelectedChanged;
     }
 
     private void OnSelectedChanged(object sender, EventArgs e)
     {
-        EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected, BuildingBarracks>().Build(entityManager);
+        EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected, BuildingBarracks>().Build(_entityManager);
         
         NativeArray<Entity> selectedBarracks = entityQuery.ToEntityArray(Allocator.Temp);
         if (selectedBarracks.Length > 0)
@@ -38,8 +45,8 @@ public class BarracksUI : MonoBehaviour
             _buildingBarracksEntity = Entity.Null;
             Hide();
         }
-//        selectedBarracks.Dispose();
-//        entityQuery.Dispose();
+        selectedBarracks.Dispose();
+        entityQuery.Dispose();
     }
 
     public void Show()

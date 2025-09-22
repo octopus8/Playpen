@@ -22,9 +22,6 @@ namespace RTS
                     rallyPositionOffset = new float3(10, 0, 0),
                 });
                 DynamicBuffer<SpawnBuffer> spawnBuffer = AddBuffer<SpawnBuffer>(entity);
-                spawnBuffer.Add(new SpawnBuffer { UnitTypeID = UnitScriptableObject.UnitTypeID.Soldier });
-                spawnBuffer.Add(new SpawnBuffer { UnitTypeID = UnitScriptableObject.UnitTypeID.Soldier });
-                spawnBuffer.Add(new SpawnBuffer { UnitTypeID = UnitScriptableObject.UnitTypeID.Scout });
             }
         }
         
