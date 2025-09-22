@@ -23,7 +23,7 @@ public class DOTSEvents : MonoBehaviour
     {
         foreach (var entity in onUnitQueueChangedEntities)
         {
-            OnBarracksQueueChanged?.Invoke(this, System.EventArgs.Empty);
+            OnBarracksQueueChanged?.Invoke(entity, System.EventArgs.Empty);
         }
     }
 }

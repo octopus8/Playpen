@@ -52,7 +52,6 @@ public class BuildingBarracksUI : MonoBehaviour
     private void Update()
     {
         UpdateProgressBarVisual();
-        UpdateUnitQueueVisual();
     }
 
     private void OnSelectedChanged(object sender, EventArgs e)
@@ -65,7 +64,7 @@ public class BuildingBarracksUI : MonoBehaviour
             _buildingBarracksEntity = selectedBarracks[0];
             Show();
             UpdateProgressBarVisual();
-            UpdateProgressBarVisual();
+            UpdateUnitQueueVisual();
         }
         else
         {

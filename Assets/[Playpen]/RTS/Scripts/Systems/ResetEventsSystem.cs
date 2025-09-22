@@ -26,7 +26,7 @@ namespace RTS
             jobHandles[1] = new ResetHealthEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[2] = new ResetShootAttackEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[3] = new ResetMeleeAttackEventsJob().ScheduleParallel(state.Dependency);
-            
+
             NativeList<Entity> onUnitQueueChangedEntities = new NativeList<Entity>(Allocator.TempJob);
             new ResetBuildingBarracksEventsJob
             {
@@ -34,9 +34,6 @@ namespace RTS
             }.ScheduleParallel(state.Dependency).Complete();
             
             DOTSEvents.Instance.TriggerOnBarracksQueueChanged(onUnitQueueChangedEntities);
-            
-            
-            new ResetBuildingBarracksEventsJob().ScheduleParallel(state.Dependency);
             
             state.Dependency = JobHandle.CombineDependencies(jobHandles);
         }
@@ -116,5 +113,5 @@ namespace RTS
             barracks.onUnitQueueChanged = false;
         }
     }
-    
+  
 }
