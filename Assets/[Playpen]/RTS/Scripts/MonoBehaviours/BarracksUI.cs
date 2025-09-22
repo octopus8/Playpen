@@ -10,6 +10,9 @@ public class BarracksUI : MonoBehaviour
     [SerializeField]
     private Button _createSoldierButton;
     
+    [SerializeField]
+    private Image _progressBarImage;
+    
     private Entity _buildingBarracksEntity;
     
     private EntityManager _entityManager;
@@ -30,6 +33,12 @@ public class BarracksUI : MonoBehaviour
         UnitSelection.Instance.OnSelectedChanged += OnSelectedChanged;
     }
 
+
+    private void Update()
+    {
+        UpdateProgressBarVisual();
+    }
+
     private void OnSelectedChanged(object sender, EventArgs e)
     {
         EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected, BuildingBarracks>().Build(_entityManager);
@@ -39,6 +48,7 @@ public class BarracksUI : MonoBehaviour
         {
             _buildingBarracksEntity = selectedBarracks[0];
             Show();
+            UpdateProgressBarVisual();
         }
         else
         {
@@ -48,6 +58,27 @@ public class BarracksUI : MonoBehaviour
         selectedBarracks.Dispose();
         entityQuery.Dispose();
     }
+
+    private void UpdateProgressBarVisual()
+    {
+        if (_buildingBarracksEntity == Entity.Null)
+        {
+            _progressBarImage.fillAmount = 0;
+            return;
+        }
+
+        BuildingBarracks barracks = _entityManager.GetComponentData<BuildingBarracks>(_buildingBarracksEntity);
+        if (barracks.unitTypeID == UnitScriptableObject.UnitTypeID.None)
+        {
+            _progressBarImage.fillAmount = 0;
+        }
+        else
+        {
+            _progressBarImage.fillAmount = barracks.timer / barracks.spawnDuration;
+        }
+
+    }
+    
 
     public void Show()
     {
