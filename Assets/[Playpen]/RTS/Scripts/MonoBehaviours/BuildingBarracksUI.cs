@@ -11,6 +11,9 @@ public class BuildingBarracksUI : MonoBehaviour
     private Button _createSoldierButton;
     
     [SerializeField]
+    private Button _createScoutButton;
+    
+    [SerializeField]
     private Image _progressBarImage;
 
     [SerializeField] private RectTransform _unitQueueContainer;
@@ -32,6 +35,15 @@ public class BuildingBarracksUI : MonoBehaviour
             });
             _entityManager.SetComponentEnabled<BuildingBarracksUnitEnqueue>(_buildingBarracksEntity, true);
         });
+        _createScoutButton.onClick.AddListener(() =>
+        {
+            _entityManager.SetComponentData(_buildingBarracksEntity, new BuildingBarracksUnitEnqueue
+            {
+                unitTypeID = UnitScriptableObject.UnitTypeID.Scout
+            });
+            _entityManager.SetComponentEnabled<BuildingBarracksUnitEnqueue>(_buildingBarracksEntity, true);
+        });
+        
         UnitSelection.Instance.OnSelectedChanged += OnSelectedChanged;
         DOTSEvents.Instance.OnBarracksQueueChanged += OnBarracksQueueChanged;
         
@@ -97,7 +109,6 @@ public class BuildingBarracksUI : MonoBehaviour
     
     private void UpdateUnitQueueVisual()
     {
-        Debug.Log("Updating Unit Queue Visual");
         foreach (Transform child in _unitQueueContainer)
         {
             if (child == _unitQueueItemTemplate)
@@ -115,6 +126,8 @@ public class BuildingBarracksUI : MonoBehaviour
             // For example, if you have an Image component in the template:
             // Image unitImage = item.GetComponent<Image>();
             // unitImage.sprite = GetSpriteForUnitType(spawn.UnitTypeID);
+            UnitScriptableObject unitType = RTSGame.Instance.units.GetUnit(spawn.UnitTypeID);
+            item.GetComponent<Image>().sprite = unitType.unitIcon;
         }
         
     }

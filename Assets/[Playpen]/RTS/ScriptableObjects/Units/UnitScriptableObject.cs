@@ -12,7 +12,8 @@ namespace RTS
         public UnitTypeID unitTypeID;
         
         public float spawnDuration = 2f;
- 
+
+        public Sprite unitIcon;
     
         public enum UnitTypeID
         {
