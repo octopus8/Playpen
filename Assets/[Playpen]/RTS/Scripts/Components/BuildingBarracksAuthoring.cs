@@ -21,10 +21,18 @@ namespace RTS
                     spawnDuration = authoring.spawnInterval,
                     rallyPositionOffset = new float3(10, 0, 0),
                 });
-                DynamicBuffer<SpawnBuffer> spawnBuffer = AddBuffer<SpawnBuffer>(entity);
+                AddBuffer<SpawnBuffer>(entity);
+                
+                AddComponent(entity, new BuildingBarracksUnitEnqueue());
+                SetComponentEnabled<BuildingBarracksUnitEnqueue>(entity, false);
             }
         }
         
+    }
+    
+    public struct BuildingBarracksUnitEnqueue : IComponentData, IEnableableComponent
+    {
+        public UnitScriptableObject.UnitTypeID unitTypeID;
     }
     
     

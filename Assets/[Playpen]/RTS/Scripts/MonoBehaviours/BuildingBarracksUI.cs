@@ -26,12 +26,11 @@ public class BuildingBarracksUI : MonoBehaviour
         Hide();
         _createSoldierButton.onClick.AddListener(() =>
         {
-            DynamicBuffer<SpawnBuffer> spawnBuffer = _entityManager.GetBuffer<SpawnBuffer>(_buildingBarracksEntity, false);
-            spawnBuffer.Add(new SpawnBuffer
+            _entityManager.SetComponentData(_buildingBarracksEntity, new BuildingBarracksUnitEnqueue
             {
-                UnitTypeID = UnitScriptableObject.UnitTypeID.Soldier
+                unitTypeID = UnitScriptableObject.UnitTypeID.Soldier
             });
-
+            _entityManager.SetComponentEnabled<BuildingBarracksUnitEnqueue>(_buildingBarracksEntity, true);
         });
         UnitSelection.Instance.OnSelectedChanged += OnSelectedChanged;
         DOTSEvents.Instance.OnBarracksQueueChanged += OnBarracksQueueChanged;

@@ -19,6 +19,20 @@ namespace RTS
         public void OnUpdate(ref SystemState state)
         {
             EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();
+
+
+            foreach (var (buildingBarracks, spawnBuffer, barracksEnqueue, barracksEnqueueEnabled) in
+                     SystemAPI
+                         .Query<RefRW<BuildingBarracks>, DynamicBuffer<SpawnBuffer>, RefRO<BuildingBarracksUnitEnqueue>,
+                             EnabledRefRW<BuildingBarracksUnitEnqueue>>())
+            {
+                spawnBuffer.Add(new SpawnBuffer
+                {
+                    UnitTypeID = barracksEnqueue.ValueRO.unitTypeID
+                });
+                barracksEnqueueEnabled.ValueRW = false;
+                buildingBarracks.ValueRW.onUnitQueueChanged = true;
+            }
             
             foreach (var (buildingBarracks, localTransform, spawnBuffer) in
                      SystemAPI.Query<
