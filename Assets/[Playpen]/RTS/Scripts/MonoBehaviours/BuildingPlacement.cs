@@ -64,6 +64,24 @@ namespace RTS
                 return false;
             }
             
+            distanceHitList.Clear();
+            if (collisionWorld.OverlapSphere(mousePosition, buildingScriptableObject.buildingDistanceMin,
+                    ref distanceHitList, collisionFilter))
+            {
+                foreach (DistanceHit distanceHit in distanceHitList)
+                {
+                    if (entityManager.HasComponent<BuildingType>(distanceHit.Entity))
+                    {
+                        BuildingType buildingType = entityManager.GetComponentData<BuildingType>(distanceHit.Entity);
+                        if (buildingType.buildingType == buildingScriptableObject.buildingType)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+                
+            
             return true;
         }
 

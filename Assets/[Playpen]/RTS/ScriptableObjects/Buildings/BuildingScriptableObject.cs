@@ -9,6 +9,8 @@ namespace RTS
         public BuildingType buildingType;
 
         public Transform prefab;
+
+        public float buildingDistanceMin = 10;
         
         
         public enum BuildingType
