@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3964038066842151485}
   - component: {fileID: 2560679516414074573}
   m_Layer: 11
-  m_Name: FriendlyBarracks
+  m_Name: FriendlyBuildingBarracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

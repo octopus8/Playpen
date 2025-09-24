@@ -25,7 +25,8 @@ namespace RTS
             None,
             ZombieBuilding,
             FriendlyTower,
-            FriendlyBarracks
+            FriendlyBarracks,
+            FriendlyHQ
         }
 
         public bool IsNone()

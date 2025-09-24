@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 2394547677134147286}
   - component: {fileID: 4243473554379201966}
   m_Layer: 11
-  m_Name: FriendlyTower
+  m_Name: FriendlyBuildingTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
