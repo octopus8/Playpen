@@ -30,6 +30,13 @@ namespace RTS
         [Tooltip("The scout prefab.")]
         [SerializeField] private GameObject scoutPrefab;
 
+        /// <summary>The building tower prefab.</summary>
+        [Tooltip("The building tower prefab.")]
+        [SerializeField] private GameObject buildingTowerPrefab;
+        
+        /// <summary>The building barracks prefab.</summary>
+        [Tooltip("The building barracks prefab.")]
+        [SerializeField] private GameObject buildingBarracksPrefab;
         
         class Baker : Baker<EntityReferencesAuthoring>
         {
@@ -43,6 +50,8 @@ namespace RTS
                     shootLightEntityPrefab = GetEntity(authoring.shootLightPrefab, TransformUsageFlags.Dynamic),
                     soldierEntityPrefab = GetEntity(authoring.soldierPrefab, TransformUsageFlags.Dynamic),
                     scoutEntityPrefab = GetEntity(authoring.scoutPrefab, TransformUsageFlags.Dynamic),
+                    buildingTowerPrefab = GetEntity(authoring.buildingTowerPrefab, TransformUsageFlags.Dynamic),
+                    buildingBarracksPrefab = GetEntity(authoring.buildingBarracksPrefab, TransformUsageFlags.Dynamic),
                 });
             }
         }
@@ -64,6 +73,10 @@ namespace RTS
         
         /// <summary>The scout prefab entity.</summary>
         public Entity scoutEntityPrefab;
+
+        public Entity buildingTowerPrefab;
+        
+        public Entity buildingBarracksPrefab;
 
     }
 }
