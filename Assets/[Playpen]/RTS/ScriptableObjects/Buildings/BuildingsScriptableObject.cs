@@ -7,11 +7,14 @@ namespace RTS
     public class BuildingsScriptableObject : ScriptableObject
     {
         public BuildingType buildingType;
+
+        public Transform prefab;
+        
         
         public enum BuildingType
         {
             None,
-            ZombieSpawner,
+            ZombieBuilding,
             FriendlyTower,
             FriendlyBarracks
         }

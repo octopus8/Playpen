@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 123affd07d5ceae4a8b8ae43231b0529, type: 3}
-  m_Name: BuildingZombieSpawner
+  m_Name: BuildingZombieBuilding
   m_EditorClassIdentifier: Assembly-CSharp::RTS.BuildingsScriptableObject
   buildingType: 1
+  prefab: {fileID: 3284116834056472471, guid: 8b5d27f2db9a94b43b3563302a3dac62, type: 3}
