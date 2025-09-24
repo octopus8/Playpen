@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: BuildingNone
   m_EditorClassIdentifier: Assembly-CSharp::RTS.BuildingsScriptableObject
   buildingType: 0
+  prefab: {fileID: 0}
+  buildingDistanceMin: 10
+  showInBuildingPlacementUI: 1
+  sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}

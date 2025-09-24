@@ -79,6 +79,11 @@ namespace RTS
                 return;
             }
             
+            if (!BuildingPlacement.Instance.GetActiveBuilding().IsNone())
+            {
+                return;
+            }
+            
             // Handle selection area start.
             if (Input.GetMouseButtonDown(0))
             {

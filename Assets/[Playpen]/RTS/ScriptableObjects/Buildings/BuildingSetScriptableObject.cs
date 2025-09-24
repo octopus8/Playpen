@@ -4,11 +4,13 @@ using UnityEngine;
 namespace RTS
 {
     [CreateAssetMenu()]
-    public class BuildingsSetScriptableObject : ScriptableObject
+    public class BuildingSetScriptableObject : ScriptableObject
     {
     
         [SerializeField]
-        private List<BuildingScriptableObject> buildings;
+        public List<BuildingScriptableObject> buildings;
+
+        public BuildingScriptableObject none;
         
         public BuildingScriptableObject GetBuilding(BuildingScriptableObject.BuildingType buildingType)
         {

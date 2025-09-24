@@ -16,6 +16,8 @@ namespace RTS
 
         
         public UnitSetScriptableObject units;
+        
+        public BuildingSetScriptableObject buildings;
 
         #endregion
 

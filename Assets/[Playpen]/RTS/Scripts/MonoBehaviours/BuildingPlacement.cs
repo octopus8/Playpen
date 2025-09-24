@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
@@ -5,25 +6,56 @@ using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using BoxCollider = UnityEngine.BoxCollider;
+using Material = UnityEngine.Material;
 
 namespace RTS
 {
     public class BuildingPlacement : MonoBehaviour
     {
+        public static BuildingPlacement Instance { get; private set; }
+        public event EventHandler OnActiveBuildingChanged;
         
         [SerializeField]
         private BuildingScriptableObject buildingScriptableObject;
+
+        [SerializeField] private Material ghostMaterial;
+        
+        private Transform ghostTransform;
+        
+        
+        
+        private void Awake()
+        {
+            Instance = this;
+        }
     
         private void Update()
         {
-            if (CanPlaceBuilding())
+            if (ghostTransform != null)
             {
-                if (EventSystem.current.IsPointerOverGameObject())
-                {
-                    return;
-                }
+                Vector3 mousePosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
+                ghostTransform.position = mousePosition;
+            }
+            
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
+            if (buildingScriptableObject.IsNone())
+            {
+                return;
+            }
 
-                if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(1))
+            {
+                SetActiveBuilding(RTSGame.Instance.buildings.none);
+            }
+            
+            
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (CanPlaceBuilding())
                 {
                     Vector3 mousePosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
 
@@ -32,10 +64,10 @@ namespace RTS
 
                     EntityQuery entityQuery = entityManager.CreateEntityQuery(typeof(EntityReferences));
                     EntityReferences entityReferences = entityQuery.GetSingleton<EntityReferences>();
-                    Entity entity = entityManager.Instantiate(entityReferences.buildingTowerPrefab);
+                    Entity entity = entityManager.Instantiate(buildingScriptableObject.GetBuilding(entityReferences));
                     entityManager.SetComponentData(entity, LocalTransform.FromPosition(mousePosition));
                 }
-            }
+            } 
         }
 
 
@@ -83,6 +115,33 @@ namespace RTS
                 
             
             return true;
+        }
+        
+        public BuildingScriptableObject GetActiveBuilding()
+        {
+            return buildingScriptableObject;
+        }
+        
+        public void SetActiveBuilding(BuildingScriptableObject building)
+        {
+            buildingScriptableObject = building;
+
+            if (ghostTransform != null)
+            {
+                Destroy(ghostTransform.gameObject);
+            }
+            
+            if (!buildingScriptableObject.IsNone())
+            {
+                ghostTransform = Instantiate(buildingScriptableObject.ghostPrefab);
+                foreach (Renderer renderer in ghostTransform.GetComponentsInChildren<Renderer>())
+                {
+                    renderer.material = ghostMaterial;
+                }
+            }
+            
+            
+            OnActiveBuildingChanged?.Invoke(this, EventArgs.Empty);
         }
 
 

@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RTS.BuildingsScriptableObject
   buildingType: 3
   prefab: {fileID: 2237164155163084173, guid: eb1262c6306bc3a4aad2fa06a3a24280, type: 3}
+  buildingDistanceMin: 10
+  showInBuildingPlacementUI: 1
+  sprite: {fileID: 21300000, guid: 52e75afc67cb28d49a06a0a1fc191cb5, type: 3}
+  ghostPrefab: {fileID: 17119538242672499, guid: d5f97a2fd6630b34982aaca8876d69ef, type: 3}
