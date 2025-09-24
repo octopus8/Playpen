@@ -4,7 +4,7 @@ namespace RTS
 {
     
     [CreateAssetMenu()]
-    public class BuildingsScriptableObject : ScriptableObject
+    public class BuildingScriptableObject : ScriptableObject
     {
         public BuildingType buildingType;
 

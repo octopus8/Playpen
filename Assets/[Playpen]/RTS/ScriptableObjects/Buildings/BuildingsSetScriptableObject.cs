@@ -8,9 +8,9 @@ namespace RTS
     {
     
         [SerializeField]
-        private List<BuildingsScriptableObject> buildings;
+        private List<BuildingScriptableObject> buildings;
         
-        public BuildingsScriptableObject GetBuilding(BuildingsScriptableObject.BuildingType buildingType)
+        public BuildingScriptableObject GetBuilding(BuildingScriptableObject.BuildingType buildingType)
         {
             return buildings.Find(building => building.buildingType == buildingType);
         }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BuildingFriendlyBarracks
   m_EditorClassIdentifier: Assembly-CSharp::RTS.BuildingsScriptableObject
   buildingType: 3
+  prefab: {fileID: 2237164155163084173, guid: eb1262c6306bc3a4aad2fa06a3a24280, type: 3}

@@ -6,7 +6,7 @@ namespace RTS
 {
     public class BuildingTypeAuthoring : MonoBehaviour
     {
-        public BuildingsScriptableObject.BuildingType buildingType;
+        public BuildingScriptableObject.BuildingType buildingType;
         
         class Baker : Baker<BuildingTypeAuthoring>
         {
@@ -23,7 +23,7 @@ namespace RTS
     
     public struct BuildingType : IComponentData
     {
-        public BuildingsScriptableObject.BuildingType buildingType;
+        public BuildingScriptableObject.BuildingType buildingType;
     }
     
 }

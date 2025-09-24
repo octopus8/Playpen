@@ -12,7 +12,7 @@ namespace RTS
     {
         
         [SerializeField]
-        private BuildingsScriptableObject buildingsScriptableObject;
+        private BuildingScriptableObject buildingScriptableObject;
     
         private void Update()
         {
@@ -55,7 +55,7 @@ namespace RTS
                 GroupIndex = 0
             };
 
-            BoxCollider boxCollider = buildingsScriptableObject.prefab.GetComponent<BoxCollider>();
+            BoxCollider boxCollider = buildingScriptableObject.prefab.GetComponent<BoxCollider>();
             float bonusExtents = 1.1f;
             NativeList<DistanceHit> distanceHitList = new NativeList<DistanceHit>(Allocator.Temp);
             if (collisionWorld.OverlapBox(mousePosition, Quaternion.identity, boxCollider.size * 0.5f * bonusExtents,

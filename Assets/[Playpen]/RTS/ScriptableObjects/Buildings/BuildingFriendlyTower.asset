@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BuildingFriendlyTower
   m_EditorClassIdentifier: Assembly-CSharp::RTS.BuildingsScriptableObject
   buildingType: 2
+  prefab: {fileID: 7308797491604474868, guid: a4d9005e9c5775049b421ac7a73a89ab, type: 3}

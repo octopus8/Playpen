@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ffcb10ccb76574aa73c38828587d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingPlacement
+  buildingScriptableObject: {fileID: 11400000, guid: 0098d9d522b2309488797520d63053cc, type: 2}
 --- !u!114 &219085703
 MonoBehaviour:
   m_ObjectHideFlags: 0
