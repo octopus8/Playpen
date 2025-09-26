@@ -300,6 +300,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RTS.CameraController
   moveSpeed: 20
   rotateSpeed: 100
+  zoomSpeed: 4
+  minZoom: 20
+  maxZoom: 60
+  cinemachineCamera: {fileID: 638085966}
 --- !u!1 &136603732
 GameObject:
   m_ObjectHideFlags: 0

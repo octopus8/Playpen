@@ -1,3 +1,5 @@
+using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace RTS
@@ -11,7 +13,21 @@ namespace RTS
         
         [SerializeField]
         private float rotateSpeed = 100f;
+
+        [SerializeField] private float zoomSpeed = 10f;
         
+        [SerializeField] private float minZoom = 20f;
+        [SerializeField] private float maxZoom = 60f;
+        
+        [SerializeField] private CinemachineCamera cinemachineCamera;
+
+        private float targetFOV;
+
+        private void Awake()
+        {
+            targetFOV = cinemachineCamera.Lens.FieldOfView;
+        }
+
         private void Update()
         {
             Vector3 moveDir = Vector3.zero;
@@ -54,6 +70,17 @@ namespace RTS
             }
             
             transform.eulerAngles += new Vector3(0f, rotationAmount * rotateSpeed * Time.deltaTime, 0f);
+
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                targetFOV -= zoomSpeed;
+            }
+            else if (Input.mouseScrollDelta.y < 0)
+            {
+                targetFOV += zoomSpeed;
+            }
+            targetFOV = Mathf.Clamp(targetFOV, minZoom, maxZoom);
+            cinemachineCamera.Lens.FieldOfView = Mathf.Lerp(cinemachineCamera.Lens.FieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
         }
     }
 
