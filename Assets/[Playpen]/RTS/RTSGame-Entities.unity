@@ -202,6 +202,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c27587631d66040bce498aa7d55426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.SetupUnitMoverDefaultPositionAuthoring
+--- !u!114 &85599144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85599108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b508f5753df1c149ab5d816bc2f9db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.EnemyAttackHQAuthoring
 --- !u!1001 &651560930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278,13 +290,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9034618302084995904, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 448010079739465531, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2205995592828264276, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
       insertIndex: -1
       addedObject: {fileID: 85599123}
+    - targetCorrespondingSourceObject: {fileID: 2205995592828264276, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 85599144}
   m_SourcePrefab: {fileID: 100100000, guid: 19fdfd36f320a5e4cb1130e27e15f831, type: 3}
 --- !u!1001 &950870524
 PrefabInstance:
@@ -593,12 +613,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339763319}
+  - component: {fileID: 1339763322}
   - component: {fileID: 1339763318}
   - component: {fileID: 1339763317}
   - component: {fileID: 1339763316}
   - component: {fileID: 1339763320}
-  - component: {fileID: 1339763322}
   - component: {fileID: 1339763321}
+  - component: {fileID: 1339763323}
   m_Layer: 11
   m_Name: FriendlyHQ
   m_TagString: Untagged
@@ -652,7 +673,7 @@ Transform:
   m_GameObject: {fileID: 1339763315}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.2, y: 0, z: 9.6}
+  m_LocalPosition: {x: -23.2, y: 0, z: 9.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -707,6 +728,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.4929104, y: 6.9785514, z: 4.5662117}
   m_Center: {x: -0.011370659, y: 3.5161211, z: 0.090535164}
+--- !u!114 &1339763323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339763315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dba65cfb5dec4045bf370f27af4e7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.BuildingFriendlyHQAuthoring
 --- !u!1001 &1498991798
 PrefabInstance:
   m_ObjectHideFlags: 0

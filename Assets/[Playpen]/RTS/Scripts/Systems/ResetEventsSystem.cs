@@ -22,6 +22,16 @@ namespace RTS
         
         public void OnUpdate(ref SystemState state)
         {
+            if (SystemAPI.HasSingleton<BuildingFriendlyHQ>())
+            {
+                Health health = SystemAPI.GetComponent<Health>(SystemAPI.GetSingletonEntity<BuildingFriendlyHQ>());
+                if (health.onDead)
+                {
+                    DOTSEvents.Instance.TriggerOnHQDead();
+                }
+            }
+            
+            
             jobHandles[0] = new ResetSelectedEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[1] = new ResetHealthEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[2] = new ResetShootAttackEventsJob().ScheduleParallel(state.Dependency);
@@ -75,6 +85,7 @@ namespace RTS
         public void Execute(ref Health health)
         {
             health.onHealthChanged = false;
+            health.onDead = false;
         }
     }
     

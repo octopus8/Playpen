@@ -37,5 +37,7 @@ namespace RTS
         public int maxHealth;
         /// <summary>Flag to indicate if health has changed.</summary>
         public bool onHealthChanged;
+
+        public bool onDead;
     }
 }
