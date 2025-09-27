@@ -71,11 +71,11 @@ namespace RTS
                 Entity spawnedUnitEntity = state.EntityManager.Instantiate(unit.GetUnit(entityReferences));
                 SystemAPI.SetComponent(spawnedUnitEntity, LocalTransform.FromPosition(localTransform.ValueRO.Position));
                 
-                SystemAPI.SetComponent(spawnedUnitEntity, new MoveOverride
+                SystemAPI.SetComponent(spawnedUnitEntity, new UnitMoverOverride
                 {
                     targetPosition = localTransform.ValueRO.Position + buildingBarracks.ValueRO.rallyPositionOffset,
                 });
-                SystemAPI.SetComponentEnabled<MoveOverride>(spawnedUnitEntity, true);
+                SystemAPI.SetComponentEnabled<UnitMoverOverride>(spawnedUnitEntity, true);
             }
             
         }

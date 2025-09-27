@@ -33,7 +33,7 @@ namespace RTS
                          RefRW<MeleeAttack>, 
                          RefRO<Target>,
                          RefRW<UnitMover>
-                     >().WithDisabled<MoveOverride>())
+                     >().WithDisabled<UnitMoverOverride>())
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)

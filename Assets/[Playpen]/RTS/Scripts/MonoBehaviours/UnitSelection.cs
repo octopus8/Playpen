@@ -219,18 +219,18 @@ namespace RTS
             // Iterate through an array of MoveOverride components and set the target position for each selected unit.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
                 .WithAll<Selected>()
-                .WithPresent<MoveOverride, TargetOverride>()
+                .WithPresent<UnitMoverOverride, TargetOverride>()
                 .Build(entityManager);
             NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
-            NativeArray<MoveOverride> moveOverrideArray = entityQuery.ToComponentDataArray<MoveOverride>(Allocator.Temp);
+            NativeArray<UnitMoverOverride> moveOverrideArray = entityQuery.ToComponentDataArray<UnitMoverOverride>(Allocator.Temp);
             NativeArray<TargetOverride> targetOverrideArray = entityQuery.ToComponentDataArray<TargetOverride>(Allocator.Temp);
             NativeArray<float3> movePositions = GenerateMovePositionsArray(mousePosition, moveOverrideArray.Length);
             for (int i = 0; i < moveOverrideArray.Length; i++)
             {
-                MoveOverride moveOverride = moveOverrideArray[i];
-                moveOverride.targetPosition = movePositions[i];
-                moveOverrideArray[i] = moveOverride;
-                entityManager.SetComponentEnabled<MoveOverride>(entityArray[i], true);
+                UnitMoverOverride unitMoverOverride = moveOverrideArray[i];
+                unitMoverOverride.targetPosition = movePositions[i];
+                moveOverrideArray[i] = unitMoverOverride;
+                entityManager.SetComponentEnabled<UnitMoverOverride>(entityArray[i], true);
                 
                 TargetOverride targetOverride = targetOverrideArray[i];
                 targetOverride.targetEntity = Entity.Null;
@@ -279,7 +279,7 @@ namespace RTS
                 TargetOverride targetOverride = targetOverrideArray[i];
                 targetOverride.targetEntity = targetEntity;
                 targetOverrideArray[i] = targetOverride;
-                entityManager.SetComponentEnabled<MoveOverride>(entityArray[i], false);
+                entityManager.SetComponentEnabled<UnitMoverOverride>(entityArray[i], false);
             }
 
             // Copy the modified data back to the entity query.

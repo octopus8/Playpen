@@ -19,7 +19,7 @@ partial struct EnemyAttackHQSystem : ISystem
         float3 hqPosition = SystemAPI.GetComponent<LocalTransform>(hqEntity).Position;
 
         foreach (var (enemyAttackHQ, unitMover, target) in 
-                 SystemAPI.Query<RefRO<EnemyAttackHQ>, RefRW<UnitMover>, RefRO<Target>>().WithDisabled<MoveOverride>())
+                 SystemAPI.Query<RefRO<EnemyAttackHQ>, RefRW<UnitMover>, RefRO<Target>>().WithDisabled<UnitMoverOverride>())
         {
             if (target.ValueRO.targetEntity != Entity.Null)
             {

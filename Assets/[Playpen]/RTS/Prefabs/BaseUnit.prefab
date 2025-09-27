@@ -119,13 +119,13 @@ GameObject:
   - component: {fileID: 5882265440270606646}
   - component: {fileID: 3826009124151756861}
   - component: {fileID: -7829207096635035647}
+  - component: {fileID: 3689091260008212928}
   - component: {fileID: 7261903412820548149}
   - component: {fileID: 4781226309348629818}
   - component: {fileID: -1547951267249961696}
   - component: {fileID: -4091754081973476798}
-  - component: {fileID: 3689091260008212928}
-  - component: {fileID: 7164323107445459248}
   - component: {fileID: 9026899234577623300}
+  - component: {fileID: 7164323107445459248}
   m_Layer: 10
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -263,6 +263,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbcc89facbf58743b5c5783b84ecbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.MoveOverrideAuthoring
+--- !u!114 &3689091260008212928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116961625703330837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4460fa2ea5d8371428998768498ff19b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DOTSHealth
+  maxHealth: 100
 --- !u!114 &7261903412820548149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,32 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28f3f4a32aa76a4a9fe907faf0bb09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.TargetOverrideAuthoring
---- !u!114 &3689091260008212928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8116961625703330837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4460fa2ea5d8371428998768498ff19b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DOTSHealth
-  maxHealth: 100
---- !u!114 &7164323107445459248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8116961625703330837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 003152b7a0f8ce242a57011180de8261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RTS.FlipbookAnimationMeshAuthoring
-  mesh: {fileID: 3922561494886876579}
 --- !u!114 &9026899234577623300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +345,19 @@ MonoBehaviour:
   aimAnimation: 3
   shootAnimation: 4
   meleeAttackAnimation: 0
+--- !u!114 &7164323107445459248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116961625703330837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003152b7a0f8ce242a57011180de8261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.FlipbookAnimationMeshAuthoring
+  mesh: {fileID: 3922561494886876579}
 --- !u!1001 &1786897988734238698
 PrefabInstance:
   m_ObjectHideFlags: 0

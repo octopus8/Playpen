@@ -34,7 +34,7 @@ namespace RTS
                          RefRW<ShootAttack>,
                          RefRO<Target>,
                          RefRW<UnitMover>
-                     >().WithDisabled<MoveOverride>().WithEntityAccess())
+                     >().WithDisabled<UnitMoverOverride>().WithEntityAccess())
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)
@@ -81,7 +81,7 @@ namespace RTS
                     continue;
                 }
 
-                if (SystemAPI.HasComponent<MoveOverride>(entity) && SystemAPI.IsComponentEnabled<MoveOverride>(entity))
+                if (SystemAPI.HasComponent<UnitMoverOverride>(entity) && SystemAPI.IsComponentEnabled<UnitMoverOverride>(entity))
                 {
                     continue;
                 }

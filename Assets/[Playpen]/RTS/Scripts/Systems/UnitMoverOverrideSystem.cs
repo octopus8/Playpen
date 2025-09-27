@@ -4,7 +4,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-partial struct MoveOverrideSystem : ISystem
+partial struct UnitMoverOverrideSystem : ISystem
 {
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
@@ -17,8 +17,8 @@ partial struct MoveOverrideSystem : ISystem
             ) in
         SystemAPI.Query<
             RefRO<LocalTransform>,
-            RefRO<MoveOverride>,
-            EnabledRefRW<MoveOverride>,
+            RefRO<UnitMoverOverride>,
+            EnabledRefRW<UnitMoverOverride>,
             RefRW<UnitMover>
         >())
         {
