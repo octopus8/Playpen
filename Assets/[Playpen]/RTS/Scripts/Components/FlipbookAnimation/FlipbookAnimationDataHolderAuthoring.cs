@@ -32,7 +32,6 @@ namespace RTS
                 // Iterate through all animation types.
                 FlipbookAnimationDataHolder flipbookAnimationDataHolder = new FlipbookAnimationDataHolder();
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-                int index = 0;
                 foreach (
                     FlipbookAnimationScriptableObject.AnimationType animationType
                     in

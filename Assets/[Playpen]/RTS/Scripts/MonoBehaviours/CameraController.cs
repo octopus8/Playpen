@@ -83,7 +83,5 @@ namespace RTS
             cinemachineCamera.Lens.FieldOfView = Mathf.Lerp(cinemachineCamera.Lens.FieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
         }
     }
-
-    
 }
 

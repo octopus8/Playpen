@@ -46,6 +46,8 @@ namespace RTS
             DOTSEvents.Instance.TriggerOnBarracksQueueChanged(onUnitQueueChangedEntities);
             
             state.Dependency = JobHandle.CombineDependencies(jobHandles);
+            
+            onUnitQueueChangedEntities.Dispose();
         }
 
         

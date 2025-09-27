@@ -15,7 +15,6 @@ namespace RTS
     partial struct FlipbookAnimationDataHolderBakingSystem : ISystem
     {
 
-
         public void OnUpdate(ref SystemState state)
         {
             // Get a reference to the set of animation data. This reference is contained in the FlipbookAnimationDataHolderObjectData component
