@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf2608131712704ab0fde8bf8957640, type: 3}
   m_Name: Scout
   m_EditorClassIdentifier: Assembly-CSharp::RTS.UnitScriptableObject
-  unitTypeID: 2
+  unitType: 2
   spawnDuration: 1
   unitIcon: {fileID: 21300000, guid: 7e5af9f6e92c6974baebe192ce185e5e, type: 3}

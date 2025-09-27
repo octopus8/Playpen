@@ -207,7 +207,7 @@ namespace RTS
                 {
                     // The click was on an enemy unit; set it as the target for all selected units.
                     Faction faction = entityManager.GetComponentData<Faction>(hit.Entity);
-                    if (faction.factionType == FactionType.Zombie)
+                    if (faction.factionType == FactionType.Enemy)
                     {
                         HandleTargetSingleUnit(entityManager, entityQuery, hit.Entity);
                         return;

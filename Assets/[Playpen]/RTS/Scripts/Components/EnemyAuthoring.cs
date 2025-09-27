@@ -5,20 +5,20 @@ namespace RTS
     /// <summary>
     /// Authoring component to mark an entity as a zombie.
     /// </summary>
-    public class ZombieAuthoring : MonoBehaviour
+    public class EnemyAuthoring : MonoBehaviour
     {
-        public class Baker : Unity.Entities.Baker<ZombieAuthoring>
+        public class Baker : Unity.Entities.Baker<EnemyAuthoring>
         {
-            public override void Bake(ZombieAuthoring authoring)
+            public override void Bake(EnemyAuthoring authoring)
             {
                 var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
-                AddComponent<Zombie>(entity);
+                AddComponent<Enemy>(entity);
             }
         }
     }
 
 
-    public struct Zombie : Unity.Entities.IComponentData
+    public struct Enemy : Unity.Entities.IComponentData
     {
     }    
 }

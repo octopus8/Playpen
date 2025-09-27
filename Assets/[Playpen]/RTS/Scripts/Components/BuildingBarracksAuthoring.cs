@@ -32,7 +32,7 @@ namespace RTS
     
     public struct BuildingBarracksUnitEnqueue : IComponentData, IEnableableComponent
     {
-        public UnitScriptableObject.UnitTypeID unitTypeID;
+        public UnitScriptableObject.UnitType UnitType;
     }
     
     
@@ -44,7 +44,7 @@ namespace RTS
         /// <summary>Interval in seconds between spawns.</summary>
         public float spawnDuration;
         
-        public UnitScriptableObject.UnitTypeID unitTypeID;
+        public UnitScriptableObject.UnitType UnitType;
 
         public float3 rallyPositionOffset;
 
@@ -55,7 +55,7 @@ namespace RTS
     [InternalBufferCapacity(10)]
     public struct SpawnBuffer : IBufferElementData
     {
-        public UnitScriptableObject.UnitTypeID UnitTypeID;
+        public UnitScriptableObject.UnitType UnitType;
     }
     
 }

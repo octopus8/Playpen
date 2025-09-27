@@ -58,7 +58,7 @@ namespace RTS
                         {
                             continue;
                         }
-                        if (SystemAPI.HasComponent<Unit>(hit.Entity) && SystemAPI.HasComponent<Zombie>(hit.Entity))
+                        if (SystemAPI.HasComponent<Unit>(hit.Entity) && SystemAPI.HasComponent<Enemy>(hit.Entity))
                         {
                             ++nearbyZombies;
                         }

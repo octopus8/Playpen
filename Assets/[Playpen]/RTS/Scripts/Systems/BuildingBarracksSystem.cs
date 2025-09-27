@@ -28,7 +28,7 @@ namespace RTS
             {
                 spawnBuffer.Add(new SpawnBuffer
                 {
-                    UnitTypeID = barracksEnqueue.ValueRO.unitTypeID
+                    UnitType = barracksEnqueue.ValueRO.UnitType
                 });
                 barracksEnqueueEnabled.ValueRW = false;
                 buildingBarracks.ValueRW.onUnitQueueChanged = true;
@@ -46,11 +46,11 @@ namespace RTS
                     continue;
                 }
 
-                if (buildingBarracks.ValueRO.unitTypeID != spawnBuffer[0].UnitTypeID)
+                if (buildingBarracks.ValueRO.UnitType != spawnBuffer[0].UnitType)
                 {
-                    buildingBarracks.ValueRW.unitTypeID = spawnBuffer[0].UnitTypeID;
+                    buildingBarracks.ValueRW.UnitType = spawnBuffer[0].UnitType;
                     
-                    UnitScriptableObject activeUnit = RTSGame.Instance.units.GetUnit(buildingBarracks.ValueRW.unitTypeID);
+                    UnitScriptableObject activeUnit = RTSGame.Instance.units.GetUnit(buildingBarracks.ValueRW.UnitType);
                     buildingBarracks.ValueRW.spawnDuration = activeUnit.spawnDuration;
                 }
                 
@@ -62,8 +62,8 @@ namespace RTS
                 }
                 buildingBarracks.ValueRW.timer = 0f;
 
-                UnitScriptableObject.UnitTypeID unitTypeID = spawnBuffer[0].UnitTypeID;
-                UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(unitTypeID);
+                UnitScriptableObject.UnitType unitType = spawnBuffer[0].UnitType;
+                UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(unitType);
                 spawnBuffer.RemoveAt(0);
                 buildingBarracks.ValueRW.onUnitQueueChanged = true;
                 

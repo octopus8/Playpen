@@ -31,7 +31,7 @@ public class BuildingBarracksUI : MonoBehaviour
         {
             _entityManager.SetComponentData(_buildingBarracksEntity, new BuildingBarracksUnitEnqueue
             {
-                unitTypeID = UnitScriptableObject.UnitTypeID.Soldier
+                UnitType = UnitScriptableObject.UnitType.Soldier
             });
             _entityManager.SetComponentEnabled<BuildingBarracksUnitEnqueue>(_buildingBarracksEntity, true);
         });
@@ -39,7 +39,7 @@ public class BuildingBarracksUI : MonoBehaviour
         {
             _entityManager.SetComponentData(_buildingBarracksEntity, new BuildingBarracksUnitEnqueue
             {
-                unitTypeID = UnitScriptableObject.UnitTypeID.Scout
+                UnitType = UnitScriptableObject.UnitType.Scout
             });
             _entityManager.SetComponentEnabled<BuildingBarracksUnitEnqueue>(_buildingBarracksEntity, true);
         });
@@ -95,7 +95,7 @@ public class BuildingBarracksUI : MonoBehaviour
         }
 
         BuildingBarracks barracks = _entityManager.GetComponentData<BuildingBarracks>(_buildingBarracksEntity);
-        if (barracks.unitTypeID == UnitScriptableObject.UnitTypeID.None)
+        if (barracks.UnitType == UnitScriptableObject.UnitType.None)
         {
             _progressBarImage.fillAmount = 0;
         }
@@ -126,7 +126,7 @@ public class BuildingBarracksUI : MonoBehaviour
             // For example, if you have an Image component in the template:
             // Image unitImage = item.GetComponent<Image>();
             // unitImage.sprite = GetSpriteForUnitType(spawn.UnitTypeID);
-            UnitScriptableObject unitType = RTSGame.Instance.units.GetUnit(spawn.UnitTypeID);
+            UnitScriptableObject unitType = RTSGame.Instance.units.GetUnit(spawn.UnitType);
             item.GetComponent<Image>().sprite = unitType.unitIcon;
         }
         

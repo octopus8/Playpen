@@ -9,13 +9,13 @@ namespace RTS
     public class UnitScriptableObject : ScriptableObject
     {
 
-        public UnitTypeID unitTypeID;
+        public UnitType unitType;
         
         public float spawnDuration = 2f;
 
         public Sprite unitIcon;
     
-        public enum UnitTypeID
+        public enum UnitType
         {
             None,
             Soldier,
@@ -26,14 +26,14 @@ namespace RTS
 
         public Entity GetUnit(EntityReferences entityReferences)
         {
-            switch (unitTypeID)
+            switch (unitType)
             {
                 default:
-                case UnitTypeID.Soldier:
+                case UnitType.Soldier:
                     return entityReferences.soldierEntityPrefab;
-                case UnitTypeID.Scout:
+                case UnitType.Scout:
                     return entityReferences.scoutEntityPrefab;
-                case UnitTypeID.Zombie:
+                case UnitType.Zombie:
                     return entityReferences.zombieEntityPrefab;
             }
         }

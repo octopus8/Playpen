@@ -23,7 +23,7 @@ namespace RTS
         public enum BuildingType
         {
             None,
-            ZombieBuilding,
+            EnemyBuilding,
             FriendlyTower,
             FriendlyBarracks,
             FriendlyHQ
@@ -39,7 +39,7 @@ namespace RTS
             switch (buildingType)
             {
                 default:
-                case BuildingType.ZombieBuilding:
+                case BuildingType.EnemyBuilding:
                 case BuildingType.FriendlyTower:
                     return entityReferences.buildingTowerPrefab;
                 case BuildingType.FriendlyBarracks:
