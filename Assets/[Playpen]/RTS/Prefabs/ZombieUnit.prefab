@@ -111,10 +111,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 704f5ea696ef75944b30d5c8ec37f428, type: 2}
-    - target: {fileID: 7266832285777768999, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
-      propertyPath: health
-      value: 
-      objectReference: {fileID: 6704223971666330241}
     - target: {fileID: 7556082712339607967, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       propertyPath: unitType
       value: 3
@@ -219,17 +215,6 @@ MonoBehaviour:
   distanceMin: 20
   distanceMax: 30
   randomSeed: 1
---- !u!114 &6704223971666330241 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3689091260008212928, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
-  m_PrefabInstance: {fileID: 7942230820920306497}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2205995592828264276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4460fa2ea5d8371428998768498ff19b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DOTSHealth
 --- !u!4 &7468368146789761693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 692570935699581404, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}

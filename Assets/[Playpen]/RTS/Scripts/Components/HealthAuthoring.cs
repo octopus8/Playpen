@@ -33,11 +33,14 @@ namespace RTS
     {
         /// <summary>Current health.</summary>
         public int currentHealth;
+        
         /// <summary>Maximum health.</summary>
         public int maxHealth;
-        /// <summary>Flag to indicate if health has changed.</summary>
+        
+        /// <summary>Event flag to indicate health has changed.</summary>
         public bool onHealthChanged;
 
+        /// <summary>Event flag to indicate death.</summary>
         public bool onDead;
     }
 }

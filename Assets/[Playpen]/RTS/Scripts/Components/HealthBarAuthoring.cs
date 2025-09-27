@@ -36,6 +36,7 @@ namespace RTS
     {
         /// <summary>Entity representing the visual part of the health bar.</summary>
         public Entity barVisualEntity;
+        
         /// <summary>Entity representing the health component.</summary>
         public Entity healthEntity;
     }
