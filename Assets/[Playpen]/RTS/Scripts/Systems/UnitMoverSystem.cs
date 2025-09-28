@@ -38,7 +38,7 @@ namespace RTS
     [BurstCompile]
     public partial struct UnitMoverJob : IJobEntity
     {
-        /// <summary> Delta time for the job, used to scale movement and rotation speeds. </summary>
+        /// <summary> Struct parameter, time delta since last update; used to scale movement and rotation speeds. </summary>
         public float deltaTime;
 
 
@@ -58,15 +58,23 @@ namespace RTS
                 unitMover.isMoving = false;
                 return;
             }
-  
+            
+            // The unit is not at the target position, so we need to move it.
+            // Set the isMoving flag to true to indicate that the unit is currently moving.
             unitMover.isMoving = true;
 
-            // Slerp the rotation towards the target position and set the linear velocity to move towards it.
+            // Normalize the move direction to get a unit vector.
             moveDirection = math.normalize(moveDirection);
+            
+            // Slerp the unit's rotation towards the move direction.
             localTransform.Rotation = math.slerp(localTransform.Rotation,
                 quaternion.LookRotation(moveDirection, math.up()),
                 deltaTime * unitMover.rotationSpeed);
+            
+            // Set the linear velocity to move towards the target position.
             physicsVelocity.Linear = moveDirection * unitMover.moveSpeed;
+            
+            // Set the angular velocity to zero to prevent unwanted rotation.
             physicsVelocity.Angular = float3.zero;
         }
     }

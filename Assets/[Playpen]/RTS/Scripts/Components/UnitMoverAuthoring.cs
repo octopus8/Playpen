@@ -17,11 +17,16 @@ namespace RTS
         [Tooltip("Unit rotation speed.")]
         [SerializeField] private float rotationSpeedRPS = 10f;
 
-
+        
+        
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         public class Baker : Baker<UnitMoverAuthoring>
         {
             public override void Bake(UnitMoverAuthoring authoring)
             {
+                // Create an entity and add the UnitMover component with the specified parameters.
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new UnitMover
                 {
@@ -33,15 +38,21 @@ namespace RTS
     }
 
 
+    /// <summary>
+    /// Component storing movement data for a unit.
+    /// </summary>
     public struct UnitMover : IComponentData
     {
         /// <summary> Unit movement speed, in meters per second. </summary>
         public float moveSpeed;
+        
         /// <summary> Unit rotation speed, in radians per second. </summary>
         public float rotationSpeed;
+        
         /// <summary> Target position for the unit to move towards. </summary>
         public float3 targetPosition;
 
+        /// <summary> Flag indicating whether the unit is currently moving. </summary>
         public bool isMoving;
     }
 }

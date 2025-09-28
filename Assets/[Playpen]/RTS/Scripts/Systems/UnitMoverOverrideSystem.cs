@@ -6,21 +6,27 @@ using Unity.Transforms;
 
 partial struct UnitMoverOverrideSystem : ISystem
 {
+    /// <summary>
+    /// Overwrites the target position of units with a move override if the override is enabled.
+    /// If the unit is close enough to the override target position, the override is disabled.
+    /// This system ensures that units can be directed to specific positions temporarily,
+    /// overriding their current movement targets, (e.g., find target).
+    /// </summary>
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         foreach (var (
-            localTransform, 
-            moveOverride, 
-            moveOverrideEnabled,
-            unitMover
-            ) in
-        SystemAPI.Query<
-            RefRO<LocalTransform>,
-            RefRO<UnitMoverOverride>,
-            EnabledRefRW<UnitMoverOverride>,
-            RefRW<UnitMover>
-        >())
+                     localTransform, 
+                     moveOverride, 
+                     moveOverrideEnabled,
+                     unitMover
+                     ) in
+                 SystemAPI.Query<
+                     RefRO<LocalTransform>,
+                     RefRO<UnitMoverOverride>,
+                     EnabledRefRW<UnitMoverOverride>,
+                     RefRW<UnitMover>
+                 >())
         {
             if (math.distancesq(localTransform.ValueRO.Position, moveOverride.ValueRO.targetPosition) > UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQUARED)
             {
@@ -31,6 +37,5 @@ partial struct UnitMoverOverrideSystem : ISystem
                 moveOverrideEnabled.ValueRW = false;
             }
         }
-        
     }
 }
