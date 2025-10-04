@@ -118,12 +118,12 @@ namespace RTS
         
         public void Execute(ref BuildingBarracks barracks, Entity entity)
         {
-            if (barracks.onUnitQueueChanged)
+            if (barracks.onUnitQueueChangedEventFlag)
             {
                 onUnitQueueChangedEntities.AddNoResize(entity);
             }
             
-            barracks.onUnitQueueChanged = false;
+            barracks.onUnitQueueChangedEventFlag = false;
         }
     }
   

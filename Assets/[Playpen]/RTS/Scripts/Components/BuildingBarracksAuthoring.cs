@@ -6,19 +6,14 @@ namespace RTS
 {
     public class BuildingBarracksAuthoring : MonoBehaviour
     {
-        /// <summary>Interval in seconds between spawns.</summary>
-        [Tooltip("Interval in seconds between spawns.")]
-        [SerializeField] private float spawnInterval = 2f;
-    
-        
         class Baker : Baker<BuildingBarracksAuthoring>
         {
             public override void Bake(BuildingBarracksAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
+                
                 AddComponent(entity, new BuildingBarracks
                 {
-                    spawnDuration = authoring.spawnInterval,
                     rallyPositionOffset = new float3(10, 0, 0),
                 });
                 AddBuffer<SpawnBuffer>(entity);
@@ -48,7 +43,7 @@ namespace RTS
 
         public float3 rallyPositionOffset;
 
-        public bool onUnitQueueChanged;
+        public bool onUnitQueueChangedEventFlag;
     }
 
     
