@@ -29,7 +29,6 @@ namespace RTS
                 animationSet = authoring.ValueRO.animationSet.Value;
             }
             
-
             // Create a dictionary to map animation types to the meshes corresponding to each frame of that animation.
             // The key is the animation type and the value is an array of mesh IDs corresponding to the frames of that animation.
             Dictionary<FlipbookAnimationScriptableObject.AnimationType, int[]> blobAssetData = new Dictionary<FlipbookAnimationScriptableObject.AnimationType, int[]>();

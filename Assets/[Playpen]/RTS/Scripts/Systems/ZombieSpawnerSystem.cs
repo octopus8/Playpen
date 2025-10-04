@@ -14,7 +14,7 @@ namespace RTS
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<EntityReferences>();
+            state.RequireForUpdate<EntityPrefabSet>();
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
         }
 
@@ -31,7 +31,7 @@ namespace RTS
                 GroupIndex = 0
             };
             EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
-            EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();
+            EntityPrefabSet entityPrefabSet = SystemAPI.GetSingleton<EntityPrefabSet>();
             NativeList<DistanceHit> hits = new NativeList<DistanceHit>(Allocator.Temp);
             foreach (var (localTransform, spawner) in
                      SystemAPI.Query<
@@ -70,7 +70,7 @@ namespace RTS
                 }
 
                 
-                var zombie = state.EntityManager.Instantiate(entityReferences.zombieEntityPrefab);
+                var zombie = state.EntityManager.Instantiate(entityPrefabSet.zombieEntityPrefab);
                 SystemAPI.SetComponent(zombie, LocalTransform.FromPosition(localTransform.ValueRO.Position));
                 
                 ecb.AddComponent(zombie, new RandomWalking

@@ -24,17 +24,17 @@ namespace RTS
         }
 
 
-        public Entity GetUnit(EntityReferences entityReferences)
+        public Entity GetUnit(EntityPrefabSet entityPrefabSet)
         {
             switch (unitType)
             {
                 default:
                 case UnitType.Soldier:
-                    return entityReferences.soldierEntityPrefab;
+                    return entityPrefabSet.soldierEntityPrefab;
                 case UnitType.Scout:
-                    return entityReferences.scoutEntityPrefab;
+                    return entityPrefabSet.scoutEntityPrefab;
                 case UnitType.Zombie:
-                    return entityReferences.zombieEntityPrefab;
+                    return entityPrefabSet.zombieEntityPrefab;
             }
         }
     

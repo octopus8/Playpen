@@ -15,14 +15,14 @@ namespace RTS
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<EntityReferences>();
+            state.RequireForUpdate<EntityPrefabSet>();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
-            EntityReferences references = SystemAPI.GetSingleton<EntityReferences>();
+            EntityPrefabSet prefabSet = SystemAPI.GetSingleton<EntityPrefabSet>();
             foreach ((RefRW<LocalTransform> localTransform,
                          RefRW<ShootAttack> shootAttack,
                          RefRO<Target> target,
@@ -107,7 +107,7 @@ namespace RTS
                 }
 
                 // Spawn and initialize bullet.
-                Entity bullet = state.EntityManager.Instantiate(references.bulletEntityPrefab);
+                Entity bullet = state.EntityManager.Instantiate(prefabSet.bulletEntityPrefab);
                 float3 bulletSpawnPosition = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnOffset);
                 SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(bulletSpawnPosition));
                 RefRW<Bullet> bulletBullet = SystemAPI.GetComponentRW<Bullet>(bullet);

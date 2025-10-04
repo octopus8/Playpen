@@ -12,7 +12,7 @@ namespace RTS
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<EntityReferences>();
+            state.RequireForUpdate<EntityPrefabSet>();
         }
 
         
@@ -56,7 +56,7 @@ namespace RTS
             // increment the spawn timer. If the timer exceeds the spawn duration,
             // spawn the unit at the barracks position and set its mover override to the rally position.
             // Remove the spawned unit from the spawn buffer and set the barracks "unit queue changed" event flag to true.
-            EntityReferences entityReferences = SystemAPI.GetSingleton<EntityReferences>();
+            EntityPrefabSet entityPrefabSet = SystemAPI.GetSingleton<EntityPrefabSet>();
             foreach (var (
                          buildingBarracks, 
                          localTransform, 
@@ -97,7 +97,7 @@ namespace RTS
                 buildingBarracks.ValueRW.onUnitQueueChangedEventFlag = true;
                 
                 // Instantiate the unit entity and set its position to the barracks position.
-                Entity spawnedUnitEntity = state.EntityManager.Instantiate(unit.GetUnit(entityReferences));
+                Entity spawnedUnitEntity = state.EntityManager.Instantiate(unit.GetUnit(entityPrefabSet));
                 SystemAPI.SetComponent(spawnedUnitEntity, LocalTransform.FromPosition(localTransform.ValueRO.Position));
 
                 // Set the unit mover override to the barracks rally position and enable the mover override component.

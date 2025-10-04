@@ -13,14 +13,14 @@ namespace RTS
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<EntityReferences>();
+            state.RequireForUpdate<EntityPrefabSet>();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             // Iterate over all entities with ShootAttack component.
-            EntityReferences references = SystemAPI.GetSingleton<EntityReferences>();
+            EntityPrefabSet prefabSet = SystemAPI.GetSingleton<EntityPrefabSet>();
             foreach ((
                          RefRW<ShootAttack> shootAttack,
                          Entity entity
@@ -33,7 +33,7 @@ namespace RTS
                 // If a shoot event is triggered, spawn a ShootLight entity at the shoot position.
                 if (shootAttack.ValueRO.onShootEvent.isTriggered)
                 {
-                    Entity shootLightEntity = state.EntityManager.Instantiate(references.shootLightEntityPrefab);
+                    Entity shootLightEntity = state.EntityManager.Instantiate(prefabSet.shootLightEntityPrefab);
                     SystemAPI.SetComponent(shootLightEntity,
                         LocalTransform.FromPosition(shootAttack.ValueRO.onShootEvent.shootPosition));
                 }

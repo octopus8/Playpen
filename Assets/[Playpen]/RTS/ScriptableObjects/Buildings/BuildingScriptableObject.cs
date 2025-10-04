@@ -34,16 +34,16 @@ namespace RTS
             return buildingType == BuildingType.None;
         }
 
-        public Entity GetBuilding(EntityReferences entityReferences)
+        public Entity GetBuilding(EntityPrefabSet entityPrefabSet)
         {
             switch (buildingType)
             {
                 default:
                 case BuildingType.EnemyBuilding:
                 case BuildingType.FriendlyTower:
-                    return entityReferences.buildingTowerPrefab;
+                    return entityPrefabSet.buildingTowerPrefab;
                 case BuildingType.FriendlyBarracks:
-                    return entityReferences.buildingBarracksPrefab;
+                    return entityPrefabSet.buildingBarracksPrefab;
             }
         }
 

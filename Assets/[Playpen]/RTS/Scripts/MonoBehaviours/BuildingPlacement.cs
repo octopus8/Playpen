@@ -62,9 +62,9 @@ namespace RTS
 
                     EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-                    EntityQuery entityQuery = entityManager.CreateEntityQuery(typeof(EntityReferences));
-                    EntityReferences entityReferences = entityQuery.GetSingleton<EntityReferences>();
-                    Entity entity = entityManager.Instantiate(buildingScriptableObject.GetBuilding(entityReferences));
+                    EntityQuery entityQuery = entityManager.CreateEntityQuery(typeof(EntityPrefabSet));
+                    EntityPrefabSet entityPrefabSet = entityQuery.GetSingleton<EntityPrefabSet>();
+                    Entity entity = entityManager.Instantiate(buildingScriptableObject.GetBuilding(entityPrefabSet));
                     entityManager.SetComponentData(entity, LocalTransform.FromPosition(mousePosition));
                 }
             } 
