@@ -215,9 +215,6 @@ PrefabInstance:
       addedObject: {fileID: 4371282481859694982}
     - targetCorrespondingSourceObject: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3234319269647185707}
-    - targetCorrespondingSourceObject: {fileID: 8116961625703330837, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2205881311910994476}
   m_SourcePrefab: {fileID: 100100000, guid: 32c8178fa76c7c84081a6e9390972080, type: 3}
 --- !u!4 &137693521485706593 stripped
@@ -244,18 +241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DOTSSelected
   visualGameObject: {fileID: 6580120546227952837}
   showScale: 2
---- !u!114 &3234319269647185707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8705620293435205800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e3bdaa005c0cc4ab2d0df40b34da6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DOTSFriendly
 --- !u!114 &2205881311910994476
 MonoBehaviour:
   m_ObjectHideFlags: 0

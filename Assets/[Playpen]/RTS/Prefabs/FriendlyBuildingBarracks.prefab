@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 2237164155163084173}
   - component: {fileID: 8107589756294708622}
   - component: {fileID: 7536198124978871208}
-  - component: {fileID: 4158002158617585425}
   - component: {fileID: 1783953791142234621}
   - component: {fileID: 3676787152163902611}
   - component: {fileID: 3964038066842151485}
@@ -164,18 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16549610bfe4458aa9389201d072bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Entities.Hybrid::Unity.Entities.Hybrid.Baking.LinkedEntityGroupAuthoring
---- !u!114 &4158002158617585425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875698183658123222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e3bdaa005c0cc4ab2d0df40b34da6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RTS.FriendlyAuthoring
 --- !u!114 &1783953791142234621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961ef10446c1a7142882d547839820a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.UnitSpawnerAuthoring
-  spawnInterval: 2
 --- !u!114 &8617862300505770486
 MonoBehaviour:
   m_ObjectHideFlags: 0
