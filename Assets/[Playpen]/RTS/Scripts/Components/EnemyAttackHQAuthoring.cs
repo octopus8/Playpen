@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace RTS
 {
+    /// <summary>
+    /// Authoring component for the EnemyAttackHQ tag component.
+    /// Can be added to enemy unit prefabs to enable them to attack the player's HQ.
+    /// </summary>
     public class EnemyAttackHQAuthoring : MonoBehaviour
     {
 

@@ -78,11 +78,11 @@ namespace RTS
                 
                 if (!isInMeleeRange && !isTouchingTarget)
                 {
-                    unitMover.ValueRW.targetPosition = targetLocalTransform.Position;
+                    unitMover.ValueRW.destination = targetLocalTransform.Position;
                 }
                 else
                 {
-                    unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
+                    unitMover.ValueRW.destination = localTransform.ValueRO.Position;
                 
                     // If still waiting for next attack, skip.
                     meleeAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;

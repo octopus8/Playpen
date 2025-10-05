@@ -26,7 +26,7 @@ partial struct EnemyAttackHQSystem : ISystem
                 continue;
             }
             
-            unitMover.ValueRW.targetPosition = hqPosition;
+            unitMover.ValueRW.destination = hqPosition;
             
         }
 

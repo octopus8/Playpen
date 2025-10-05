@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace RTS
 {
+    /// <summary>
+    /// Authoring component to define which faction the entity belongs to. The `FindTargetSystem` uses this to find enemy targets, and `UnitSelection` uses this to find selected units.
+    /// </summary>
     public class FactionAuthoring : MonoBehaviour
     {
         public FactionType factionType;

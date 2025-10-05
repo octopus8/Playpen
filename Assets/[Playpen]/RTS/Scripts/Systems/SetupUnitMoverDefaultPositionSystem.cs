@@ -31,7 +31,7 @@ namespace RTS
                 >().WithEntityAccess()
             )
             {
-                unitMover.ValueRW.targetPosition = localTransform.ValueRO.Position;
+                unitMover.ValueRW.destination = localTransform.ValueRO.Position;
                 ecb.RemoveComponent<SetupUnitMoverDefaultPosition>(entity);
             }
         }

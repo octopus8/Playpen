@@ -3,7 +3,7 @@ using UnityEngine;
 namespace RTS
 {
     /// <summary>
-    /// Authoring component to mark an entity as a zombie.
+    /// Authoring component to tag an entity as a zombie.
     /// </summary>
     public class EnemyAuthoring : MonoBehaviour
     {

@@ -49,8 +49,8 @@ namespace RTS
         /// <summary> Unit rotation speed, in radians per second. </summary>
         public float rotationSpeed;
         
-        /// <summary> Target position for the unit to move towards. </summary>
-        public float3 targetPosition;
+        /// <summary> Destination to move the unit to. </summary>
+        public float3 destination;
 
         /// <summary> Flag indicating whether the unit is currently moving. </summary>
         public bool isMoving;

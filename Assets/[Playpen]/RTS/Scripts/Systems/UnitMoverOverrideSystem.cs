@@ -30,7 +30,7 @@ partial struct UnitMoverOverrideSystem : ISystem
         {
             if (math.distancesq(localTransform.ValueRO.Position, moveOverride.ValueRO.targetPosition) > UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQUARED)
             {
-                unitMover.ValueRW.targetPosition = moveOverride.ValueRO.targetPosition;
+                unitMover.ValueRW.destination = moveOverride.ValueRO.targetPosition;
             }
             else
             {

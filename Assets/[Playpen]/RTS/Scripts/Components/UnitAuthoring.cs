@@ -5,11 +5,10 @@ using UnityEngine;
 namespace RTS
 {
     /// <summary>
-    /// Authoring component for unit data. This component is added to all units.
+    /// Tag authoring component which tags the entity as a "unit".
     /// </summary>
     public class UnitAuthoring : MonoBehaviour
     {
-        
         public class Baker : Baker<UnitAuthoring>
         {
             public override void Bake(UnitAuthoring authoring)
@@ -21,8 +20,6 @@ namespace RTS
             }
         }
     }
-
-    
     public struct Unit : IComponentData
     {
     }

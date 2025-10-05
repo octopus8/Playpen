@@ -33,14 +33,14 @@ namespace RTS
                     
                      float randomDistance = random.NextFloat(randomWalking.ValueRO.distanceMin, randomWalking.ValueRO.distanceMax);
                     randomWalking.ValueRW.targetPosition = randomWalking.ValueRO.originPosition + randomDirection * randomDistance;
-                    unitMover.ValueRW.targetPosition = randomWalking.ValueRO.targetPosition;
+                    unitMover.ValueRW.destination = randomWalking.ValueRO.targetPosition;
                     
                     randomWalking.ValueRW.random = random;
                 }
                 // Otherwise, continue moving towards the current target position.
                 else
                 {
-                    unitMover.ValueRW.targetPosition = randomWalking.ValueRO.targetPosition;
+                    unitMover.ValueRW.destination = randomWalking.ValueRO.targetPosition;
                 }
             }
         }

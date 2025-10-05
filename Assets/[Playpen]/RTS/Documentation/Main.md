@@ -12,6 +12,7 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - Systems can be implemented as `ISystem` (unmanaged) or `SystemBase` (managed).
 - Systems use queries to find entities with specific components.
 - Some components are "tags" that do not contain any data, but are used to mark entities for specific behavior.
+- `BurstCompile` is added to 
 
 
 ## Component Baking
@@ -28,28 +29,35 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 
 ### General Components
 - `Friendly`(`FriendlyAuthoring`) - Tags the entity as "friendly".
+  - This was removed from the project, but could be added back in if needed.
+- `Enemy`(`EnemyAuthoring`) - Tags the entity as "enemy". The `ZombieSpawnerSystem` uses this to control spawning too many enemies close to the spawner.
 - `Faction`(`FactionAuthoring`) - Defines which faction the entity belongs to. The `FindTargetSystem` uses this to find enemy targets, and `UnitSelection` uses this to find selected units.
 
 
 ### Health
 #### Components
 - `Health`(`HealthAuthoring`) - Contains health information such as current health and max health, and a set of event flags, such as "on health changed" and "on dead".
-- `HealthBar`(`HealthBarAuthoring`) - Health bar visual, the associated Health component.
+- `HealthBar`(`HealthBarAuthoring`) - Contains data for displaying a health bar above the entity.
 #### Systems
-- `HealthBarSystem` - Updates the health bar visual based on the health component.
+- `HealthBarSystem` - Updates the health bar visual.
 - `HealthDeadTestSystem` - Tests the health component for death and removes the entity if dead.
 
+----------------------
+(verify the documentation below is accurate)
 
 ### Units
 #### Components
 - `Unit`(`UnitAuthoring`) - Tags the entity as a "unit".
 - `UnitMover`(`UnitMoverAuthoring`) - Contains movement data such as speed and destination.
+- `UnitMoverOverride`(`UnitMoverOverrideAuthoring`) - Contains an override position for movement. If this is set, it overrides the normal `UnitMover` destination.
 - `Selected`(`SelectedAuthoring`) - Tags the entity as selectable and contains selection data.
 - `Target`(`TargetAuthoring`) - Tags the entity as a target and contains target data.
 - `FindTarget`(`FindTargetAuthoring`) - Tags the entity as needing to find a target and contains search data.
 - `ShootAttack`(`ShootAttackAuthoring`) - Tags the entity as being able to shoot and contains shooting data.
+- `EnemyAttackHQ`(`EnemyAttackHQAuthoring`) - Tags the entity as an enemy that will attack the HQ.
 #### Systems
-- `UnitMoverSystem` - Handles movable entities towards their destination.
+- `UnitMoverSystem` - Moves units towards their destination.
+- `UnitMoverOverrideSystem` - Sets the `UnitMover` target position to the `UnitMoverOverride` position if it is set.
 - `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
 - `FindTargetSystem` - Finds targets for entities that need to find a target.
 - `ShootAttackSystem` - Handles shooting for entities that can shoot.
