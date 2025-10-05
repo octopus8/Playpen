@@ -12,8 +12,6 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - Systems can be implemented as `ISystem` (unmanaged) or `SystemBase` (managed).
 - Systems use queries to find entities with specific components.
 - Some components are "tags" that do not contain any data, but are used to mark entities for specific behavior.
-- `BurstCompile` is added to 
-
 
 ## Component Baking
 - Authoring components are MonoBehaviours that are used to add components to entities at bake time.
@@ -49,8 +47,9 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 #### Components
 - `Unit`(`UnitAuthoring`) - Tags the entity as a "unit".
 - `UnitMover`(`UnitMoverAuthoring`) - Contains movement data such as speed and destination.
-- `UnitMoverOverride`(`UnitMoverOverrideAuthoring`) - Contains an override position for movement. If this is set, it overrides the normal `UnitMover` destination.
-- `Selected`(`SelectedAuthoring`) - Tags the entity as selectable and contains selection data.
+- `UnitMoverOverride`(`UnitMoverOverrideAuthoring`) -  Enableable component containing temporary movement override data for a unit.
+- `Selected`(`SelectedAuthoring`) - Enableable component containing selection data for an entity.
+
 - `Target`(`TargetAuthoring`) - Tags the entity as a target and contains target data.
 - `FindTarget`(`FindTargetAuthoring`) - Tags the entity as needing to find a target and contains search data.
 - `ShootAttack`(`ShootAttackAuthoring`) - Tags the entity as being able to shoot and contains shooting data.
@@ -58,6 +57,7 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 #### Systems
 - `UnitMoverSystem` - Moves units towards their destination.
 - `UnitMoverOverrideSystem` - Sets the `UnitMover` target position to the `UnitMoverOverride` position if it is set.
+
 - `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
 - `FindTargetSystem` - Finds targets for entities that need to find a target.
 - `ShootAttackSystem` - Handles shooting for entities that can shoot.
@@ -84,10 +84,7 @@ In order to bake the mesh data for animations, the meshes must exist on entities
   - UnitSelection: When clicking the destination for selected units, the UnitMoverOverride target position is set to the destination.
   - UnitMoverOverrideSystem: Sets the UnitMover target position to the move override position.
 
-
-
-
-
+  
 
 ----------------------------
 

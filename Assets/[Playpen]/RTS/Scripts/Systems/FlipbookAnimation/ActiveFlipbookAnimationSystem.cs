@@ -24,41 +24,6 @@ namespace RTS
             job.ScheduleParallel();
         }
 
-
-        private void OnUpdateNoJobs(ref SystemState state)
-        {
-            FlipbookAnimationDataHolder flipbookAnimationDataHolder = SystemAPI.GetSingleton<FlipbookAnimationDataHolder>();
-            foreach (var (
-                         activeAnimation, 
-                         materialMeshInfo
-                         ) in
-                     SystemAPI.Query<
-                         RefRW<ActiveFlipbookAnimation>,
-                         RefRW<MaterialMeshInfo>
-                     >())
-            {
-                ref FlipbookAnimationData flipbookAnimationData = ref flipbookAnimationDataHolder.animationData.Value[(int)activeAnimation.ValueRW.activeAnimation];
-                activeAnimation.ValueRW.frameTimer += SystemAPI.Time.DeltaTime;
-                if (activeAnimation.ValueRW.frameTimer >= flipbookAnimationData.frameDuration)
-                {
-                    activeAnimation.ValueRW.frameTimer -= flipbookAnimationData.frameDuration;
-                    activeAnimation.ValueRW.frame = (activeAnimation.ValueRW.frame + 1) % flipbookAnimationData.totalFrames;
-
-                    materialMeshInfo.ValueRW.Mesh = flipbookAnimationData.intMeshIDBlobArray[activeAnimation.ValueRW.frame];
-
-                    if (activeAnimation.ValueRW.frame == 0 && activeAnimation.ValueRO.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.SoldierShoot)
-                    {
-                        activeAnimation.ValueRW.activeAnimation =
-                            FlipbookAnimationScriptableObject.AnimationType.None;
-                    }
-                    if (activeAnimation.ValueRW.frame == 0 && activeAnimation.ValueRO.activeAnimation == FlipbookAnimationScriptableObject.AnimationType.ZombieMeleeAttack)
-                    {
-                        activeAnimation.ValueRW.activeAnimation =
-                            FlipbookAnimationScriptableObject.AnimationType.None;
-                    }
-                }
-            }
-        }
     }
     
     

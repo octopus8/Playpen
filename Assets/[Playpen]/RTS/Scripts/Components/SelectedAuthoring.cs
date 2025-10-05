@@ -6,8 +6,7 @@ namespace RTS
 {
 
     /// <summary>
-    /// Selected ECS component authoring MonoBehaviour. This component is added to entities that can be selected.
-    /// It includes a reference to a visual GameObject that is shown when the entity is selected.
+    /// Authoring component for selection data. This component is added to all selectable entities.
     /// </summary>
     public class SelectedAuthoring : MonoBehaviour
     {
@@ -20,6 +19,9 @@ namespace RTS
         [SerializeField] private float showScale = 2.0f; // Scale for the visual representation of selection.
 
 
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         class SelectedBaker : Baker<SelectedAuthoring>
         {
             /// <summary>
@@ -40,7 +42,7 @@ namespace RTS
 
 
     /// <summary>
-    /// DOTS component containing selection data. This component is enableable to allow toggling selection state.
+    /// Enableable component storing selection data for an entity.
     /// </summary>
     public struct Selected : IComponentData, IEnableableComponent
     {
@@ -50,10 +52,10 @@ namespace RTS
         /// <summary> Scale for the visual representation of selection when selected. </summary>
         public float showScale;
 
-        /// <summary> Flag indicating if the entity has just been selected. </summary>
+        /// <summary> Event flag indicating if the entity has just been selected. </summary>
         public bool onSelected;
 
-        /// <summary> Flag indicating if the entity has just been deselected. </summary>
+        /// <summary> Event flag indicating if the entity has just been deselected. </summary>
         public bool onDeselected;
     }
 

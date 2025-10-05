@@ -25,33 +25,6 @@ namespace RTS
             job.ScheduleParallel();
         }
 
-        
-        private void OnUpdateNoJobs(ref SystemState state)
-        {
-            FlipbookAnimationDataHolder animationDataHolder = SystemAPI.GetSingleton<FlipbookAnimationDataHolder>();
-            foreach (var (
-                         activeAnimation,
-                         materialMeshInfo
-                         ) in
-                     SystemAPI.Query<RefRW<ActiveFlipbookAnimation>, RefRW<MaterialMeshInfo>>())
-            {
-                // If the current animation is a one-shot (like shooting or melee attack), do not change the animation.
-                if (FlipbookAnimationScriptableObject.IsAnimationOneShot(activeAnimation.ValueRO.activeAnimation))
-                {
-                    continue;
-                }
-                
-                if (activeAnimation.ValueRO.activeAnimation != activeAnimation.ValueRO.nextAnimation)
-                {
-                    activeAnimation.ValueRW.frame = 0;
-                    activeAnimation.ValueRW.frameTimer = 0f;
-                    activeAnimation.ValueRW.activeAnimation = activeAnimation.ValueRO.nextAnimation;
-                    ref FlipbookAnimationData flipbookAnimationData =
-                        ref animationDataHolder.animationData.Value[(int)activeAnimation.ValueRO.activeAnimation];
-                    materialMeshInfo.ValueRW.Mesh = flipbookAnimationData.intMeshIDBlobArray[0];
-                }
-            }
-        }
     }
     
     

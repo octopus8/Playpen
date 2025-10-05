@@ -103,7 +103,7 @@ namespace RTS
                 // Set the unit mover override to the barracks rally position and enable the mover override component.
                 SystemAPI.SetComponent(spawnedUnitEntity, new UnitMoverOverride
                 {
-                    targetPosition = localTransform.ValueRO.Position + buildingBarracks.ValueRO.rallyPositionOffset,
+                    overrideDestination = localTransform.ValueRO.Position + buildingBarracks.ValueRO.rallyPositionOffset,
                 });
                 SystemAPI.SetComponentEnabled<UnitMoverOverride>(spawnedUnitEntity, true);
             }

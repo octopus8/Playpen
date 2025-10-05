@@ -228,7 +228,7 @@ namespace RTS
             for (int i = 0; i < moveOverrideArray.Length; i++)
             {
                 UnitMoverOverride unitMoverOverride = moveOverrideArray[i];
-                unitMoverOverride.targetPosition = movePositions[i];
+                unitMoverOverride.overrideDestination = movePositions[i];
                 moveOverrideArray[i] = unitMoverOverride;
                 entityManager.SetComponentEnabled<UnitMoverOverride>(entityArray[i], true);
                 

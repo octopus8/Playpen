@@ -10,7 +10,7 @@ namespace RTS
     /// This system runs in the LateSimulationSystemGroup and set OrderLast to true to ensure all events are processed before resetting.
     /// </summary>
     [UpdateInGroup(typeof(LateSimulationSystemGroup), OrderLast = true)]
-    partial struct ResetEventsSystem : ISystem
+    partial struct EventResetSystem : ISystem
     {
         private NativeArray<JobHandle> jobHandles;
         
@@ -49,29 +49,10 @@ namespace RTS
             
             onUnitQueueChangedEntities.Dispose();
         }
-
         
-        public void OnCreateNoJobs(ref SystemState state)
-        {
-            // Reset event flags for selected events.
-            foreach (var selected in SystemAPI.Query<RefRW<Selected>>())
-            {
-                selected.ValueRW.onSelected = false;
-                selected.ValueRW.onDeselected = false;
-            }
-            // Reset health change event flag.
-            foreach (var health in SystemAPI.Query<RefRW<Health>>())
-            {
-                health.ValueRW.onHealthChanged = false;
-            }
-            // Reset shoot event flag.
-            foreach (var shootAttack in SystemAPI.Query<RefRW<ShootAttack>>())
-            {
-                shootAttack.ValueRW.onShootEvent.isTriggered = false;
-            }
-        }
     }
  
+    
     [BurstCompile]
     public partial struct ResetShootAttackEventsJob : IJobEntity
     {
@@ -80,6 +61,7 @@ namespace RTS
             shootAttack.onShootEvent.isTriggered = false;
         }
     }
+    
     
     [BurstCompile]
     public partial struct ResetHealthEventsJob : IJobEntity
@@ -90,6 +72,7 @@ namespace RTS
             health.onDead = false;
         }
     }
+    
     
     [BurstCompile]
     [WithOptions(EntityQueryOptions.IgnoreComponentEnabledState)]
@@ -102,6 +85,7 @@ namespace RTS
         }
     }
     
+    
     [BurstCompile]
     public partial struct ResetMeleeAttackEventsJob : IJobEntity
     {
@@ -111,6 +95,7 @@ namespace RTS
         }
     }
 
+    
     [BurstCompile]
     public partial struct ResetBuildingBarracksEventsJob : IJobEntity
     {

@@ -13,8 +13,8 @@ namespace RTS
     /// This effectively hides not selected entities from view.
     /// </summary>
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
-    [UpdateBefore(typeof(ResetEventsSystem))]
-    partial struct UnitSelectedVisualSystem : ISystem
+    [UpdateBefore(typeof(EventResetSystem))]
+    partial struct SelectedVisualSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)

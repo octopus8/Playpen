@@ -9,13 +9,17 @@ namespace RTS
 {
     /// <summary>
     /// System that moves units towards their destination.
-    /// This system uses a job to perform the movement calculations in parallel for better performance.
     /// </summary>
     partial struct UnitMoverSystem : ISystem
     {
         // Squared distance threshold to consider that the unit has reached its destination.
         public const float REACHED_TARGET_POSITION_DISTANCE_SQUARED = 2f;
         
+        
+        /// <summary>
+        /// Updates the positions of all units with a UnitMover component.
+        /// This method schedules the UnitMoverJob to run in parallel.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
