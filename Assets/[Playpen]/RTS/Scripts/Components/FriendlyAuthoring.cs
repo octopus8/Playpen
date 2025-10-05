@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RTS
 {
     /// <summary>
-    /// Authoring component to mark an entity as friendly.
+    /// Authoring component to tag an entity as friendly.
     /// Friendly entities are on the player's team.
     /// </summary>
     public class FriendlyAuthoring : MonoBehaviour
