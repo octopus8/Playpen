@@ -49,16 +49,17 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `UnitMover`(`UnitMoverAuthoring`) - Contains movement data such as speed and destination.
 - `UnitMoverOverride`(`UnitMoverOverrideAuthoring`) -  Enableable component containing temporary movement override data for a unit.
 - `Selected`(`SelectedAuthoring`) - Enableable component containing selection data for an entity.
-
 - `Target`(`TargetAuthoring`) - Tags the entity as a target and contains target data.
+
 - `FindTarget`(`FindTargetAuthoring`) - Tags the entity as needing to find a target and contains search data.
 - `ShootAttack`(`ShootAttackAuthoring`) - Tags the entity as being able to shoot and contains shooting data.
 - `EnemyAttackHQ`(`EnemyAttackHQAuthoring`) - Tags the entity as an enemy that will attack the HQ.
 #### Systems
 - `UnitMoverSystem` - Moves units towards their destination.
 - `UnitMoverOverrideSystem` - Sets the `UnitMover` target position to the `UnitMoverOverride` position if it is set.
-
 - `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
+  - Updates in `LateSimulationSystemGroup` and before `EventResetSystem`.
+
 - `FindTargetSystem` - Finds targets for entities that need to find a target.
 - `ShootAttackSystem` - Handles shooting for entities that can shoot.
   - Uses the `EntityReferences` to instantiate bullets.

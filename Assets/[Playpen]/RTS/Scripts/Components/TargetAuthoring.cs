@@ -9,6 +9,9 @@ namespace RTS
     /// </summary>
     public class TargetAuthoring : MonoBehaviour
     {
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         public class Baker : Baker<TargetAuthoring>
         {
             public override void Bake(TargetAuthoring authoring)
@@ -22,6 +25,9 @@ namespace RTS
     }
 
 
+    /// <summary>
+    /// Component storing target data for an entity.
+    /// </summary>
     public struct Target : IComponentData
     {
         /// <summary>Entity representing the target.</summary>

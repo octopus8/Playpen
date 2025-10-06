@@ -19,8 +19,12 @@ namespace RTS
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Iterate over all entities with the Selected component, enabled or not.
+            // Disabled components are included because the component is disabled
+            // upon deselection, but we still need to handle the visual scaling.
             foreach (RefRO<Selected> selected in SystemAPI.Query<RefRO<Selected>>().WithPresent<Selected>())
             {
+                // If the entity has just been deselected, scale down the visual representation to zero.
                 if (selected.ValueRO.onDeselected)
                 {
                     RefRW<LocalTransform> visualLocalTransform =
@@ -28,6 +32,7 @@ namespace RTS
                     visualLocalTransform.ValueRW.Scale = 0f;
                 }
 
+                // If the entity has just been selected, scale up the visual representation to its specified scale.
                 if (selected.ValueRO.onSelected)
                 {
                     RefRW<LocalTransform> visualLocalTransform =
