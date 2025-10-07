@@ -30,7 +30,10 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
   - This was removed from the project, but could be added back in if needed.
 - `Enemy`(`EnemyAuthoring`) - Tags the entity as "enemy". The `ZombieSpawnerSystem` uses this to control spawning too many enemies close to the spawner.
 - `Faction`(`FactionAuthoring`) - Defines which faction the entity belongs to. The `FindTargetSystem` uses this to find enemy targets, and `UnitSelection` uses this to find selected units.
-
+- `EntityPrefabSet`(`EntityPrefabSetAuthoring`) - Singleton that contains references to entity prefabs used in the game, such as units and bullets.
+  - This is required by the `FindTargetSystem` to find targets, and by the `ShootAttackSystem` to instantiate bullets.
+- `EventReset`(`EventResetAuthoring`) - Singleton that is used to reset event flags at the end of the frame.
+  - Systems that set event flags should run before `EventResetSystem`, and systems that read event flags should run after `EventResetSystem`.
 
 ### Health
 #### Components
@@ -40,8 +43,6 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `HealthBarSystem` - Updates the health bar visual.
 - `HealthDeadTestSystem` - Tests the health component for death and removes the entity if dead.
 
-----------------------
-(verify the documentation below is accurate)
 
 ### Units
 #### Components
@@ -51,20 +52,23 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `Selected`(`SelectedAuthoring`) - Enableable component containing selection data for an entity.
 - `Target`(`TargetAuthoring`) - Contains data about the target.
 - `FindTarget`(`FindTargetAuthoring`) - Contains data about finding a target.
+  - Requires `EntityPrefabSet` singleton to be present before updating.
 - `TargetOverride`(`TargetOverrideAuthoring`) - Contains temporary target override data for a unit.
-
-- `ShootAttack`(`ShootAttackAuthoring`) - Tags the entity as being able to shoot and contains shooting data.
-- `EnemyAttackHQ`(`EnemyAttackHQAuthoring`) - Tags the entity as an enemy that will attack the HQ.
+  - Overriding the target is used to override auto targeting, such as when a player manually selects a target for a unit to attack.
+- `ShootAttack`(`ShootAttackAuthoring`) - Contains shoot attack data. This component is added to units that can perform shoot attacks.
+- `MeleeAttack`(`MeleeAttackAuthoring`) - Contains melee attack data. This component is added to units that can perform melee attacks.
 
 #### Systems
 - `UnitMoverSystem` - Moves units towards their destination.
 - `UnitMoverOverrideSystem` - Sets the `UnitMover` target position to the `UnitMoverOverride` position if it is set.
+  - Note: Does not use job system.
 - `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
   - Updates in `LateSimulationSystemGroup` and before `EventResetSystem`.
+  - Note: Does not use job system.
 - `FindTargetSystem` - Finds targets for entities within a specified range and updates the `Target` component.
-
+  - Note: Does not use job system.
 - `ShootAttackSystem` - Handles shooting for entities that can shoot.
-  - Uses the `EntityReferences` to instantiate bullets.
+  - Note: Does not use job system.
 
 ----------------------
 

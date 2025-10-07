@@ -9,8 +9,14 @@ namespace RTS
     /// </summary>
     public class UnitAuthoring : MonoBehaviour
     {
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         public class Baker : Baker<UnitAuthoring>
         {
+            /// <summary>
+            /// Bakes the UnitAuthoring component into a Unit ECS component.
+            /// </summary>
             public override void Bake(UnitAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -20,6 +26,11 @@ namespace RTS
             }
         }
     }
+    
+    
+    /// <summary>
+    /// Tag component which marks an entity as a "unit".
+    /// </summary>
     public struct Unit : IComponentData
     {
     }

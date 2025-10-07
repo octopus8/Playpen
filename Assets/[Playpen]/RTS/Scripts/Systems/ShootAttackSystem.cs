@@ -10,14 +10,24 @@ namespace RTS
     /// <summary>
     /// System that handles shooting attacks for entities with ShootAttack component.
     /// It rotates the entity towards its target, moves it within attack range, and spawns bullets when attacking.
+    /// This system requires the EntityPrefabSet singleton to be present for the system to update.
     /// </summary>
     partial struct ShootAttackSystem : ISystem
     {
+        
+        /// <summary>
+        /// OnCreate is called when the system is created. It requires the EntityPrefabSet singleton to be present for the system to update.
+        /// </summary>
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EntityPrefabSet>();
         }
 
+        
+        /// <summary>
+        /// OnUpdate is called every frame to process entities with ShootAttack component.
+        /// It rotates the entity towards its target, moves it within attack range, and spawns bullets when attacking.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
