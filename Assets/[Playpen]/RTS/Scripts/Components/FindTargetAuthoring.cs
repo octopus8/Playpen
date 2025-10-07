@@ -22,8 +22,14 @@ namespace RTS
         [SerializeField] private float maxTimerSeconds = 0.2f;
 
         
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         public class Baker : Unity.Entities.Baker<FindTargetAuthoring>
         {
+            /// <summary>
+            /// Converts the MonoBehaviour properties to an Entity with FindTarget component.
+            /// </summary>
             public override void Bake(FindTargetAuthoring authoring)
             {
                 var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
@@ -38,14 +44,20 @@ namespace RTS
     }
 
 
+    /// <summary>
+    /// Component storing data for finding targets.
+    /// </summary>
     public struct FindTarget : Unity.Entities.IComponentData
     {
         /// <summary>Range to search for targets.</summary>
         public float range;
+        
         /// <summary>The faction to target.</summary>
         public FactionType TargetFactionType;
+        
         /// <summary>Timer to track time between target searches.</summary>
         public float timer;
+        
         /// <summary>Maximum time between target searches in seconds.</summary>
         public float maxTimer;
     }

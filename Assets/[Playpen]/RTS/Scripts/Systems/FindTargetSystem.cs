@@ -44,8 +44,11 @@ namespace RTS
                 {
                     continue;
                 }
-                findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
                 
+                // Reset the timer.
+                findTarget.ValueRW.timer = findTarget.ValueRO.maxTimer;
+
+                // If there's a target override, use it directly.
                 if (targetOverride.ValueRO.targetEntity != Entity.Null)
                 {
                     target.ValueRW.targetEntity = targetOverride.ValueRO.targetEntity;
@@ -60,7 +63,8 @@ namespace RTS
                     CollidesWith = 1u << RTSGame.UNITS_LAYER | 1u << RTSGame.BUILDINGS_LAYER,
                     GroupIndex = 0
                 };
-                
+
+                // If there's already a target, start with it as the closest.
                 Entity closestTargetEntity = Entity.Null;
                 float closestDistance = float.MaxValue;
                 float currentTargetDistanceOffset = 2f;
@@ -70,6 +74,8 @@ namespace RTS
                     LocalTransform targetTransform = SystemAPI.GetComponent<LocalTransform>(closestTargetEntity);
                     closestDistance = math.distance(localTransform.ValueRO.Position, targetTransform.Position);
                 }
+                
+                // If there are targets within range, find the closest valid one.
                 if (collisionWorld.OverlapSphere(localTransform.ValueRO.Position, findTarget.ValueRO.range, ref hits,
                         collisonFilter))
                 {
@@ -87,11 +93,15 @@ namespace RTS
                         Faction targetFaction = SystemAPI.GetComponent<Faction>(distanceHit.Entity);
                         if (targetFaction.factionType == findTarget.ValueRO.TargetFactionType)
                         {
+                            // If it's the first valid target or closer than the current closest, update the closest target.
                             if (closestTargetEntity == Entity.Null)
                             {
                                 closestTargetEntity = distanceHit.Entity;
                                 closestDistance = distanceHit.Distance;
                             }
+                            
+                            // This is not the first valid target, check if it's closer than the current closest.
+                            // Add a distance offset if it's the current target to prevent rapid switching.
                             else
                             {
                                 if (distanceHit.Distance + currentTargetDistanceOffset < closestDistance)
@@ -104,6 +114,7 @@ namespace RTS
                     } 
                 }
 
+                // If a closest target was found, update the Target component.
                 if (closestTargetEntity != Entity.Null)
                 {
                     target.ValueRW.targetEntity = closestTargetEntity;

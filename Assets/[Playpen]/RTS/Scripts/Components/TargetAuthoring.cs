@@ -14,6 +14,9 @@ namespace RTS
         /// </summary>
         public class Baker : Baker<TargetAuthoring>
         {
+            /// <summary>
+            /// Adds the Target component to the entity.
+            /// </summary>
             public override void Bake(TargetAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
