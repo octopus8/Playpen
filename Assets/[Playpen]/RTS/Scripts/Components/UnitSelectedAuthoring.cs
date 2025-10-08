@@ -8,7 +8,7 @@ namespace RTS
     /// <summary>
     /// Authoring component for selection data. This component is added to all selectable entities.
     /// </summary>
-    public class SelectedAuthoring : MonoBehaviour
+    public class UnitSelectedAuthoring : MonoBehaviour
     {
         /// <summary> Visual visible when selected. </summary>
         [Tooltip("Visual visible when selected.")]
@@ -22,20 +22,20 @@ namespace RTS
         /// <summary>
         /// Baker class for converting the authoring component to an ECS component.
         /// </summary>
-        class SelectedBaker : Baker<SelectedAuthoring>
+        class UnitSelectedBaker : Baker<UnitSelectedAuthoring>
         {
             /// <summary>
             /// Converts the MonoBehaviour properties to an Entity with SelectedDOTS component.
             /// </summary>
-            public override void Bake(SelectedAuthoring authoring)
+            public override void Bake(UnitSelectedAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new Selected
+                AddComponent(entity, new UnitSelected
                 {
                     visualEntity = GetEntity(authoring.visualGameObject, TransformUsageFlags.Dynamic),
                     showScale = authoring.showScale
                 });
-                SetComponentEnabled<Selected>(entity, false);
+                SetComponentEnabled<UnitSelected>(entity, false);
             }
         }
     }
@@ -44,7 +44,7 @@ namespace RTS
     /// <summary>
     /// Enableable component storing selection data for an entity.
     /// </summary>
-    public struct Selected : IComponentData, IEnableableComponent
+    public struct UnitSelected : IComponentData, IEnableableComponent
     {
         /// <summary> Entity representing the visual that is shown when selected. </summary>
         public Entity visualEntity;

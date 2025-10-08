@@ -67,7 +67,7 @@ public class BuildingBarracksUI : MonoBehaviour
 
     private void OnSelectedChanged(object sender, EventArgs e)
     {
-        EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected, BuildingBarracks>().Build(_entityManager);
+        EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitSelected, BuildingBarracks>().Build(_entityManager);
         
         NativeArray<Entity> selectedBarracks = entityQuery.ToEntityArray(Allocator.Temp);
         if (selectedBarracks.Length > 0)

@@ -218,7 +218,7 @@ namespace RTS
             // An enemy unit was not clicked; set the target position for all selected units.
             // Iterate through an array of MoveOverride components and set the target position for each selected unit.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
-                .WithAll<Selected>()
+                .WithAll<UnitSelected>()
                 .WithPresent<UnitMoverOverride, TargetOverride>()
                 .Build(entityManager);
             NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
@@ -246,7 +246,7 @@ namespace RTS
 
             // Handle barracks rally position.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
-                .WithAll<Selected, BuildingBarracks, LocalTransform>()
+                .WithAll<UnitSelected, BuildingBarracks, LocalTransform>()
                 .Build(entityManager);
             NativeArray<BuildingBarracks> unitSpawners = entityQuery.ToComponentDataArray<BuildingBarracks>(Allocator.Temp);
             NativeArray<LocalTransform> localTransforms = entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
@@ -265,7 +265,7 @@ namespace RTS
         private void HandleTargetSingleUnit(EntityManager entityManager, EntityQuery entityQuery, Entity targetEntity)
         {
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
-                .WithAll<Selected>()
+                .WithAll<UnitSelected>()
                 .WithPresent<TargetOverride>()
                 .Build(entityManager);
 
@@ -294,17 +294,17 @@ namespace RTS
             // It also prevents previously selected units from remaining selected after the selection area is cleared.
             EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp)
-                .WithAll<Selected>()
+                .WithAll<UnitSelected>()
                 .Build(entityManager);
             NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
-            NativeArray<Selected> selectedDataArray = entityQuery.ToComponentDataArray<Selected>(Allocator.Temp);
+            NativeArray<UnitSelected> selectedDataArray = entityQuery.ToComponentDataArray<UnitSelected>(Allocator.Temp);
             for (int i = 0; i < entityArray.Length; i++)
             {
-                entityManager.SetComponentEnabled<Selected>(entityArray[i], false);
-                Selected selected = selectedDataArray[i];
-                selected.onDeselected = true;
-                selectedDataArray[i] = selected;
-                entityManager.SetComponentData(entityArray[i], selected);
+                entityManager.SetComponentEnabled<UnitSelected>(entityArray[i], false);
+                UnitSelected unitSelected = selectedDataArray[i];
+                unitSelected.onDeselected = true;
+                selectedDataArray[i] = unitSelected;
+                entityManager.SetComponentData(entityArray[i], unitSelected);
             }
 
             // Determine if the selection area is a multiple selection or a single selection.
@@ -340,7 +340,7 @@ namespace RTS
             // This allows the UI to visually represent the selected units.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
                 .WithAll<LocalTransform, Unit>()
-                .WithPresent<Selected>()
+                .WithPresent<UnitSelected>()
                 .Build(entityManager);
             entityArray = entityQuery.ToEntityArray(Allocator.Temp);
             NativeArray<LocalTransform> unitLocalTransformDataArray =
@@ -356,10 +356,10 @@ namespace RTS
                 // If the unit screen position is within the selection area, set it as selected.
                 if (selectionAreaRect.Contains(unitScreenPosition))
                 {
-                    entityManager.SetComponentEnabled<Selected>(entityArray[i], true);
-                    Selected selected = entityManager.GetComponentData<Selected>(entityArray[i]);
-                    selected.onSelected = true;
-                    entityManager.SetComponentData(entityArray[i], selected);
+                    entityManager.SetComponentEnabled<UnitSelected>(entityArray[i], true);
+                    UnitSelected unitSelected = entityManager.GetComponentData<UnitSelected>(entityArray[i]);
+                    unitSelected.onSelected = true;
+                    entityManager.SetComponentData(entityArray[i], unitSelected);
                 }
             }
         }
@@ -384,12 +384,12 @@ namespace RTS
             };
             if (collisionWorld.CastRay(raycastInput, out Unity.Physics.RaycastHit hit))
             {
-                if (entityManager.HasComponent<Selected>(hit.Entity))
+                if (entityManager.HasComponent<UnitSelected>(hit.Entity))
                 {
-                    entityManager.SetComponentEnabled<Selected>(hit.Entity, true);
-                    Selected selected = entityManager.GetComponentData<Selected>(hit.Entity);
-                    selected.onSelected = true;
-                    entityManager.SetComponentData(hit.Entity, selected);
+                    entityManager.SetComponentEnabled<UnitSelected>(hit.Entity, true);
+                    UnitSelected unitSelected = entityManager.GetComponentData<UnitSelected>(hit.Entity);
+                    unitSelected.onSelected = true;
+                    entityManager.SetComponentData(hit.Entity, unitSelected);
                 }
             }
         }

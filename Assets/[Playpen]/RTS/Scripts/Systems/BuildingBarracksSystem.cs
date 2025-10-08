@@ -6,10 +6,17 @@ using Unity.Transforms;
 namespace RTS
 {
 
+    /// <summary>
+    /// System that handles the spawning of units from barracks buildings.
+    /// It processes enqueue requests and spawns units at specified intervals.
+    /// This system requires the EntityPrefabSet singleton to be present for the system to update.
+    /// </summary>
     partial struct BuildingBarracksSystem : ISystem
     {
         
-        [BurstCompile]
+        /// <summary>
+        /// OnCreate is called when the system is created. It requires the EntityPrefabSet singleton to be present for the system to update.
+        /// </summary>
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EntityPrefabSet>();

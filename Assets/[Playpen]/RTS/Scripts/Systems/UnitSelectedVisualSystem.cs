@@ -14,7 +14,7 @@ namespace RTS
     /// </summary>
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     [UpdateBefore(typeof(EventResetSystem))]
-    partial struct SelectedVisualSystem : ISystem
+    partial struct UnitSelectedVisualSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
@@ -22,7 +22,7 @@ namespace RTS
             // Iterate over all entities with the Selected component, enabled or not.
             // Disabled components are included because the component is disabled
             // upon deselection, but we still need to handle the visual scaling.
-            foreach (RefRO<Selected> selected in SystemAPI.Query<RefRO<Selected>>().WithPresent<Selected>())
+            foreach (RefRO<UnitSelected> selected in SystemAPI.Query<RefRO<UnitSelected>>().WithPresent<UnitSelected>())
             {
                 // If the entity has just been deselected, scale down the visual representation to zero.
                 if (selected.ValueRO.onDeselected)

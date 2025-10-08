@@ -1,9 +1,10 @@
 # RTS
 
-## Overview
+## Project Overview
 The `RTS` project is a simple real-time strategy (RTS) game implemented using Unity's Entity Component System (ECS). The project demonstrates how to set up a basic RTS game with unit selection, movement, and attacking mechanics using ECS principles.
 
-## ECS Overview
+## ECS
+### Basic Concepts
 - ECS stands for Entity Component System.
 - An Entity is a general purpose object. It is just an ID.
 - A Component is a data container that holds data. It does not contain any logic.
@@ -13,7 +14,7 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - Systems use queries to find entities with specific components.
 - Some components are "tags" that do not contain any data, but are used to mark entities for specific behavior.
 
-## Component Baking
+### Component Baking
 - Authoring components are MonoBehaviours that are used to add components to entities at bake time.
 - Authoring components implement `IBaker` and define a `Bake` method that adds components to the entity.
 - The `Baker` class provides methods to add components to the entity, such as `AddComponent`, `AddComponentData`, and `AddSharedComponent`.
@@ -49,10 +50,9 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `Unit`(`UnitAuthoring`) - Tags the entity as a "unit".
 - `UnitMover`(`UnitMoverAuthoring`) - Contains movement data such as speed and destination.
 - `UnitMoverOverride`(`UnitMoverOverrideAuthoring`) -  Enableable component containing temporary movement override data for a unit.
-- `Selected`(`SelectedAuthoring`) - Enableable component containing selection data for an entity.
+- `UnitSelected`(`UnitSelectedAuthoring`) - Enableable component containing selection data for an entity.
 - `Target`(`TargetAuthoring`) - Contains data about the target.
 - `FindTarget`(`FindTargetAuthoring`) - Contains data about finding a target.
-  - Requires `EntityPrefabSet` singleton to be present before updating.
 - `TargetOverride`(`TargetOverrideAuthoring`) - Contains temporary target override data for a unit.
   - Overriding the target is used to override auto targeting, such as when a player manually selects a target for a unit to attack.
 - `ShootAttack`(`ShootAttackAuthoring`) - Contains shoot attack data. This component is added to units that can perform shoot attacks.
@@ -62,12 +62,25 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `UnitMoverSystem` - Moves units towards their destination.
 - `UnitMoverOverrideSystem` - Sets the `UnitMover` target position to the `UnitMoverOverride` position if it is set.
   - Note: Does not use job system.
-- `SelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
+- `UnitSelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
   - Updates in `LateSimulationSystemGroup` and before `EventResetSystem`.
   - Note: Does not use job system.
 - `FindTargetSystem` - Finds targets for entities within a specified range and updates the `Target` component.
   - Note: Does not use job system.
 - `ShootAttackSystem` - Handles shooting for entities that can shoot.
+  - Requires `EntityPrefabSet` singleton to be present before updating.
+  - Note: Does not use job system.
+- `MeleeAttackSystem` - Handles melee attacks for entities that can perform melee attacks.
+  - Requires `EntityPrefabSet` singleton to be present before updating.
+  - Note: Does not use job system.
+
+### Buildings
+#### Components
+- `Building`(`BuildingAuthoring`) - Tags the entity as a building and contains data about the building.
+
+#### Systems
+- `BuildingBarracksSystem` - Spawns units from barracks buildings at a set interval.
+  - Requires `EntityPrefabSet` singleton to be present before updating.
   - Note: Does not use job system.
 
 ----------------------

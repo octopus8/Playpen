@@ -96,7 +96,7 @@ namespace RTS
             public void Execute(in FlipbookAnimationMesh mesh, in MeleeAttack meleeAttack,
                 in UnitFlipbookAnimations animations)
             {
-                if (meleeAttack.onAttacked)
+                if (meleeAttack.onAttackTarget)
                 {
                     RefRW<ActiveFlipbookAnimation> activeFlipbookAnimation = activeAnimationLookup.GetRefRW(mesh.mesh);
                     activeFlipbookAnimation.ValueRW.nextAnimation = animations.meleeAttackAnimation;

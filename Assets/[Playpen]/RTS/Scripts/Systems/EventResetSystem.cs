@@ -78,10 +78,10 @@ namespace RTS
     [WithOptions(EntityQueryOptions.IgnoreComponentEnabledState)]
     public partial struct ResetSelectedEventsJob : IJobEntity
     {
-        public void Execute(ref Selected selected)
+        public void Execute(ref UnitSelected unitSelected)
         {
-            selected.onSelected = false;
-            selected.onDeselected = false;
+            unitSelected.onSelected = false;
+            unitSelected.onDeselected = false;
         }
     }
     
@@ -91,7 +91,7 @@ namespace RTS
     {
         public void Execute(ref MeleeAttack meleeAttack)
         {
-            meleeAttack.onAttacked = false;
+            meleeAttack.onAttackTarget = false;
         }
     }
 

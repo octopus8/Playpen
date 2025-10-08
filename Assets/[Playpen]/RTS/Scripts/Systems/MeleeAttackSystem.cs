@@ -9,16 +9,29 @@ using RaycastHit = Unity.Physics.RaycastHit;
 
 namespace RTS
 {
+    /// <summary>
+    /// System that handles melee attacks for entities with MeleeAttack component.
+    /// It moves the entity within attack range and applies damage to the target when attacking.
+    /// This system requires the PhysicsWorldSingleton to be present for the system to update.
+    /// </summary>
     partial struct MeleeAttackSystem : ISystem
     {
+        /// <summary>
+        /// OnCreate is called when the system is created. It requires the PhysicsWorldSingleton to be present for the system to update.
+        /// </summary> 
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PhysicsWorldSingleton>();
         }
 
+        /// <summary>
+        /// OnUpdate is called every frame to process entities with MeleeAttack component.
+        /// It moves the entity within attack range and applies damage to the target when attacking.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Iterate over all entities with LocalTransform, MeleeAttack, Target, and UnitMover components.
             PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
             CollisionWorld collisionWorld = physicsWorld.CollisionWorld;
             NativeList<RaycastHit> raycastHits = new NativeList<RaycastHit>(Allocator.Temp);
@@ -39,12 +52,14 @@ namespace RTS
                 if (target.ValueRO.targetEntity == Entity.Null)
                     continue;
 
+                // Get the squared distance to the target.
                 LocalTransform targetLocalTransform =
                     SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
                 float distancesq = math.distancesq(localTransform.ValueRO.Position, targetLocalTransform.Position);
+                
+                // If not in melee range, move towards target.
                 float meleeRangeSq = 2f;
                 bool isInMeleeRange = distancesq <= meleeRangeSq;
-
                 bool isTouchingTarget = false;
                 if (!isInMeleeRange)
                 {
@@ -76,10 +91,13 @@ namespace RTS
                     }
                 }
                 
+                // If not in melee range and not touching target, move towards target.
                 if (!isInMeleeRange && !isTouchingTarget)
                 {
                     unitMover.ValueRW.destination = targetLocalTransform.Position;
                 }
+                
+                // Otherwise, don't move and attack.
                 else
                 {
                     unitMover.ValueRW.destination = localTransform.ValueRO.Position;
@@ -90,13 +108,13 @@ namespace RTS
                     {
                         continue;
                     }
+                    
+                    // Reset the timer and apply damage to the target.
                     meleeAttack.ValueRW.timer = meleeAttack.ValueRO.attackRateSeconds;
-                
                     RefRW<Health> targetHealth = SystemAPI.GetComponentRW<Health>(target.ValueRO.targetEntity);
                     targetHealth.ValueRW.currentHealth -= meleeAttack.ValueRO.damageAmount;
                     targetHealth.ValueRW.onHealthChanged = true;
-
-                    meleeAttack.ValueRW.onAttacked = true;
+                    meleeAttack.ValueRW.onAttackTarget = true;
                 }
             }
         }
