@@ -7,6 +7,7 @@ namespace RTS
 
     /// <summary>
     /// Authoring component for selection data. This component is added to all selectable entities.
+    /// The component is added in a disabled state and is enabled when the entity is selected.
     /// </summary>
     public class UnitSelectedAuthoring : MonoBehaviour
     {
@@ -25,7 +26,8 @@ namespace RTS
         class UnitSelectedBaker : Baker<UnitSelectedAuthoring>
         {
             /// <summary>
-            /// Converts the MonoBehaviour properties to an Entity with SelectedDOTS component.
+            /// Adds the UnitSelected component to the entity with the specified parameters.
+            /// The component is added in a disabled state.
             /// </summary>
             public override void Bake(UnitSelectedAuthoring authoring)
             {

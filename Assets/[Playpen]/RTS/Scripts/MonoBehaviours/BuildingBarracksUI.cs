@@ -95,13 +95,13 @@ public class BuildingBarracksUI : MonoBehaviour
         }
 
         BuildingBarracks barracks = _entityManager.GetComponentData<BuildingBarracks>(_buildingBarracksEntity);
-        if (barracks.UnitType == UnitScriptableObject.UnitType.None)
+        if (barracks.spawnType == UnitScriptableObject.UnitType.None)
         {
             _progressBarImage.fillAmount = 0;
         }
         else
         {
-            _progressBarImage.fillAmount = barracks.timer / barracks.spawnDuration;
+            _progressBarImage.fillAmount = barracks.timer / barracks.currentSpawnDuration;
         }
 
     }
@@ -126,7 +126,7 @@ public class BuildingBarracksUI : MonoBehaviour
             // For example, if you have an Image component in the template:
             // Image unitImage = item.GetComponent<Image>();
             // unitImage.sprite = GetSpriteForUnitType(spawn.UnitTypeID);
-            UnitScriptableObject unitType = RTSGame.Instance.units.GetUnit(spawn.UnitType);
+            UnitScriptableObject unitType = RTSGame.Instance.units.GetUnit(spawn.unitType);
             item.GetComponent<Image>().sprite = unitType.unitIcon;
         }
         

@@ -15,7 +15,7 @@ namespace RTS
         public class Baker : Baker<UnitAuthoring>
         {
             /// <summary>
-            /// Bakes the UnitAuthoring component into a Unit ECS component.
+            /// Adds the Unit tag component to the entity.
             /// </summary>
             public override void Bake(UnitAuthoring authoring)
             {

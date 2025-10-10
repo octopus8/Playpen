@@ -13,7 +13,6 @@ namespace RTS
     /// </summary>
     partial struct BuildingBarracksSystem : ISystem
     {
-        
         /// <summary>
         /// OnCreate is called when the system is created. It requires the EntityPrefabSet singleton to be present for the system to update.
         /// </summary>
@@ -53,7 +52,7 @@ namespace RTS
             {
                 spawnBuffer.Add(new SpawnBuffer
                 {
-                    UnitType = barracksEnqueue.ValueRO.UnitType
+                    unitType = barracksEnqueue.ValueRO.UnitType
                 });
                 barracksEnqueueEnabled.ValueRW = false;
                 buildingBarracks.ValueRW.onUnitQueueChangedEventFlag = true;
@@ -82,16 +81,16 @@ namespace RTS
                 }
 
                 // If the unit type to spawn has changed, update the barracks unit type and spawn duration.
-                if (buildingBarracks.ValueRO.UnitType != spawnBuffer[0].UnitType)
+                if (buildingBarracks.ValueRO.spawnType != spawnBuffer[0].unitType)
                 {
-                    buildingBarracks.ValueRW.UnitType = spawnBuffer[0].UnitType;
-                    UnitScriptableObject activeUnit = RTSGame.Instance.units.GetUnit(buildingBarracks.ValueRW.UnitType);
-                    buildingBarracks.ValueRW.spawnDuration = activeUnit.spawnDuration;
+                    buildingBarracks.ValueRW.spawnType = spawnBuffer[0].unitType;
+                    UnitScriptableObject activeUnit = RTSGame.Instance.units.GetUnit(buildingBarracks.ValueRW.spawnType);
+                    buildingBarracks.ValueRW.currentSpawnDuration = activeUnit.spawnDuration;
                 }
                 
                 // Increment the spawn timer. If the timer is less than the spawn duration, skip this barracks.
                 buildingBarracks.ValueRW.timer += SystemAPI.Time.DeltaTime;
-                if (buildingBarracks.ValueRW.timer < buildingBarracks.ValueRO.spawnDuration)
+                if (buildingBarracks.ValueRW.timer < buildingBarracks.ValueRO.currentSpawnDuration)
                 {
                     continue;
                 }
@@ -99,7 +98,7 @@ namespace RTS
                 // The spawn timer has exceeded the spawn duration.
                 // Reset the timer, remove the unit from the spawn buffer, and set the barracks "unit queue changed" event flag to true.
                 buildingBarracks.ValueRW.timer = 0f;
-                UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(spawnBuffer[0].UnitType);
+                UnitScriptableObject unit = RTSGame.Instance.units.GetUnit(spawnBuffer[0].unitType);
                 spawnBuffer.RemoveAt(0);
                 buildingBarracks.ValueRW.onUnitQueueChangedEventFlag = true;
                 

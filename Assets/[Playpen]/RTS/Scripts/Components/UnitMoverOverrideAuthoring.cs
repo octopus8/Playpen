@@ -16,7 +16,7 @@ namespace RTS
         class Baker : Baker<UnitMoverOverrideAuthoring>
         {
             /// <summary>
-            /// Bakes the UnitMoverOverrideAuthoring component into a UnitMoverOverride ECS component.
+            /// Adds the UnitMoverOverride component to the entity.
             /// The component is added in a disabled state.
             /// </summary>
             public override void Bake(UnitMoverOverrideAuthoring authoring)
