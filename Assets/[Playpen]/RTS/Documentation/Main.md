@@ -45,12 +45,12 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 #### Components
 - `UnitAuthoring`
   - `Unit` - Tags the entity as a "unit".
+- `UnitSelectedAuthoring`
+  - `UnitSelected` - Enableable component containing selection data for an entity.
 - `UnitMoverAuthoring`
   - `UnitMover` - Contains movement data such as speed and destination.
 - `UnitMoverOverrideAuthoring`
   - `UnitMoverOverride` -  Enableable component containing temporary movement override data for a unit.
-- `UnitSelectedAuthoring`
-  - `UnitSelected` - Enableable component containing selection data for an entity.
 - `TargetAuthoring`
   - `Target` - Contains data about the target.
 - `FindTargetAuthoring`
@@ -65,11 +65,11 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 
 
 #### Systems
-- `UnitMoverSystem` - Moves units towards their destination.
-- `UnitMoverOverrideSystem` - Sets the `UnitMover` target position to the `UnitMoverOverride` position if it is set.
-  - Note: Does not use job system.
 - `UnitSelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.
   - Updates in `LateSimulationSystemGroup` and before `EventResetSystem`.
+  - Note: Does not use job system.
+- `UnitMoverSystem` - Moves units towards their destination.
+- `UnitMoverOverrideSystem` - Sets the `UnitMover` target position to the `UnitMoverOverride` position if it is set.
   - Note: Does not use job system.
 - `FindTargetSystem` - Finds targets for entities within a specified range and updates the `Target` component.
   - Note: Does not use job system.
@@ -83,9 +83,27 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 
 ### Buildings
 #### Components
+- `BuildingBarracksAuthoring`
+  - `BuildingBarracks` - Contains data for spawning units. This component is added to barracks buildings.
+    - Contains an `InternalBufferCapacity` attribute to enqueue spawned units before they are instantiated.
 
 
 #### Systems
 - `BuildingBarracksSystem` - Spawns units from barracks buildings at a set interval.
   - Requires `EntityPrefabSet` singleton to be present before updating.
   - Note: Does not use job system.
+
+
+############################################################################################
+
+- Things to document
+  - Barracks spawning units
+    - InternalBufferCapacity
+  - Unit Movement
+  - Unit Selection
+  - Targeting
+  - Shooting
+  - Melee Attacks
+  - Spawning Enemies
+
+############################################################################################
