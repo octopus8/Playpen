@@ -174,5 +174,6 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
   - Shooting
   - Melee Attacks
   - Spawning Enemies
+  - Flipbook Animation
 
 ############################################################################################

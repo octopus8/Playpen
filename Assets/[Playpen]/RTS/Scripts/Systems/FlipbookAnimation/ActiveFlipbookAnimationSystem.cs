@@ -5,17 +5,29 @@ using Unity.Rendering;
 namespace RTS
 {
     
+    /// <summary>
+    /// System that updates the active flipbook animations for all entities.
+    /// It requires the FlipbookAnimationDataHolder singleton to be present for the system to update.
+    /// </summary>
     partial struct ActiveFlipbookAnimationSystem : ISystem
     {
+        /// <summary>
+        /// OnCreate is called when the system is created. It requires the FlipbookAnimationDataHolder singleton to be present for the system to update.
+        /// </summary>
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<FlipbookAnimationDataHolder>();
         }
 
+        
+        /// <summary>
+        /// Updates the active flipbook animations for all entities.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // Create and schedule the job to update active flipbook animations.
             ActiveFlipbookAnimationJob job = new ActiveFlipbookAnimationJob()
             {
                 deltaTime = SystemAPI.Time.DeltaTime,
@@ -23,12 +35,15 @@ namespace RTS
             };
             job.ScheduleParallel();
         }
-
     }
     
     
-    
-    
+    /// <summary>
+    /// Job that updates the active flipbook animations for all entities.
+    /// It sets the mesh of the entity based on its current active animation and frame,
+    /// advances the frame based on the frame duration and deltaTime,
+    /// and resets to None if the animation is a one-shot and has completed.
+    /// </summary>
     [BurstCompile]
     public partial struct ActiveFlipbookAnimationJob : IJobEntity
     {
@@ -71,6 +86,4 @@ namespace RTS
             }
         }
     }
-    
-    
 }

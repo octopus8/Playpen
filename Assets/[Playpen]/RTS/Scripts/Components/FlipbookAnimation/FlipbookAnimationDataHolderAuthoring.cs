@@ -6,6 +6,14 @@ using UnityEngine.Rendering;
 
 namespace RTS
 {
+    /// <summary>
+    /// Authoring component for the FlipbookAnimationDataHolder ECS component.
+    /// This component creates bake-time only sub-entities for each frame of each animation type defined
+    /// in the FlipbookAnimationSetScriptableObject. Each sub-entity is assigned a RenderMeshUnmanaged component
+    /// with the corresponding mesh and a MaterialMeshInfo component. The main entity is assigned a
+    /// FlipbookAnimationDataHolderObjectData component referencing the animation set ScriptableObject
+    /// and a FlipbookAnimationDataHolder component to hold the BlobAssetReference for the animation data.
+    /// </summary>
     public class FlipbookAnimationDataHolderAuthoring : MonoBehaviour
     {
         /// <summary>The set of flipbook animations for all entities.</summary>
@@ -16,6 +24,10 @@ namespace RTS
         [Tooltip("This material is used to avoid the warning thrown if a `RenderMeshUnmanaged` is created without a \"materialForSubMesh\".")]
         public Material defaultMaterial;
         
+        
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         class Baker : Baker<FlipbookAnimationDataHolderAuthoring>
         {
             /// <summary>
@@ -87,19 +99,32 @@ namespace RTS
         public UnityObjectRef<FlipbookAnimationSetScriptableObject> animationSet;
     }
 
-    
+
+    /// <summary>
+    /// Bake-time only component added to sub-entities created for each frame of each animation type.
+    /// This component stores the animation type and frame index for the corresponding mesh.
+    /// </summary>
     public struct FlipbookAnimationDataHolderSubEntity : IComponentData
     {
         public FlipbookAnimationScriptableObject.AnimationType animationType;
         public int frameIndex;
     }
 
-    
+
+    /// <summary>
+    /// Component to hold the BlobAssetReference for the flipbook animation data.
+    /// The BlobAssetReference is created in the FlipbookAnimationDataHolderBakingSystem.
+    /// </summary>
     public struct FlipbookAnimationDataHolder : IComponentData
     {
         public BlobAssetReference<BlobArray<FlipbookAnimationData>> animationData;
     }
 
+    
+    /// <summary>
+    /// Struct to hold data for a single flipbook animation, including frame duration, total frames,
+    /// and a BlobArray of mesh IDs corresponding to each frame.
+    /// </summary>
     public struct FlipbookAnimationData
     {
         public float frameDuration;
