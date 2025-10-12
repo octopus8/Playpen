@@ -1,0 +1,48 @@
+    1  sudo apt-get update
+    2  sudo apt-get upgrade
+    3  sudo apt-get dist-upgrade
+    4  reboot
+    5  adduser octo
+    6  usermod -aG sudo octo
+    7  su - octo
+    8  cd /etc/letsencrypt/live/
+    9  ls
+   10  cd o8c.us/
+   11  openssl pkcs12 -export -out cert.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+   12  mv ./cert.pfx /home/octo
+   13  exit
+   14  history | grep pfx
+   15  history
+   16  pwd
+   17  cd /etc/letsencrypt/live/o8c.us/
+   18  openssl pkcs12 -export -out cert.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+   19  mv ./cert.pfx /home/octo
+   20  exit
+   21  cd /etc/letsencrypt/live/o8c.us/
+   22  openssl pkcs12 -export -out cert.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+   23  mv ./cert.pfx /home/octo
+   24  exit
+   25  history
+   26  exit
+   27  cd /etc/letsencrypt/live/o8c.us/
+   28  openssl pkcs12 -export -out cert.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+   29  ls
+   30  mv ./cert.pfx /home/octo
+   31  exit
+   32  cd /etc/letsencrypt/live/o8c.us/
+   33  openssl pkcs12 -export -out cert.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+   34  mv ./cert.pfx /home/octo/
+   35  exit
+   36  ls
+   37  history
+   38  pwd
+   39  exit
+   40  cd /home/octo/
+   41  history > ./sudo.history.txt
+   42  exit
+   43  ls
+   44  history > /home/octo/sudo.history.txt
+   45  exit
+   46  ls
+   47  cd /home/octo/
+   48  history > ./sudo.history.txt

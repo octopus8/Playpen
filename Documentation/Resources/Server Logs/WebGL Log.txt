@@ -1,0 +1,156 @@
+WebGL.framework.js:1137 navigator.mediaDevices support available
+WebGL.loader.js:1 [UnityCache] 'https://dev.o8c.us/dev32/Build/WebGL.data' successfully revalidated and served from the indexedDB cache
+WebGL.framework.js:1137 [UnityMemory] Configuration Parameters - Can be set up in boot.config
+
+WebGL.framework.js:1137     "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+
+WebGL.framework.js:1137     "memorysetup-temp-allocator-size-audio-worker=65536"
+
+WebGL.framework.js:1137     "memorysetup-temp-allocator-size-cloud-worker=32768"
+
+WebGL.framework.js:1137     "memorysetup-temp-allocator-size-background-worker=32768"
+
+WebGL.framework.js:1137     "memorysetup-bucket-allocator-granularity=16"
+
+WebGL.framework.js:1137     "memorysetup-bucket-allocator-bucket-count=8"
+
+WebGL.framework.js:1137     "memorysetup-bucket-allocator-block-size=4194304"
+
+WebGL.framework.js:1137     "memorysetup-bucket-allocator-block-count=1"
+
+WebGL.framework.js:1137     "memorysetup-main-allocator-block-size=16777216"
+
+WebGL.framework.js:1137     "memorysetup-thread-allocator-block-size=16777216"
+
+WebGL.framework.js:1137     "memorysetup-gfx-main-allocator-block-size=16777216"
+
+WebGL.framework.js:1137     "memorysetup-gfx-thread-allocator-block-size=16777216"
+
+WebGL.framework.js:1137     "memorysetup-cache-allocator-block-size=4194304"
+
+WebGL.framework.js:1137     "memorysetup-typetree-allocator-block-size=2097152"
+
+WebGL.framework.js:1137     "memorysetup-profiler-bucket-allocator-granularity=16"
+
+WebGL.framework.js:1137     "memorysetup-profiler-bucket-allocator-bucket-count=8"
+
+WebGL.framework.js:1137     "memorysetup-profiler-bucket-allocator-block-size=4194304"
+
+WebGL.framework.js:1137     "memorysetup-profiler-bucket-allocator-block-count=1"
+
+WebGL.framework.js:1137     "memorysetup-profiler-allocator-block-size=16777216"
+
+WebGL.framework.js:1137     "memorysetup-profiler-editor-allocator-block-size=1048576"
+
+WebGL.framework.js:1137     "memorysetup-temp-allocator-size-main=4194304"
+
+WebGL.framework.js:1137     "memorysetup-job-temp-allocator-block-size=2097152"
+
+WebGL.framework.js:1137     "memorysetup-job-temp-allocator-block-size-background=1048576"
+
+WebGL.framework.js:1137     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+
+WebGL.framework.js:1137 Loading player data from data.unity3d
+
+WebGL.framework.js:1137 Initialize engine version: 2021.3.16f1 (4016570cf34f)
+
+WebGL.framework.js:1137 [Subsystems] Discovering subsystems at path UnitySubsystems
+
+WebGL.framework.js:1137 [Subsystems] 1 'inputs' descriptors matched in UnitySubsystems/__Internal/UnitySubsystemsManifest.json
+
+WebGL.framework.js:1137 [Subsystems] 1 'displays' descriptors matched in UnitySubsystems/__Internal/UnitySubsystemsManifest.json
+
+WebGL.framework.js:1137 [Subsystems] No descriptors matched for  meshings in UnitySubsystems/__Internal/UnitySubsystemsManifest.json.
+
+WebGL.loader.js:1 Creating WebGL 2.0 context.
+WebGL.framework.js:1137 Renderer: WebKit WebGL
+
+WebGL.framework.js:1137 Vendor:   WebKit
+
+WebGL.framework.js:1137 Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+
+WebGL.framework.js:1137 GLES:     3
+
+WebGL.framework.js:1137  EXT_color_buffer_float EXT_color_buffer_half_float EXT_float_blend EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic EXT_texture_norm16 OES_texture_float_linear OVR_multiview2 WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_multisampled_render_to_texture OCULUS_multiview GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_float_blend GL_EXT_texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_EXT_texture_norm16 GL_OES_texture_float_linear GL_OVR_multiview2 GL_WEBGL_compressed_texture_astc GL_WEBGL_compressed_texture_etc GL_WEBGL_compressed_texture_etc1 GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_mul
+
+WebGL.framework.js:1137 tisampled_render_to_texture GL_OCULUS_multiview
+
+WebGL.framework.js:1137 OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1
+
+11The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. <URL>
+WebGL.framework.js:1137 ERROR: Shader 
+WebGL.framework.js:1137 Hidden/Universal Render Pipeline/Edge Adaptive Spatial Upsampling shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+
+WebGL.framework.js:1137 XRGeneral Settings awakening...
+
+WebGL.framework.js:1137 Registered WebXRSubsystemDescriptor
+
+WebGL.framework.js:1137 Got WebXRSettings
+
+WebGL.framework.js:1137 {VRRequiredReferenceSpace: Array(1), VROptionalFeatures: Array(1), ARRequiredReferenceSpace: Array(1), AROptionalFeatures: Array(2)}
+WebGL.framework.js:1137 Sent WebXRSettings
+
+WebGL.framework.js:1137 Input Manager initialize...
+
+WebGL.framework.js:1137 Input System initialize...
+
+WebGL.framework.js:1137 New input system (experimental) initialized
+
+WebGL.framework.js:1137 Start WebXRSubsystem
+
+WebGL.framework.js:1137 UnloadTime: 1.400000 ms
+
+WebGL.framework.js:1137 Mirror | mirror-networking.com | discord.gg/N9QVxbM
+
+WebGL.framework.js:1137 TelepathyTransport initialized!
+
+WebGL.framework.js:1137 URL: https://dev.o8c.us/dev32/
+
+WebGL.framework.js:1137 Server used: Dev
+
+WebGL.framework.js:1137 Connecting to wss://o8c.us:7776/
+WebGL.loader.js:1 warning: 2 FS.syncfs operations in flight at once, probably just doing extra work
+printErr @ WebGL.loader.js:1
+syncfs @ WebGL.framework.js:1137
+sync @ WebGL.framework.js:1137
+(anonymous) @ WebGL.framework.js:1137
+setInterval (async)
+setInterval @ WebGL.loader.js:1
+_JS_FileSystem_Initialize @ WebGL.framework.js:1137
+$Wi @ WebGL.wasm:0xdf0e0d
+Module._main @ WebGL.framework.js:1137
+callMain @ WebGL.framework.js:1137
+doRun @ WebGL.framework.js:1137
+run @ WebGL.framework.js:1137
+runCaller @ WebGL.framework.js:1137
+removeRunDependency @ WebGL.framework.js:1137
+(anonymous) @ WebGL.framework.js:1137
+doCallback @ WebGL.framework.js:1137
+done @ WebGL.framework.js:1137
+transaction.oncomplete @ WebGL.framework.js:1137
+WebGL.framework.js:1137 Connected to wss://o8c.us:7776/
+WebGL.framework.js:1137 Connected to server.
+
+WebGL.framework.js:1137 XR state changed to VR
+
+WebGL.framework.js:1137 Visiblity state changed to visible
+
+WebGL.framework.js:1137 Performance Warning: Recreating Offscreen FBO (1000x504 => 2880x1584)
+
+WebGL.framework.js:1137 granted
+
+WebGL.framework.js:1137 Visiblity state changed to visibleBlurred
+
+WebGL.framework.js:415 WebGL: INVALID_OPERATION: bindFramebuffer: attempt to use a deleted object
+XRManager.onEndSession @ WebGL.framework.js:415
+WebGL.framework.js:415 WebGL: INVALID_OPERATION: bindFramebuffer: attempt to use a deleted object
+XRManager.onEndSession @ WebGL.framework.js:415
+WebGL.framework.js:416 WebGL: INVALID_OPERATION: bindFramebuffer: attempt to use a deleted object
+XRManager.onEndSession @ WebGL.framework.js:416
+WebGL.framework.js:416 WebGL: INVALID_OPERATION: bindFramebuffer: attempt to use a deleted object
+XRManager.onEndSession @ WebGL.framework.js:416
+WebGL.framework.js:1137 XR state changed to normal
+
+WebGL.framework.js:1137 Visiblity state changed to visible
+
+WebGL.framework.js:1137 Performance Warning: Recreating Offscreen FBO (2880x1584 => 1000x504)

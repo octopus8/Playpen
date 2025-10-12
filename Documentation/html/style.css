@@ -1,0 +1,20 @@
+
+#projectlogo img {
+    width: 100px;
+}
+
+.image
+{
+   text-align: left;
+}
+
+code
+{
+    background-color:#f0f0f0;
+	font-weight:bold;
+}
+
+keycode
+{
+    background-color:#fff0f0;
+}

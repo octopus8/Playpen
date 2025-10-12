@@ -1,0 +1,1000 @@
+  261  kill -9 390318
+  262  exit
+  263  history
+  264  ls
+  265  ./devinstall.sh 
+  266  ps -ef | grep "Server"
+  267  ls
+  268  cd ./VerseServer-Dev/
+  269  history
+  270  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  271  ps -ef | grep "Server"
+  272  exit
+  273  history
+  274  pwd
+  275  ln -s /var/www ./www
+  276  ls
+  277  cd www
+  278  ls
+  279  cd html
+  280  ls
+  281  cat ./index.nginx-debian.html 
+  282  cd ..
+  283  ls
+  284  cd /etc/
+  285  ls
+  286  cd /var/www/dev.o8c.us/
+  287  ls
+  288  cd html/
+  289  ls
+  290  history
+  291  cd /etc/nginx/
+  292  cat ./nginx.conf 
+  293  sudo nano /etc/nginx/sites-available/dev.o8c.us 
+  294  cd ~
+  295  ls
+  296  pwd
+  297  history
+  298  sudo shutdown
+  299  exit
+  300  history
+  301  sudo nano /etc/nginx/nginx.conf 
+  302  history | grep nginx
+  303  'sudo systemctl reload nginx
+  304  sudo systemctl reload nginx
+  305  exit
+  306  ls
+  307  cd ./VerseServer-Dev/
+  308  ls
+  309  exit
+  310  ls
+  311  exit
+  312  exitg
+  313  exit
+  314  ls
+  315  history | grep ps
+  316  ps -ef | grep "Server"
+  317  ps -al
+  318  ls
+  319  cd ./VerseServer
+  320  ls
+  321  rm ./*
+  322  ls
+  323  rm -rf ./VerseServer_Data/
+  324  ls
+  325  cd ..
+  326  ls
+  327  ./prodinstall.sh 
+  328  ls
+  329  cd ./VerseServer
+  330  ls
+  331  history
+  332  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  333  ps -ef
+  334  ps -al
+  335  cd ..
+  336  ls
+  337  cat ./prodinstall.sh 
+  338  history
+  339  history | grep kill
+  340  ls
+  341  cat ./prodinstall.sh 
+  342  history
+  343  ps -ef | grep "Server"
+  344  exit
+  345  ps -ef | grep "Server"
+  346  exit
+  347  ls
+  348  ps -al
+  349  ps -ef | grep "Server"
+  350  kill -9 486319
+  351  ps -ef | grep "Server"
+  352  ./prodinstall.sh 
+  353  ls
+  354  history
+  355  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  356  ls
+  357  cd ./VerseServer
+  358  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  359  ps -ef | grep "Server"
+  360  exit
+  361  ps -ef | grep "Server"
+  362  kill -9 491678
+  363  ./prodinstall.sh 
+  364  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  365  ps -ef | grep "Server"
+  366  cd ./VerseServer
+  367  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  368  ps -ef | grep "Server"
+  369  exit
+  370  ps -ef | grep "Server"
+  371  kill -9 491960
+  372  ps -ef | grep "Server"
+  373  ./prodinstall.sh 
+  374  exit
+  375  ps -ef | grep "Server"
+  376  ./prodinstall.sh 
+  377  exit
+  378  ps -ef | grep "Server"
+  379  ./prodinstall.sh 
+  380  exit
+  381  ./prodinstall.sh 
+  382  exit
+  383  ./prodinstall.sh 
+  384  exit
+  385  ./prodinstall.sh 
+  386  exit
+  387  ps -ef | grep "Server"
+  388  history
+  389  ls
+  390  ./devinstall.sh 
+  391  cat ./devinstall.sh 
+  392  ls
+  393  exit
+  394  ./devinstall.sh 
+  395  exit
+  396  ./devinstall.sh 
+  397  ls
+  398  exit
+  399  ls
+  400  history
+  401  ps -ef | grep "Server"
+  402  ls
+  403  ./devinstall.sh 
+  404  exit
+  405  ./devinstall.sh 
+  406  exit
+  407  ls
+  408  ./prodinstall.sh 
+  409  EXIT
+  410  exit
+  411  ./devinstall.sh 
+  412  exit
+  413  ./devinstall.sh 
+  414  exit
+  415  ./devinstall.sh 
+  416  exit
+  417  ./devinstall.sh 
+  418  exit
+  419  ./devinstall.sh 
+  420  exit
+  421  ./prodinstall.sh 
+  422  exit
+  423  netstat -lntu
+  424  netstat
+  425  sudo apt install net-tools
+  426  netstat -lntu
+  427  ss -lntu
+  428  history | grep ufw
+  429  history > ./history.txt
+  430  exit
+  431  sudo ufw status
+  432  exit
+  433  ./devinstall.sh 
+  434  ls
+  435  exit
+  436  ./devinstall.sh 
+  437  exit
+  438  ./devinstall.sh 
+  439  exit
+  440  ./prodinstall.sh 
+  441  cd ./VerseServer
+  442  ls
+  443  history
+  444  ./VerseServer.x86_64 
+  445  history
+  446  sudo ufw status
+  447  ls
+  448  cat ./cert.json 
+  449  cat ./cert.pfx
+  450  ls
+  451  ./VerseServer.x86_64 
+  452  exit
+  453  history
+  454  history | grep pfx
+  455  pwd
+  456  cd ~
+  457  pwd
+  458  history > ./historySU.txt
+  459  exit
+  460  ls
+  461  cd cert
+  462  ls
+  463  cat ./cert.json 
+  464  cat ./cert.pfx 
+  465  ls
+  466  sudo systemctl status certbot.timer
+  467  cd /etc/
+  468  ls
+  469  cd ./letsencrypt/live/
+  470  sudo
+  471  su
+  472  su octo
+  473  cd ~
+  474  ls
+  475  exit
+  476  history | grep openssl
+  477  cd /etc/letsencrypt/live/
+  478  ls /etc/letsencrypt/live/
+  479  su ls /etc/letsencrypt/live/
+  480  sudo ls /etc/letsencrypt/live/
+  481  exit
+  482  history | grep openssl
+  483  su octo
+  484  pwd
+  485  ls
+  486  sudo ls /etc/letsencrypt/live/o8c.us/
+  487  sudo -i
+  488  sudo chown -R $USER:$USER ./cert.pfx
+  489  sudo chmod 644 ./cert.pfx
+  490  ls -al
+  491  ls
+  492  cd cert/
+  493  ls
+  494  ls -al
+  495  rm ./cert.pfx 
+  496  cd ..
+  497  mv ./cert.pfx ./cert
+  498  pwd
+  499  ls
+  500  cd ./VerseServer-Dev/
+  501  ./VerseServer-Dev.x86_64 
+  502  exit
+  503  ls
+  504  ./devinstall.sh 
+  505  exit
+  506  ./devinstall.sh 
+  507  exit
+  508  ./devinstall.sh 
+  509  exit
+  510  ls
+  511  ./devrun
+  512  ./devrun.sh 
+  513  history
+  514  ls
+  515  exit
+  516  history
+  517  history | ps
+  518  history | grep ps
+  519  ps -ef | grep "Server"
+  520  ./devrun.sh 
+  521  ps -ef | grep "Server"
+  522  cat ./devrun.sh 
+  523  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  524  cd ./VerseServer-Dev/
+  525  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  526  ps -ef | grep "Server"
+  527  tail -f ./VerseLog.txt
+  528  ps -ef | grep "Server"
+  529  pwd
+  530  cd ..
+  531  nano ./devrun.sh 
+  532  ls
+  533  ps -ef | grep "Server"
+  534  exit
+  535  ps -ef | grep "Server"
+  536  exit
+  537  ./devrun.sh 
+  538  cat ./devrun.sh 
+  539  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  540  cd ./VerseServer-Dev/
+  541  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  542  cd ..
+  543  ps -ef | grep "Server"
+  544  exit
+  545  ps -ef | grep "Server"
+  546  kill -9 588342
+  547  ./devrun.sh 
+  548  cd ./VerseServer-Dev/
+  549  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  550  exit
+  551  ./devinstall.sh 
+  552  ps -ef | grep "Server"
+  553  kill -9 588580
+  554  ./devrun.sh 
+  555  cat ./devinstall.sh 
+  556  cat ./devrun.sh 
+  557  ./devrun.sh 
+  558  ps -ef | grep "Server"
+  559  kill -9 600184
+  560  ./devrun.sh 
+  561  ls
+  562  cat ./devrun.sh 
+  563  cd ./VerseServer-Dev/
+  564  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  565  ps -ef | grep "Server"
+  566  exit
+  567  pwd
+  568  cd /var/www/o8c.us/html/verse/documentation/
+  569  ls
+  570  rm -rf ./index.html 
+  571  ln -s ./html/index.html ./index.html
+  572  ls
+  573  rm -rf ./index.html 
+  574  exit
+  575  ls
+  576  ps -ef | grep "Server"
+  577  kill -9 601648
+  578  ./prodinstall.sh 
+  579  cd ./VerseServer
+  580  ls
+  581  ls ..
+  582  cat ../prodinstall.sh 
+  583  cat ../devinstall.sh 
+  584  cat ../devrun.sh 
+  585  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  586  ps -ef | grep "Server"
+  587  tail -f ./VerseLog.txt
+  588  exit
+  589  ls
+  590  exit
+  591  ./devinstall.sh 
+  592  cd ./VerseServer-Dev/
+  593  ls
+  594  cat ../devinstall.sh 
+  595  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  596  tail -f ./VerseLog.txt
+  597  exit
+  598  cat ./cert/
+  599  ls ./cert/
+  600  exit
+  601  ps -ef | grep "Server"
+  602  kill -9 611081
+  603  ps -ef | grep "Server"
+  604  ./devinstall.sh 
+  605  exit
+  606  ./devinstall.sh 
+  607  exit
+  608  ./devinstall.sh 
+  609  exit
+  610  ./devinstall.sh 
+  611  exit
+  612  ./devinstall.sh 
+  613  exit
+  614  ./devinstall.sh 
+  615  exit
+  616  ./devinstall.sh 
+  617  exit
+  618  ./devinstall.sh 
+  619  exit
+  620  ./devinstall.sh 
+  621  exit
+  622  ./devinstall.sh 
+  623  exit
+  624  ./devinstall.sh 
+  625  ps -ef | grep "Server"
+  626  kill -9 622439
+  627  ps -ef | grep "Server"
+  628  exit
+  629  ./devinstall.sh 
+  630  exit
+  631  ./devinstall.sh 
+  632  exit
+  633  ./devinstall.sh 
+  634  exit
+  635  ./devinstall.sh 
+  636  exit
+  637  cd ./VerseServer-Dev/
+  638  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  639  exit
+  640  ./devinstall.sh 
+  641  history
+  642  ps -ef | grep "Server"
+  643  kill -9 625817
+  644  ./devinstall.sh 
+  645  pwd
+  646  exit
+  647  ./devinstall.sh 
+  648  ps -ef | grep "Server"
+  649  cd ./VerseServer-Dev/
+  650  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  651  tail -f ./VerseLog.txt
+  652  exit
+  653  ./devinstall.sh 
+  654  ps -ef | grep "Server"
+  655  kill -9 646912
+  656  cd ./VerseServer-Dev/
+  657  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  658  tail -f ./VerseLog.txt
+  659  exit
+  660  cd ./VerseServer-Dev/
+  661  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  662  tail -f ./VerseLog.txt
+  663  ps -ef | grep "Server"
+  664  kill -9 647476
+  665  ps -ef | grep "Server"
+  666  kill -9 647335
+  667  ps -ef | grep "Server"
+  668  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  669  tail -f ./VerseLog.txt
+  670  ps -ef | grep "Server"
+  671  kill -9 647522
+  672  ps -ef | grep "Server"
+  673  exit
+  674  ./devinstall.sh 
+  675  exit
+  676  ./devinstall.sh 
+  677  exit
+  678  ./devinstall.sh 
+  679  exit
+  680  ./devinstall.sh 
+  681  exit
+  682  ./devinstall.sh 
+  683  exit
+  684  cd ./VerseServer-Dev/
+  685  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  686  tail -f ./VerseLog.txt
+  687  ps -ef | grep "Server"
+  688  exit
+  689  ps -ef | grep "Server"
+  690  kill -9 649207
+  691  ps -ef | grep "Server"
+  692  ./devinstall.sh 
+  693  cd ./VerseServer-Dev/
+  694  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  695  tail -f ./VerseLog.txt
+  696  exit
+  697  ps -ef | grep "Server"
+  698  kill -9 657594
+  699  ./devinstall.sh 
+  700  cd ./VerseServer-Dev/
+  701  ps -ef | grep "Server"
+  702  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  703  tail -f ./VerseLog.txt
+  704  exit
+  705  ps -ef | grep "Server"
+  706  kill -9 603606
+  707  ./prodinstall.sh 
+  708  ps -ef | grep "Server"
+  709  cd ./VerseServer/
+  710  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  711  tail -f ./VerseLog.txt
+  712  ps -ef | grep "Server"
+  713  exit
+  714  history
+  715  ./devinstall.sh 
+  716  ps -ef | grep "Server"
+  717  kill -9 673742
+  718  cd ./VerseServer-Dev/
+  719  history
+  720  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  721  tail -f ./VerseLog.txt
+  722  ps -ef | grep "Server"
+  723  kill -9 785619
+  724  ps -ef | grep "Server"
+  725  exit
+  726  ./devinstall.sh 
+  727  cd ./VerseServer-Dev/
+  728  exot
+  729  exit
+  730  ./devinstall.sh 
+  731  cd ./VerseServer-Dev/
+  732  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  733  tail -f ./VerseLog.txt
+  734  ps -ef | grep "Server"
+  735  kill -9 792043
+  736  ps -ef | grep "Server"
+  737  exit
+  738  ./devinstall.sh 
+  739  ps -ef | grep "Server"
+  740  exit
+  741  ./devinstall.sh 
+  742  ps -ef | grep "Server"
+  743  exit
+  744  ./devinstall.sh 
+  745  exit
+  746  ./devinstall.sh 
+  747  exit
+  748  ./devinstall.sh 
+  749  exit
+  750  ./devinstall.sh 
+  751  ls
+  752  cd ./VerseServer-Dev/
+  753  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  754  exit
+  755  ps -ef | grep "Server"
+  756  kill -9 793858
+  757  ps -ef | grep "Server"
+  758  exit
+  759  ./devinstall.sh 
+  760  exit
+  761  ps -ef | grep "Server"
+  762  ./devinstall.sh 
+  763  cd ./VerseServer-Dev/
+  764  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  765  tail -f ./VerseLog.txt
+  766  exit
+  767  ./devinstall.sh 
+  768  ps -ef | grep "Server"
+  769  kill -9 796433
+  770  cd ./VerseServer-Dev/
+  771  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  772  tail -f ./VerseLog.txt
+  773  ps -ef | grep "Server"
+  774  kill -9 796829
+  775  ps -ef | grep "Server"
+  776  exit
+  777  ./devinstall.sh 
+  778  exit
+  779  ./devinstall.sh 
+  780  exit
+  781  ./devinstall.sh 
+  782  cd ./VerseServer-Dev/
+  783  ./VerseServer-Dev.x86_64 
+  784  exit
+  785  ./devinstall.sh 
+  786  exit
+  787  ./devinstall.sh 
+  788  exit
+  789  ./devinstall.sh 
+  790  exit
+  791  ./devinstall.sh 
+  792  exit
+  793  ./devinstall.sh 
+  794  exit
+  795  ./devinstall.sh 
+  796  exit
+  797  ./devinstall.sh 
+  798  exit
+  799  ./devinstall.sh 
+  800  exit
+  801  ./devinstall.sh 
+  802  cd ./VerseServer-Dev/
+  803  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  804  tail -f ./VerseLog.txt
+  805  ps -ef | grep "Server"
+  806  exit
+  807  ./prodinstall.sh 
+  808  ps -ef | grep "Server"
+  809  kill -9 674105
+  810  cd ./VerseServer
+  811  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  812  tail -f ./VerseLog.txt
+  813  ps -ef | grep "Server"
+  814  ls
+  815  pwd
+  816  cat ./VerseLog.txt 
+  817  rm -rf ./VerseLog.txt 
+  818  ls
+  819  exit
+  820  ps -ef | grep "Server"
+  821  kill -9 800381
+  822  ./devinstall.sh 
+  823  exit
+  824  cd ./VerseServer-Dev/
+  825  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  826  ps -ef | grep "Server"
+  827  cd ./VerseServer-Dev/
+  828  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  829  ps -ef | grep "Server"
+  830  exit
+  831  ps -ef | grep "Server"
+  832  kill -9 802926
+  833  exit
+  834  ./devinstall.sh 
+  835  exit
+  836  ./devinstall.sh 
+  837  exit
+  838  ./devinstall.sh 
+  839  exit
+  840  ps -ef | grep "Server"
+  841  ./devinstall.sh 
+  842  exit
+  843  ./devinstall.sh 
+  844  exit
+  845  ./devinstall.sh 
+  846  exit
+  847  ./devinstall.sh 
+  848  exit
+  849  ./devinstall.sh 
+  850  exit
+  851  ./devinstall.sh 
+  852  exit
+  853  ./devinstall.sh 
+  854  exit
+  855  cd ./VerseServer-Dev/
+  856  ./VerseServer-Dev.x86_64 
+  857  exit
+  858  cd ./VerseServer-Dev/
+  859  ./VerseServer-Dev.x86_64 
+  860  exit
+  861  ./devinstall.sh 
+  862  cd ./VerseServer-Dev/
+  863  ./VerseServer-Dev.x86_64 
+  864  exit
+  865  ./devinstall.sh 
+  866  exit
+  867  ./devinstall.sh 
+  868  exit
+  869  ./devinstall.sh 
+  870  exit
+  871  ./devinstall.sh 
+  872  exit
+  873  ./devinstall.sh 
+  874  exit
+  875  ./devinstall.sh 
+  876  cd ./VerseServer-Dev/
+  877  ./VerseServer-Dev.x86_64 
+  878  exit
+  879  ./devinstall.sh 
+  880  exit
+  881  ./devinstall.sh 
+  882  exit
+  883  ./devinstall.sh 
+  884  cd ./VerseServer-Dev/
+  885  ./VerseServer-Dev.x86_64 
+  886  exit
+  887  ./devinstall.sh 
+  888  exit
+  889  ./devinstall.sh 
+  890  exit
+  891  ./devinstall.sh 
+  892  exit
+  893  ./devinstall.sh 
+  894  exit
+  895  cd ./VerseServer-Dev/
+  896  ./VerseServer-Dev
+  897  ./VerseServer-Dev.x86_64 
+  898  exit
+  899  ./devinstall.sh 
+  900  ls
+  901  exit
+  902  ./devinstall.sh 
+  903  exit
+  904  ./devinstall.sh 
+  905  exit
+  906  ./devinstall.sh 
+  907  exit
+  908  ./devinstall.sh 
+  909  exit
+  910  ./devinstall.sh 
+  911  exit
+  912  ./devinstall.sh 
+  913  exit
+  914  ./devinstall.sh 
+  915  exit
+  916  cd ./VerseServer-Dev/
+  917  ./VerseServer-Dev.x86_64 
+  918  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  919  ps -ef | grep "Server"
+  920  exit
+  921  ps -ef | grep "Server"
+  922  kill -9 829173
+  923  exit
+  924  ./devinstall.sh 
+  925  cd ./VerseServer-Dev/
+  926  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  927  history
+  928  tail -f ./VerseLog.txt
+  929  exit
+  930  ps -ef | grep "Server"
+  931  kill -9 830614
+  932  exit
+  933  ./devinstall.sh 
+  934  ps -ef | grep "Server"
+  935  exit
+  936  ./devinstall.sh 
+  937  cd ./VerseServer-Dev/
+  938  ./VerseServer-Dev.x86_64 
+  939  exit
+  940  ./devinstall.sh 
+  941  cd ./VerseServer-Dev/
+  942  history
+  943  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  944  tail -f ./VerseLog.txt
+  945  ps -ef | grep "Server"
+  946  exit
+  947  cd ./VerseServer-Dev/
+  948  tail -f ./VerseLog.txt
+  949  ps -ef | grep "Server"
+  950  kill -9 837012
+  951  exit
+  952  ./devinstall.sh 
+  953  cd ./VerseServer-Dev/
+  954  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+  955  tail -f ./VerseLog.txt
+  956  ps -ef | grep "Server"
+  957  kill -9 800964
+  958  exit
+  959  ./prodinstall.sh 
+  960  cd ./VerseServer
+  961  history
+  962  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+  963  tail -f ./VerseLog.txt
+  964  ps -ef | grep "Server"
+  965  exit
+  966  ps -ef | grep "Server"
+  967  exit
+  968  history | grep sudo
+  969  sudo -i
+  970  sudo chown -R $USER:$USER ./cert.pfx
+  971  sudo chmod 644 ./cert.pfx
+  972  rm ./cert/cert.pfx
+  973  mv ./cert.pfx ./cert
+  974  sudo -i
+  975  ls
+  976  pwd
+  977  ls
+  978  sudo -i
+  979  sudo chown -R $USER:$USER ./cert.pfx
+  980  ls
+  981  sudo chmod 644 ./cert.pfx
+  982  pwd
+  983  ls ./cert
+  984  rm ./cert/cert.pfx
+  985  ls ./cert
+  986  cat ./cert/cert.json 
+  987  mv ./cert.pfx ./cert
+  988  cat ./cert/cert.json 
+  989  ls ./cert
+  990  ls -al ./cert
+  991  history | grep ps
+  992  ps -ef | grep "Server"
+  993  kill -9 840548
+  994  kill -9 840246
+  995  ps -ef | grep "Server"
+  996  exit
+  997  ./devinstall.sh 
+  998  history
+  999  cd ./VerseServer-Dev/
+ 1000  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1001  ps -ef | grep "Server"
+ 1002  exit
+ 1003  ./devinstall.sh 
+ 1004  ps -ef | grep "Server"
+ 1005  kill -9 1012277
+ 1006  ./devinstall.sh 
+ 1007  exit
+ 1008  ./devinstall.sh 
+ 1009  cd ./VerseServer-Dev/
+ 1010  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1011  ls
+ 1012  history | grep tail
+ 1013  tail -f ./VerseLog.txt 
+ 1014  exit
+ 1015  ./prodinstall.sh 
+ 1016  cd ./VerseServer
+ 1017  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+ 1018  tail -f ./VerseLog.txt 
+ 1019  ps -ef | grep "Server"
+ 1020  exit
+ 1021  ls
+ 1022  cd VerseServer
+ 1023  ls
+ 1024  history | grep tail
+ 1025  tail -f ./VerseLog.txt 
+ 1026  exit
+ 1027  cd VerseServer-Dev/
+ 1028  tail -f ./VerseLog.txt 
+ 1029  ps -ef | grep "Server"
+ 1030  kill -9 1043013
+ 1031  kill -9 1043287
+ 1032  ps -ef | grep "Server"
+ 1033  exit
+ 1034  ./devinstall.sh 
+ 1035  exit
+ 1036  ./devinstall.sh 
+ 1037  ps -ef | grep "Server"
+ 1038  exit
+ 1039  ./devinstall.sh 
+ 1040  exit
+ 1041  ./devinstall.sh 
+ 1042  exit
+ 1043  ./devinstall.sh 
+ 1044  exit
+ 1045  ./devinstall.sh 
+ 1046  exit
+ 1047  ./devinstall.sh 
+ 1048  exit
+ 1049  ./devinstall.sh 
+ 1050  cd ./VerseServer-Dev/
+ 1051  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+ 1052  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1053  ps -ef | grep "Server"
+ 1054  kill -9 1049225
+ 1055  ps -ef | grep "Server"
+ 1056  exit
+ 1057  ./devinstall.sh 
+ 1058  ps -ef | grep "Server"
+ 1059  exit
+ 1060  ./devinstall.sh 
+ 1061  exit
+ 1062  ./devinstall.sh 
+ 1063  exit
+ 1064  ./devinstall.sh 
+ 1065  exit
+ 1066  ./devinstall.sh 
+ 1067  exit
+ 1068  ./devinstall.sh 
+ 1069  exit
+ 1070  ./devinstall.sh 
+ 1071  cd ./VerseServer-Dev/
+ 1072  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1073  tail -f ./VerseLog.txt 
+ 1074  ps -ef | grep "Server"
+ 1075  kill -9 1051057
+ 1076  exit
+ 1077  ./devinstall.sh 
+ 1078  exit
+ 1079  ./devinstall.sh 
+ 1080  exit
+ 1081  ./devinstall.sh 
+ 1082  exit
+ 1083  ps -ef | grep "Server"
+ 1084  exit
+ 1085  ./devinstall.sh 
+ 1086  exit
+ 1087  ./devinstall.sh 
+ 1088  ps -ef | grep "Server"
+ 1089  exit
+ 1090  ./devinstall.sh 
+ 1091  cd ./VerseServer-Dev/
+ 1092  history
+ 1093  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1094  cd ..
+ 1095  ps -ef | grep "Server"
+ 1096  exit
+ 1097  ./prodinstall.sh 
+ 1098  cd ./VerseServer
+ 1099  nohup ./VerseServer.x86_64 > VerseLog.txt & disown
+ 1100  tail -f ./VerseLog.txt 
+ 1101  ps -ef | grep "Server"
+ 1102  exit
+ 1103  ps -ef | grep "Server"
+ 1104  kill -9 1057556
+ 1105  ps -ef | grep "Server"
+ 1106  ./devinstall.sh 
+ 1107  exit
+ 1108  ./devinstall.sh 
+ 1109  exit
+ 1110  ./devinstall.sh 
+ 1111  exit
+ 1112  ./devinstall.sh 
+ 1113  exit
+ 1114  ./devinstall.sh 
+ 1115  exit
+ 1116  ./devinstall.sh 
+ 1117  exit
+ 1118  ./devinstall.sh 
+ 1119  exit
+ 1120  ./devinstall.sh 
+ 1121  exit
+ 1122  ./devinstall.sh 
+ 1123  exit
+ 1124  ./devinstall.sh 
+ 1125  ps -ef | grep "Server"
+ 1126  exit
+ 1127  ./devinstall.sh 
+ 1128  history | grep nohup
+ 1129  cd VerseServer
+ 1130  cd ..
+ 1131  cd VerseServer-Dev/
+ 1132  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1133  history | grep tail
+ 1134  tail -f ./VerseLog.txt 
+ 1135  ls
+ 1136  rm ./VerseLog.txt 
+ 1137  ls
+ 1138  cat history.txt
+ 1139  rm ./history.txt 
+ 1140  history > ./history.txt
+ 1141  cat ./historySU.txt 
+ 1142  cat ./history.txt 
+ 1143  sudo -i
+ 1144  sudo chown -R $USER:$USER ./cert.pfx
+ 1145  sudo chmod 644 ./cert.pfx
+ 1146  rm ./cert/cert.pfx
+ 1147  mv ./cert.pfx ./cert
+ 1148  ls
+ 1149  ps -ef | grep "Server"
+ 1150  kill -9 1057810
+ 1151  kill -9 1100042
+ 1152  cat ./devinstall.sh 
+ 1153  cp ./cert/* ./VerseServer-Dev/
+ 1154  cd ./VerseServer-Dev/
+ 1155  chmod +x ./VerseServer-Dev.x86_64 
+ 1156  ./VerseServer-Dev.x86_64 
+ 1157  history
+ 1158  cd ./VerseServer-Dev/
+ 1159  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1160  ps -ef | grep "Server"
+ 1161  exit
+ 1162  history | grep "scp"
+ 1163  history | grep scp
+ 1164  cd /e/Business/Projects/O8C/Verse/Verse\ -\ Linux\ Server/Builds/Linux/
+ 1165  cd /e
+ 1166  pwd
+ 1167  history | grep cd
+ 1168  history
+ 1169  exit
+ 1170  history
+ 1171  ./devinstall.sh 
+ 1172  history
+ 1173  ps -ef | grep "Server"
+ 1174  kill -9 1460767
+ 1175  ./devinstall.sh 
+ 1176  ls
+ 1177  exit
+ 1178  ./devinstall.sh 
+ 1179  ps -ef | grep "Server"
+ 1180  history
+ 1181  ps -ef | grep "Server"
+ 1182  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1183  ps -ef | grep "Server"
+ 1184  exit
+ 1185  ps -ef | grep "Server"
+ 1186  kill -9 1595415
+ 1187  ./devinstall.sh 
+ 1188  exit
+ 1189  ./devinstall.sh 
+ 1190  history
+ 1191  cd ./VerseServer-Dev/
+ 1192  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1193  ps -ef | grep "Server"
+ 1194  history | grep tail
+ 1195  tail -f ./VerseLog.txt 
+ 1196  ps -ef | grep "Server"
+ 1197  kill -9 1607377
+ 1198  ps -ef | grep "Server"
+ 1199  exit
+ 1200  ./devinstall.sh 
+ 1201  ps -ef | grep "Server"
+ 1202  cd ./VerseServer-Dev/
+ 1203  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1204  tail -f ./VerseLog.txt 
+ 1205  ps -ef | grep "Server"
+ 1206  kill -9 1607691
+ 1207  exit
+ 1208  ./devinstall.sh 
+ 1209  cd ./VerseServer-Dev/
+ 1210  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1211  tail -f ./VerseLog.txt 
+ 1212  ps -ef | grep "Server"
+ 1213  kill -9 1608116
+ 1214  ps -ef | grep "Server"
+ 1215  exit
+ 1216  ./devinstall.sh 
+ 1217  cd ./VerseServer-Dev/
+ 1218  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1219  tail -f ./VerseLog.txt 
+ 1220  ps -ef | grep "Server"
+ 1221  kill -9 1608562
+ 1222  ps -ef | grep "Server"
+ 1223  exit
+ 1224  ./devinstall.sh 
+ 1225  ps -ef | grep "Server"
+ 1226  exit
+ 1227  ps -ef | grep "Server"
+ 1228  history
+ 1229  cd ./VerseServer-Dev/
+ 1230  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1231  tail -f ./VerseLog.txt
+ 1232  ps -ef | grep "Server"
+ 1233  kill -9 1614148
+ 1234  ps -ef | grep "Server"
+ 1235  exit
+ 1236  ./devinstall.sh 
+ 1237  cd ./VerseServer-Dev/
+ 1238  nohup ./VerseServer-Dev.x86_64 > VerseLog.txt & disown
+ 1239  tail -f ./VerseLog.txt
+ 1240  ps -ef | grep "Server"
+ 1241  history | grep reboot
+ 1242  history | grep restart
+ 1243  history | grep sudo
+ 1244  sudo -i
+ 1245  pwd
+ 1246  sudo -i
+ 1247  history > ./history.txt
+ 1248  ls
+ 1249  sudo -i
+ 1250  ls
+ 1251  sudo -i
+ 1252  ls
+ 1253  sudo -i
+ 1254  ls
+ 1255  sudo -i
+ 1256  ls
+ 1257  pwd
+ 1258  cd ..
+ 1259  ls
+ 1260  history > ./history.txt
