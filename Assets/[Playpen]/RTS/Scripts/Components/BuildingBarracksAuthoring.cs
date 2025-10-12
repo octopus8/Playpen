@@ -15,35 +15,21 @@ namespace RTS
         class Baker : Baker<BuildingBarracksAuthoring>
         {
             /// <summary>
-            /// Adds the BuildingBarracks component to the entity with default parameters.
+            /// Adds the BuildingBarrack, SpawnBuffer, and BuildingBarracksUnitEnqueue components to the entity.
+            /// The BuildingBarracksUnitEnqueue component is disabled by default.
             /// </summary>
             public override void Bake(BuildingBarracksAuthoring authoring)
             {
-                // Add BuildingBarracks component with default parameters.
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new BuildingBarracks
                 {
                     rallyPositionOffset = new float3(10, 0, 0),
                 });
-                
-                // Add SpawnBuffer and BuildingBarracksUnitEnqueue components.
                 AddBuffer<SpawnBuffer>(entity);
                 AddComponent(entity, new BuildingBarracksUnitEnqueue());
-                
-                // Disable the BuildingBarracksUnitEnqueue component by default.
                 SetComponentEnabled<BuildingBarracksUnitEnqueue>(entity, false);
             }
         }
-    }
-    
-    
-    /// <summary>
-    /// Enableable component for enqueueing unit spawns in the barracks.
-    /// This component is enabled when a unit is queued for spawning.
-    /// </summary>
-    public struct BuildingBarracksUnitEnqueue : IComponentData, IEnableableComponent
-    {
-        public UnitScriptableObject.UnitType UnitType;
     }
     
     
@@ -67,7 +53,7 @@ namespace RTS
         /// <summary>Event flag indicating if the unit queue has changed (unit added or removed).</summary>
         public bool onUnitQueueChangedEventFlag;
     }
-
+    
     
     /// <summary>
     /// Buffer element for storing units queued to be spawned by the barracks.
@@ -76,6 +62,17 @@ namespace RTS
     public struct SpawnBuffer : IBufferElementData
     {
         public UnitScriptableObject.UnitType unitType;
+    }
+    
+    
+    /// <summary>
+    /// Enableable component for enqueueing unit spawns in the barracks.
+    /// This component is enabled when a unit is queued for spawning.
+    /// The UnitType field specifies the type of unit to spawn.
+    /// </summary>
+    public struct BuildingBarracksUnitEnqueue : IComponentData, IEnableableComponent
+    {
+        public UnitScriptableObject.UnitType UnitType;
     }
 }
 

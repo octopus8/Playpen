@@ -86,6 +86,13 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `BuildingBarracksAuthoring`
   - `BuildingBarracks` - Contains data for spawning units. This component is added to barracks buildings.
     - Contains an `InternalBufferCapacity` attribute to enqueue spawned units before they are instantiated.
+  - `SpawnBuffer` - Buffer element for storing units queued to be spawned by the barracks.
+  - `BuildingBarracksUnitEnqueue` - Event component used to enqueue a unit to be spawned by the barracks.
+    - This component is enabled when a unit is queued for spawning.
+- `BuildingFriendlyHQAuthoring`
+  - `BuildingFriendlyHQ` - Tags the entity as a friendly headquarters building.
+- `BuildingTypeAuthoring`
+  - `BuildingType` - Component which specifies the type of building an entity represents.
 
 
 #### Systems
