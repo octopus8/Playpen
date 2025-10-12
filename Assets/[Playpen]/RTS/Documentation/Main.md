@@ -23,6 +23,19 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - Some authoring components may add multiple components to the entity.
 - Commonly, the authoring MonoBehavior serializes data that is then passed to the component added to the entity.
 
+## MonoBehaviours
+### Singletons
+- `BuildingPlacement`
+  - Manages the placement of buildings in the game world.
+  - Handles user input for selecting and placing buildings.
+  - Displays a preview of the building being placed.
+  - Ensures that buildings are placed in valid locations.
+
+### General
+- `BuildingBarracksUI`
+  - Controls the UI for the barracks building, allowing players to create units and view the spawn queue.
+  - The UI includes buttons for creating soldiers and scouts, a progress bar for spawn progress, and a visual representation of the unit queue.
+
 
 ## Components / Systems Overview
 

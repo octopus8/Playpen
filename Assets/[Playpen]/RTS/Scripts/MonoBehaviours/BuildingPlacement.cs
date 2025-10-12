@@ -10,60 +10,82 @@ using Material = UnityEngine.Material;
 
 namespace RTS
 {
+    /// <summary>
+    /// Singleton class that manages building placement in the RTS game.
+    /// Handles selecting buildings to place, showing a ghost preview, and placing buildings in the world.
+    /// </summary>
     public class BuildingPlacement : MonoBehaviour
     {
-        public static BuildingPlacement Instance { get; private set; }
-        public event EventHandler OnActiveBuildingChanged;
-        
-        [SerializeField]
-        private BuildingScriptableObject buildingScriptableObject;
+        /// <summary> The currently selected building scriptable object. </summary>
+        [Tooltip("The currently selected building scriptable object.")]
+        [SerializeField] private BuildingScriptableObject buildingScriptableObject;
 
+        /// <summary> Material used for the ghost building preview. </summary>
+        [Tooltip("Material used for the ghost building preview.")]
         [SerializeField] private Material ghostMaterial;
         
+        /// <summary> Singleton instance of the BuildingPlacement class. </summary>
+        public static BuildingPlacement Instance { get; private set; }
+        
+        /// <summary> Event triggered when the active building changes. </summary>
+        public event EventHandler OnActiveBuildingChanged;
+        
+        /// <summary> Transform of the ghost building preview. </summary>
         private Transform ghostTransform;
         
         
-        
+        /// <summary>
+        /// Initializes the singleton instance.
+        /// </summary>
         private void Awake()
         {
             Instance = this;
         }
     
+        /// <summary>
+        /// Updates the ghost building position to follow the mouse cursor.
+        /// Handles input for placing buildings and cancelling placement.
+        /// </summary>
         private void Update()
         {
+            // If there is an active building, update the ghost position to follow the mouse.
             if (ghostTransform != null)
             {
                 Vector3 mousePosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
                 ghostTransform.position = mousePosition;
             }
             
+            // If the mouse is over a UI element, do not process building placement input.
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }
             
+            // If there is no active building, exit early.
             if (buildingScriptableObject.IsNone())
             {
                 return;
             }
 
+            // If the right mouse button is clicked, cancel building placement.
             if (Input.GetMouseButton(1))
             {
                 SetActiveBuilding(RTSGame.Instance.buildings.none);
             }
             
-            
+            // If the left mouse button is clicked, attempt to place the building.
             if (Input.GetMouseButtonDown(0))
             {
+                // If the building can be placed at the current mouse position, instantiate it.
                 if (CanPlaceBuilding())
                 {
-                    Vector3 mousePosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
-
-
+                    // Get the EntityPrefabSet singleton to access building prefabs.
                     EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
                     EntityQuery entityQuery = entityManager.CreateEntityQuery(typeof(EntityPrefabSet));
                     EntityPrefabSet entityPrefabSet = entityQuery.GetSingleton<EntityPrefabSet>();
+
+                    // Instantiate the building entity at the mouse position.
+                    Vector3 mousePosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
                     Entity entity = entityManager.Instantiate(buildingScriptableObject.GetBuilding(entityPrefabSet));
                     entityManager.SetComponentData(entity, LocalTransform.FromPosition(mousePosition));
                 }
