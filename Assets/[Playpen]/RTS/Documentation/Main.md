@@ -30,12 +30,23 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
   - Handles user input for selecting and placing buildings.
   - Displays a preview of the building being placed.
   - Ensures that buildings are placed in valid locations.
+- `DOTSEvents`
+  - Manages event flags for the ECS systems.
 
 ### General
 - `BuildingBarracksUI`
   - Controls the UI for the barracks building, allowing players to create units and view the spawn queue.
   - The UI includes buttons for creating soldiers and scouts, a progress bar for spawn progress, and a visual representation of the unit queue.
-
+- `BuildingPlacementUI`
+  - Controls the UI for building placement.
+  - Displays buttons for each building type and highlights the selected building.
+  - Subscribes to events from the `BuildingPlacement` singleton to update the UI based on the current building placement state.
+- `BuildingPlacementUIButton`
+    - Represents a UI button for selecting a building for placement.
+    - Controls the button's selection image visibility based on whether it is the currently selected building.
+- `CameraController`
+    - Manages camera movement, rotation, and zooming.
+- `GameOverUI`
 
 ## Components / Systems Overview
 
@@ -52,6 +63,11 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `EventResetAuthoring`
   - `EventReset` - Singleton that is used to reset event flags at the end of the frame.
     - Systems that set event flags should run before `EventResetSystem`, and systems that read event flags should run after `EventResetSystem`.
+
+### General Systems
+- `EventResetSystem` - Resets event flags at the end of the frame.
+  - Updates in `LateSimulationSystemGroup`.
+  - Note: Does not use job system.
 
 
 ### Units
@@ -128,7 +144,7 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
   - `BuildingBarracksUnitEnqueue` - Event component used to enqueue a unit to be spawned by the barracks.
     - This component is enabled when a unit is queued for spawning.
 - `BuildingFriendlyHQAuthoring`
-  - `BuildingFriendlyHQ` - Tags the entity as a friendly headquarters building.
+  - `BuildingFriendlyHQ` - Singleton tag for the friendly headquarters building. 
 - `BuildingTypeAuthoring`
   - `BuildingType` - Component which specifies the type of building an entity represents.
 

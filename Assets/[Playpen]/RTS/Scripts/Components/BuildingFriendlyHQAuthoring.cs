@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RTS
 {
     /// <summary>
-    /// Tag authoring component for the BuildingFriendlyHQ ECS component.
+    /// Authoring component for the singleton tag BuildingFriendlyHQ ECS component.
     /// </summary>
     public class BuildingFriendlyHQAuthoring : MonoBehaviour
     {
@@ -26,7 +26,7 @@ namespace RTS
 
 
     /// <summary>
-    /// Tag component which marks an entity as a "friendly HQ" building.
+    /// Singleton tag component which marks an entity as a "friendly HQ" building.
     /// </summary>
     public struct BuildingFriendlyHQ : IComponentData
     {

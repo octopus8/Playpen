@@ -87,8 +87,26 @@ namespace RTS
             // Hide the unit queue item template.
             _unitQueueItemTemplate.gameObject.SetActive(false);
         }
-        
-        
+
+
+        /// <summary>
+        /// OnDestroy is called when the MonoBehaviour will be destroyed.
+        /// Unsubscribes from events.
+        /// </summary>
+        private void OnDestroy()
+        {
+            // Unsubscribe from events to prevent memory leaks.
+            if (UnitSelection.Instance != null)
+            {
+                UnitSelection.Instance.OnSelectedChanged -= OnSelectedChanged;
+            }
+            if (DOTSEvents.Instance != null)
+            {
+                DOTSEvents.Instance.OnBarracksQueueChanged -= OnBarracksQueueChanged;
+            }
+        }
+
+
         /// <summary>
         /// Update is called once per frame.
         /// Updates the progress bar visual to reflect the current spawn progress.

@@ -20,8 +20,13 @@ namespace RTS
             jobHandles = new NativeArray<JobHandle>(4, Allocator.Persistent);
         }
         
+        
+        /// <summary>
+        /// Triggers events and resets event flags for various components at the end of each frame.
+        /// </summary>
         public void OnUpdate(ref SystemState state)
         {
+            // If the friendly HQ exists and is dead, trigger the OnHQDead event.
             if (SystemAPI.HasSingleton<BuildingFriendlyHQ>())
             {
                 Health health = SystemAPI.GetComponent<Health>(SystemAPI.GetSingletonEntity<BuildingFriendlyHQ>());
@@ -31,25 +36,28 @@ namespace RTS
                 }
             }
             
-            
+            // Schedule reset jobs for various event flags.
             jobHandles[0] = new ResetSelectedEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[1] = new ResetHealthEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[2] = new ResetShootAttackEventsJob().ScheduleParallel(state.Dependency);
             jobHandles[3] = new ResetMeleeAttackEventsJob().ScheduleParallel(state.Dependency);
 
+            // Handle BuildingBarracks events separately to collect entities with onUnitQueueChangedEventFlag set.
             NativeList<Entity> onUnitQueueChangedEntities = new NativeList<Entity>(Allocator.TempJob);
             new ResetBuildingBarracksEventsJob
             {
                 onUnitQueueChangedEntities = onUnitQueueChangedEntities.AsParallelWriter()
             }.ScheduleParallel(state.Dependency).Complete();
             
+            // Trigger the OnBarracksQueueChanged event for all affected entities.
             DOTSEvents.Instance.TriggerOnBarracksQueueChanged(onUnitQueueChangedEntities);
             
+            // Combine all job handles to ensure all jobs complete before the next frame.
             state.Dependency = JobHandle.CombineDependencies(jobHandles);
-            
+
+            // Dispose of the temporary list.
             onUnitQueueChangedEntities.Dispose();
         }
-        
     }
  
     
