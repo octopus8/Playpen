@@ -6,7 +6,8 @@ using Random = Unity.Mathematics.Random;
 namespace RTS
 {
     /// <summary>
-    /// Authoring component for random walking behavior. This component is added to units that should walk randomly within a certain range (e.g., zombies).
+    /// Authoring component for random walking behavior.
+    /// This component is added to units that should walk randomly within a certain range (e.g., zombies).
     /// </summary>
     public class RandomWalkingAuthoring : MonoBehaviour
     {
@@ -23,8 +24,14 @@ namespace RTS
         [SerializeField] private uint randomSeed = 1;
 
         
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         class Baker : Baker<RandomWalkingAuthoring>
         {
+            /// <summary>
+            /// Adds the RandomWalking component to the entity with the specified parameters from the authoring component.
+            /// </summary>
             public override void Bake(RandomWalkingAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -38,17 +45,24 @@ namespace RTS
         }
     }
     
-    
+
+    /// <summary>
+    /// Component storing data for random walking behavior.
+    /// </summary>
     public struct RandomWalking : IComponentData
     {
         /// <summary>Target position for random walking.</summary>
         public float3 targetPosition;
+        
         /// <summary>Origin position for random walking.</summary>
         public float3 originPosition;
+        
         /// <summary>Minimum distance from the origin to walk.</summary>
         public float distanceMin;
+        
         /// <summary>Maximum distance from the origin to walk.</summary>
         public float distanceMax;
+        
         /// <summary>Random seed for generating random positions.</summary>
         public Random random;
     }

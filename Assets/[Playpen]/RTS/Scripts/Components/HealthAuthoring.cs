@@ -13,8 +13,15 @@ namespace RTS
         [Tooltip("Maximum health.")]
         [SerializeField] private int maxHealth = 100;
 
+        
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         public class Baker : Baker<HealthAuthoring>
         {
+            /// <summary>
+            /// Adds the Health component to the entity with the specified parameters from the authoring component.
+            /// </summary>
             public override void Bake(HealthAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -29,6 +36,10 @@ namespace RTS
     }
 
 
+    /// <summary>
+    /// Component storing data for health, including current and maximum health.
+    /// Also includes event flags for health changes and death.
+    /// </summary>
     public struct Health : IComponentData
     {
         /// <summary>Current health.</summary>

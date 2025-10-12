@@ -26,8 +26,14 @@ namespace RTS
         [SerializeField] private Transform bulletSpawnPoint;
 
         
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         public class Baker : Unity.Entities.Baker<ShootAttackAuthoring>
         {
+            /// <summary>
+            /// Adds the ShootAttack component to the entity with the specified parameters from the authoring component.
+            /// </summary>
             public override void Bake(ShootAttackAuthoring authoring)
             {
                 var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
@@ -42,16 +48,31 @@ namespace RTS
         }
     }
 
-    
+
+    /// <summary>
+    /// Component storing data for shoot attacks, including attack rate, damage amount, and bullet spawn offset.
+    /// </summary> 
     public struct ShootAttack : Unity.Entities.IComponentData
     {
+        /// <summary>Timer to track time between attacks.</summary>
         public float timer;
+        
+        /// <summary>Time in seconds between attacks.</summary>
         public float attackRateSeconds;
+        
+        /// <summary>Amount of damage dealt per attack.</summary>
         public int damageAmount;
+        
+        /// <summary>Maximum distance to attack targets.</summary>
         public float attackDistance;
+        
+        /// <summary>Offset from the unit's position to spawn bullets.</summary>
         public float3 bulletSpawnOffset;
+        
+        /// <summary>Event flag for when a shoot attack is triggered.</summary>
         public OnShootEvent onShootEvent;
 
+        
         /// <summary>
         /// Event data for when a shoot attack is triggered.
         /// </summary>
@@ -59,6 +80,7 @@ namespace RTS
         {
             /// <summary>Flag to indicate if the shoot event has been triggered.</summary>
             public bool isTriggered;
+            
             /// <summary>Position from which the bullet should be spawned.</summary>
             public float3 shootPosition;
         }

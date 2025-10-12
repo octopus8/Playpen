@@ -10,6 +10,7 @@ namespace RTS
     public class BuildingTypeAuthoring : MonoBehaviour
     {
         /// <summary> The type of building this entity represents. </summary>
+        [Tooltip("The type of building this entity represents.")]
         [SerializeField] private BuildingScriptableObject.BuildingType buildingType;
 
         /// <summary>

@@ -16,9 +16,10 @@ namespace RTS
         [Tooltip("Amount of damage dealt per attack.")]
         [SerializeField] private int damageAmount = 10;
 
-        /// <summary>Size of the melee attack collider.</summary>
-        [Tooltip("Size of the melee attack collider.")]
+        /// <summary>Size of this unit's collider's radius.</summary>
+        [Tooltip("Size of this unit's collider's radius.")]
         [SerializeField] private float colliderSize = 2f;
+        
         
         /// <summary>
         /// Baker class to convert the authoring component to an ECS component.
@@ -26,7 +27,7 @@ namespace RTS
         class Baker : Baker<MeleeAttackAuthoring>
         {
             /// <summary>
-            /// Converts the authoring component to an ECS component.
+            /// Converts the authoring component to an ECS component with the specified parameters from the authoring component.
             /// </summary>
             public override void Bake(MeleeAttackAuthoring authoring)
             {
@@ -41,17 +42,25 @@ namespace RTS
         }
     }
     
+    
     /// <summary>
     /// ECS component representing melee attack properties.
     /// </summary>
     public struct MeleeAttack : IComponentData
     {
+        /// <summary>Timer to track time between attacks.</summary>
         public float timer;
+        
+        /// <summary>Time in seconds between attacks.</summary>
         public float attackRateSeconds;
+        
+        /// <summary>Amount of damage dealt per attack.</summary>
         public int damageAmount;
+        
+        /// <summary>Size of this unit's collider's radius.</summary>
         public float colliderSize;
+        
+        /// <summary> Event flag to indicate if currently attacking the target. </summary>
         public bool onAttackTarget;
     }
-
-    
 }

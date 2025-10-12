@@ -24,6 +24,7 @@ namespace RTS
             state.RequireForUpdate<PhysicsWorldSingleton>();
         }
 
+        
         /// <summary>
         /// OnUpdate is called every frame to process entities with MeleeAttack component.
         /// It moves the entity within attack range and applies damage to the target when attacking.
@@ -68,6 +69,7 @@ namespace RTS
                     float extraDistanceToTestRaycast = 0.4f;
                     float3 startPosition = localTransform.ValueRO.Position;
                     startPosition[1] += 1f;
+                    
                     RaycastInput raycastInput = new RaycastInput
                     {
                         Start = startPosition,
@@ -77,6 +79,7 @@ namespace RTS
                     raycastHits.Clear();
                     float rayLength = 5.0f;// (meleeAttack.ValueRO.colliderSize + extraDistanceToTestRaycast);
                     Debug.DrawRay(startPosition, directionToTarget * rayLength, Color.red, 0.1f, false);
+                    
                     if (collisionWorld.CastRay(raycastInput, ref raycastHits))
                     {
                         foreach (RaycastHit hit in raycastHits)

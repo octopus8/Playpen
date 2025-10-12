@@ -58,11 +58,36 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 - `TargetOverrideAuthoring`
   - `TargetOverride` - Contains temporary target override data for a unit.
     - Overriding the target is used to override auto targeting, such as when a player manually selects a target for a unit to attack.
+- `RandomWalkAuthoring`
+  - `RandomWalk` - Contains data for random walking behavior.
+- `SetupUnitMoverDefaultPositionAuthoring`
+  - `SetupUnitMoverDefaultPosition` - Sets the initial position of the `UnitMover` to the entity's current position when added.
 - `ShootAttackAuthoring`
   - `ShootAttack` - Contains shoot attack data. This component is added to units that can perform shoot attacks.
+- `ShootTargetAuthoring`
+  - `ShootTarget` - Contains data about the shoot target.
 - `MeleeAttackAuthoring`
   - `MeleeAttack` - Contains melee attack data. This component is added to units that can perform melee attacks.
-
+- `BulletAuthoring`
+  - `Bullet` - Contains bullet data such as speed and damage. This component is added to bullet entities.
+- `EnemyAttackHQAuthoring`
+  - `EnemyAttackHQ` - Tags the entity as an enemy headquarters that can be attacked by enemies.
+- `EnemyAuthoring`
+  - `Enemy` - Tags the entity as an enemy.
+- `EntityPrefabSetAuthoring`
+  - `EntityPrefabSet` - Singleton that contains references to entity prefabs used in the game, such as units and bullets.
+- `FactionAuthoring`
+  - `Faction` - Contains faction data for the entity.
+- `FindTargetAuthoring`
+  - `FindTarget` - Contains data about finding a target.
+- `LoseTargetAuthoring`
+  - `LoseTarget` - Contains data about losing a target.
+- `HealthAuthoring`
+  - `Health` - Contains health data for the entity.
+- `HealthBarAuthoring`
+  - `HealthBar` - Contains health bar data for the entity.
+- `ShootLightAuthoring`
+  - `ShootLight` - Contains data for a light effect when shooting.
 
 #### Systems
 - `UnitSelectedVisualSystem` - Updates a selectable unit's "selected" visual based on whether it is selected or not.

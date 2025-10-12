@@ -37,8 +37,15 @@ namespace RTS
         [Tooltip("The building barracks prefab.")]
         [SerializeField] private GameObject buildingBarracksPrefab;
         
+        
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         class Baker : Baker<EntityPrefabSetAuthoring>
         {
+            /// <summary>
+            /// Adds the EntityPrefabSet component to the entity with references to the specified prefabs.
+            /// </summary>
             public override void Bake(EntityPrefabSetAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -56,6 +63,10 @@ namespace RTS
         }
     }
 
+    
+    /// <summary>
+    /// Component storing references to various entity prefabs used in the game.
+    /// </summary>
     public struct EntityPrefabSet : IComponentData
     {
         /// <summary>The bullet prefab entity.</summary>
@@ -73,8 +84,10 @@ namespace RTS
         /// <summary>The scout prefab entity.</summary>
         public Entity scoutEntityPrefab;
 
+        /// <summary>The building tower prefab entity.</summary>
         public Entity buildingTowerPrefab;
         
+        /// <summary>The building barracks prefab entity.</summary>
         public Entity buildingBarracksPrefab;
 
     }

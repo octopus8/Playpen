@@ -18,8 +18,14 @@ namespace RTS
         [SerializeField] private HealthAuthoring health;
 
         
+        /// <summary>
+        /// Baker class for converting the authoring component to an ECS component.
+        /// </summary>
         class Baker : Baker<HealthBarAuthoring>
         {
+            /// <summary>
+            /// Adds the HealthBar component to the entity with references to the bar visual and health entities.
+            /// </summary>
             public override void Bake(HealthBarAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -32,6 +38,10 @@ namespace RTS
         }
     }
 
+    
+    /// <summary>
+    /// Component storing references for the health bar, including the visual entity and the health entity.
+    /// </summary>
     public struct HealthBar : IComponentData
     {
         /// <summary>Entity representing the visual part of the health bar.</summary>

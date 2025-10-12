@@ -28,7 +28,7 @@ namespace RTS
         public class Baker : Unity.Entities.Baker<FindTargetAuthoring>
         {
             /// <summary>
-            /// Converts the MonoBehaviour properties to an Entity with FindTarget component.
+            /// Adds the FindTarget component to the entity with the specified parameters from the authoring component.
             /// </summary>
             public override void Bake(FindTargetAuthoring authoring)
             {
