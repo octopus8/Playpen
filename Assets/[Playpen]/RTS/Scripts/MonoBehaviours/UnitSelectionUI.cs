@@ -31,6 +31,16 @@ namespace RTS
 
 
         /// <summary>
+        /// Unsubscribes from selection area events to prevent memory leaks when the object is destroyed.
+        /// </summary>
+        private void OnDestroy()
+        {
+            UnitSelection.Instance.OnSelectionAreaStart -= OnSelectionAreaStart;
+            UnitSelection.Instance.OnSelectionAreaEnd -= OnSelectionAreaEnd;
+        }
+
+
+        /// <summary>
         /// Updates the selection area visual representation if the selection area is active.
         /// </summary>
         private void Update()

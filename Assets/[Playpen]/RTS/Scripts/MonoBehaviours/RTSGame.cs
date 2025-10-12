@@ -12,11 +12,14 @@ namespace RTS
 
         /// <summary> Layer for units. </summary>
         public const int UNITS_LAYER = 10;
+        
+        /// <summary> Layer for buildings. </summary>
         public const int BUILDINGS_LAYER = 11;
 
-        
+        /// <summary> The set of all units in the game. </summary>
         public UnitSetScriptableObject units;
         
+        /// <summary> The set of all buildings in the game. </summary>
         public BuildingSetScriptableObject buildings;
 
         #endregion
@@ -47,7 +50,5 @@ namespace RTS
         }
         
         #endregion
-        
-        
     }
 }

@@ -158,6 +158,14 @@ The `RTS` project is a simple real-time strategy (RTS) game implemented using Un
 ############################################################################################
 
 - Things to document
+  - Basics concepts of ECS
+    - The use of structs for components
+      - `IComponentData`
+    - The difference between ISystem and SystemBase
+    - How systems query for entities with specific components
+    - The use of tags as components
+  - Singleton MonoBehaviours
+  - Singleton ECS entities
   - Barracks spawning units
     - InternalBufferCapacity
   - Unit Movement
