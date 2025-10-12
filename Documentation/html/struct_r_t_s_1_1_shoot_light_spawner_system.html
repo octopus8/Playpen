@@ -97,8 +97,10 @@ Inheritance diagram for RTS.ShootLightSpawnerSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8326819ab02876fda8c30b76e993ec6" id="r_ab8326819ab02876fda8c30b76e993ec6"><td class="memItemLeft" align="right" valign="top"><a id="ab8326819ab02876fda8c30b76e993ec6" name="ab8326819ab02876fda8c30b76e993ec6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnCreate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:ab8326819ab02876fda8c30b76e993ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnCreate is called when the system is created. It requires the <a class="el" href="struct_r_t_s_1_1_entity_prefab_set.html" title="Component storing references to various entity prefabs used in the game.">EntityPrefabSet</a> singleton to be present for the system to update. <br /></td></tr>
 <tr class="memitem:aa2df4230802767a7e3637441a6b5a3d2" id="r_aa2df4230802767a7e3637441a6b5a3d2"><td class="memItemLeft" align="right" valign="top"><a id="aa2df4230802767a7e3637441a6b5a3d2" name="aa2df4230802767a7e3637441a6b5a3d2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:aa2df4230802767a7e3637441a6b5a3d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnUpdate is called every frame the system is enabled. It checks for shoot events and spawns a <a class="el" href="struct_r_t_s_1_1_shoot_light.html" title="Component storing data for shoot lights, including the time the light stays active after shooting.">ShootLight</a> entity at the specified position when a shoot event is triggered. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>System that spawns a <a class="el" href="struct_r_t_s_1_1_shoot_light.html" title="Component storing data for shoot lights, including the time the light stays active after shooting.">ShootLight</a> entity at the position of a shoot event. This system runs in the LateSimulationSystemGroup to ensure shoot events can occur before spawning the light. </p>

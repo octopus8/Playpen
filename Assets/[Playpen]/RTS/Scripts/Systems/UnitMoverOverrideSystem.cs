@@ -1,4 +1,3 @@
-using RTS;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;

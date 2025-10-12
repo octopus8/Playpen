@@ -12,6 +12,10 @@ namespace RTS
     /// </summary>
     partial struct RandomWalkingSystem : ISystem
     {
+        /// <summary>
+        /// Update is called every frame the system is enabled.
+        /// It makes entities with RandomWalking component move towards a random target position.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

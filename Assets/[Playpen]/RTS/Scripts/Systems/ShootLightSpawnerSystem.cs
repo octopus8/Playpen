@@ -11,11 +11,20 @@ namespace RTS
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     partial struct ShootLightSpawnerSystem : ISystem
     {
+        /// <summary>
+        /// OnCreate is called when the system is created.
+        /// It requires the EntityPrefabSet singleton to be present for the system to update.
+        /// </summary>
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EntityPrefabSet>();
         }
 
+        
+        /// <summary>
+        /// OnUpdate is called every frame the system is enabled.
+        /// It checks for shoot events and spawns a ShootLight entity at the specified position when a shoot event is triggered.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

@@ -61,6 +61,7 @@ namespace RTS
     [InternalBufferCapacity(10)]
     public struct SpawnBuffer : IBufferElementData
     {
+        /// <summary>Type of unit to spawn.</summary>
         public UnitScriptableObject.UnitType unitType;
     }
     
@@ -72,6 +73,7 @@ namespace RTS
     /// </summary>
     public struct BuildingBarracksUnitEnqueue : IComponentData, IEnableableComponent
     {
+        /// <summary>Type of unit to spawn.</summary>
         public UnitScriptableObject.UnitType UnitType;
     }
 }

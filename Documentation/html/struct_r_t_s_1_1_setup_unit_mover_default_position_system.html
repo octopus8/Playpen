@@ -83,6 +83,9 @@ $(function() {
   <div class="headertitle"><div class="title">RTS.SetupUnitMoverDefaultPositionSystem Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>System that sets the default position for <a class="el" href="struct_r_t_s_1_1_unit_mover.html" title="Component storing movement data for a unit.">UnitMover</a> components based on the entity's current position. This is used to initialize the destination of units that start in the scene.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RTS.SetupUnitMoverDefaultPositionSystem:</div>
 <div class="dyncontent">
@@ -94,10 +97,14 @@ Inheritance diagram for RTS.SetupUnitMoverDefaultPositionSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a52a1107cbc8a7dd022e7e6beb893f0cc" id="r_a52a1107cbc8a7dd022e7e6beb893f0cc"><td class="memItemLeft" align="right" valign="top"><a id="a52a1107cbc8a7dd022e7e6beb893f0cc" name="a52a1107cbc8a7dd022e7e6beb893f0cc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnCreate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:a52a1107cbc8a7dd022e7e6beb893f0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnCreate is called when the system is created. It requires the EndSimulationEntityCommandBufferSystem singleton to be present for the system to update. <br /></td></tr>
 <tr class="memitem:aae249cfb33fb5d27d975e1bd0ac7c0c4" id="r_aae249cfb33fb5d27d975e1bd0ac7c0c4"><td class="memItemLeft" align="right" valign="top"><a id="aae249cfb33fb5d27d975e1bd0ac7c0c4" name="aae249cfb33fb5d27d975e1bd0ac7c0c4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:aae249cfb33fb5d27d975e1bd0ac7c0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnUpdate is called every frame the system is enabled. It sets the destination of <a class="el" href="struct_r_t_s_1_1_unit_mover.html" title="Component storing movement data for a unit.">UnitMover</a> components to the current position of the entity and removes the <a class="el" href="struct_r_t_s_1_1_setup_unit_mover_default_position.html" title="Tag component which marks an entity to have its UnitMover&#39;s default position set up.">SetupUnitMoverDefaultPosition</a> component. <br /></td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>System that sets the default position for <a class="el" href="struct_r_t_s_1_1_unit_mover.html" title="Component storing movement data for a unit.">UnitMover</a> components based on the entity's current position. This is used to initialize the destination of units that start in the scene. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>C:/Develop/O8C/Playpen/Assets/[Playpen]/RTS/Scripts/Systems/<b>SetupUnitMoverDefaultPositionSystem.cs</b></li>
 </ul>
 </div><!-- contents -->

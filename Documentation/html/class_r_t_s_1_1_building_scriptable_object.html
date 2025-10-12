@@ -85,6 +85,9 @@ $(function() {
   <div class="headertitle"><div class="title">RTS.BuildingScriptableObject Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A scriptable object that holds data for a building.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RTS.BuildingScriptableObject:</div>
 <div class="dyncontent">
@@ -94,7 +97,7 @@ Inheritance diagram for RTS.BuildingScriptableObject:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a0a1f56e3b4f47b4928d87b96d8ca737b" id="r_a0a1f56e3b4f47b4928d87b96d8ca737b"><td class="memItemLeft" align="right" valign="top"><a id="a0a1f56e3b4f47b4928d87b96d8ca737b" name="a0a1f56e3b4f47b4928d87b96d8ca737b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>BuildingType</b> { <br />
+<tr class="memitem:a0a1f56e3b4f47b4928d87b96d8ca737b" id="r_a0a1f56e3b4f47b4928d87b96d8ca737b"><td class="memItemLeft" align="right" valign="top"><a id="a0a1f56e3b4f47b4928d87b96d8ca737b" name="a0a1f56e3b4f47b4928d87b96d8ca737b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a1f56e3b4f47b4928d87b96d8ca737b">BuildingType</a> { <br />
 &#160;&#160;<b>None</b>
 , <b>EnemyBuilding</b>
 , <b>FriendlyTower</b>
@@ -103,30 +106,41 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>FriendlyHQ</b>
 <br />
  }</td></tr>
+<tr class="memdesc:a0a1f56e3b4f47b4928d87b96d8ca737b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Building types. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af4f410236b518f4325ebaf46f031d14d" id="r_af4f410236b518f4325ebaf46f031d14d"><td class="memItemLeft" align="right" valign="top"><a id="af4f410236b518f4325ebaf46f031d14d" name="af4f410236b518f4325ebaf46f031d14d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsNone</b> ()</td></tr>
+<tr class="memdesc:af4f410236b518f4325ebaf46f031d14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if this building type is 'None'. <br /></td></tr>
 <tr class="memitem:a7a45fe14275645946e1dbb72e893905c" id="r_a7a45fe14275645946e1dbb72e893905c"><td class="memItemLeft" align="right" valign="top"><a id="a7a45fe14275645946e1dbb72e893905c" name="a7a45fe14275645946e1dbb72e893905c"></a>
 Entity&#160;</td><td class="memItemRight" valign="bottom"><b>GetBuilding</b> (<a class="el" href="struct_r_t_s_1_1_entity_prefab_set.html">EntityPrefabSet</a> entityPrefabSet)</td></tr>
+<tr class="memdesc:a7a45fe14275645946e1dbb72e893905c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the corresponding building entity prefab from the given <a class="el" href="struct_r_t_s_1_1_entity_prefab_set.html" title="Component storing references to various entity prefabs used in the game.">EntityPrefabSet</a> based on the building type. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7539bdc8f706f81a229a91354cc11305" id="r_a7539bdc8f706f81a229a91354cc11305"><td class="memItemLeft" align="right" valign="top"><a id="a7539bdc8f706f81a229a91354cc11305" name="a7539bdc8f706f81a229a91354cc11305"></a>
-BuildingType&#160;</td><td class="memItemRight" valign="bottom"><b>buildingType</b></td></tr>
+<a class="el" href="#a0a1f56e3b4f47b4928d87b96d8ca737b">BuildingType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>buildingType</b></td></tr>
+<tr class="memdesc:a7539bdc8f706f81a229a91354cc11305"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of building. <br /></td></tr>
 <tr class="memitem:a896abb1e359acdde767c0ffbb633399f" id="r_a896abb1e359acdde767c0ffbb633399f"><td class="memItemLeft" align="right" valign="top"><a id="a896abb1e359acdde767c0ffbb633399f" name="a896abb1e359acdde767c0ffbb633399f"></a>
 Transform&#160;</td><td class="memItemRight" valign="bottom"><b>prefab</b></td></tr>
+<tr class="memdesc:a896abb1e359acdde767c0ffbb633399f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The prefab of the building. <br /></td></tr>
 <tr class="memitem:a86b17ac606616d205026d8af9cbf0abb" id="r_a86b17ac606616d205026d8af9cbf0abb"><td class="memItemLeft" align="right" valign="top"><a id="a86b17ac606616d205026d8af9cbf0abb" name="a86b17ac606616d205026d8af9cbf0abb"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>buildingDistanceMin</b> = 10</td></tr>
+<tr class="memdesc:a86b17ac606616d205026d8af9cbf0abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum distance required between this building and other buildings when placing it. <br /></td></tr>
 <tr class="memitem:a65a00feff9b1e590abd491564e1c1def" id="r_a65a00feff9b1e590abd491564e1c1def"><td class="memItemLeft" align="right" valign="top"><a id="a65a00feff9b1e590abd491564e1c1def" name="a65a00feff9b1e590abd491564e1c1def"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>showInBuildingPlacementUI</b> = true</td></tr>
+<tr class="memdesc:a65a00feff9b1e590abd491564e1c1def"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to show this building in the building placement UI. <br /></td></tr>
 <tr class="memitem:a8179eec3c85d31b8536e74ac1bfccc5e" id="r_a8179eec3c85d31b8536e74ac1bfccc5e"><td class="memItemLeft" align="right" valign="top"><a id="a8179eec3c85d31b8536e74ac1bfccc5e" name="a8179eec3c85d31b8536e74ac1bfccc5e"></a>
 Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>sprite</b></td></tr>
+<tr class="memdesc:a8179eec3c85d31b8536e74ac1bfccc5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sprite to use for this building in the building placement UI. <br /></td></tr>
 <tr class="memitem:a85f497ce10db95438209b30ec0c18b17" id="r_a85f497ce10db95438209b30ec0c18b17"><td class="memItemLeft" align="right" valign="top"><a id="a85f497ce10db95438209b30ec0c18b17" name="a85f497ce10db95438209b30ec0c18b17"></a>
 Transform&#160;</td><td class="memItemRight" valign="bottom"><b>ghostPrefab</b></td></tr>
+<tr class="memdesc:a85f497ce10db95438209b30ec0c18b17"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ghost prefab to use when placing this building. <br /></td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A scriptable object that holds data for a building. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>C:/Develop/O8C/Playpen/Assets/[Playpen]/RTS/ScriptableObjects/Buildings/<b>BuildingScriptableObject.cs</b></li>
 </ul>
 </div><!-- contents -->

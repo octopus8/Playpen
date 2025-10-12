@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['lateupdate_0',['LateUpdate',['../class_unity_engine_1_1_x_r_1_1_interaction_1_1_toolkit_1_1_samples_1_1_spatial_keyboard_1_1_keyboard_batch_follow.html#acddf9927709377faee41adc2fab22b01',1,'UnityEngine.XR.Interaction.Toolkit.Samples.SpatialKeyboard.KeyboardBatchFollow.LateUpdate()'],['../class_unity_engine_1_1_x_r_1_1_interaction_1_1_toolkit_1_1_samples_1_1_starter_assets_1_1_x_r_poke_follow_affordance.html#a6f6d0f6f6c6f405e1882d6d71c916574',1,'UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets.XRPokeFollowAffordance.LateUpdate()'],['../class_unity_1_1_v_r_template_1_1_x_r_poke_follow_affordance_fill.html#aa324614c5a53eb8e61b870ef50e4a2bc',1,'Unity.VRTemplate.XRPokeFollowAffordanceFill.LateUpdate()']]],
-  ['lerpdata_1',['LerpData',['../struct_autohand_1_1_finger_pose_data.html#a0906327c576224e05a8ae54a356a74c8',1,'Autohand::FingerPoseData']]],
-  ['lerpdatato_2',['LerpDataTo',['../struct_autohand_1_1_finger_pose_data.html#a14d2efe1bce3aee0a8a6f67db05ebe8d',1,'Autohand::FingerPoseData']]],
-  ['localsubstitute_3',['LocalSubstitute',['../class_autohand_1_1_grabbable_substitute.html#a57352c39c2cf830cd605e2aefff1e009',1,'Autohand::GrabbableSubstitute']]]
+  ['update_0',['Update',['../class_r_t_s_1_1_building_barracks_u_i.html#a6ecb7f49129b0d31041418691df990c5',1,'RTS.BuildingBarracksUI.Update()'],['../class_r_t_s_1_1_building_placement.html#a8b18b1fa53991e6b1aed4df10deb19fe',1,'RTS.BuildingPlacement.Update()'],['../class_r_t_s_1_1_camera_controller.html#ab33f7c49b853207d841b9cc4dd4bf5be',1,'RTS.CameraController.Update()'],['../class_r_t_s_1_1_unit_selection.html#a65cf2e3824fc14b229f2152398164146',1,'RTS.UnitSelection.Update()'],['../class_r_t_s_1_1_unit_selection_u_i.html#a94b9503fc9c85fcdb1bd1e47483c0f93',1,'RTS.UnitSelectionUI.Update()']]],
+  ['updateprogressbarvisual_1',['UpdateProgressBarVisual',['../class_r_t_s_1_1_building_barracks_u_i.html#a1ea05c3a6c93515693876d1b55fe9892',1,'RTS::BuildingBarracksUI']]],
+  ['updateselectedvisual_2',['UpdateSelectedVisual',['../class_r_t_s_1_1_building_placement_u_i.html#ad44e906b5aff33c46d2e85a6dc2ba93a',1,'RTS::BuildingPlacementUI']]],
+  ['updateunitqueuevisual_3',['UpdateUnitQueueVisual',['../class_r_t_s_1_1_building_barracks_u_i.html#ab7b11ea198138a642c6e31f685d4812a',1,'RTS::BuildingBarracksUI']]],
+  ['updatevisual_4',['UpdateVisual',['../class_r_t_s_1_1_unit_selection_u_i.html#a1512fe7fd4b9ed9b383912fb2982ef7c',1,'RTS::UnitSelectionUI']]]
 ];

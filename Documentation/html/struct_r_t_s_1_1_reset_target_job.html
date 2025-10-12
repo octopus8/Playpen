@@ -84,6 +84,9 @@ $(function() {
   <div class="headertitle"><div class="title">RTS.ResetTargetJob Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Job that resets the target entity in the <a class="el" href="struct_r_t_s_1_1_target.html" title="Component storing target data for an entity.">Target</a> component if the target entity has been destroyed.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RTS.ResetTargetJob:</div>
 <div class="dyncontent">
@@ -95,15 +98,20 @@ Inheritance diagram for RTS.ResetTargetJob:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a046801245b261a7af95f509fabdf8ed2" id="r_a046801245b261a7af95f509fabdf8ed2"><td class="memItemLeft" align="right" valign="top"><a id="a046801245b261a7af95f509fabdf8ed2" name="a046801245b261a7af95f509fabdf8ed2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> (ref <a class="el" href="struct_r_t_s_1_1_target.html">Target</a> target)</td></tr>
+<tr class="memdesc:a046801245b261a7af95f509fabdf8ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the job for each entity with a <a class="el" href="struct_r_t_s_1_1_target.html" title="Component storing target data for an entity.">Target</a> component. If the target entity has been destroyed, resets the target to Entity.Null. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:adb615afe0225edad01c02e8d6cb906a3" id="r_adb615afe0225edad01c02e8d6cb906a3"><td class="memItemLeft" align="right" valign="top"><a id="adb615afe0225edad01c02e8d6cb906a3" name="adb615afe0225edad01c02e8d6cb906a3"></a>
 ComponentLookup&lt; LocalTransform &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>localTransformComponentLookup</b></td></tr>
+<tr class="memdesc:adb615afe0225edad01c02e8d6cb906a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for LocalTransform components, allowing read-only access. <br /></td></tr>
 <tr class="memitem:a67dcc94ca289e3f5deb39fd66ba5c8e3" id="r_a67dcc94ca289e3f5deb39fd66ba5c8e3"><td class="memItemLeft" align="right" valign="top"><a id="a67dcc94ca289e3f5deb39fd66ba5c8e3" name="a67dcc94ca289e3f5deb39fd66ba5c8e3"></a>
 EntityStorageInfoLookup&#160;</td><td class="memItemRight" valign="bottom"><b>entityStorageInfoLookup</b></td></tr>
+<tr class="memdesc:a67dcc94ca289e3f5deb39fd66ba5c8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for EntityStorageInfo, allowing read-only access to check if an entity exists. <br /></td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Job that resets the target entity in the <a class="el" href="struct_r_t_s_1_1_target.html" title="Component storing target data for an entity.">Target</a> component if the target entity has been destroyed. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>C:/Develop/O8C/Playpen/Assets/[Playpen]/RTS/Scripts/Systems/<b>ResetTargetSystem.cs</b></li>
 </ul>
 </div><!-- contents -->

@@ -98,6 +98,7 @@ Inheritance diagram for RTS.HealthBarSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a33204db4025a4f053e5b041792a64d06" id="r_a33204db4025a4f053e5b041792a64d06"><td class="memItemLeft" align="right" valign="top"><a id="a33204db4025a4f053e5b041792a64d06" name="a33204db4025a4f053e5b041792a64d06"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnCreate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:a33204db4025a4f053e5b041792a64d06"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnCreate is called when the system is created. It initializes component lookups for LocalTransform, <a class="el" href="struct_r_t_s_1_1_health.html" title="Component storing data for health, including current and maximum health. Also includes event flags fo...">Health</a>, and PostTransformMatrix components. <br /></td></tr>
 <tr class="memitem:a1c56e12e6108188c74c7df1a345b1af4" id="r_a1c56e12e6108188c74c7df1a345b1af4"><td class="memItemLeft" align="right" valign="top"><a id="a1c56e12e6108188c74c7df1a345b1af4" name="a1c56e12e6108188c74c7df1a345b1af4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref SystemState state)</td></tr>
 <tr class="memdesc:a1c56e12e6108188c74c7df1a345b1af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates health bars to face the camera and reflect the current health of entities. <br /></td></tr>
@@ -106,10 +107,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref Sys
 Private Attributes</h2></td></tr>
 <tr class="memitem:abef6511e2847ea2f6429397ad0862175" id="r_abef6511e2847ea2f6429397ad0862175"><td class="memItemLeft" align="right" valign="top"><a id="abef6511e2847ea2f6429397ad0862175" name="abef6511e2847ea2f6429397ad0862175"></a>
 ComponentLookup&lt; LocalTransform &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_localTransformComponentLookup</b></td></tr>
+<tr class="memdesc:abef6511e2847ea2f6429397ad0862175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for LocalTransform components, allowing read and write access. <br /></td></tr>
 <tr class="memitem:ad71427734bc7bd3558fd97bde461bc91" id="r_ad71427734bc7bd3558fd97bde461bc91"><td class="memItemLeft" align="right" valign="top"><a id="ad71427734bc7bd3558fd97bde461bc91" name="ad71427734bc7bd3558fd97bde461bc91"></a>
 ComponentLookup&lt; <a class="el" href="struct_r_t_s_1_1_health.html">Health</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_healthComponentLookup</b></td></tr>
+<tr class="memdesc:ad71427734bc7bd3558fd97bde461bc91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for <a class="el" href="struct_r_t_s_1_1_health.html" title="Component storing data for health, including current and maximum health. Also includes event flags fo...">Health</a> components, allowing read-only access. <br /></td></tr>
 <tr class="memitem:a40237175095902942ec6bbb5fbe8ba3a" id="r_a40237175095902942ec6bbb5fbe8ba3a"><td class="memItemLeft" align="right" valign="top"><a id="a40237175095902942ec6bbb5fbe8ba3a" name="a40237175095902942ec6bbb5fbe8ba3a"></a>
 ComponentLookup&lt; PostTransformMatrix &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_postTransformMatrixComponentLookup</b></td></tr>
+<tr class="memdesc:a40237175095902942ec6bbb5fbe8ba3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for PostTransformMatrix components, allowing read and write access. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>System that updates health bars to face the camera and reflect the current health of entities. This system runs in the LateSimulationSystemGroup to ensure events can be sent before updating health bars. </p>

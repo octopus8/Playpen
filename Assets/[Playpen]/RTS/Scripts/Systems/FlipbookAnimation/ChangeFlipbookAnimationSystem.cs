@@ -1,10 +1,14 @@
-using RTS;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Rendering;
 
+
 namespace RTS
 {
+    /// <summary>
+    /// System that changes the active flipbook animation for entities based on their next animation.
+    /// It ensures that one-shot animations (like shooting or melee attack) are not interrupted.
+    /// </summary>
     [UpdateBefore(typeof(ActiveFlipbookAnimationSystem))]
     partial struct ChangeFlipbookAnimationSystem : ISystem
     {

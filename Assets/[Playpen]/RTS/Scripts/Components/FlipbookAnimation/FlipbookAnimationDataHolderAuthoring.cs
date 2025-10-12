@@ -96,6 +96,7 @@ namespace RTS
     /// </remarks>
     public struct FlipbookAnimationDataHolderObjectData : IComponentData
     {
+        /// <summary>The set of flipbook animations for all entities.</summary>
         public UnityObjectRef<FlipbookAnimationSetScriptableObject> animationSet;
     }
 
@@ -106,7 +107,10 @@ namespace RTS
     /// </summary>
     public struct FlipbookAnimationDataHolderSubEntity : IComponentData
     {
+        /// <summary>The type of animation this frame belongs to.</summary>
         public FlipbookAnimationScriptableObject.AnimationType animationType;
+        
+        /// <summary>The index of the frame within the animation.</summary>
         public int frameIndex;
     }
 
@@ -117,6 +121,7 @@ namespace RTS
     /// </summary>
     public struct FlipbookAnimationDataHolder : IComponentData
     {
+        /// <summary> Holds the BlobAssetReference to a BlobArray of FlipbookAnimationData, one for each animation type. </summary>
         public BlobAssetReference<BlobArray<FlipbookAnimationData>> animationData;
     }
 
@@ -127,8 +132,13 @@ namespace RTS
     /// </summary>
     public struct FlipbookAnimationData
     {
+        /// <summary> Duration of each frame in seconds. </summary>
         public float frameDuration;
+        
+        /// <summary> Total number of frames in the animation. </summary>
         public int totalFrames;
+        
+        /// <summary> BlobArray of mesh IDs for each frame in the animation. </summary>
         public BlobArray<int> intMeshIDBlobArray;
     }
 }

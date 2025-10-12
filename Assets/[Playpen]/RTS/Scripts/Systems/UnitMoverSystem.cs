@@ -12,7 +12,7 @@ namespace RTS
     /// </summary>
     partial struct UnitMoverSystem : ISystem
     {
-        // Squared distance threshold to consider that the unit has reached its destination.
+        /// <summary> The squared distance threshold to consider that the unit has reached its target position. </summary>
         public const float REACHED_TARGET_POSITION_DISTANCE_SQUARED = 2f;
         
         
@@ -46,6 +46,9 @@ namespace RTS
         public float deltaTime;
 
 
+        /// <summary>
+        /// Moves a unit towards its destination.
+        /// </summary>
         public void Execute(ref LocalTransform localTransform, ref UnitMover unitMover,
             ref PhysicsVelocity physicsVelocity)
         {

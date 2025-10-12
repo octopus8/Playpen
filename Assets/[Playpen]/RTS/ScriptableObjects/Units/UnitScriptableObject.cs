@@ -4,17 +4,23 @@ using UnityEngine;
 
 namespace RTS
 {
-
+    /// <summary>
+    /// A scriptable object that holds data for a unit.
+    /// </summary>
     [CreateAssetMenu()]
     public class UnitScriptableObject : ScriptableObject
     {
-
+        /// <summary> The type of unit. </summary>
         public UnitType unitType;
         
+        /// <summary> Time it takes to spawn the unit in seconds. </summary>
         public float spawnDuration = 2f;
-
+        
+        /// <summary> The sprite to use for this unit in the UI. </summary>
         public Sprite unitIcon;
     
+        
+        /// <summary> Unit types. </summary>
         public enum UnitType
         {
             None,
@@ -24,6 +30,9 @@ namespace RTS
         }
 
 
+        /// <summary>
+        /// Gets the corresponding unit entity prefab from the given EntityPrefabSet based on the unit type.
+        /// </summary>
         public Entity GetUnit(EntityPrefabSet entityPrefabSet)
         {
             switch (unitType)
@@ -37,8 +46,5 @@ namespace RTS
                     return entityPrefabSet.zombieEntityPrefab;
             }
         }
-    
     }
-    
-    
 }

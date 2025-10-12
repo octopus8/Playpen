@@ -4,6 +4,10 @@ using Unity.Entities;
 
 namespace RTS
 {
+    /// <summary>
+    /// System that updates the flipbook animation states for units based on their movement and attack states.
+    /// It handles idle/walking, aiming/shooting, and melee attack animations.
+    /// </summary>
     [UpdateAfter(typeof(ShootAttackSystem))]
     [UpdateAfter(typeof(MeleeAttackSystem))]
     partial struct FlipbookAnimationStateSystem : ISystem
@@ -63,7 +67,7 @@ namespace RTS
         [BurstCompile]
         public partial struct IdleWalkingAnimationStateJob : IJobEntity
         {
-            // Lookup for ActiveFlipbookAnimation components, allowing read and write access.
+            /// <summary>Lookup for ActiveFlipbookAnimation components, allowing read and write access.</summary>
             [NativeDisableParallelForRestriction] public ComponentLookup<ActiveFlipbookAnimation> activeAnimationLookup;
             
             
@@ -97,7 +101,7 @@ namespace RTS
         [BurstCompile]
         public partial struct AimShootAnimationStateJob : IJobEntity
         {
-            // Lookup for ActiveFlipbookAnimation components, allowing read and write access.
+            /// <summary>Lookup for ActiveFlipbookAnimation components, allowing read and write access.</summary>
             [NativeDisableParallelForRestriction] public ComponentLookup<ActiveFlipbookAnimation> activeAnimationLookup;
             
             
@@ -132,7 +136,7 @@ namespace RTS
         [BurstCompile]
         public partial struct MeleeAttackAnimationStateJob : IJobEntity
         {
-            // Lookup for ActiveFlipbookAnimation components, allowing read and write access.
+            /// <summary>Lookup for ActiveFlipbookAnimation components, allowing read and write access.</summary>
             [NativeDisableParallelForRestriction] public ComponentLookup<ActiveFlipbookAnimation> activeAnimationLookup;
 
             

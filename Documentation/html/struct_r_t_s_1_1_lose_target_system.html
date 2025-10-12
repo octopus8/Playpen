@@ -83,6 +83,9 @@ $(function() {
   <div class="headertitle"><div class="title">RTS.LoseTargetSystem Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>System that makes entities with the <a class="el" href="struct_r_t_s_1_1_lose_target.html" title="Component which specifies the distance at which an entity will lose its target.">LoseTarget</a> component lose their target if they move too far away from it.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RTS.LoseTargetSystem:</div>
 <div class="dyncontent">
@@ -94,8 +97,11 @@ Inheritance diagram for RTS.LoseTargetSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa475dcb46420a06a700635aafec92933" id="r_aa475dcb46420a06a700635aafec92933"><td class="memItemLeft" align="right" valign="top"><a id="aa475dcb46420a06a700635aafec92933" name="aa475dcb46420a06a700635aafec92933"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:aa475dcb46420a06a700635aafec92933"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnUpdate is called every frame the system is enabled. It checks if entities with a <a class="el" href="struct_r_t_s_1_1_target.html" title="Component storing target data for an entity.">Target</a> component should lose their target based on the <a class="el" href="struct_r_t_s_1_1_lose_target.html" title="Component which specifies the distance at which an entity will lose its target.">LoseTarget</a> component. If the target is too far away, the target is set to Entity.Null. <br /></td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>System that makes entities with the <a class="el" href="struct_r_t_s_1_1_lose_target.html" title="Component which specifies the distance at which an entity will lose its target.">LoseTarget</a> component lose their target if they move too far away from it. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>C:/Develop/O8C/Playpen/Assets/[Playpen]/RTS/Scripts/Systems/<b>LoseTargetSystem.cs</b></li>
 </ul>
 </div><!-- contents -->

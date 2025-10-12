@@ -10,6 +10,10 @@ namespace RTS
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     partial struct HealthDeadTestSystem : ISystem
     {
+        /// <summary>
+        /// OnUpdate is called every frame the system is enabled.
+        /// It checks all entities with Health components and destroys those with zero or negative health.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

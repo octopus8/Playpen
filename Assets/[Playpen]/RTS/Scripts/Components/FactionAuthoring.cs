@@ -39,6 +39,7 @@ namespace RTS
     /// </summary>
     struct Faction : Unity.Entities.IComponentData
     {
+        /// <summary>The faction type of the entity.</summary>
         public FactionType factionType;
     }
 }

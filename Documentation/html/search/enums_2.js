@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['grabtype_0',['GrabType',['../namespace_autohand.html#aa284393bb23a5c3cc6c000a0663f6819',1,'Autohand']]]
+  ['factiontype_0',['FactionType',['../namespace_r_t_s.html#aaba8d5c8ced6f3a9d583b076b16cc88f',1,'RTS']]]
 ];

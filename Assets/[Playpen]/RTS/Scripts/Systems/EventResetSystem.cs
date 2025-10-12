@@ -12,8 +12,13 @@ namespace RTS
     [UpdateInGroup(typeof(LateSimulationSystemGroup), OrderLast = true)]
     partial struct EventResetSystem : ISystem
     {
+        /// <summary>Array to hold job handles for the reset jobs.</summary>
         private NativeArray<JobHandle> jobHandles;
         
+        
+        /// <summary>
+        /// OnCreate is called when the system is created. It initializes a NativeArray to hold job handles for the reset jobs.
+        /// </summary>
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
@@ -61,9 +66,17 @@ namespace RTS
     }
  
     
+    /// <summary>
+    /// Job that resets shoot attack-related event flags after they have been processed.
+    /// It sets the onShootEvent.isTriggered flag to false.
+    /// </summary>
     [BurstCompile]
     public partial struct ResetShootAttackEventsJob : IJobEntity
     {
+        /// <summary>
+        /// Job that resets the onShootEvent.isTriggered flag in the ShootAttack component after it has been processed.
+        /// It sets the isTriggered flag to false.
+        /// </summary>
         public void Execute(ref ShootAttack shootAttack)
         {
             shootAttack.onShootEvent.isTriggered = false;
@@ -71,9 +84,17 @@ namespace RTS
     }
     
     
+    /// <summary>
+    /// Job that resets health-related event flags after they have been processed.
+    /// It sets onHealthChanged and onDead flags to false.
+    /// </summary>
     [BurstCompile]
     public partial struct ResetHealthEventsJob : IJobEntity
     {
+        /// <summary>
+        /// Resets the onHealthChanged and onDead flags in the Health component after they have been processed.
+        /// It sets both flags to false.
+        /// </summary>
         public void Execute(ref Health health)
         {
             health.onHealthChanged = false;
@@ -81,11 +102,19 @@ namespace RTS
         }
     }
     
-    
+
+    /// <summary>
+    /// Job that resets selection-related event flags after they have been processed.
+    /// It sets onSelected and onDeselected flags to false.
+    /// </summary>
     [BurstCompile]
     [WithOptions(EntityQueryOptions.IgnoreComponentEnabledState)]
     public partial struct ResetSelectedEventsJob : IJobEntity
     {
+        /// <summary>
+        /// Resets the onSelected and onDeselected flags in the UnitSelected component after they have been processed.
+        /// It sets both flags to false.
+        /// </summary>
         public void Execute(ref UnitSelected unitSelected)
         {
             unitSelected.onSelected = false;
@@ -94,9 +123,17 @@ namespace RTS
     }
     
     
+    /// <summary>
+    /// Job that resets melee attack-related event flags after they have been processed.
+    /// It sets the onAttackTarget flag to false.
+    /// </summary>
     [BurstCompile]
     public partial struct ResetMeleeAttackEventsJob : IJobEntity
     {
+        /// <summary>
+        /// Resets the onAttackTarget flag in the MeleeAttack component after it has been processed.
+        /// It sets the onAttackTarget flag to false.
+        /// </summary>
         public void Execute(ref MeleeAttack meleeAttack)
         {
             meleeAttack.onAttackTarget = false;
@@ -104,20 +141,29 @@ namespace RTS
     }
 
     
+    /// <summary>
+    /// Job that resets BuildingBarracks-related event flags after they have been processed.
+    /// It collects entities with onUnitQueueChangedEventFlag set to true and resets the flag.
+    /// </summary>
     [BurstCompile]
     public partial struct ResetBuildingBarracksEventsJob : IJobEntity
     {
+        /// <summary>Parallel writer for a list of entities that had their unit queue changed.</summary>
         public NativeList<Entity>.ParallelWriter onUnitQueueChangedEntities;
+
         
+        /// <summary>
+        /// Resets the onUnitQueueChangedEventFlag in the BuildingBarracks component after it has been processed.
+        /// If the flag is true, the entity is added to the onUnitQueueChangedEntities list.
+        /// The flag is then set to false.
+        /// </summary>
         public void Execute(ref BuildingBarracks barracks, Entity entity)
         {
             if (barracks.onUnitQueueChangedEventFlag)
             {
                 onUnitQueueChangedEntities.AddNoResize(entity);
             }
-            
             barracks.onUnitQueueChangedEventFlag = false;
         }
     }
-  
 }

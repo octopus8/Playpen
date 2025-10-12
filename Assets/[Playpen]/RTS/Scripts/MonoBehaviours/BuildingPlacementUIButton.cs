@@ -21,6 +21,10 @@ namespace RTS
         private BuildingScriptableObject buildingTemplate;
 
         
+        /// <summary>
+        /// Sets up the button with the given building template.
+        /// Configures the button's icon and click behavior.
+        /// </summary>
         public void Setup(BuildingScriptableObject building)
         {
             // Store the building template.

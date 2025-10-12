@@ -11,6 +11,10 @@ namespace RTS
     /// </summary>
     partial struct ZombieSpawnerSystem : ISystem
     {
+        /// <summary>
+        /// OnCreate is called when the system is created.
+        /// It requires the EntityPrefabSet component and the EndSimulationEntityCommandBufferSystem singleton to be present for the system to update.
+        /// </summary> 
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
@@ -18,6 +22,12 @@ namespace RTS
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
         }
 
+        
+        /// <summary>
+        /// OnUpdate is called every frame the system is enabled.
+        /// It spawns zombie entities at the position of ZombieSpawner components based on their spawn interval
+        /// and the number of nearby zombies.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

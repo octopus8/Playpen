@@ -14,7 +14,8 @@ var searchData=
   ['healthbarsystem_11',['HealthBarSystem',['../struct_r_t_s_1_1_health_bar_system.html',1,'RTS']]],
   ['healthdeadtestsystem_12',['HealthDeadTestSystem',['../struct_r_t_s_1_1_health_dead_test_system.html',1,'RTS']]],
   ['healthentity_13',['healthEntity',['../struct_r_t_s_1_1_health_bar.html#a52788d126bbaed9eafbd422876b5bb40',1,'RTS::HealthBar']]],
-  ['hide_14',['Hide',['../class_r_t_s_1_1_building_barracks_u_i.html#afd8ddbb7dc2bc48a5acb7bddd506d05d',1,'RTS.BuildingBarracksUI.Hide()'],['../class_r_t_s_1_1_game_over_u_i.html#a6594357193a0d06c2373d4160b30dc5b',1,'RTS.GameOverUI.Hide()']]],
-  ['hideselected_15',['HideSelected',['../class_r_t_s_1_1_building_placement_u_i_button.html#a61a485c09c9f2717b4805d1ea3a3e1d5',1,'RTS::BuildingPlacementUIButton']]],
-  ['hitlocalposition_16',['hitLocalPosition',['../class_r_t_s_1_1_shoot_target_authoring.html#ad6d5869791b556e3136f4fa22258b118',1,'RTS.ShootTargetAuthoring.hitLocalPosition'],['../struct_r_t_s_1_1_shoot_target.html#a7af336261e47f2ab7de17a5c37e4277e',1,'RTS.ShootTarget.hitLocalPosition']]]
+  ['healthlookup_14',['healthLookup',['../struct_r_t_s_1_1_health_bar_job.html#a747b75f69837e27cfa8a57ad37a8ef91',1,'RTS::HealthBarJob']]],
+  ['hide_15',['Hide',['../class_r_t_s_1_1_building_barracks_u_i.html#afd8ddbb7dc2bc48a5acb7bddd506d05d',1,'RTS.BuildingBarracksUI.Hide()'],['../class_r_t_s_1_1_game_over_u_i.html#a6594357193a0d06c2373d4160b30dc5b',1,'RTS.GameOverUI.Hide()']]],
+  ['hideselected_16',['HideSelected',['../class_r_t_s_1_1_building_placement_u_i_button.html#a61a485c09c9f2717b4805d1ea3a3e1d5',1,'RTS::BuildingPlacementUIButton']]],
+  ['hitlocalposition_17',['hitLocalPosition',['../class_r_t_s_1_1_shoot_target_authoring.html#ad6d5869791b556e3136f4fa22258b118',1,'RTS.ShootTargetAuthoring.hitLocalPosition'],['../struct_r_t_s_1_1_shoot_target.html#a7af336261e47f2ab7de17a5c37e4277e',1,'RTS.ShootTarget.hitLocalPosition']]]
 ];

@@ -15,6 +15,11 @@ namespace RTS
     partial struct FlipbookAnimationDataHolderBakingSystem : ISystem
     {
 
+        /// <summary>
+        /// OnUpdate is called every frame the system is enabled.
+        /// It constructs the BlobAssetReference for the FlipbookAnimationDataHolder component
+        /// using the mesh IDs from the sub-entities created in the Baker.
+        /// </summary>
         public void OnUpdate(ref SystemState state)
         {
             // Get a reference to the set of animation data. This reference is contained in the FlipbookAnimationDataHolderObjectData component
@@ -102,7 +107,5 @@ namespace RTS
                 blobBuilder.Dispose();
             }
         }
-
-        
     }
 }

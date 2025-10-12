@@ -1,5 +1,20 @@
 var searchData=
 [
-  ['nearbyzombieradius_0',['nearbyZombieRadius',['../class_r_t_s_1_1_zombie_spawner_authoring.html#a3c5c784ab0c6841fb94bed5f195e2ad1',1,'RTS.ZombieSpawnerAuthoring.nearbyZombieRadius'],['../struct_r_t_s_1_1_zombie_spawner.html#a6f3ca36bc7915e59e8a0a087833c263f',1,'RTS.ZombieSpawner.nearbyZombieRadius']]],
-  ['nextanimation_1',['nextAnimation',['../struct_r_t_s_1_1_active_flipbook_animation.html#a75a409cb688570cba3a0ced2d20da2a7',1,'RTS::ActiveFlipbookAnimation']]]
+  ['maxhealth_0',['maxHealth',['../class_r_t_s_1_1_health_authoring.html#a5cfa60fccafad499a5ac9c707b0e2769',1,'RTS.HealthAuthoring.maxHealth'],['../struct_r_t_s_1_1_health.html#a0f1e030b588ae18cc820e5ddd5469ded',1,'RTS.Health.maxHealth']]],
+  ['maxneabyzombies_1',['maxNeabyZombies',['../class_r_t_s_1_1_zombie_spawner_authoring.html#a5f480fefd1958d3a838902f50e8c52d1',1,'RTS::ZombieSpawnerAuthoring']]],
+  ['maxnearbyzombies_2',['maxNearbyZombies',['../struct_r_t_s_1_1_zombie_spawner.html#ac7b46fb4878cc0464235cbc0c0ab7106',1,'RTS::ZombieSpawner']]],
+  ['maxtimer_3',['maxTimer',['../struct_r_t_s_1_1_find_target.html#ae7618951de5796c176ebe851bf7e5aba',1,'RTS::FindTarget']]],
+  ['maxtimerseconds_4',['maxTimerSeconds',['../class_r_t_s_1_1_find_target_authoring.html#a05d6958d31b4becb73da57318261ec9b',1,'RTS::FindTargetAuthoring']]],
+  ['maxzoom_5',['maxZoom',['../class_r_t_s_1_1_camera_controller.html#a0699ca5f0fded322ac49853d732dcf5c',1,'RTS::CameraController']]],
+  ['meleeattack_6',['MeleeAttack',['../struct_r_t_s_1_1_melee_attack.html',1,'RTS']]],
+  ['meleeattackanimation_7',['meleeAttackAnimation',['../class_r_t_s_1_1_unit_flipbook_animations_authoring.html#a810c994c039e4bfc9c9c3db9dced147b',1,'RTS.UnitFlipbookAnimationsAuthoring.meleeAttackAnimation'],['../struct_r_t_s_1_1_unit_flipbook_animations.html#a59458c899379a0fca5da8e6567212c37',1,'RTS.UnitFlipbookAnimations.meleeAttackAnimation']]],
+  ['meleeattackanimationstatejob_8',['MeleeAttackAnimationStateJob',['../struct_r_t_s_1_1_flipbook_animation_state_system_1_1_melee_attack_animation_state_job.html',1,'RTS::FlipbookAnimationStateSystem']]],
+  ['meleeattackauthoring_9',['MeleeAttackAuthoring',['../class_r_t_s_1_1_melee_attack_authoring.html',1,'RTS']]],
+  ['meleeattacksystem_10',['MeleeAttackSystem',['../struct_r_t_s_1_1_melee_attack_system.html',1,'RTS']]],
+  ['mesh_11',['mesh',['../class_r_t_s_1_1_flipbook_animation_mesh_authoring.html#a498718aa39708510b58e9c596ab8c7e3',1,'RTS.FlipbookAnimationMeshAuthoring.mesh'],['../struct_r_t_s_1_1_flipbook_animation_mesh.html#a551984e238a26fa8eed082bde36f5a73',1,'RTS.FlipbookAnimationMesh.mesh']]],
+  ['minzoom_12',['minZoom',['../class_r_t_s_1_1_camera_controller.html#acce00bd0703ef80a0b16e8ecfd8d1793',1,'RTS::CameraController']]],
+  ['monobehaviours_13',['MonoBehaviours',['../md__c_1_2_develop_2_o8_c_2_playpen_2_assets_2_0f_playpen_0e_2_r_t_s_2_documentation_2_main.html#autotoc_md5',1,'']]],
+  ['mouseworldposition_14',['MouseWorldPosition',['../class_r_t_s_1_1_mouse_world_position.html',1,'RTS']]],
+  ['movespeed_15',['moveSpeed',['../struct_r_t_s_1_1_unit_mover.html#a1f1b584619fcadf22f80ad15f377ccfd',1,'RTS.UnitMover.moveSpeed'],['../class_r_t_s_1_1_camera_controller.html#a0db931067c2b6355ab43145c9cfb1e08',1,'RTS.CameraController.moveSpeed']]],
+  ['movespeedmps_16',['moveSpeedMPS',['../class_r_t_s_1_1_unit_mover_authoring.html#aaa3e789643ecfc1070d1930d534be144',1,'RTS::UnitMoverAuthoring']]]
 ];

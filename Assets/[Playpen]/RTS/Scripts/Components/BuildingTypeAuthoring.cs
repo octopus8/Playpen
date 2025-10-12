@@ -38,6 +38,7 @@ namespace RTS
     /// </summary>
     public struct BuildingType : IComponentData
     {
+        /// <summary> The type of building this entity represents. </summary>
         public BuildingScriptableObject.BuildingType buildingType;
     }
 }

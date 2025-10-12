@@ -1,18 +1,16 @@
 var searchData=
 [
-  ['scoutentityprefab_0',['scoutEntityPrefab',['../struct_r_t_s_1_1_entity_prefab_set.html#afd8c3a101532cf75671e64cb0077c8c4',1,'RTS::EntityPrefabSet']]],
-  ['scoutprefab_1',['scoutPrefab',['../class_r_t_s_1_1_entity_prefab_set_authoring.html#a805fd0f9a80d4d8ec82ee026ab1d6346',1,'RTS::EntityPrefabSetAuthoring']]],
-  ['selectedimage_2',['selectedImage',['../class_r_t_s_1_1_building_placement_u_i_button.html#ad938d68a49acae0259022351195a91b2',1,'RTS::BuildingPlacementUIButton']]],
-  ['selectionarea_3',['selectionArea',['../class_r_t_s_1_1_unit_selection_u_i.html#a3861f56a3d340726a9e5e30793218551',1,'RTS::UnitSelectionUI']]],
-  ['shootlightentityprefab_4',['shootLightEntityPrefab',['../struct_r_t_s_1_1_entity_prefab_set.html#a4470c6c3f2b68361cedbd56b81c63cda',1,'RTS::EntityPrefabSet']]],
-  ['shootlightprefab_5',['shootLightPrefab',['../class_r_t_s_1_1_entity_prefab_set_authoring.html#aa1c12379a4e6c4921fdbcbfcbf16146b',1,'RTS::EntityPrefabSetAuthoring']]],
-  ['shootposition_6',['shootPosition',['../struct_r_t_s_1_1_shoot_attack_1_1_on_shoot_event.html#aab8d41249b2dcf1728443eaabae79358',1,'RTS::ShootAttack::OnShootEvent']]],
-  ['showscale_7',['showScale',['../class_r_t_s_1_1_unit_selected_authoring.html#af833f988eaf5bd75f9a850b78179e128',1,'RTS.UnitSelectedAuthoring.showScale'],['../struct_r_t_s_1_1_unit_selected.html#ac2efe2392d50b03fc249527eef3f1d3a',1,'RTS.UnitSelected.showScale']]],
-  ['soldierentityprefab_8',['soldierEntityPrefab',['../struct_r_t_s_1_1_entity_prefab_set.html#acc543531c3fcffb2dc9a0a3e4c70bd5c',1,'RTS::EntityPrefabSet']]],
-  ['soldierprefab_9',['soldierPrefab',['../class_r_t_s_1_1_entity_prefab_set_authoring.html#a097f03fd9491751849b4c8cc2ca6839e',1,'RTS::EntityPrefabSetAuthoring']]],
-  ['spawninterval_10',['spawnInterval',['../class_r_t_s_1_1_zombie_spawner_authoring.html#ac75e44b089cf68094458c79ebae62c96',1,'RTS.ZombieSpawnerAuthoring.spawnInterval'],['../struct_r_t_s_1_1_zombie_spawner.html#a12f837db7a37aa95093a947038233af8',1,'RTS.ZombieSpawner.spawnInterval']]],
-  ['spawntype_11',['spawnType',['../struct_r_t_s_1_1_building_barracks.html#a249acb0b10d850fed1e641b7fb7b7dfa',1,'RTS::BuildingBarracks']]],
-  ['speed_12',['speed',['../class_r_t_s_1_1_bullet_authoring.html#a0bd2f84ffa09821f37698e485294cd19',1,'RTS.BulletAuthoring.speed'],['../struct_r_t_s_1_1_bullet.html#ac937dd8a62f4ff9d2785701c58f7dbfd',1,'RTS.Bullet.speed']]],
-  ['startinganimation_13',['startingAnimation',['../class_r_t_s_1_1_active_flipbook_animation_authoring.html#abd73ab2fadbb6e4ead7b357e8013aec2',1,'RTS::ActiveFlipbookAnimationAuthoring']]],
-  ['startmouseposition_14',['startMousePosition',['../class_r_t_s_1_1_unit_selection.html#a5f5d21595476e21f962c47165cf86946',1,'RTS::UnitSelection']]]
+  ['onattacktarget_0',['onAttackTarget',['../struct_r_t_s_1_1_melee_attack.html#a1d11d31856a967e235cbe5476822d5a8',1,'RTS::MeleeAttack']]],
+  ['ondead_1',['onDead',['../struct_r_t_s_1_1_health.html#ab9e51cd5dad43bc21b6a1d53ac10400a',1,'RTS::Health']]],
+  ['ondeselected_2',['onDeselected',['../struct_r_t_s_1_1_unit_selected.html#ab4b3a51dcc19c62952fb4fd01b7cc1a5',1,'RTS::UnitSelected']]],
+  ['onhealthchanged_3',['onHealthChanged',['../struct_r_t_s_1_1_health.html#a6647ce81b221a1b947d4dda2b41f98db',1,'RTS::Health']]],
+  ['onselected_4',['onSelected',['../struct_r_t_s_1_1_unit_selected.html#a57a407b52cddbe9ac6b832be47fa8fc6',1,'RTS::UnitSelected']]],
+  ['onselectedchanged_5',['OnSelectedChanged',['../class_r_t_s_1_1_unit_selection.html#a8e03603cf8a453b265ecdccd9ebccb7e',1,'RTS::UnitSelection']]],
+  ['onselectionareaend_6',['OnSelectionAreaEnd',['../class_r_t_s_1_1_unit_selection.html#a9d7091c0d740d538c62e4eb34526a5d7',1,'RTS::UnitSelection']]],
+  ['onselectionareastart_7',['OnSelectionAreaStart',['../class_r_t_s_1_1_unit_selection.html#a2db43d0f43cfb03fbb1a1cd882eb5182',1,'RTS::UnitSelection']]],
+  ['onshootevent_8',['onShootEvent',['../struct_r_t_s_1_1_shoot_attack.html#a4b47699faaaae4249923c5873a5a3d26',1,'RTS::ShootAttack']]],
+  ['onunitqueuechangedentities_9',['onUnitQueueChangedEntities',['../struct_r_t_s_1_1_reset_building_barracks_events_job.html#a6717282643d9d01312fe47bef96aa0e4',1,'RTS::ResetBuildingBarracksEventsJob']]],
+  ['onunitqueuechangedeventflag_10',['onUnitQueueChangedEventFlag',['../struct_r_t_s_1_1_building_barracks.html#ad3332105611bfec4da8b1c341a6f5a03',1,'RTS::BuildingBarracks']]],
+  ['originposition_11',['originPosition',['../struct_r_t_s_1_1_random_walking.html#aec5ae654aab1191f8aefc1cbb00f77cc',1,'RTS::RandomWalking']]],
+  ['overridedestination_12',['overrideDestination',['../struct_r_t_s_1_1_unit_mover_override.html#a7ab03a40a4b489df53f75d268163261b',1,'RTS::UnitMoverOverride']]]
 ];

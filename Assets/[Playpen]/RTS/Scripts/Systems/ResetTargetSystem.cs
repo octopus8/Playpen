@@ -13,9 +13,17 @@ namespace RTS
     [UpdateInGroup(typeof(SimulationSystemGroup), OrderFirst = true)]
     partial struct ResetTargetSystem : ISystem
     {
+        /// <summary>Lookup for LocalTransform components, allowing read-only access.</summary>
         private ComponentLookup<LocalTransform> _localTransformComponentLookup;
+        
+        /// <summary>Lookup for EntityStorageInfo, allowing read-only access.</summary>
         private EntityStorageInfoLookup _entityStorageInfoLookup;
         
+        
+        /// <summary>
+        /// OnCreate is called when the system is created.
+        /// It initializes component lookups for LocalTransform and EntityStorageInfo components.
+        /// </summary>
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
@@ -24,6 +32,11 @@ namespace RTS
         }
         
         
+        /// <summary>
+        /// OnUpdate is called every frame the system is enabled.
+        /// It checks all entities with Target and TargetOverride components to see if their target entities are still valid.
+        /// If a target entity has been destroyed, the target is reset to Entity.Null.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -47,12 +60,23 @@ namespace RTS
     }
     
     
+    /// <summary>
+    /// Job that resets the target entity in the Target component if the target entity has been destroyed.
+    /// </summary>
     [BurstCompile]
     public partial struct ResetTargetJob : IJobEntity
     {
+        /// <summary>Lookup for LocalTransform components, allowing read-only access.</summary>
         [ReadOnly] public ComponentLookup<LocalTransform> localTransformComponentLookup;
+        
+        /// <summary>Lookup for EntityStorageInfo, allowing read-only access to check if an entity exists.</summary>
         [ReadOnly] public EntityStorageInfoLookup entityStorageInfoLookup;
         
+        
+        /// <summary>
+        /// Executes the job for each entity with a Target component.
+        /// If the target entity has been destroyed, resets the target to Entity.Null.
+        /// </summary>
         public void Execute(ref Target target)
         {
             // If no target, skip.
@@ -73,12 +97,23 @@ namespace RTS
     }
     
     
+    /// <summary>
+    /// Job that resets the target entity in the TargetOverride component if the target entity has been destroyed.
+    /// </summary>
     [BurstCompile]
     public partial struct ResetTargetOverrideJob : IJobEntity
     {
+        /// <summary>Lookup for LocalTransform components, allowing read-only access.</summary>
         [ReadOnly] public ComponentLookup<LocalTransform> localTransformComponentLookup;
-        [ReadOnly] public EntityStorageInfoLookup entityStorageInfoLookup;
         
+        /// <summary>Lookup for EntityStorageInfo, allowing read-only access to check if an entity exists.</summary>
+        [ReadOnly] public EntityStorageInfoLookup entityStorageInfoLookup;
+     
+        
+        /// <summary>
+        /// Executes the job for each entity with a TargetOverride component.
+        /// If the target entity has been destroyed, resets the target to Entity.Null.
+        /// </summary>
         public void Execute(ref TargetOverride targetOverride)
         {
             // If no target, skip.
@@ -97,6 +132,4 @@ namespace RTS
             }
         }
     }
-    
-    
 }

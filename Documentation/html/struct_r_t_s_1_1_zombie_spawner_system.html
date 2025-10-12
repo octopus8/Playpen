@@ -97,8 +97,10 @@ Inheritance diagram for RTS.ZombieSpawnerSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aca91421df778ab9fb413c42405d5b5d0" id="r_aca91421df778ab9fb413c42405d5b5d0"><td class="memItemLeft" align="right" valign="top"><a id="aca91421df778ab9fb413c42405d5b5d0" name="aca91421df778ab9fb413c42405d5b5d0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnCreate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:aca91421df778ab9fb413c42405d5b5d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnCreate is called when the system is created. It requires the <a class="el" href="struct_r_t_s_1_1_entity_prefab_set.html" title="Component storing references to various entity prefabs used in the game.">EntityPrefabSet</a> component and the EndSimulationEntityCommandBufferSystem singleton to be present for the system to update. <br /></td></tr>
 <tr class="memitem:a58401a33e69b36ba9d7285fd9ee1b3f2" id="r_a58401a33e69b36ba9d7285fd9ee1b3f2"><td class="memItemLeft" align="right" valign="top"><a id="a58401a33e69b36ba9d7285fd9ee1b3f2" name="a58401a33e69b36ba9d7285fd9ee1b3f2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:a58401a33e69b36ba9d7285fd9ee1b3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnUpdate is called every frame the system is enabled. It spawns zombie entities at the position of <a class="el" href="struct_r_t_s_1_1_zombie_spawner.html" title="Component storing data for zombie spawners, including spawn interval and random walking distance for ...">ZombieSpawner</a> components based on their spawn interval and the number of nearby zombies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>System that spawns zombie entities at the position of <a class="el" href="struct_r_t_s_1_1_zombie_spawner.html" title="Component storing data for zombie spawners, including spawn interval and random walking distance for ...">ZombieSpawner</a> components. </p>

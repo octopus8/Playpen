@@ -15,6 +15,9 @@ namespace RTS
         [SerializeField] private float loseTargetDistance = 20f;
         
         
+        /// <summary>
+        /// Baker class to convert the authoring component to the ECS component.
+        /// </summary>
         class Baker : Baker<LoseTargetAuthoring>
         {
             /// <summary>
@@ -37,6 +40,7 @@ namespace RTS
     /// </summary>
     public struct LoseTarget : IComponentData
     {
+        /// <summary> The distance at which the entity will lose its target. </summary>
         public float lostDistance;
     }
 }

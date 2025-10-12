@@ -14,6 +14,9 @@ namespace RTS
         /// </summary>
         class Baker : Baker<TargetOverrideAuthoring>
         {
+            /// <summary>
+            /// Adds the TargetOverride component to the entity.
+            /// </summary>
             public override void Bake(TargetOverrideAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
@@ -30,6 +33,7 @@ namespace RTS
     /// </summary>
     public struct TargetOverride : IComponentData
     {
+        /// <summary> The target entity to override to. </summary>
         public Entity targetEntity;
     }
 }

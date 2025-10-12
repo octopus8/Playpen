@@ -98,6 +98,7 @@ Inheritance diagram for RTS.EventResetSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2b64bd716d721548789e404159bbe236" id="r_a2b64bd716d721548789e404159bbe236"><td class="memItemLeft" align="right" valign="top"><a id="a2b64bd716d721548789e404159bbe236" name="a2b64bd716d721548789e404159bbe236"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnCreate</b> (ref SystemState state)</td></tr>
+<tr class="memdesc:a2b64bd716d721548789e404159bbe236"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnCreate is called when the system is created. It initializes a NativeArray to hold job handles for the reset jobs. <br /></td></tr>
 <tr class="memitem:a0e827e0be43f71e30c71fc940d38f889" id="r_a0e827e0be43f71e30c71fc940d38f889"><td class="memItemLeft" align="right" valign="top"><a id="a0e827e0be43f71e30c71fc940d38f889" name="a0e827e0be43f71e30c71fc940d38f889"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref SystemState state)</td></tr>
 <tr class="memdesc:a0e827e0be43f71e30c71fc940d38f889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers events and resets event flags for various components at the end of each frame. <br /></td></tr>
@@ -106,6 +107,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>OnUpdate</b> (ref Sys
 Private Attributes</h2></td></tr>
 <tr class="memitem:a8be0303734fe02f47da6fa9acf18c45a" id="r_a8be0303734fe02f47da6fa9acf18c45a"><td class="memItemLeft" align="right" valign="top"><a id="a8be0303734fe02f47da6fa9acf18c45a" name="a8be0303734fe02f47da6fa9acf18c45a"></a>
 NativeArray&lt; JobHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>jobHandles</b></td></tr>
+<tr class="memdesc:a8be0303734fe02f47da6fa9acf18c45a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array to hold job handles for the reset jobs. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>System that resets event flags at the end of each frame. This system runs in the LateSimulationSystemGroup and set OrderLast to true to ensure all events are processed before resetting. </p>

@@ -84,6 +84,9 @@ $(function() {
   <div class="headertitle"><div class="title">RTS.ResetBuildingBarracksEventsJob Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Job that resets BuildingBarracks-related event flags after they have been processed. It collects entities with onUnitQueueChangedEventFlag set to true and resets the flag.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RTS.ResetBuildingBarracksEventsJob:</div>
 <div class="dyncontent">
@@ -95,13 +98,17 @@ Inheritance diagram for RTS.ResetBuildingBarracksEventsJob:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac50c27ba4e976c43a41bc552fadeddd3" id="r_ac50c27ba4e976c43a41bc552fadeddd3"><td class="memItemLeft" align="right" valign="top"><a id="ac50c27ba4e976c43a41bc552fadeddd3" name="ac50c27ba4e976c43a41bc552fadeddd3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> (ref <a class="el" href="struct_r_t_s_1_1_building_barracks.html">BuildingBarracks</a> barracks, Entity entity)</td></tr>
+<tr class="memdesc:ac50c27ba4e976c43a41bc552fadeddd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the onUnitQueueChangedEventFlag in the <a class="el" href="struct_r_t_s_1_1_building_barracks.html" title="Component storing data for the barracks building, including spawn timing and rally point offset.">BuildingBarracks</a> component after it has been processed. If the flag is true, the entity is added to the onUnitQueueChangedEntities list. The flag is then set to false. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a6717282643d9d01312fe47bef96aa0e4" id="r_a6717282643d9d01312fe47bef96aa0e4"><td class="memItemLeft" align="right" valign="top"><a id="a6717282643d9d01312fe47bef96aa0e4" name="a6717282643d9d01312fe47bef96aa0e4"></a>
 NativeList&lt; Entity &gt;.ParallelWriter&#160;</td><td class="memItemRight" valign="bottom"><b>onUnitQueueChangedEntities</b></td></tr>
+<tr class="memdesc:a6717282643d9d01312fe47bef96aa0e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel writer for a list of entities that had their unit queue changed. <br /></td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Job that resets BuildingBarracks-related event flags after they have been processed. It collects entities with onUnitQueueChangedEventFlag set to true and resets the flag. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>C:/Develop/O8C/Playpen/Assets/[Playpen]/RTS/Scripts/Systems/<b>EventResetSystem.cs</b></li>
 </ul>
 </div><!-- contents -->

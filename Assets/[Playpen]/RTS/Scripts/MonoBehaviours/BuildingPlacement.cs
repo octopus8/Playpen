@@ -93,6 +93,10 @@ namespace RTS
         }
 
 
+        /// <summary>
+        /// Determines if the building can be placed at the current mouse position.
+        /// Checks for collisions with other buildings and ensures minimum distance requirements are met.
+        /// </summary>
         private bool CanPlaceBuilding()
         {
             Vector3 mousePosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
@@ -139,11 +143,20 @@ namespace RTS
             return true;
         }
         
+        
+        /// <summary>
+        /// Gets the currently active building scriptable object.
+        /// </summary>
         public BuildingScriptableObject GetActiveBuilding()
         {
             return buildingScriptableObject;
         }
         
+        
+        /// <summary>
+        /// Sets the active building to the given building scriptable object.
+        /// Updates the ghost preview and triggers the active building changed event.
+        /// </summary>
         public void SetActiveBuilding(BuildingScriptableObject building)
         {
             buildingScriptableObject = building;
@@ -161,12 +174,7 @@ namespace RTS
                     renderer.material = ghostMaterial;
                 }
             }
-            
-            
             OnActiveBuildingChanged?.Invoke(this, EventArgs.Empty);
         }
-
-
     }
-    
 }

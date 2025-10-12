@@ -16,6 +16,11 @@ namespace RTS
     [UpdateBefore(typeof(EventResetSystem))]
     partial struct UnitSelectedVisualSystem : ISystem
     {
+        
+        /// <summary>
+        /// OnUpdate is called every frame the system is enabled.
+        /// It updates the scale of the visual representation of selected entities based on their selection state.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

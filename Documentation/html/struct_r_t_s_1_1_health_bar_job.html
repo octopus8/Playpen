@@ -84,6 +84,9 @@ $(function() {
   <div class="headertitle"><div class="title">RTS.HealthBarJob Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Job that makes health bars face the camera and updates their visual representation based on the entity's health.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RTS.HealthBarJob:</div>
 <div class="dyncontent">
@@ -95,19 +98,26 @@ Inheritance diagram for RTS.HealthBarJob:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab9143bd390c5f2536f174033a95578d4" id="r_ab9143bd390c5f2536f174033a95578d4"><td class="memItemLeft" align="right" valign="top"><a id="ab9143bd390c5f2536f174033a95578d4" name="ab9143bd390c5f2536f174033a95578d4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> (in <a class="el" href="struct_r_t_s_1_1_health_bar.html">HealthBar</a> healthBar, Entity entity)</td></tr>
+<tr class="memdesc:ab9143bd390c5f2536f174033a95578d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the health bar face the camera and updates its visual representation based on the entity's health. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a0c10b68ffd2ad5b76869ee95a0b0a26e" id="r_a0c10b68ffd2ad5b76869ee95a0b0a26e"><td class="memItemLeft" align="right" valign="top"><a id="a0c10b68ffd2ad5b76869ee95a0b0a26e" name="a0c10b68ffd2ad5b76869ee95a0b0a26e"></a>
 ComponentLookup&lt; LocalTransform &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>localTransformLookup</b></td></tr>
+<tr class="memdesc:a0c10b68ffd2ad5b76869ee95a0b0a26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for LocalTransform components, allowing read and write access. <br /></td></tr>
 <tr class="memitem:a747b75f69837e27cfa8a57ad37a8ef91" id="r_a747b75f69837e27cfa8a57ad37a8ef91"><td class="memItemLeft" align="right" valign="top"><a id="a747b75f69837e27cfa8a57ad37a8ef91" name="a747b75f69837e27cfa8a57ad37a8ef91"></a>
 ComponentLookup&lt; <a class="el" href="struct_r_t_s_1_1_health.html">Health</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>healthLookup</b></td></tr>
+<tr class="memdesc:a747b75f69837e27cfa8a57ad37a8ef91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for <a class="el" href="struct_r_t_s_1_1_health.html" title="Component storing data for health, including current and maximum health. Also includes event flags fo...">Health</a> components, allowing read-only access. <br /></td></tr>
 <tr class="memitem:a20c5f7a2da2d01ca0c6ea4379c1ba6be" id="r_a20c5f7a2da2d01ca0c6ea4379c1ba6be"><td class="memItemLeft" align="right" valign="top"><a id="a20c5f7a2da2d01ca0c6ea4379c1ba6be" name="a20c5f7a2da2d01ca0c6ea4379c1ba6be"></a>
 ComponentLookup&lt; PostTransformMatrix &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>postTransformMatrixLookup</b></td></tr>
+<tr class="memdesc:a20c5f7a2da2d01ca0c6ea4379c1ba6be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup for PostTransformMatrix components, allowing read and write access. <br /></td></tr>
 <tr class="memitem:a783dac3bef7f2fb0679c680ada9eb7ee" id="r_a783dac3bef7f2fb0679c680ada9eb7ee"><td class="memItemLeft" align="right" valign="top"><a id="a783dac3bef7f2fb0679c680ada9eb7ee" name="a783dac3bef7f2fb0679c680ada9eb7ee"></a>
 float3&#160;</td><td class="memItemRight" valign="bottom"><b>cameraForward</b></td></tr>
+<tr class="memdesc:a783dac3bef7f2fb0679c680ada9eb7ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera's forward direction. <br /></td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Job that makes health bars face the camera and updates their visual representation based on the entity's health. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>C:/Develop/O8C/Playpen/Assets/[Playpen]/RTS/Scripts/Systems/<b>HealthBarSystem.cs</b></li>
 </ul>
 </div><!-- contents -->

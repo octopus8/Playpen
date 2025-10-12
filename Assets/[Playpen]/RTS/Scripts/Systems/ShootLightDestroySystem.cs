@@ -8,6 +8,10 @@ namespace RTS
     /// </summary>
     partial struct ShootLightDestroySystem : ISystem
     {
+        
+        /// <summary>
+        /// Destroys ShootLight entities when their timer expires.
+        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
