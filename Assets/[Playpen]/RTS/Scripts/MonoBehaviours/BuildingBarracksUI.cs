@@ -10,6 +10,7 @@ namespace RTS
     /// Controls the UI for the barracks building, allowing players to create units and view the spawn queue.
     /// The UI includes buttons for creating soldiers and scouts, a progress bar for spawn progress,
     /// and a visual representation of the unit queue.
+    /// This component uses `World.DefaultGameObjectInjectionWorld.EntityManager` to interact with ECS entities and components.
     /// </summary>
     public class BuildingBarracksUI : MonoBehaviour
     {

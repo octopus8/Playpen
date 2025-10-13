@@ -1,4 +1,32 @@
+
+
+
+
+
+
+
+
+
+
 # RTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MonoBehaviours use `World.DefaultGameObjectInjectionWorld.EntityManager` to manipulate entities.
+- `UnitSelection` uses the EntityManager to check if an enemy unit is clicked on, 
+- `BuildingPlacement` uses the EntityManager to instantiate building entities and set their position.
+
 
 ## Project Overview
 The `RTS` project is a simple real-time strategy (RTS) game implemented using Unity's Entity Component System (ECS). The project demonstrates how to set up a basic RTS game with unit selection, movement, and attacking mechanics using ECS principles.
