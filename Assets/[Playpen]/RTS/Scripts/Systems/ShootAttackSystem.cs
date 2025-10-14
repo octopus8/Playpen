@@ -10,29 +10,19 @@ namespace RTS
     /// <summary>
     /// System that handles shooting attacks for entities with ShootAttack component.
     /// It rotates the entity towards its target, moves it within attack range, and spawns bullets when attacking.
-    /// This system requires the EntityPrefabSet singleton to be present for the system to update.
     /// </summary>
     partial struct ShootAttackSystem : ISystem
     {
-        
-        /// <summary>
-        /// OnCreate is called when the system is created. It requires the EntityPrefabSet singleton to be present for the system to update.
-        /// </summary>
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EntityPrefabSet>();
         }
 
-        
-        /// <summary>
-        /// OnUpdate is called every frame to process entities with ShootAttack component.
-        /// It rotates the entity towards its target, moves it within attack range, and spawns bullets when attacking.
-        /// </summary>
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
-            EntityPrefabSet prefabSet = SystemAPI.GetSingleton<EntityPrefabSet>();
+            EntityPrefabSet references = SystemAPI.GetSingleton<EntityPrefabSet>();
             foreach ((RefRW<LocalTransform> localTransform,
                          RefRW<ShootAttack> shootAttack,
                          RefRO<Target> target,
@@ -48,9 +38,7 @@ namespace RTS
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)
-                {
                     continue;
-                }
 
                 // Rotate towards target.
                 LocalTransform targetLocalTransform =
@@ -60,42 +48,20 @@ namespace RTS
                 quaternion targetRotation = quaternion.LookRotationSafe(directionToTarget, math.up());
                 localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, targetRotation,
                     SystemAPI.Time.DeltaTime * unitMover.ValueRO.rotationSpeed);
-            }
-            
-            // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
-            foreach ((RefRW<LocalTransform> localTransform,
-                         RefRW<ShootAttack> shootAttack,
-                         RefRO<Target> target,
-                            Entity entity
-                     )
-                     in SystemAPI.Query<
-                         RefRW<LocalTransform>,
-                         RefRW<ShootAttack>,
-                         RefRO<Target>
-                     >().WithEntityAccess())
-            {
-                // If no target, skip.
-                if (target.ValueRO.targetEntity == Entity.Null)
+
+                // If target out of range, move towards it.
+                float distance = math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position);
+                if (distance > shootAttack.ValueRO.attackDistance)
                 {
+                    unitMover.ValueRW.destination = targetLocalTransform.Position;
                     continue;
+                }
+                // Within range, stop moving.
+                else
+                {
+                    unitMover.ValueRW.destination = localTransform.ValueRO.Position;
                 }
 
-                // Rotate towards target.
-                LocalTransform targetLocalTransform =
-                    SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
-                
-                if (math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position) >
-                    shootAttack.ValueRO.attackDistance)
-                {
-                    // If out of range, skip.
-                    continue;
-                }
-
-                if (SystemAPI.HasComponent<UnitMoverOverride>(entity) && SystemAPI.IsComponentEnabled<UnitMoverOverride>(entity))
-                {
-                    continue;
-                }
-                
                 // If still waiting for next attack, skip.
                 shootAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
                 if (shootAttack.ValueRW.timer > 0)
@@ -117,7 +83,7 @@ namespace RTS
                 }
 
                 // Spawn and initialize bullet.
-                Entity bullet = state.EntityManager.Instantiate(prefabSet.bulletEntityPrefab);
+                Entity bullet = state.EntityManager.Instantiate(references.bulletEntityPrefab);
                 float3 bulletSpawnPosition = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnOffset);
                 SystemAPI.SetComponent(bullet, LocalTransform.FromPosition(bulletSpawnPosition));
                 RefRW<Bullet> bulletBullet = SystemAPI.GetComponentRW<Bullet>(bullet);
@@ -129,7 +95,6 @@ namespace RTS
                 shootAttack.ValueRW.onShootEvent.isTriggered = true;
                 shootAttack.ValueRW.onShootEvent.shootPosition = bulletSpawnPosition;
             }
-            
         }
     }
 }
