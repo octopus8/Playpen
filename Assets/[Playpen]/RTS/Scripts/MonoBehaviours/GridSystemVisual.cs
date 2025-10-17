@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GridSystemVisual : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    
     private int x;
     private int y;
     
@@ -14,6 +16,11 @@ public class GridSystemVisual : MonoBehaviour
         transform.position = GridSystem.GetWorldPosition(x, y, gridNodeSize);
         gameObject.name = $"GridNodeVisual {x},{y}";
         
+    }
+
+    public void SetColor(Color color)
+    {
+        spriteRenderer.color = color;
     }
     
 }

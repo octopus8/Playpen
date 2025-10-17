@@ -1,9 +1,11 @@
+// Define VISUALIZE_GRID to enable grid visualization.
 #define VISUALIZE_GRID
 
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace RTS
 {
@@ -104,8 +106,23 @@ namespace RTS
         public void OnUpdate(ref SystemState state)
         {
             GridSystemData gridSystemData = SystemAPI.GetComponent<GridSystemData>(state.SystemHandle);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                float3 mouseWorldPosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
+                int2 gridPosition = GetWorldPosition2D(mouseWorldPosition, gridSystemData.gridNodeSize);
+                if (IsValidGridPosition(gridPosition, gridSystemData.width,  gridSystemData.height))
+                {
+                    int index = CalculateIndex(gridPosition.x, gridPosition.y, gridSystemData.width);
+                    Entity entity = gridSystemData.gridMap.gridEntityArray[index];
+                    RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
+                    gridNode.ValueRW.data = 1;
+                }
+            }
+            
 #if VISUALIZE_GRID
             GridSystemVisualizer.Instance?.InitializeGrid(gridSystemData);
+            GridSystemVisualizer.Instance?.UpdateGrid(gridSystemData);
 #endif            
         }
 
@@ -132,6 +149,16 @@ namespace RTS
         public static float3 GetWorldPosition(int x, int y, float gridNodeSize)
         {
             return new float3(x * gridNodeSize, 0, y * gridNodeSize);
+        }
+        
+        public static int2 GetWorldPosition2D(float3 worldPosition, float gridNodeSize)
+        {
+            return new int2((int)math.floor(worldPosition.x / gridNodeSize), (int)math.floor(worldPosition.z / gridNodeSize));
+        }
+
+        public static bool IsValidGridPosition(int2 gridPosition, int width, int height)
+        {
+            return gridPosition.x >= 0 && gridPosition.y >= 0 && gridPosition.x < width && gridPosition.y < height;
         }
     }
     

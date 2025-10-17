@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 219085701}
   - component: {fileID: 219085698}
   - component: {fileID: 219085703}
+  - component: {fileID: 219085704}
   m_Layer: 0
   m_Name: RTSGame
   m_TagString: Untagged
@@ -500,6 +501,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e14b0c81a0523b4db51b35f1a1892b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DOTSEvents
+--- !u!114 &219085704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219085697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4e6e6b28018544bbcaebaead9ac5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.GridSystemVisualizer
+  visualPrefab: {fileID: 323583777052687541, guid: a56936f092df7164db57d1b6ba7db101, type: 3}
 --- !u!1 &412661473
 GameObject:
   m_ObjectHideFlags: 0

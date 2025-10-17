@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe9e567acf74f34cb660ab15035e763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridSystemVisual
+  spriteRenderer: {fileID: 2586934962627854018}
 --- !u!1 &8826153784715490398
 GameObject:
   m_ObjectHideFlags: 0
