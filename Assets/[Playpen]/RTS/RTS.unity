@@ -439,9 +439,7 @@ GameObject:
   - component: {fileID: 219085699}
   - component: {fileID: 219085701}
   - component: {fileID: 219085698}
-  - component: {fileID: 219085700}
   - component: {fileID: 219085703}
-  - component: {fileID: 219085702}
   m_Layer: 0
   m_Name: RTSGame
   m_TagString: Untagged
@@ -476,18 +474,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &219085700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219085697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29176fe75350a7b4d84feda098bc0eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnitSelection
 --- !u!114 &219085701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,20 +488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RTSGame
   units: {fileID: 11400000, guid: b2e1ab5cfc2e5c6468989f8494b438ea, type: 2}
   buildings: {fileID: 11400000, guid: e9baf9bf855e2dd4b8e63f55e5ecbcf1, type: 2}
---- !u!114 &219085702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219085697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ffcb10ccb76574aa73c38828587d63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlacement
-  buildingScriptableObject: {fileID: 11400000, guid: 5ec2c3c1d603e5a47a0e2969dd076301, type: 2}
-  ghostMaterial: {fileID: 2100000, guid: 2a7ec2724b8ac4e4b9c1d090f52daec2, type: 2}
 --- !u!114 &219085703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,6 +623,7 @@ GameObject:
   - component: {fileID: 460082152}
   - component: {fileID: 460082153}
   - component: {fileID: 460082154}
+  - component: {fileID: 460082155}
   m_Layer: 5
   m_Name: UnitSelectionUI
   m_TagString: Untagged
@@ -704,6 +677,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea0c5a47f4b01a41afad3b52097d54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetPositionUI
+--- !u!114 &460082155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460082151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29176fe75350a7b4d84feda098bc0eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitSelection
 --- !u!1 &572634965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,6 +1819,7 @@ GameObject:
   - component: {fileID: 1224472017}
   - component: {fileID: 1224472018}
   - component: {fileID: 1224472019}
+  - component: {fileID: 1224472020}
   m_Layer: 5
   m_Name: BuildingPlacementUI
   m_TagString: Untagged
@@ -1889,6 +1875,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea0c5a47f4b01a41afad3b52097d54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetPositionUI
+--- !u!114 &1224472020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224472016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ffcb10ccb76574aa73c38828587d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlacement
+  buildingScriptableObject: {fileID: 11400000, guid: 5ec2c3c1d603e5a47a0e2969dd076301, type: 2}
+  ghostMaterial: {fileID: 2100000, guid: 2a7ec2724b8ac4e4b9c1d090f52daec2, type: 2}
 --- !u!1 &1311977179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,7 +3070,7 @@ SceneRoots:
   - {fileID: 159924103}
   - {fileID: 1652342398}
   - {fileID: 1372513207}
-  - {fileID: 957625457}
-  - {fileID: 1532508471}
   - {fileID: 105926181}
   - {fileID: 638085967}
+  - {fileID: 957625457}
+  - {fileID: 1532508471}
