@@ -1,5 +1,9 @@
+using System.Numerics;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 
 namespace RTS
@@ -9,6 +13,8 @@ namespace RTS
         public static GridSystemVisualizer Instance { get; private set; }
         
         [SerializeField] private Transform visualPrefab;
+        [SerializeField] private Sprite cicleSprite;
+        [SerializeField] private Sprite arrowSprite;
         
         private bool isInited = false;
         private GridSystemVisual[,] gridVisuals;
@@ -60,6 +66,18 @@ namespace RTS
                     int index = GridSystem.CalculateIndex(x, y, data.width);
                     Entity gridNodeEntity = data.gridMap.gridEntityArray[index];
                     GridSystem.GridNode gridNode = entityManager.GetComponentData<GridSystem.GridNode>(gridNodeEntity);
+                    if (gridNode.cost == 0)
+                    {
+                        gridSystemVisual.SetSprite(cicleSprite);
+                        gridSystemVisual.SetColor(Color.green);
+                    }
+                    else
+                    {
+                        gridSystemVisual.SetSprite(arrowSprite);
+                        gridSystemVisual.SetColor(Color.white);
+                        gridSystemVisual.SetSpriteRotation(Quaternion.LookRotation(new float3(gridNode.vector.x, 0, gridNode.vector.y), Vector3.up));
+                        
+                    }
                 }
             }
             

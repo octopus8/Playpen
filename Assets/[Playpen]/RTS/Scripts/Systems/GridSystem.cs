@@ -44,6 +44,7 @@ namespace RTS
             public float2 vector;
         }
         
+        int2 targetGridPosition;
         
         /// <summary>
         /// Called when the system is created.
@@ -111,7 +112,6 @@ namespace RTS
         {
             GridSystemData gridSystemData = SystemAPI.GetComponent<GridSystemData>(state.SystemHandle);
 
-            int2 targetGridPosition = new int2(2, 1);
             
             NativeArray<RefRW<GridNode>> gridNodeArray = new NativeArray<RefRW<GridNode>>(gridSystemData.width * gridSystemData.height, Allocator.Temp);
             
@@ -210,7 +210,7 @@ namespace RTS
                     int index = CalculateIndex(gridPosition.x, gridPosition.y, gridSystemData.width);
                     Entity entity = gridSystemData.gridMap.gridEntityArray[index];
                     RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
-                    Debug.Log(gridNode.ValueRW.vector);
+                    targetGridPosition = gridPosition;
                 }
             }
             

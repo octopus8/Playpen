@@ -23,4 +23,15 @@ public class GridSystemVisual : MonoBehaviour
         spriteRenderer.color = color;
     }
     
+    public void SetSprite(Sprite sprite)
+    {
+        spriteRenderer.sprite = sprite;
+    }
+    
+    public void SetSpriteRotation(Quaternion rotation)
+    {
+        spriteRenderer.transform.rotation = rotation;
+        spriteRenderer.transform.rotation *= Quaternion.Euler(90, 0, 90);
+    }
+    
 }

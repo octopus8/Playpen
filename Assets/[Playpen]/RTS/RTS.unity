@@ -514,6 +514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.GridSystemVisualizer
   visualPrefab: {fileID: 323583777052687541, guid: a56936f092df7164db57d1b6ba7db101, type: 3}
+  cicleSprite: {fileID: 21300000, guid: a0e35f6b808bb7447826cc6c69ffe448, type: 3}
+  arrowSprite: {fileID: 21300000, guid: 0aac3aa6f7b72684cad566015dc5f233, type: 3}
 --- !u!1 &412661473
 GameObject:
   m_ObjectHideFlags: 0
