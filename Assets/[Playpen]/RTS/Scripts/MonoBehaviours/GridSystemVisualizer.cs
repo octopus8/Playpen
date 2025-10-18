@@ -60,8 +60,6 @@ namespace RTS
                     int index = GridSystem.CalculateIndex(x, y, data.width);
                     Entity gridNodeEntity = data.gridMap.gridEntityArray[index];
                     GridSystem.GridNode gridNode = entityManager.GetComponentData<GridSystem.GridNode>(gridNodeEntity);
-                    
-                    gridSystemVisual.SetColor(gridNode.data == 0 ? Color.white : Color.red);
                 }
             }
             
