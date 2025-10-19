@@ -73,10 +73,17 @@ namespace RTS
                     }
                     else
                     {
-                        gridSystemVisual.SetSprite(arrowSprite);
-                        gridSystemVisual.SetColor(Color.white);
-                        gridSystemVisual.SetSpriteRotation(Quaternion.LookRotation(new float3(gridNode.vector.x, 0, gridNode.vector.y), Vector3.up));
-                        
+                        if (gridNode.cost == GridSystem.WALL_COST)
+                        {
+                            gridSystemVisual.SetSprite(cicleSprite);
+                            gridSystemVisual.SetColor(Color.black);
+                        }
+                        else
+                        {
+                            gridSystemVisual.SetSprite(arrowSprite);
+                            gridSystemVisual.SetColor(Color.white);
+                            gridSystemVisual.SetSpriteRotation(Quaternion.LookRotation(new float3(gridNode.vector.x, 0, gridNode.vector.y), Vector3.up));
+                        }
                     }
                 }
             }

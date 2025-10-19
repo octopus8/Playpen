@@ -5,6 +5,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using UnityEngine;
 
 namespace RTS
@@ -21,6 +22,9 @@ namespace RTS
     [BurstCompile]
     public partial struct GridSystem : ISystem
     {
+        public const int WALL_COST = byte.MaxValue;
+        
+        
         public struct GridSystemData : IComponentData
         {
             public int width;
@@ -43,6 +47,8 @@ namespace RTS
             public byte bestCost;
             public float2 vector;
         }
+        
+        
         
         int2 targetGridPosition;
         
@@ -139,6 +145,37 @@ namespace RTS
                     }
                 }
             }
+
+
+            PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
+            CollisionWorld collisionWorld = physicsWorld.CollisionWorld;
+            NativeList<DistanceHit> hits = new NativeList<DistanceHit>(Allocator.Temp);
+            
+            for (int x=0; x < gridSystemData.width; x++)
+            {
+                for (int y=0; y < gridSystemData.height; y++)
+                {
+                    if (collisionWorld.OverlapSphere(
+                        GetWorldCenterPosition(x, y, gridSystemData.gridNodeSize),
+                        gridSystemData.gridNodeSize * 0.5f,
+                        ref hits,
+                        new CollisionFilter()
+                        {
+                            BelongsTo = ~0u,
+                            CollidesWith = (1u << RTSGame.PATHFINDING_WALL_LAYER),
+                            GroupIndex = 0,
+                        }
+                    ))
+                    {
+                        int index = CalculateIndex(x, y, gridSystemData.width);
+                        gridNodeArray[index].ValueRW.cost = WALL_COST;
+                    }
+                    hits.Clear();
+                }
+            }
+            
+            
+            
             
             NativeQueue<RefRW<GridNode>> processingQueue = new NativeQueue<RefRW<GridNode>>(Allocator.Temp);
             RefRW<GridNode> targetGridNode = gridNodeArray[CalculateIndex(targetGridPosition, gridSystemData.width)];
@@ -169,6 +206,7 @@ namespace RTS
                 };
                 foreach (int2 offset in neighborOffsets)
                 {
+                    
                     // Get neighbor position.
                     int2 neighborPos = currentPos + offset;
                     
@@ -178,6 +216,11 @@ namespace RTS
                         // Get neighbor node.
                         int neighborIndex = CalculateIndex(neighborPos, gridSystemData.width);
                         RefRW<GridNode> neighborNode = gridNodeArray[neighborIndex];
+
+                        if (neighborNode.ValueRW.cost == WALL_COST)
+                        {
+                            continue;
+                        }
 
                         // Calculate new best cost for neighbor.
                         byte newBestCost = (byte)(currentNode.ValueRW.bestCost + neighborNode.ValueRW.cost);
@@ -204,13 +247,27 @@ namespace RTS
             if (Input.GetMouseButtonDown(0))
             {
                 float3 mouseWorldPosition = MouseWorldPosition.Instance.GetMouseWorldPosition();
-                int2 gridPosition = GetWorldPosition2D(mouseWorldPosition, gridSystemData.gridNodeSize);
+                int2 gridPosition = GetGridPosition(mouseWorldPosition, gridSystemData.gridNodeSize);
                 if (IsValidGridPosition(gridPosition, gridSystemData.width,  gridSystemData.height))
                 {
                     int index = CalculateIndex(gridPosition.x, gridPosition.y, gridSystemData.width);
                     Entity entity = gridSystemData.gridMap.gridEntityArray[index];
                     RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
                     targetGridPosition = gridPosition;
+                    
+                    foreach (var (
+                        flowFieldFollower,
+                        flowFieldFollowerEnabled
+                    ) in
+                    SystemAPI.Query<
+                        RefRW<FlowFieldFollower>,
+                        EnabledRefRW<FlowFieldFollower>
+                    >().WithPresent<FlowFieldFollower>())
+                    {
+                        flowFieldFollower.ValueRW.targetPosition = mouseWorldPosition;
+                        flowFieldFollowerEnabled.ValueRW = true;
+                    }
+                    
                 }
             }
             
@@ -251,7 +308,15 @@ namespace RTS
             return new float3(x * gridNodeSize, 0, y * gridNodeSize);
         }
         
-        public static int2 GetWorldPosition2D(float3 worldPosition, float gridNodeSize)
+        public static float3 GetWorldCenterPosition(int x, int y, float gridNodeSize)
+        {
+            return new float3(
+                x * gridNodeSize + gridNodeSize * 0.5f,
+                0,
+                y * gridNodeSize + gridNodeSize * 0.5f);
+        }
+        
+        public static int2 GetGridPosition(float3 worldPosition, float gridNodeSize)
         {
             return new int2((int)math.floor(worldPosition.x / gridNodeSize), (int)math.floor(worldPosition.z / gridNodeSize));
         }
@@ -260,6 +325,21 @@ namespace RTS
         {
             return gridPosition.x >= 0 && gridPosition.y >= 0 && gridPosition.x < width && gridPosition.y < height;
         }
+        
+        public static float3 GetWorldMovementVector(float2 vector)
+        {
+            return new float3(vector.x, 0, vector.y);
+        }
+
+        public static bool IsWall(GridNode gridNode)
+        {
+            if (gridNode.cost == WALL_COST)
+            {
+                return true;
+            }
+            return false;
+        }
+        
     }
     
 }
