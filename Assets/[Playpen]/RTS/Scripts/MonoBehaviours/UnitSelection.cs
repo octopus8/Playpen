@@ -235,7 +235,7 @@ namespace RTS
             // Query all selected units with a UnitMoverOverride and TargetOverride component.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
                 .WithAll<UnitSelected>()
-                .WithPresent<UnitMoverOverride, TargetOverride>()
+                .WithPresent<UnitMoverOverride, TargetOverride, FlowFieldPathRequest>()
                 .Build(entityManager);
             
             // Convert the query results to NativeArrays of entities.
@@ -247,37 +247,33 @@ namespace RTS
             // Create an array of TargetOverride components to clear any existing target entities.
             NativeArray<TargetOverride> targetOverrideArray = entityQuery.ToComponentDataArray<TargetOverride>(Allocator.Temp);
             
+            NativeArray<FlowFieldPathRequest> flowFieldPathRequestArray = entityQuery.ToComponentDataArray<FlowFieldPathRequest>(Allocator.Temp);
+            
             // Generate move position array around the mouse position.
             NativeArray<float3> movePositions = GenerateMovePositionsArray(mousePosition, moveOverrideArray.Length);
             
             // Iterate through the move override array and set the target position for each selected unit.
             for (int i = 0; i < moveOverrideArray.Length; i++)
             { 
-                // Get the UnitMoverOverride component.
                 UnitMoverOverride unitMoverOverride = moveOverrideArray[i];
-                
-                // Set the target position to the corresponding move position.
                 unitMoverOverride.overrideDestination = movePositions[i];
-                
-                // Set the modified UnitMoverOverride back to the array.
                 moveOverrideArray[i] = unitMoverOverride;
-
-                // Enable the UnitMoverOverride component to activate the override.
                 entityManager.SetComponentEnabled<UnitMoverOverride>(entityArray[i], true);
                 
-                // Get the TargetOverride component.
                 TargetOverride targetOverride = targetOverrideArray[i];
-                
-                // Set the target entity to null to clear any existing target.
                 targetOverride.targetEntity = Entity.Null;
-                
-                // Set the modified TargetOverride back to the array.
                 targetOverrideArray[i] = targetOverride;
+                
+                FlowFieldPathRequest flowFieldPathRequest = flowFieldPathRequestArray[i];
+                flowFieldPathRequest.targetPosition = movePositions[i];
+                flowFieldPathRequestArray[i] = flowFieldPathRequest;
+                entityManager.SetComponentEnabled<FlowFieldPathRequest>(entityArray[i], true);
             }
 
             // Copy the modified data back to the entity query.
             entityQuery.CopyFromComponentDataArray(moveOverrideArray);
             entityQuery.CopyFromComponentDataArray(targetOverrideArray);
+            entityQuery.CopyFromComponentDataArray(flowFieldPathRequestArray);
             
             // Create an entity query for selected barracks to set the rally position offset.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)

@@ -50,7 +50,6 @@ namespace RTS
         
         
         
-        int2 targetGridPosition;
         
         /// <summary>
         /// Called when the system is created.
@@ -118,131 +117,152 @@ namespace RTS
         {
             GridSystemData gridSystemData = SystemAPI.GetComponent<GridSystemData>(state.SystemHandle);
 
-            
-            NativeArray<RefRW<GridNode>> gridNodeArray = new NativeArray<RefRW<GridNode>>(gridSystemData.width * gridSystemData.height, Allocator.Temp);
-            
-            // Initialize grid nodes with cost and bestCost values.
-            for (int x = 0; x < gridSystemData.width; x++)
+            foreach (var (
+                         flowFieldPathRequest,
+                         flowFieldPathRequestEnabled,
+                         flowFieldFollower,
+                         flowFieldFollowerEnabled) in
+                     SystemAPI.Query<
+                         RefRO<FlowFieldPathRequest>,
+                         EnabledRefRW<FlowFieldPathRequest>,
+                            RefRW<FlowFieldFollower>,
+                         EnabledRefRW<FlowFieldFollower>
+                     >().WithPresent<FlowFieldFollower>())
             {
-                for (int y = 0; y < gridSystemData.height; y++)
-                {
-                    int index = CalculateIndex(x, y, gridSystemData.width);
-                    Entity entity = gridSystemData.gridMap.gridEntityArray[index];
-                    RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
-                    gridNodeArray[index] = gridNode;
-                    
-                    // If this is the target grid position, set cost and bestCost to 0, otherwise set cost to 1 and bestCost to max value.
-                    gridNode.ValueRW.vector = new float2(0, 1);
-                    if (x == targetGridPosition.x && y == targetGridPosition.y)
-                    {
-                        gridNode.ValueRW.cost = 0;
-                        gridNode.ValueRW.bestCost = 0;
-                    }
-                    else
-                    {
-                        gridNode.ValueRW.cost = 1;
-                        gridNode.ValueRW.bestCost = byte.MaxValue;
-                    }
-                }
-            }
+                int2 targetGridPosition = GetGridPosition(flowFieldPathRequest.ValueRO.targetPosition,
+                    gridSystemData.gridNodeSize);
 
+                flowFieldPathRequestEnabled.ValueRW = false;
+                flowFieldFollower.ValueRW.targetPosition = flowFieldPathRequest.ValueRO.targetPosition;
+                flowFieldFollowerEnabled.ValueRW = true;
+                
 
-            PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
-            CollisionWorld collisionWorld = physicsWorld.CollisionWorld;
-            NativeList<DistanceHit> hits = new NativeList<DistanceHit>(Allocator.Temp);
-            
-            for (int x=0; x < gridSystemData.width; x++)
-            {
-                for (int y=0; y < gridSystemData.height; y++)
+                NativeArray<RefRW<GridNode>> gridNodeArray =
+                    new NativeArray<RefRW<GridNode>>(gridSystemData.width * gridSystemData.height, Allocator.Temp);
+
+                // Initialize grid nodes with cost and bestCost values.
+                for (int x = 0; x < gridSystemData.width; x++)
                 {
-                    if (collisionWorld.OverlapSphere(
-                        GetWorldCenterPosition(x, y, gridSystemData.gridNodeSize),
-                        gridSystemData.gridNodeSize * 0.5f,
-                        ref hits,
-                        new CollisionFilter()
-                        {
-                            BelongsTo = ~0u,
-                            CollidesWith = (1u << RTSGame.PATHFINDING_WALL_LAYER),
-                            GroupIndex = 0,
-                        }
-                    ))
+                    for (int y = 0; y < gridSystemData.height; y++)
                     {
                         int index = CalculateIndex(x, y, gridSystemData.width);
-                        gridNodeArray[index].ValueRW.cost = WALL_COST;
+                        Entity entity = gridSystemData.gridMap.gridEntityArray[index];
+                        RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
+                        gridNodeArray[index] = gridNode;
+
+                        // If this is the target grid position, set cost and bestCost to 0, otherwise set cost to 1 and bestCost to max value.
+                        gridNode.ValueRW.vector = new float2(0, 1);
+                        if (x == targetGridPosition.x && y == targetGridPosition.y)
+                        {
+                            gridNode.ValueRW.cost = 0;
+                            gridNode.ValueRW.bestCost = 0;
+                        }
+                        else
+                        {
+                            gridNode.ValueRW.cost = 1;
+                            gridNode.ValueRW.bestCost = byte.MaxValue;
+                        }
                     }
-                    hits.Clear();
                 }
-            }
-            
-            
-            
-            
-            NativeQueue<RefRW<GridNode>> processingQueue = new NativeQueue<RefRW<GridNode>>(Allocator.Temp);
-            RefRW<GridNode> targetGridNode = gridNodeArray[CalculateIndex(targetGridPosition, gridSystemData.width)];
-            processingQueue.Enqueue(targetGridNode);
 
-            while (processingQueue.Count > 0)
-            {
-                // Infinite loop protection.
-                InfiniteLoopProtection.CheckIterationCount(state.WorldUnmanaged, 10000);
-                
-                // Dequeue the next node to process.
-                RefRW<GridNode> currentNode = processingQueue.Dequeue();
-                
-                // Get the current node's grid position.
-                int2 currentPos = new int2(currentNode.ValueRW.x, currentNode.ValueRW.y);
 
-                // Check neighbors (up, down, left, right)
-                int2[] neighborOffsets = new int2[]
+                PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
+                CollisionWorld collisionWorld = physicsWorld.CollisionWorld;
+                NativeList<DistanceHit> hits = new NativeList<DistanceHit>(Allocator.Temp);
+
+                for (int x = 0; x < gridSystemData.width; x++)
                 {
-                    new int2(0, 1),
-                    new int2(0, -1),
-                    new int2(1, 0),
-                    new int2(-1, 0),
-                    new int2(1, 1),
-                    new int2(1, -1),
-                    new int2(-1, 1),
-                    new int2(-1, -1),
-                };
-                foreach (int2 offset in neighborOffsets)
-                {
-                    
-                    // Get neighbor position.
-                    int2 neighborPos = currentPos + offset;
-                    
-                    // If neighbor position is valid, process it.
-                    if (IsValidGridPosition(neighborPos, gridSystemData.width, gridSystemData.height))
+                    for (int y = 0; y < gridSystemData.height; y++)
                     {
-                        // Get neighbor node.
-                        int neighborIndex = CalculateIndex(neighborPos, gridSystemData.width);
-                        RefRW<GridNode> neighborNode = gridNodeArray[neighborIndex];
-
-                        if (neighborNode.ValueRW.cost == WALL_COST)
+                        if (collisionWorld.OverlapSphere(
+                                GetWorldCenterPosition(x, y, gridSystemData.gridNodeSize),
+                                gridSystemData.gridNodeSize * 0.5f,
+                                ref hits,
+                                new CollisionFilter()
+                                {
+                                    BelongsTo = ~0u,
+                                    CollidesWith = (1u << RTSGame.PATHFINDING_WALL_LAYER),
+                                    GroupIndex = 0,
+                                }
+                            ))
                         {
-                            continue;
+                            int index = CalculateIndex(x, y, gridSystemData.width);
+                            gridNodeArray[index].ValueRW.cost = WALL_COST;
                         }
 
-                        // Calculate new best cost for neighbor.
-                        byte newBestCost = (byte)(currentNode.ValueRW.bestCost + neighborNode.ValueRW.cost);
-                        
-                        // If new best cost is lower, update neighbor node and enqueue it for processing.
-                        if (newBestCost < neighborNode.ValueRW.bestCost)
+                        hits.Clear();
+                    }
+                }
+                hits.Dispose();
+                
+                NativeQueue<RefRW<GridNode>> processingQueue = new NativeQueue<RefRW<GridNode>>(Allocator.Temp);
+                RefRW<GridNode> targetGridNode =
+                    gridNodeArray[CalculateIndex(targetGridPosition, gridSystemData.width)];
+                processingQueue.Enqueue(targetGridNode);
+
+                while (processingQueue.Count > 0)
+                {
+                    // Infinite loop protection.
+                    InfiniteLoopProtection.CheckIterationCount(state.WorldUnmanaged, 10000);
+
+                    // Dequeue the next node to process.
+                    RefRW<GridNode> currentNode = processingQueue.Dequeue();
+
+                    // Get the current node's grid position.
+                    int2 currentPos = new int2(currentNode.ValueRW.x, currentNode.ValueRW.y);
+
+                    // Check neighbors (up, down, left, right)
+                    int2[] neighborOffsets = new int2[]
+                    {
+                        new int2(0, 1),
+                        new int2(0, -1),
+                        new int2(1, 0),
+                        new int2(-1, 0),
+                        new int2(1, 1),
+                        new int2(1, -1),
+                        new int2(-1, 1),
+                        new int2(-1, -1),
+                    };
+                    foreach (int2 offset in neighborOffsets)
+                    {
+
+                        // Get neighbor position.
+                        int2 neighborPos = currentPos + offset;
+
+                        // If neighbor position is valid, process it.
+                        if (IsValidGridPosition(neighborPos, gridSystemData.width, gridSystemData.height))
                         {
-                            neighborNode.ValueRW.bestCost = newBestCost;
-                            neighborNode.ValueRW.vector = new float2(currentPos.x - neighborPos.x, currentPos.y - neighborPos.y);
-                            processingQueue.Enqueue(neighborNode);
+                            // Get neighbor node.
+                            int neighborIndex = CalculateIndex(neighborPos, gridSystemData.width);
+                            RefRW<GridNode> neighborNode = gridNodeArray[neighborIndex];
+
+                            if (neighborNode.ValueRW.cost == WALL_COST)
+                            {
+                                continue;
+                            }
+
+                            // Calculate new best cost for neighbor.
+                            byte newBestCost = (byte)(currentNode.ValueRW.bestCost + neighborNode.ValueRW.cost);
+
+                            // If new best cost is lower, update neighbor node and enqueue it for processing.
+                            if (newBestCost < neighborNode.ValueRW.bestCost)
+                            {
+                                neighborNode.ValueRW.bestCost = newBestCost;
+                                neighborNode.ValueRW.vector = new float2(currentPos.x - neighborPos.x,
+                                    currentPos.y - neighborPos.y);
+                                processingQueue.Enqueue(neighborNode);
+                            }
                         }
                     }
                 }
+
+                // Reset infinite loop protection counter.
+                InfiniteLoopProtection.Reset();
+
+                // Dispose of temporary arrays.
+                gridNodeArray.Dispose();
+                processingQueue.Dispose();
             }
-            
-            // Reset infinite loop protection counter.
-            InfiniteLoopProtection.Reset();
-            
-            // Dispose of temporary arrays.
-            gridNodeArray.Dispose();
-            processingQueue.Dispose();
-            
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -253,21 +273,6 @@ namespace RTS
                     int index = CalculateIndex(gridPosition.x, gridPosition.y, gridSystemData.width);
                     Entity entity = gridSystemData.gridMap.gridEntityArray[index];
                     RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
-                    targetGridPosition = gridPosition;
-                    
-                    foreach (var (
-                        flowFieldFollower,
-                        flowFieldFollowerEnabled
-                    ) in
-                    SystemAPI.Query<
-                        RefRW<FlowFieldFollower>,
-                        EnabledRefRW<FlowFieldFollower>
-                    >().WithPresent<FlowFieldFollower>())
-                    {
-                        flowFieldFollower.ValueRW.targetPosition = mouseWorldPosition;
-                        flowFieldFollowerEnabled.ValueRW = true;
-                    }
-                    
                 }
             }
             
