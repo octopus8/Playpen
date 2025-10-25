@@ -40,12 +40,15 @@ namespace RTS
                 return;
             }
             isInited = true;
+            
+            GameObject parentGameObject = new GameObject("GridSystemVisualizer");
+            
             gridVisuals = new GridSystemVisual[data.width, data.height];
             for (int x = 0; x < data.width; x++)
             {
                 for (int y = 0; y < data.height; y++)
                 {
-                    Transform visual = Instantiate(visualPrefab);
+                    Transform visual = Instantiate(visualPrefab,  parentGameObject.transform);
                     GridSystemVisual gridSystemVisual = visual.GetComponent<GridSystemVisual>();
                     gridSystemVisual.Setup(x, y, data.gridNodeSize);
                     
@@ -64,7 +67,12 @@ namespace RTS
                     
                     EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
                     int index = GridSystem.CalculateIndex(x, y, data.width);
-                    Entity gridNodeEntity = data.gridMap.gridEntityArray[index];
+                    int gridMapIndex = data.nextGridIndex - 1;
+                    if (gridMapIndex < 0)
+                    {
+                        gridMapIndex = 0;
+                    }
+                    Entity gridNodeEntity = data.gridMapArray[gridMapIndex].gridEntityArray[index];
                     GridSystem.GridNode gridNode = entityManager.GetComponentData<GridSystem.GridNode>(gridNodeEntity);
                     if (gridNode.cost == 0)
                     {
