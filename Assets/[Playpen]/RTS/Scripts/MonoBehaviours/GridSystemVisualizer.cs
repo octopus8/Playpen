@@ -54,17 +54,22 @@ namespace RTS
             }
         }
 
-        public void UpdateGrid(GridSystem.GridSystemData data)
+        public void UpdateGrid(GridSystem.GridSystemData gridSystemData)
         {
-            for (int x = 0; x < data.width; x++)
+            for (int x = 0; x < gridSystemData.width; x++)
             {
-                for (int y = 0; y < data.height; y++)
+                for (int y = 0; y < gridSystemData.height; y++)
                 {
                     GridSystemVisual gridSystemVisual = gridVisuals[x, y];
                     
                     EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                    int index = GridSystem.CalculateIndex(x, y, data.width);
-                    Entity gridNodeEntity = data.gridMap.gridEntityArray[index];
+                    int index = GridSystem.CalculateIndex(x, y, gridSystemData.width);
+                    int gridIndex = gridSystemData.nextGridIndex - 1;
+                    if (gridIndex < 0)
+                    {
+                        gridIndex = 0;
+                    }
+                    Entity gridNodeEntity = gridSystemData.gridMapArray[gridIndex].gridEntityArray[index];
                     GridSystem.GridNode gridNode = entityManager.GetComponentData<GridSystem.GridNode>(gridNodeEntity);
                     if (gridNode.cost == 0)
                     {

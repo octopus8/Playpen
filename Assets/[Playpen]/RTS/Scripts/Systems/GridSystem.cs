@@ -23,6 +23,7 @@ namespace RTS
     public partial struct GridSystem : ISystem
     {
         public const int WALL_COST = byte.MaxValue;
+        public const int FLOW_FIELD_MAP_COUNT = 50;
         
         
         public struct GridSystemData : IComponentData
@@ -30,7 +31,8 @@ namespace RTS
             public int width;
             public int height;
             public float gridNodeSize;
-            public GridMap gridMap;
+            public NativeArray<GridMap> gridMapArray;
+            public int nextGridIndex;
         }
 
         public struct GridMap
@@ -75,27 +77,32 @@ namespace RTS
             state.EntityManager.AddComponent<GridNode>(gridNodeEntityPrefab);
             
             // Create grid map.
-            GridMap gridMap = new GridMap();
-            gridMap.gridEntityArray = new NativeArray<Entity>(totalNodes, Allocator.Persistent);
-
-            // Instantiate grid nodes.
-            state.EntityManager.Instantiate(gridNodeEntityPrefab, gridMap.gridEntityArray);
-            
-            // Set up grid nodes.
-            for (int x=0; x < width; x++)
+            NativeArray<GridMap> gridMapArray = new NativeArray<GridMap>(FLOW_FIELD_MAP_COUNT, Allocator.Temp);
+            for (int i = 0; i < FLOW_FIELD_MAP_COUNT; i++)
             {
-                for (int y = 0; y < height; y++)
+                GridMap gridMap = new GridMap();
+                gridMap.gridEntityArray = new NativeArray<Entity>(totalNodes, Allocator.Persistent);
+
+                // Instantiate grid nodes.
+                state.EntityManager.Instantiate(gridNodeEntityPrefab, gridMap.gridEntityArray);
+                
+                // Set up grid nodes.
+                for (int x=0; x < width; x++)
                 {
-                    int index = CalculateIndex(x, y, width);
-                    GridNode gridNode = new GridNode()
+                    for (int y = 0; y < height; y++)
                     {
-                        index = index,
-                        x = x,
-                        y = y,
-                    };
-                    state.EntityManager.SetName(gridMap.gridEntityArray[index], $"GridNode {x},{y}");
-                    SystemAPI.SetComponent(gridMap.gridEntityArray[index], gridNode);
+                        int index = CalculateIndex(x, y, width);
+                        GridNode gridNode = new GridNode()
+                        {
+                            index = index,
+                            x = x,
+                            y = y,
+                        };
+                        state.EntityManager.SetName(gridMap.gridEntityArray[index], $"GridNode {x},{y}");
+                        SystemAPI.SetComponent(gridMap.gridEntityArray[index], gridNode);
+                    }
                 }
+                gridMapArray[i] = gridMap;
             }
             
             // Add GridSystemData component to the system entity.
@@ -106,7 +113,7 @@ namespace RTS
                     width = width,
                     height = height,
                     gridNodeSize = gridNodeSize,
-                    gridMap = gridMap,
+                    gridMapArray = gridMapArray,
                 });
         }
 
@@ -133,6 +140,13 @@ namespace RTS
                     gridSystemData.gridNodeSize);
 
                 flowFieldPathRequestEnabled.ValueRW = false;
+                
+                int gridIndex = gridSystemData.nextGridIndex;
+                gridSystemData.nextGridIndex = (gridSystemData.nextGridIndex + 1) % FLOW_FIELD_MAP_COUNT;
+                SystemAPI.SetComponent(state.SystemHandle, gridSystemData);
+                
+                Debug.Log("Calculating flow field for target grid position: " + targetGridPosition + " on grid index: " + gridIndex);
+                flowFieldFollower.ValueRW.gridIndex = gridIndex;
                 flowFieldFollower.ValueRW.targetPosition = flowFieldPathRequest.ValueRO.targetPosition;
                 flowFieldFollowerEnabled.ValueRW = true;
                 
@@ -146,7 +160,7 @@ namespace RTS
                     for (int y = 0; y < gridSystemData.height; y++)
                     {
                         int index = CalculateIndex(x, y, gridSystemData.width);
-                        Entity entity = gridSystemData.gridMap.gridEntityArray[index];
+                        Entity entity = gridSystemData.gridMapArray[gridIndex].gridEntityArray[index];
                         RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
                         gridNodeArray[index] = gridNode;
 
@@ -270,9 +284,11 @@ namespace RTS
                 int2 gridPosition = GetGridPosition(mouseWorldPosition, gridSystemData.gridNodeSize);
                 if (IsValidGridPosition(gridPosition, gridSystemData.width,  gridSystemData.height))
                 {
+/*                    
                     int index = CalculateIndex(gridPosition.x, gridPosition.y, gridSystemData.width);
-                    Entity entity = gridSystemData.gridMap.gridEntityArray[index];
+                    Entity entity = gridSystemData.gridMapArray.gridEntityArray[index];
                     RefRW<GridNode> gridNode = SystemAPI.GetComponentRW<GridNode>(entity);
+*/                    
                 }
             }
             
@@ -288,10 +304,15 @@ namespace RTS
             if (state.EntityManager.HasComponent<GridSystemData>(state.SystemHandle))
             {
                 GridSystemData gridSystemData = SystemAPI.GetComponent<GridSystemData>(state.SystemHandle);
-                if (gridSystemData.gridMap.gridEntityArray.IsCreated)
+                for (int i = 0; i < gridSystemData.gridMapArray.Length; i++)
                 {
-                    gridSystemData.gridMap.gridEntityArray.Dispose();
+                    GridMap gridMap = gridSystemData.gridMapArray[i];
+                    if (gridMap.gridEntityArray.IsCreated)
+                    {
+                        gridMap.gridEntityArray.Dispose();
+                    }
                 }
+                gridSystemData.gridMapArray.Dispose();
             }
         
         }

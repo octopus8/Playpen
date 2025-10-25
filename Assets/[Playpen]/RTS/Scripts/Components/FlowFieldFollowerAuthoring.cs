@@ -23,5 +23,6 @@ namespace RTS
     {
         public float3 targetPosition;
         public float3 lastMoveVector;
+        public int gridIndex;
     }
 }

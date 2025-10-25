@@ -46,7 +46,7 @@ namespace RTS
             {
                 int2 gridPosition = GridSystem.GetGridPosition(localTransform.ValueRO.Position, gridSystemData.gridNodeSize);
                 int index = GridSystem.CalculateIndex(gridPosition, gridSystemData.width);
-                Entity gridNodeEntity = gridSystemData.gridMap.gridEntityArray[index];
+                Entity gridNodeEntity = gridSystemData.gridMapArray[flowFieldFollower.ValueRO.gridIndex].gridEntityArray[index];
 
                 GridSystem.GridNode gridNode = SystemAPI.GetComponent<GridSystem.GridNode>(gridNodeEntity);
                 float3 movementVector = GridSystem.GetWorldMovementVector(gridNode.vector);
