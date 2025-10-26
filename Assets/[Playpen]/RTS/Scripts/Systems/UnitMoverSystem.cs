@@ -31,6 +31,62 @@ namespace RTS
         public void OnUpdate(ref SystemState state)
         {
             GridSystem.GridSystemData gridSystemData = SystemAPI.GetSingleton<GridSystem.GridSystemData>();
+            
+            PhysicsWorldSingleton physicsWorldSingleton = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
+            CollisionWorld collisionWorld = physicsWorldSingleton.CollisionWorld;
+            
+            foreach (var (
+                         localTransform,
+                         targetPositionPathQueued,
+                         targetPositionPathQueuedEnabled,
+                         flowFieldPathRequest,
+                         flowFieldPathRequestEnabled,
+                         unitMover
+                         )
+                     in SystemAPI.Query<
+                         RefRO<LocalTransform>,
+                         RefRW<TargetPositionPathQueued>, 
+                         EnabledRefRW<TargetPositionPathQueued>,
+                         RefRW<FlowFieldPathRequest>,
+                         EnabledRefRW<FlowFieldPathRequest>,
+                         RefRW<UnitMover>
+                     >().WithPresent<FlowFieldPathRequest>())
+            {
+                RaycastInput raycastInput = new RaycastInput
+                {
+                    Start = localTransform.ValueRO.Position,
+                    End = targetPositionPathQueued.ValueRO.targetPosition,
+                    Filter = new CollisionFilter
+                    {
+                        BelongsTo = ~0u,
+                        CollidesWith = 1u << RTSGame.PATHFINDING_WALL_LAYER,
+                        GroupIndex = 0
+                    }
+                };
+
+                // If there is no wall between the unit and the queued target position, then
+                // set the unit mover destination to the queued target position.
+                if (!collisionWorld.CastRay(raycastInput))
+                {
+                    Debug.Log("No wall");
+                    unitMover.ValueRW.destination = targetPositionPathQueued.ValueRO.targetPosition;
+                }
+                
+                // Otherwise, there is a wall between.
+                // Set the flow field path request to the queued target position path target position.
+                else
+                {
+                    Debug.Log("Wall");
+                    flowFieldPathRequest.ValueRW.targetPosition = targetPositionPathQueued.ValueRO.targetPosition;
+                    flowFieldPathRequestEnabled.ValueRW = true;
+                }
+
+                // Queued target position path has been processed.
+                // Disable component.
+                targetPositionPathQueuedEnabled.ValueRW = false;
+            }
+            
+            
             foreach (var (
                          localTransform,
                          flowFieldFollower,

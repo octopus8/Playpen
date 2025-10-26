@@ -135,7 +135,7 @@ namespace RTS
                      SystemAPI.Query<
                          RefRO<FlowFieldPathRequest>,
                          EnabledRefRW<FlowFieldPathRequest>,
-                            RefRW<FlowFieldFollower>,
+                         RefRW<FlowFieldFollower>,
                          EnabledRefRW<FlowFieldFollower>
                      >().WithPresent<FlowFieldFollower>())
             {
@@ -148,6 +148,7 @@ namespace RTS
                 gridSystemData.nextGridIndex = (gridSystemData.nextGridIndex + 1) % FLOW_FIELD_MAP_COUNT;
                 SystemAPI.SetComponent(state.SystemHandle, gridSystemData);
                 
+                Debug.Log("Calculating path to " + targetGridPosition + " :: " + gridIndex);
                 flowFieldFollower.ValueRW.gridIndex = gridIndex;
                 flowFieldFollower.ValueRW.targetPosition = flowFieldPathRequest.ValueRO.targetPosition;
                 flowFieldFollowerEnabled.ValueRW = true;

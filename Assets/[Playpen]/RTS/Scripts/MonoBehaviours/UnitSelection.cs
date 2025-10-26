@@ -235,7 +235,7 @@ namespace RTS
             // Query all selected units with a UnitMoverOverride and TargetOverride component.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)
                 .WithAll<UnitSelected>()
-                .WithPresent<UnitMoverOverride, TargetOverride, FlowFieldPathRequest>()
+                .WithPresent<UnitMoverOverride, TargetOverride, TargetPositionPathQueued, FlowFieldPathRequest, FlowFieldFollower>()
                 .Build(entityManager);
             
             // Convert the query results to NativeArrays of entities.
@@ -247,7 +247,7 @@ namespace RTS
             // Create an array of TargetOverride components to clear any existing target entities.
             NativeArray<TargetOverride> targetOverrideArray = entityQuery.ToComponentDataArray<TargetOverride>(Allocator.Temp);
             
-            NativeArray<FlowFieldPathRequest> flowFieldPathRequestArray = entityQuery.ToComponentDataArray<FlowFieldPathRequest>(Allocator.Temp);
+            NativeArray<TargetPositionPathQueued> targetPositionPathQueuedArray = entityQuery.ToComponentDataArray<TargetPositionPathQueued>(Allocator.Temp);
             
             // Generate move position array around the mouse position.
             NativeArray<float3> movePositions = GenerateMovePositionsArray(mousePosition, moveOverrideArray.Length);
@@ -264,16 +264,20 @@ namespace RTS
                 targetOverride.targetEntity = Entity.Null;
                 targetOverrideArray[i] = targetOverride;
                 
-                FlowFieldPathRequest flowFieldPathRequest = flowFieldPathRequestArray[i];
-                flowFieldPathRequest.targetPosition = movePositions[i];
-                flowFieldPathRequestArray[i] = flowFieldPathRequest;
+                TargetPositionPathQueued targetPositionPathQueued = targetPositionPathQueuedArray[i];
+                targetPositionPathQueued.targetPosition = movePositions[i];
+                targetPositionPathQueuedArray[i] = targetPositionPathQueued;
                 entityManager.SetComponentEnabled<FlowFieldPathRequest>(entityArray[i], true);
+                
+                // Clear any current path requests or flow field followers.
+                entityManager.SetComponentEnabled<FlowFieldPathRequest>(entityArray[i], false);
+                entityManager.SetComponentEnabled<FlowFieldFollower>(entityArray[i], false);
             }
 
             // Copy the modified data back to the entity query.
             entityQuery.CopyFromComponentDataArray(moveOverrideArray);
             entityQuery.CopyFromComponentDataArray(targetOverrideArray);
-            entityQuery.CopyFromComponentDataArray(flowFieldPathRequestArray);
+            entityQuery.CopyFromComponentDataArray(targetPositionPathQueuedArray);
             
             // Create an entity query for selected barracks to set the rally position offset.
             entityQuery = new EntityQueryBuilder(Allocator.Temp)

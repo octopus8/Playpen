@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 7164323107445459248}
   - component: {fileID: 8763403774265712122}
   - component: {fileID: 1595657369129240134}
+  - component: {fileID: 7715568411425920769}
   m_Layer: 10
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -384,6 +385,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1655ba6320886c447b72ed5245a1e4ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTS.FlowFieldPathRequestAuthoring
+--- !u!114 &7715568411425920769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116961625703330837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5541d10d63296254290bd79142a7b300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTS.TargetPositionPathQueuedAuthoring
 --- !u!1001 &1786897988734238698
 PrefabInstance:
   m_ObjectHideFlags: 0
