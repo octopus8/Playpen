@@ -267,7 +267,7 @@ namespace RTS
                 TargetPositionPathQueued targetPositionPathQueued = targetPositionPathQueuedArray[i];
                 targetPositionPathQueued.targetPosition = movePositions[i];
                 targetPositionPathQueuedArray[i] = targetPositionPathQueued;
-                entityManager.SetComponentEnabled<FlowFieldPathRequest>(entityArray[i], true);
+                entityManager.SetComponentEnabled<TargetPositionPathQueued>(entityArray[i], true);
                 
                 // Clear any current path requests or flow field followers.
                 entityManager.SetComponentEnabled<FlowFieldPathRequest>(entityArray[i], false);
