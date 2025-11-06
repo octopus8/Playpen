@@ -68,7 +68,6 @@ namespace RTS
                 // set the unit mover destination to the queued target position.
                 if (!collisionWorld.CastRay(raycastInput))
                 {
-                    Debug.Log("No wall");
                     unitMover.ValueRW.destination = targetPositionPathQueued.ValueRO.targetPosition;
                 }
                 
@@ -76,7 +75,6 @@ namespace RTS
                 // Set the flow field path request to the queued target position path target position.
                 else
                 {
-                    Debug.Log("Wall");
                     flowFieldPathRequest.ValueRW.targetPosition = targetPositionPathQueued.ValueRO.targetPosition;
                     flowFieldPathRequestEnabled.ValueRW = true;
                 }

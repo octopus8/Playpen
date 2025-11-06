@@ -39,8 +39,18 @@ namespace RTS
 
             // Iterate over all entities with EnemyAttackHQ, UnitMover, and Target components
             // that do not have the UnitMoverOverride component.
-            foreach (var (enemyAttackHQ, unitMover, target) in 
-                     SystemAPI.Query<RefRO<EnemyAttackHQ>, RefRW<UnitMover>, RefRO<Target>>().WithDisabled<UnitMoverOverride>())
+            foreach (var (
+                         enemyAttackHQ,
+                         targetPositionPathQueued,
+                         targetPositionPathQueuedEnabled,
+                         target) 
+                     in 
+                     SystemAPI.Query<
+                         RefRO<EnemyAttackHQ>,
+                         RefRW<TargetPositionPathQueued>,
+                         EnabledRefRW<TargetPositionPathQueued>,
+                         RefRO<Target>
+                     >().WithDisabled<UnitMoverOverride>().WithPresent<TargetPositionPathQueued>())
             {
                 // If the unit already has a target, skip to the next entity.
                 if (target.ValueRO.targetEntity != Entity.Null)
@@ -49,7 +59,8 @@ namespace RTS
                 }
             
                 // Set the destination of the unit to the position of the friendly HQ.
-                unitMover.ValueRW.destination = hqPosition;
+                targetPositionPathQueued.ValueRW.targetPosition = hqPosition;
+                targetPositionPathQueuedEnabled.ValueRW = true;
             }
         }
     }
