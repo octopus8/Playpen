@@ -124,6 +124,26 @@ namespace RTS
                     unitMover.ValueRW.destination = localTransform.ValueRO.Position;
                     flowFieldFollowerEnabled.ValueRW = false;
                 }
+                
+                RaycastInput raycastInput = new RaycastInput
+                {
+                    Start = localTransform.ValueRO.Position,
+                    End = flowFieldFollower.ValueRO.targetPosition,
+                    Filter = new CollisionFilter
+                    {
+                        BelongsTo = ~0u,
+                        CollidesWith = 1u << RTSGame.PATHFINDING_WALL_LAYER,
+                        GroupIndex = 0
+                    }
+                };
+
+                // If there is no wall between the unit and the queued target position, then
+                // set the unit mover destination to the queued target position.
+                if (!collisionWorld.CastRay(raycastInput))
+                {
+                    unitMover.ValueRW.destination = flowFieldFollower.ValueRO.targetPosition;
+                    flowFieldFollowerEnabled.ValueRW = false;
+                }
             }
             
             
