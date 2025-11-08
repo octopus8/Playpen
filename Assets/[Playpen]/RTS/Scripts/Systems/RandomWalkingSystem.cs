@@ -20,10 +20,16 @@ namespace RTS
         public void OnUpdate(ref SystemState state)
         {
             // Iterate over all entities with RandomWalking, UnitMover, and LocalTransform components.
-            foreach (var (randomWalking, unitMover, localTransform) in
+            foreach (var (
+                         randomWalking,
+                         targetPositionPathQueued,
+                         targetPositionPathQueuedEnabled,
+                         localTransform)
+                     in
                      SystemAPI.Query<
                          RefRW<RandomWalking>,
-                         RefRW<UnitMover>,
+                         RefRW<TargetPositionPathQueued>, 
+                         EnabledRefRW<TargetPositionPathQueued>,
                          RefRO<LocalTransform>
                      >())
             {
@@ -37,14 +43,14 @@ namespace RTS
                     
                      float randomDistance = random.NextFloat(randomWalking.ValueRO.distanceMin, randomWalking.ValueRO.distanceMax);
                     randomWalking.ValueRW.targetPosition = randomWalking.ValueRO.originPosition + randomDirection * randomDistance;
-                    unitMover.ValueRW.destination = randomWalking.ValueRO.targetPosition;
                     
                     randomWalking.ValueRW.random = random;
                 }
                 // Otherwise, continue moving towards the current target position.
                 else
                 {
-                    unitMover.ValueRW.destination = randomWalking.ValueRO.targetPosition;
+                    targetPositionPathQueued.ValueRW.targetPosition = randomWalking.ValueRO.targetPosition;
+                    targetPositionPathQueuedEnabled.ValueRW = true;
                 }
             }
         }

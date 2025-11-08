@@ -41,6 +41,7 @@ namespace RTS
                          targetPositionPathQueuedEnabled,
                          flowFieldPathRequest,
                          flowFieldPathRequestEnabled,
+                         flowFieldFollowerEnabled,
                          unitMover
                          )
                      in SystemAPI.Query<
@@ -49,8 +50,9 @@ namespace RTS
                          EnabledRefRW<TargetPositionPathQueued>,
                          RefRW<FlowFieldPathRequest>,
                          EnabledRefRW<FlowFieldPathRequest>,
+                         EnabledRefRW<FlowFieldFollower>,
                          RefRW<UnitMover>
-                     >().WithPresent<FlowFieldPathRequest>())
+                     >().WithPresent<FlowFieldPathRequest, FlowFieldFollower>())
             {
                 RaycastInput raycastInput = new RaycastInput
                 {
@@ -69,6 +71,8 @@ namespace RTS
                 if (!collisionWorld.CastRay(raycastInput))
                 {
                     unitMover.ValueRW.destination = targetPositionPathQueued.ValueRO.targetPosition;
+                    flowFieldPathRequestEnabled.ValueRW = false;
+                    flowFieldFollowerEnabled.ValueRW = false;
                 }
                 
                 // Otherwise, there is a wall between.

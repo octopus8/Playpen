@@ -40,14 +40,16 @@ namespace RTS
                          localTransform, 
                          meleeAttack, 
                          target,
-                         unitMover
+                         targetPositionPathQueued,
+                         targetPositionPathQueuedEnabled
                          ) in
                      SystemAPI.Query<
                          RefRO<LocalTransform>, 
                          RefRW<MeleeAttack>, 
                          RefRO<Target>,
-                         RefRW<UnitMover>
-                     >().WithDisabled<UnitMoverOverride>())
+                         RefRW<TargetPositionPathQueued>, 
+                         EnabledRefRW<TargetPositionPathQueued>
+                     >().WithDisabled<UnitMoverOverride>().WithPresent<TargetPositionPathQueued>())
             {
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null)
@@ -97,13 +99,15 @@ namespace RTS
                 // If not in melee range and not touching target, move towards target.
                 if (!isInMeleeRange && !isTouchingTarget)
                 {
-                    unitMover.ValueRW.destination = targetLocalTransform.Position;
+                    targetPositionPathQueued.ValueRW.targetPosition = targetLocalTransform.Position;
+                    targetPositionPathQueuedEnabled.ValueRW = true;
                 }
                 
                 // Otherwise, don't move and attack.
                 else
                 {
-                    unitMover.ValueRW.destination = localTransform.ValueRO.Position;
+                    targetPositionPathQueued.ValueRW.targetPosition = localTransform.ValueRO.Position;
+                    targetPositionPathQueuedEnabled.ValueRW = true;
                 
                     // If still waiting for next attack, skip.
                     meleeAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;

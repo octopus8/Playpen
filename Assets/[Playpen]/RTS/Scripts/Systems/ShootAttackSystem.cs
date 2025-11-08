@@ -30,17 +30,21 @@ namespace RTS
         public void OnUpdate(ref SystemState state) {
             // Iterate over all entities with LocalTransform, ShootAttack, Target, and UnitMover components.
             EntityPrefabSet entitiesReferences = SystemAPI.GetSingleton<EntityPrefabSet>();
-            foreach ((
-                RefRW<LocalTransform> localTransform,
-                RefRW<ShootAttack> shootAttack,
-                RefRO<Target> target,
-                RefRW<UnitMover> unitMover,
-                Entity entity)
-                in SystemAPI.Query<
-                    RefRW<LocalTransform>,
-                    RefRW<ShootAttack>,
-                    RefRO<Target>,
-                    RefRW<UnitMover>>().WithDisabled<UnitMoverOverride>().WithEntityAccess()) {
+            foreach ( var (
+                         localTransform,
+                         shootAttack,
+                         target,
+                         targetPositionPathQueued,
+                         targetPositionPathQueuedEnabled,
+                         unitMover,
+                         entity)
+                     in SystemAPI.Query<
+                         RefRW<LocalTransform>,
+                         RefRW<ShootAttack>,
+                         RefRO<Target>,
+                         RefRW<TargetPositionPathQueued>, 
+                         EnabledRefRW<TargetPositionPathQueued>,
+                         RefRW<UnitMover>>().WithDisabled<UnitMoverOverride>().WithPresent<TargetPositionPathQueued>().WithEntityAccess()) {
 
                 // If no target, skip.
                 if (target.ValueRO.targetEntity == Entity.Null) {
@@ -50,13 +54,15 @@ namespace RTS
                 // If target is too far, move towards it.
                 LocalTransform targetLocalTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
                 if (math.distance(localTransform.ValueRO.Position, targetLocalTransform.Position) > shootAttack.ValueRO.attackDistance) {
-                    unitMover.ValueRW.destination = targetLocalTransform.Position;
+                    targetPositionPathQueued.ValueRW.targetPosition = targetLocalTransform.Position;
+                    targetPositionPathQueuedEnabled.ValueRW = true;
                     continue;
                 }
                 
                 //  Otherwise, close enough, set destination to current position to stop moving.
                 else {
-                    unitMover.ValueRW.destination = localTransform.ValueRO.Position;
+                    targetPositionPathQueued.ValueRW.targetPosition = localTransform.ValueRO.Position;
+                    targetPositionPathQueuedEnabled.ValueRW = true;
                 }
 
                 // Rotate towards target.
