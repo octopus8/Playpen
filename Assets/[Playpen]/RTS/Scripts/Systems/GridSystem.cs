@@ -34,6 +34,7 @@ namespace RTS
             public float gridNodeSize;
             public NativeArray<GridMap> gridMapArray;
             public int nextGridIndex;
+            public NativeArray<byte> costMap;
         }
 
         public struct GridMap
@@ -121,6 +122,7 @@ namespace RTS
                     gridNodeSize = gridNodeSize,
                     gridMapArray = gridMapArray,
                     nextGridIndex = 0,
+                    costMap =  new  NativeArray<byte>(totalNodes, Allocator.Persistent),
                 });
         }
 
@@ -170,7 +172,6 @@ namespace RTS
 
                 int gridIndex = gridSystemData.nextGridIndex;
                 gridSystemData.nextGridIndex = (gridSystemData.nextGridIndex + 1) % FLOW_FIELD_MAP_COUNT;
-                SystemAPI.SetComponent(state.SystemHandle, gridSystemData);
                 
                 Debug.Log("Calculating path to " + targetGridPosition + " :: " + gridIndex);
                 flowFieldFollower.ValueRW.gridIndex = gridIndex;
@@ -229,6 +230,7 @@ namespace RTS
                         {
                             int index = CalculateIndex(x, y, gridSystemData.width);
                             gridNodeArray[index].ValueRW.cost = WALL_COST;
+                            gridSystemData.costMap[index] = WALL_COST;
                         }
                         if (collisionWorld.OverlapSphere(
                                 GetWorldCenterPosition(x, y, gridSystemData.gridNodeSize),
@@ -244,6 +246,7 @@ namespace RTS
                         {
                             int index = CalculateIndex(x, y, gridSystemData.width);
                             gridNodeArray[index].ValueRW.cost = BUILDING_COST;
+                            gridSystemData.costMap[index] = BUILDING_COST;
                         }
 
                         hits.Clear();
@@ -361,6 +364,7 @@ namespace RTS
                 }
 
                 gridSystemData.ValueRW.gridMapArray.Dispose();
+                gridSystemData.ValueRW.costMap.Dispose();
             }
         }
         
@@ -411,6 +415,19 @@ namespace RTS
                 return true;
             }
             return false;
+        }
+
+        public static bool IsWall(int2 gridPosition, GridSystemData gridSystemData)
+        {
+            return gridSystemData.costMap[CalculateIndex(gridPosition, gridSystemData.width)] == WALL_COST;
+        }
+
+        public static bool IsValidWalkableGridPosition(float3 worldPosition, GridSystemData gridSystemData)
+        {
+            int2 gridPosition = GetGridPosition(worldPosition, gridSystemData.gridNodeSize);
+            return IsValidGridPosition(gridPosition, gridSystemData.width, gridSystemData.height) &&
+                   !IsWall(gridPosition, gridSystemData);
+
         }
         
     }

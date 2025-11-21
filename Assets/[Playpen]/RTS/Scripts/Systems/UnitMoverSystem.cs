@@ -42,7 +42,8 @@ namespace RTS
                          flowFieldPathRequest,
                          flowFieldPathRequestEnabled,
                          flowFieldFollowerEnabled,
-                         unitMover
+                         unitMover,
+                         entity
                          )
                      in SystemAPI.Query<
                          RefRO<LocalTransform>,
@@ -52,7 +53,7 @@ namespace RTS
                          EnabledRefRW<FlowFieldPathRequest>,
                          EnabledRefRW<FlowFieldFollower>,
                          RefRW<UnitMover>
-                     >().WithPresent<FlowFieldPathRequest, FlowFieldFollower>())
+                     >().WithPresent<FlowFieldPathRequest, FlowFieldFollower>().WithEntityAccess())
             {
                 RaycastInput raycastInput = new RaycastInput
                 {
@@ -79,8 +80,22 @@ namespace RTS
                 // Set the flow field path request to the queued target position path target position.
                 else
                 {
-                    flowFieldPathRequest.ValueRW.targetPosition = targetPositionPathQueued.ValueRO.targetPosition;
-                    flowFieldPathRequestEnabled.ValueRW = true;
+                    if (SystemAPI.HasComponent<UnitMoverOverride>(entity))
+                    {
+                        SystemAPI.SetComponentEnabled<UnitMoverOverride>(entity, false);
+                    }
+                    if (GridSystem.IsValidWalkableGridPosition(targetPositionPathQueued.ValueRO.targetPosition,
+                            gridSystemData))
+                    {
+                        flowFieldPathRequest.ValueRW.targetPosition = targetPositionPathQueued.ValueRO.targetPosition;
+                        flowFieldPathRequestEnabled.ValueRW = true;
+                    }
+                    else
+                    {
+                        unitMover.ValueRW.destination = localTransform.ValueRO.Position;
+                        flowFieldPathRequestEnabled.ValueRW = false;
+                        flowFieldFollowerEnabled.ValueRW = false;
+                    }
                 }
 
                 // Queued target position path has been processed.
