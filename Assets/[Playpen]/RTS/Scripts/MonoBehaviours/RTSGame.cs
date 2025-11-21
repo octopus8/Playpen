@@ -16,8 +16,11 @@ namespace RTS
         /// <summary> Layer for buildings. </summary>
         public const int BUILDINGS_LAYER = 11;
 
-        /// <summary> Layer for buildings. </summary>
+        /// <summary> Layer for walls. </summary>
         public const int PATHFINDING_WALL_LAYER = 12;
+        
+        /// <summary> Layer for buildings. </summary>
+        public const int PATHFINDING_BUILDING_LAYER = 13;
 
         /// <summary> The set of all units in the game. </summary>
         public UnitSetScriptableObject units;

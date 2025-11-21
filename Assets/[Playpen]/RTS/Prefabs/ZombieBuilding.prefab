@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 7940217568711121880}
   - component: {fileID: 2676960444473324474}
   - component: {fileID: 3945486491311074132}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Pathfinding Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

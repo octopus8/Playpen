@@ -23,6 +23,7 @@ namespace RTS
     public partial struct GridSystem : ISystem
     {
         public const int WALL_COST = byte.MaxValue;
+        public const int BUILDING_COST = 50;
         public const int FLOW_FIELD_MAP_COUNT = 50;
         
         
@@ -48,7 +49,7 @@ namespace RTS
             public int x;
             public int y;
             public byte cost;
-            public byte bestCost;
+            public int bestCost;
             public float2 vector;
         }
         
@@ -200,7 +201,7 @@ namespace RTS
                         else
                         {
                             gridNode.ValueRW.cost = 1;
-                            gridNode.ValueRW.bestCost = byte.MaxValue;
+                            gridNode.ValueRW.bestCost = int.MaxValue;
                         }
                     }
                 }
@@ -228,6 +229,21 @@ namespace RTS
                         {
                             int index = CalculateIndex(x, y, gridSystemData.width);
                             gridNodeArray[index].ValueRW.cost = WALL_COST;
+                        }
+                        if (collisionWorld.OverlapSphere(
+                                GetWorldCenterPosition(x, y, gridSystemData.gridNodeSize),
+                                gridSystemData.gridNodeSize * 0.5f,
+                                ref hits,
+                                new CollisionFilter()
+                                {
+                                    BelongsTo = ~0u,
+                                    CollidesWith = (1u << RTSGame.PATHFINDING_BUILDING_LAYER),
+                                    GroupIndex = 0,
+                                }
+                            ))
+                        {
+                            int index = CalculateIndex(x, y, gridSystemData.width);
+                            gridNodeArray[index].ValueRW.cost = BUILDING_COST;
                         }
 
                         hits.Clear();
@@ -282,7 +298,7 @@ namespace RTS
                             }
 
                             // Calculate new best cost for neighbor.
-                            byte newBestCost = (byte)(currentNode.ValueRW.bestCost + neighborNode.ValueRW.cost);
+                            int newBestCost = currentNode.ValueRW.bestCost + neighborNode.ValueRW.cost;
 
                             // If new best cost is lower, update neighbor node and enqueue it for processing.
                             if (newBestCost < neighborNode.ValueRW.bestCost)
